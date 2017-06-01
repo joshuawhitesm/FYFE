@@ -2229,3 +2229,10 @@ nav {
 	 
 	 }
 	}
+#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item {
+ 
+    float: left !important;
+    width: 100% !important;
+    padding: 5px !important;
+    /* text-transform: uppercase; */
+}
