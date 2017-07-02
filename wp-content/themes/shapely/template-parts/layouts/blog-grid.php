@@ -1,7 +1,7 @@
 <?php
 /* Start the Loop */
 ?>
-	<div class="row">
+	<div class="row ">
 		<?php
 		global $wp_query;
 		while ( have_posts() ) : the_post();
@@ -14,7 +14,7 @@
 			get_template_part( 'template-parts/content', 'grid-small' );
 
 			if ( fmod( $i, (int) 2 ) == 0 && $i != (int) $wp_query->post_count ) {
-				echo '</div><div class="row">';
+				echo '</div><div class="row ">';
 			} elseif ( $i == (int) $wp_query->post_count ) {
 				continue;
 			}

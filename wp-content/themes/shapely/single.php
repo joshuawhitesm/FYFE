@@ -15,7 +15,7 @@ get_header(); ?>
 			get_sidebar();
 		endif;
 		?>
-		<div id="primary" class="col-md-8 mb-xs-24 <?php echo esc_attr( $layout_class ); ?>"><?php
+		<div id="primary" class="style_single_page col-md-12 mb-xs-24 <?php echo esc_attr( $layout_class ); ?>"><?php
 			while ( have_posts() ) : the_post();
 
 				get_template_part( 'template-parts/content' );
@@ -29,7 +29,7 @@ get_header(); ?>
 		</div><!-- #primary -->
 		<?php
 		if ( $layout_class == 'sidebar-right' ):
-			get_sidebar();
+			// get_sidebar();
 		endif;
 		?>
 	</div>

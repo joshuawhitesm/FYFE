@@ -346,34 +346,104 @@ function prefix_load_cat_posts () {
 	if ( $the_query->have_posts() ) {
 	while ( $the_query->have_posts() ) {
 		$the_query->the_post();?>
-		<div class="col-md-3 col-xs-6 no-padding color-white project-item">
-			<div class="project-img">
-			<a href="<?php the_permalink();?>"><?php the_post_thumbnail();?></a>
+		<div class="col-md-3 col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
+			<div  class="project-img">
+			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
 			</div>
 			<div class="project-info">
 				<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
-				<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?php echo get_the_ID();?>"><?php the_title();?></button></h5></div>
+				<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
+</h5></div>
 				<div class="post-excerpt-fix hiden-xs"><?php the_excerpt();?></div>
-				<div id="#myModal<?php echo get_the_ID();?>" class="modal fade" role="dialog">
-				  <div class="modal-dialog">
+			</div>
+		</div>
+		<div class="<?php echo get_the_ID();?> modal fade" role="dialog">
+		  <div class="modal-dialog">
 
-					<!-- Modal content-->
-					<div class="modal-content">
-					  <div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Modal Header</h4>
-					  </div>
-					  <div class="modal-body">
-						<p><?php the_title();?></p>
-					  </div>
-					  <div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					  </div>
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="modal_body_fix col-md-12 p_l_r_0">
+						<div class="col-md-6 p_l_r_0 p_relative">
+							<div class="project-img1">
+							<?php $image_popup = get_field('image_popup') ;
+							if($image_popup !=''){ ?>
+								<img src="<?php echo $image_popup['url'];?>" />
+							<?php 
+							}
+							else{ ?>
+								<a class = "style_image_thumbnail" href="<?php the_permalink();?>"><?php the_post_thumbnail();?></a>
+							<?php	
+							}
+							?>	
+							</div>
+							<div class="project_img1_2">
+							</div>
+						</div>
+						<div class="col-md-6  p_l_r_0 color-white p_relative">
+							<div class="p_l_t_30">
+								<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
+								<div class="project-info1">
+									<div class="project-info1_ok">
+										<p><?php the_title();?></p>
+									</div>
+									<div class="post-excerpt-fix hiden-xs"><?php the_excerpt();?></div>
+									
+								</div>
+								<div class="project_info_bottom">
+									<div class="col-md-6 p_l_r_0 project_info_bottom1_6">
+										<div class="project_info1_a_share">
+											<p>SHARE</p>
+											<?php echo do_shortcode( "[simple-social-share]" ); ?>
+										</div>
+									</div>
+									<div class="col-md-6 p_l_r_0 project_info_bottom2_6">
+										<div class="project_info1_a_work">
+											<a href="#">WORK WITH US</a>
+											
+										</div>
+									</div>
+								</div>
+								<div class="project-info1">
+									<div class="project_info1_ok11">
+										<p>Related pROJECTS</p>
+									</div>
+									<?php 
+										$id = get_the_ID();
+										$args1 = array( 'post_type' => 'projects', 'posts_per_page' =>3, 'post__not_in'=> array( $id) );
+										$loop1 = new WP_Query( $args1 );	
+									?>
+									<div class="project_info1_ok1">
+										<?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
+											<div class="col-md-3 ">
+												<div class="project_img1_ok_col_3">
+													<div class="project_img1_ok">
+														<a href="<?php the_permalink();?>"><?php the_post_thumbnail();?></a>
+													</div>
+													<div class="project_info1_a_title">
+														<a href="<?php the_permalink();?>"><?php the_title();?></a>
+													</div>
+												</div>
+											</div>
+										<?php  endwhile;?>
+										<div class="col-md-3">
+											<div class="project_info1_a_see_more">
+												<a href="<?php the_permalink();?>">See more</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
 					</div>
-
-				  </div>
 				</div>
 			</div>
+
+		  </div>
 		</div>
 	<?php }
 	/* Restore original Post Data */
@@ -410,11 +480,114 @@ function prefix_load_cat_teams () {
 	if ( $the_query->have_posts() ) {
 	while ( $the_query->have_posts() ) {
 		$the_query->the_post();?>
-		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item">
-		<div class="teams-img">
-		<a href="<?php the_permalink();?>"><?php the_post_thumbnail();?></a>
+		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
+			<div class="teams-img">
+			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+			</div>
+			<div class="project-info">
+				<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'teams_cat', '', '' );  ?></div>
+				<div class="title-post-fix"><h5>
+				<button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
+					</h5>
+				</div>
+				<div class="post-excerpt-fix hiden-xs"><?php the_excerpt();?></div>
+			</div>
 		</div>
-	</div>
+		<div class="<?php echo get_the_ID();?> modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="modal_body_fix col-md-12 p_l_r_0">
+						<div class="col-md-6 p_l_r_0 p_relative">
+							<div class="project-img1">
+							<?php $image_popup = get_field('image_popup') ;
+							if($image_popup !=''){ ?>
+								<img src="<?php echo $image_popup['url'];?>" />
+							<?php 
+							}
+							else{ ?>
+								<a class = "style_image_thumbnail" href="<?php the_permalink();?>"><?php the_post_thumbnail();?></a>
+							<?php	
+							}
+							?>	
+							</div>
+							<div class="project_img1_2">
+							</div>
+						</div>
+						<div class="col-md-6  p_l_r_0 color-white p_relative">
+							<div class="p_l_t_30">
+								<?php 
+								$status = get_field('status') ;
+								$location = get_field('location') ;
+								
+								?>
+								<div class="project-info1_ok project_info1_ok_100">
+									<h6><?php the_title();?></h6><span><?php echo $location;?></span>
+								</div>
+								<div class="project-info1">
+									<div class="project-info1_ok">
+										<a href="<?php the_permalink();?>"><?php echo $status;?></a>
+									</div>
+									<div class="post-excerpt-fix-popup hiden-xs"><?php the_excerpt();?></div>
+									
+								</div>
+								<div class="project_info_bottom">
+									<div class="col-md-6 p_l_r_0 project_info_bottom1_6">
+										<div class="project_info1_a_share">
+											<p>SHARE</p>
+											<?php echo do_shortcode( "[simple-social-share]" ); ?>
+										</div>
+									</div>
+									<div class="col-md-6 p_l_r_0 project_info_bottom2_6">
+										<div class="project_info1_a_work">
+											<a href="#">WORK WITH US</a>
+											
+										</div>
+									</div>
+								</div>
+								<div class="project-info1">
+									<div class="project_info1_ok11">
+										<p>PAST PROJECTS</p>
+									</div>
+									<?php 
+										$id = get_the_ID();
+										$args1 = array( 'post_type' => 'projects', 'posts_per_page' =>3, 'post__not_in'=> array( $id) );
+										$loop1 = new WP_Query( $args1 );	
+									?>
+									<div class="project_info1_ok1">
+										<?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
+											<div class="col-md-3 ">
+												<div class="project_img1_ok_col_3">
+													<div class="project_img1_ok">
+														<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+													</div>
+													<div class="project_info1_a_title">
+														<a href="javascript:void(0);"><?php the_title();?></a>
+													</div>
+												</div>
+											</div>
+										<?php  endwhile;?>
+										<div class="col-md-3">
+											<div class="project_info1_a_see_more">
+												<a href="javascript:void(0);">See more</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		  </div>
+		</div>
 	<?php }
 	/* Restore original Post Data */
 		wp_reset_postdata();
@@ -468,3 +641,1099 @@ function prefix_load_location () {
    echo $response;
    die(1);
    }
+
+function location_ajax(){
+    
+    $id_post_location = $_POST["id_post_location"];
+	$args = array('posts_per_page' => -1,
+				'post_type' => 'locations',
+				'post__in' => array($id_post_location),
+				);
+	$posts_array = get_posts( $args );
+	global $post;?>
+	<?php
+	
+	$arr= array() ;
+	$arr_location = array() ;
+	$html_location = "";
+	foreach ( $posts_array as $post ) : setup_postdata( $post ); ?>
+		<?php
+			
+			if( have_rows('location_information') ):
+			// loop through the rows of data
+			while ( have_rows('location_information') ) : the_row();
+				$maps_child = get_sub_field('maps_child');
+				if( !empty($maps_child) ){
+					$arr_location_ok = array();			
+					$arr_location_ok['address']= $maps_child['address'];
+					$arr_location_ok['lat'] = $maps_child['lat'];
+					$arr_location_ok['lng'] = $maps_child['lng'];
+					$arr_location_ok['title']= get_the_title();
+					$arr_location[] = $arr_location_ok;
+				}
+			endwhile;
+			else :
+						// no rows found
+			endif;
+			
+			
+			
+			$name_location = get_field( "name_location" );
+			
+			?>
+			<?php $html_location .= "<h2>". $name_location . "</h2>"; ?>
+			<?php
+			// check if the repeater field has rows of data
+			if( have_rows('location_information') ):
+				// loop through the rows of data
+				while ( have_rows('location_information') ) : the_row();
+				// display a sub field value ?>
+				<?php $html_location .= "<h3>".get_sub_field('location_name')."</h3>" ?>
+				<?php
+				$html_location .= get_sub_field('information_detail');
+				endwhile;
+			else :
+				// no rows found
+			endif;
+		?>
+	<?php
+	endforeach; 
+	// var_dump($arr_location);
+	?>		
+	<?php
+	$arr['html']= $html_location;
+	$arr['arr']= $arr_location;
+	echo json_encode($arr);
+	
+	exit;  
+}
+add_action('wp_ajax_nopriv_location_ajax', 'location_ajax'); 
+add_action('wp_ajax_location_ajax', 'location_ajax');
+
+function load_more_ajax(){
+		$paged = $_POST["paged"];
+		$i = $_POST["i"];
+				$args = array(
+				'posts_per_page'   => 3,
+				'orderby'          => 'post_date',
+				'order'            => 'DESC',
+				'post_type'        => 'post',
+				'post_status'      => 'publish',
+				'paged'    => $paged,
+				);
+				$the_query = new WP_Query( $args );
+				
+				// var_dump($the_query->request);
+				
+				if ( $the_query->have_posts() ) { 
+					while ( $the_query->have_posts() ) { 
+					$the_query->the_post();
+					?>	
+						<?php if($the_query->max_num_pages==$paged || $the_query->max_num_pages<$paged){?>
+							<style>
+								#read_more_news {
+									display: none;
+								}
+							</style>
+						<?php } 
+					$news_taxonomy = get_the_terms( get_the_ID(), 'category', '', '' );  
+					// var_dump($news_taxonomy);
+					$news_taxonomy_link = get_term_link($news_taxonomy[0]->term_id, 'category' );
+					// var_dump($news_taxonomy_link);
+					if($i%2==0){
+					?>
+					<div class="col-md-12 no-padding">
+						<div class="col-md-6 no-padding">
+							<div  class=" fl style_content_get_news">
+								<div  class="col-ms-12 fl style_image_news">
+									<?php the_post_thumbnail();?>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 no-padding">
+							<div  class=" fl style_content_news">
+								<div class="btn-see style_content_news_a">
+									<a href="<?php echo $news_taxonomy_link;?>"> <?php echo $news_taxonomy[0]->name;  ?></a>
+								</div>
+								<div  class="col-ms-12 fl style_title_news">
+									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+								</div>
+								<div  class="col-ms-12 fl style_c_d">
+									<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span> 
+								</div>
+								<div  class="col-ms-12 fl style_content_news_main">
+									<?php  echo get_the_excerpt(); ?>
+								</div>
+								<div  class="col-ms-12 fl style_news_read_more">
+									<a  href="<?php the_permalink(); ?>">READ MORE</a>
+								</div>
+								</div>
+							</div>
+						</div>
+						<?php 
+						}
+						else{
+						?>
+						<div class="col-md-12 no-padding">
+							<div class="col-md-6 no-padding d_n style_content_get_news_display1">
+								<div  class=" fl style_content_get_news">
+									<div  class="col-ms-12 fl style_image_news">
+										<?php the_post_thumbnail();?>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 no-padding">
+								<div  class=" fl style_content_news">
+									<div class="btn-see style_content_news_a">
+										<a href="<?php echo $news_taxonomy_link;?>"> <?php echo $news_taxonomy[0]->name;  ?></a>
+									</div>
+									<div  class="col-ms-12 fl style_title_news">
+										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+									</div>
+									<div  class="col-ms-12 fl style_c_d">
+										<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span> 
+									</div>
+									<div  class="col-ms-12 fl style_content_news_main">
+										<?php  echo get_the_excerpt(); ?>
+									</div>
+									<div  class="col-ms-12 fl style_news_read_more">
+										<a href="<?php the_permalink(); ?>">READ MORE</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 no-padding style_content_get_news_display2">
+								<div  class=" fl style_content_get_news">
+									<div  class="col-ms-12 fl style_image_news">
+										<?php the_post_thumbnail();?>
+									</div>
+								</div>
+							</div>
+						</div>
+								
+						<?php
+						}
+						$i++;
+					}?>
+					<div id="ajax_posts_f" class="row">
+						<input type="hidden" class="ajax_posts_f_page" value="<?php echo (int)$paged+1;?>">
+						<input type="hidden" class="ajax_posts_f_i" value="<?php echo $i;?>">
+					</div>
+				<?php 
+				}	
+exit; 
+}
+add_action('wp_ajax_nopriv_load_more_ajax', 'load_more_ajax'); 
+add_action('wp_ajax_load_more_ajax', 'load_more_ajax');
+
+
+function load_more_sectors_ajax(){
+		$paged = $_POST["paged"];
+		$i = $_POST["i"];
+				$args = array(
+				'posts_per_page'   => 3,
+				'orderby'          => 'post_date',
+				'order'            => 'DESC',
+				'post_type'        => 'sectors',
+				'post_status'      => 'publish',
+				'paged'    => $paged,
+				);
+				$the_query = new WP_Query( $args );
+				
+				// var_dump($the_query->request);
+				
+				if ( $the_query->have_posts() ) { 
+					while ( $the_query->have_posts() ) { 
+					$the_query->the_post();
+					?>	
+						<?php if($the_query->max_num_pages==$paged || $the_query->max_num_pages<$paged){?>
+							<style>
+								#read_more_news {
+									display: none;
+								}
+							</style>
+						<?php } 
+					$news_taxonomy = get_the_terms( get_the_ID(), 'sectors_cat', '', '' );  
+					// var_dump($news_taxonomy);
+					$news_taxonomy_link = get_term_link($news_taxonomy[0]->term_id, 'sectors_cat' );
+					// var_dump($news_taxonomy_link);
+					if($i%2==0){
+					?>
+					<div class="col-md-12 no-padding">
+						<div class="col-md-6 no-padding">
+							<div  class=" fl style_content_get_news">
+								<div  class="col-ms-12 fl style_image_news">
+									<?php the_post_thumbnail();?>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 no-padding">
+							<div  class=" fl style_content_news">
+								<div class="btn-see style_content_news_a">
+									<a href="<?php echo $news_taxonomy_link;?>"> <?php echo $news_taxonomy[0]->name;  ?></a>
+								</div>
+								<div  class="col-ms-12 fl style_title_news">
+									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+								</div>
+								<div  class="col-ms-12 fl style_c_d">
+									<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span> 
+								</div>
+								<div  class="col-ms-12 fl style_content_news_main">
+									<?php  echo get_the_excerpt(); ?>
+								</div>
+								<div  class="col-ms-12 fl style_news_read_more">
+									<a  href="<?php the_permalink(); ?>">READ MORE</a>
+								</div>
+								</div>
+							</div>
+						</div>
+						<?php 
+						}
+						else{
+						?>
+						<div class="col-md-12 no-padding">
+							<div class="col-md-6 no-padding d_n style_content_get_news_display1">
+								<div  class=" fl style_content_get_news">
+									<div  class="col-ms-12 fl style_image_news">
+										<?php the_post_thumbnail();?>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 no-padding">
+								<div  class=" fl style_content_news">
+									<div class="btn-see style_content_news_a">
+										<a href="<?php echo $news_taxonomy_link;?>"> <?php echo $news_taxonomy[0]->name;  ?></a>
+									</div>
+									<div  class="col-ms-12 fl style_title_news">
+										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+									</div>
+									<div  class="col-ms-12 fl style_c_d">
+										<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span> 
+									</div>
+									<div  class="col-ms-12 fl style_content_news_main">
+										<?php  echo get_the_excerpt(); ?>
+									</div>
+									<div  class="col-ms-12 fl style_news_read_more">
+										<a href="<?php the_permalink(); ?>">READ MORE</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 no-padding style_content_get_news_display2">
+								<div  class=" fl style_content_get_news">
+									<div  class="col-ms-12 fl style_image_news">
+										<?php the_post_thumbnail();?>
+									</div>
+								</div>
+							</div>
+						</div>
+								
+						<?php
+						}
+						$i++;
+					}?>
+					<div id="ajax_posts_f" class="row">
+						<input type="hidden" class="ajax_posts_f_page" value="<?php echo (int)$paged+1;?>">
+						<input type="hidden" class="ajax_posts_f_i" value="<?php echo $i;?>">
+					</div>
+				<?php 
+				}	
+exit; 
+}
+add_action('wp_ajax_nopriv_load_more_sectors_ajax', 'load_more_sectors_ajax'); 
+add_action('wp_ajax_load_more_sectors_ajax', 'load_more_sectors_ajax');
+
+function project_our_ajax(){
+	$name_sectors = $_POST["name_sectors"];
+	$name_services = $_POST["name_services"];
+	
+	if($name_sectors =="all" && $name_services !="all"){
+		$args = array(
+		'posts_per_page'   => '10',
+		'orderby'          => 'date',
+		'order'            => 'DESC',
+		'post_type'        => 'projects',
+		'post_status'      => 'publish',
+		'tax_query' => array(
+				array(
+					'taxonomy' => 'project_services',
+					'field' => 'id',
+					'terms' => $name_services,
+				),
+			),
+		);
+	}
+	else if($name_services =="all" && $name_sectors !="all"){
+		$args = array(
+		'posts_per_page'   => '10',
+		'orderby'          => 'date',
+		'order'            => 'DESC',
+		'post_type'        => 'projects',
+		'post_status'      => 'publish',
+		'tax_query' => array(
+				array(
+					'taxonomy' => 'project_sectors',
+					'field' => 'id',
+					'terms' => $name_sectors,
+				),
+			),
+		);
+	}
+	else if($name_services =="all" && $name_sectors =="all"){
+		$args = array(
+		'posts_per_page'   => '10',
+		'orderby'          => 'date',
+		'order'            => 'DESC',
+		'post_type'        => 'projects',
+		'post_status'      => 'publish',
+		);
+	}
+	else{	
+		$args = array(
+		'posts_per_page'   => '10',
+		'orderby'          => 'date',
+		'order'            => 'DESC',
+		'post_type'        => 'projects',
+		'post_status'      => 'publish',
+		'tax_query' => array(
+				array(
+					'taxonomy' => 'project_services',
+					'field' => 'id',
+					'terms' => $name_services,
+				),
+				array(
+					'taxonomy' => 'project_sectors',
+					'field' => 'id',
+					'terms' => $name_sectors,
+				),
+			),
+		);
+	}
+	$loop = new WP_Query( $args );	
+	while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
+		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
+			<div  class="project-img">
+			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+			</div>
+			<div class="project-info">
+				<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
+				<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
+			</h5></div>
+				<div class="post-excerpt-fix hiden-xs"><?php the_excerpt();?></div>
+			</div>
+		</div>
+		
+		<div class="<?php echo get_the_ID();?> modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="modal_body_fix col-md-12 p_l_r_0">
+						<div class="col-md-6 p_l_r_0 p_relative">
+							<div class="project-img1">
+							<?php $image_popup = get_field('image_popup') ;
+							if($image_popup !=''){ ?>
+								<img src="<?php echo $image_popup['url'];?>" />
+							<?php 
+							}
+							else{ ?>
+								<a class = "style_image_thumbnail" href="<?php the_permalink();?>"><?php the_post_thumbnail();?></a>
+							<?php	
+							}
+							?>	
+							</div>
+							<div class="project_img1_2">
+							</div>
+						</div>
+						<div class="col-md-6  p_l_r_0 color-white p_relative">
+							<div class="p_l_t_30">
+								<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
+								<div class="project-info1">
+									<div class="project-info1_ok">
+										<a href="<?php the_permalink();?>"><?php the_title();?></a>
+									</div>
+									<div class="post-excerpt-fix-popup hiden-xs"><?php the_excerpt();?></div>
+									
+								</div>
+								<div class="project_info_bottom">
+									<div class="col-md-6 p_l_r_0 project_info_bottom1_6">
+										<div class="project_info1_a_share">
+											<p>SHARE</p>
+											<?php echo do_shortcode( "[simple-social-share]" ); ?>
+										</div>
+									</div>
+									<div class="col-md-6 p_l_r_0 project_info_bottom2_6">
+										<div class="project_info1_a_work">
+											<a href="#">WORK WITH US</a>
+											
+										</div>
+									</div>
+								</div>
+								<div class="project-info1">
+									<div class="project_info1_ok11">
+										<p>RELATED PROJECTS</p>
+									</div>
+									<?php 
+										$id = get_the_ID();
+										$args1 = array( 'post_type' => 'projects', 'posts_per_page' =>3, 'post__not_in'=> array( $id) );
+										$loop1 = new WP_Query( $args1 );	
+									?>
+									<div class="project_info1_ok1">
+										<?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
+											<div class="col-md-3 ">
+												<div class="project_img1_ok_col_3">
+													<div class="project_img1_ok">
+														<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+													</div>
+													<div class="project_info1_a_title">
+														<a href="javascript:void(0);"><?php the_title();?></a>
+													</div>
+												</div>
+											</div>
+										<?php  endwhile;?>
+										<div class="col-md-3">
+											<div class="project_info1_a_see_more">
+												<a href="javascript:void(0);">See more</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		  </div>
+		</div>
+	<?php 
+	endwhile;?>
+	<div id="ajax_posts_f_project" class="row">
+		<input type="hidden" class="ajax_posts_f_page_project" value="2">
+	</div>
+<?php 				
+exit; 
+}
+add_action('wp_ajax_nopriv_project_our_ajax', 'project_our_ajax'); 
+add_action('wp_ajax_project_our_ajax', 'project_our_ajax');
+
+
+
+/*================project short code=================*/
+
+add_shortcode( 'our_projects', 'our_projects_shortcode' );
+function our_projects_shortcode($args, $content) {
+	
+	ob_start();
+	?>
+	
+	<div id="category-post-content" class="col-lg-20ths_fix col-xs-12 no-padding">
+	<div class="m_st_20_bul_p">
+	<div class="col-md-12 p_relative  style_project_our_top">
+		<div class="col-md-8 p_relative  style_project_our_top1">
+			<div class="col-md-2 p_relative no-padding">
+				<h6 class="style_project_our_top1_all">All</h6>
+			</div>
+			<div class="col-md-5 p_relative no-padding style_project_our_top1_name">
+				<h5>Sectors</h5>
+				<?php $terms = get_terms( array(
+					'taxonomy' => 'project_sectors',
+					'hide_empty' => false,
+				) );
+				// var_dump($terms);
+				foreach($terms as $value){?>
+					<div class="col-md-6 no-padding name_sectors"><h6 id="project_sectors_<?php echo $value->term_id;?>" class=""><?php echo $value->name;?></h6></div>
+					<script type="text/javascript">
+						jQuery(document).ready( function($) {
+							$("#project_sectors_<?php echo $value->term_id;?>").on("click", function() {
+								$(".name_sectors_hidden").val('<?php echo $value->term_id;?>');
+								$(".name_sectors h6").removeClass("current_cat");
+								$("#project_sectors_<?php echo $value->term_id;?>").addClass("current_cat");
+							});	
+						});			
+					</script>
+				<?php }
+				?>
+				
+			</div>
+			<div class="col-md-5 p_relative no-padding style_project_our_top1_name style_project_our_top1_name_m">
+				<h5>Services</h5>
+				<?php $terms = get_terms( array(
+					'taxonomy' => 'project_services',
+					'hide_empty' => false,
+				) );
+				// var_dump($terms);
+				foreach($terms as $value){?>
+					<div class="col-md-6 no-padding name_services"><h6 id="project_services_<?php echo $value->term_id;?>" class=""><?php echo $value->name;?></h6></div>
+					<script type="text/javascript">
+						jQuery(document).ready( function($) {
+							$("#project_services_<?php echo $value->term_id;?>").on("click", function() {
+								$(".name_services_hidden").val('<?php echo $value->term_id;?>');
+								$(".name_services h6").removeClass("current_cat");
+								$("#project_services_<?php echo $value->term_id;?>").addClass("current_cat");
+							});	
+						});			
+					</script>
+				<?php }
+				?>
+				
+			</div>
+			
+			<input type="hidden" name="name_sectors_hidden" class="name_sectors_hidden" value="all">
+			<input type="hidden" name="name_services_hidden" class="name_services_hidden" value="all">
+			<script type="text/javascript">
+				jQuery(document).ready( function($) {
+				var ajaxUrl1 = "<?php echo admin_url('admin-ajax.php')?>";
+				$(".name_services h6").on("click", function() {
+					var name_services = $('.name_services_hidden').val();
+					var name_sectors = $('.name_sectors_hidden').val();
+					// console.log(name_services);
+					// console.log(name_sectors);
+					$.post(ajaxUrl1, {
+						action: "project_our_ajax",
+						name_services : name_services,
+						name_sectors : name_sectors,
+						},'html')
+						.success(function(posts1345) {
+						$("#project_our_ajax").html("");
+						$("#project_our_ajax").append(posts1345);			
+					
+						});	
+				});	
+				
+				$(".name_sectors h6").on("click", function() {
+					var name_services = $('.name_services_hidden').val();
+					var name_sectors = $('.name_sectors_hidden').val();
+					// console.log(name_services);
+					// console.log(name_sectors);
+					$.post(ajaxUrl1, {
+						action: "project_our_ajax",
+						name_services : name_services,
+						name_sectors : name_sectors,
+						},'html')
+						.success(function(posts1345) {
+						$("#project_our_ajax").html("");
+						$("#project_our_ajax").append(posts1345);			
+					
+						});	
+				});	
+				$(".style_project_our_top1_all").on("click", function() {
+					var name_services = 'all';
+					var name_sectors = 'all';
+					$('.name_services_hidden').val('all');
+					$('.name_sectors_hidden').val('all');
+					$(".name_sectors h6").removeClass("current_cat");
+					$(".name_services h6").removeClass("current_cat");
+					// console.log(name_services);
+					// console.log(name_sectors);
+					$.post(ajaxUrl1, {
+						action: "project_our_ajax",
+						name_services : name_services,
+						name_sectors : name_sectors,
+						},'html')
+						.success(function(posts1345) {
+						$("#project_our_ajax").html("");
+						$("#project_our_ajax").append(posts1345);			
+					
+						});	
+				});	
+				});		
+			</script>
+		</div>
+	</div>
+	<div id="project_our_ajax">
+	<?php 
+	if ( get_query_var('paged') ) {
+		$paged = get_query_var('paged');
+	} elseif ( get_query_var('page') ) {
+		$paged = get_query_var('page');
+	} else {
+		$paged = 1;
+	}
+	$atts = shortcode_atts( array(
+		'number_posts' => 10,
+		'post_type' => 'projects',
+		), $atts, 'feature' );		
+	$args = array(
+	'posts_per_page'   => $atts['number_posts'],
+	'orderby'          => 'date',
+	'order'            => 'DESC',
+	'post_type'        => $atts['post_type'],
+	'post_status'      => 'publish',
+	'paged'    => $paged,
+	);
+	$loop = new WP_Query( $args );	
+	?>
+	<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;
+		?>
+		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
+			<div  class="project-img">
+			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+			</div>
+			<div class="project-info">
+				<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
+				<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
+			</h5></div>
+				<div class="post-excerpt-fix hiden-xs"><?php the_excerpt();?></div>
+			</div>
+		</div>
+		
+		<div class="<?php echo get_the_ID();?> modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="modal_body_fix col-md-12 p_l_r_0">
+						<div class="col-md-6 p_l_r_0 p_relative">
+							<div class="project-img1">
+							<?php $image_popup = get_field('image_popup') ;
+							if($image_popup !=''){ ?>
+								<img src="<?php echo $image_popup['url'];?>" />
+							<?php 
+							}
+							else{ ?>
+								<a class = "style_image_thumbnail" href="<?php the_permalink();?>"><?php the_post_thumbnail();?></a>
+							<?php	
+							}
+							?>	
+							</div>
+							<div class="project_img1_2">
+							</div>
+						</div>
+						<div class="col-md-6  p_l_r_0 color-white p_relative">
+							<div class="p_l_t_30">
+								<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
+								<div class="project-info1">
+									<div class="project-info1_ok">
+										<a href="<?php the_permalink();?>"><?php the_title();?></a>
+									</div>
+									<div class="post-excerpt-fix-popup hiden-xs"><?php the_excerpt();?></div>
+									
+								</div>
+								<div class="project_info_bottom">
+									<div class="col-md-6 p_l_r_0 project_info_bottom1_6">
+										<div class="project_info1_a_share">
+											<p>SHARE</p>
+											<?php echo do_shortcode( "[simple-social-share]" ); ?>
+										</div>
+									</div>
+									<div class="col-md-6 p_l_r_0 project_info_bottom2_6">
+										<div class="project_info1_a_work">
+											<a href="#">WORK WITH US</a>
+											
+										</div>
+									</div>
+								</div>
+								<div class="project-info1">
+									<div class="project_info1_ok11">
+										<p>RELATED PROJECTS</p>
+									</div>
+									<?php 
+										$id = get_the_ID();
+										$args1 = array( 'post_type' => 'projects', 'posts_per_page' =>3, 'post__not_in'=> array( $id) );
+										$loop1 = new WP_Query( $args1 );	
+									?>
+									<div class="project_info1_ok1">
+										<?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
+											<div class="col-md-3 ">
+												<div class="project_img1_ok_col_3">
+													<div class="project_img1_ok">
+														<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+													</div>
+													<div class="project_info1_a_title">
+														<a href="javascript:void(0);"><?php the_title();?></a>
+													</div>
+												</div>
+											</div>
+										<?php  endwhile;?>
+										<div class="col-md-3">
+											<div class="project_info1_a_see_more">
+												<a href="javascript:void(0);">See more</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		  </div>
+		</div>
+	<?php  endwhile;?>
+		<div id="ajax_posts_f_project" class="row">
+			<input type="hidden" class="ajax_posts_f_page_project" value="2">
+		</div>
+	 <?php wp_reset_query(); ?>
+	</div>
+	<div  class="col-ms-12 fl style_news_read_more t_c style_project_read_more">
+		<a id="read_more_project" href="javascript:void(0);">SEE MORE</a>
+	</div>
+	<script type="text/javascript">
+			jQuery(document).ready( function($) {
+			var ajaxUrl1 = "<?php echo admin_url('admin-ajax.php')?>";
+			$("#read_more_project").on("click", function() {
+			var paged = $('.ajax_posts_f_page_project').last().val();
+			var name_services = $('.name_services_hidden').val();
+			var name_sectors = $('.name_sectors_hidden').val();
+			// var paged = $('.ajax_posts_f_page').last().val();
+			$.post(ajaxUrl1, {
+				action: "see_more_project_our_ajax",
+				paged : paged,
+				name_services : name_services,
+				name_sectors : name_sectors,
+				},'html')
+				.success(function(posts1345) {				
+				$("#project_our_ajax").append(posts1345);			
+				});
+			});	
+			});			
+	</script>
+	</div>
+	
+	
+	</div>
+	
+<?php wp_reset_query(); ?>
+<?php
+	$out = ob_get_contents();
+	ob_end_clean();
+	return $out;
+}
+
+
+function see_more_project_our_ajax(){
+	$paged = $_POST["paged"];
+	$name_sectors = $_POST["name_sectors"];
+	$name_services = $_POST["name_services"];
+	// var_dump($paged);
+	// var_dump($name_sectors);
+	// var_dump($name_services);
+	if($name_sectors =="all" && $name_services !="all"){
+		$args = array(
+		'posts_per_page'   => '10',
+		'orderby'          => 'date',
+		'order'            => 'DESC',
+		'post_type'        => 'projects',
+		'post_status'      => 'publish',
+		'paged'    => $paged,
+		'tax_query' => array(
+				array(
+					'taxonomy' => 'project_services',
+					'field' => 'id',
+					'terms' => $name_services,
+				),
+			),
+		);
+	}
+	else if($name_services =="all" && $name_sectors !="all"){
+		$args = array(
+		'posts_per_page'   => '10',
+		'orderby'          => 'date',
+		'order'            => 'DESC',
+		'post_type'        => 'projects',
+		'post_status'      => 'publish',
+		'paged'    => $paged,
+		'tax_query' => array(
+				array(
+					'taxonomy' => 'project_sectors',
+					'field' => 'id',
+					'terms' => $name_sectors,
+				),
+			),
+		);
+	}
+	else if($name_services =="all" && $name_sectors =="all"){
+		$args = array(
+		'posts_per_page'   => '10',
+		'orderby'          => 'date',
+		'order'            => 'DESC',
+		'post_type'        => 'projects',
+		'post_status'      => 'publish',
+		'paged'    => $paged,
+		);
+	}
+	else{	
+		$args = array(
+		'posts_per_page'   => '10',
+		'orderby'          => 'date',
+		'order'            => 'DESC',
+		'post_type'        => 'projects',
+		'post_status'      => 'publish',
+		'paged'    => $paged,
+		'tax_query' => array(
+				array(
+					'taxonomy' => 'project_services',
+					'field' => 'id',
+					'terms' => $name_services,
+				),
+				array(
+					'taxonomy' => 'project_sectors',
+					'field' => 'id',
+					'terms' => $name_sectors,
+				),
+			),
+		);
+	}
+	$loop = new WP_Query( $args );
+	// var_dump($loop->max_num_pages);
+	// var_dump($loop);
+	$count = $loop->post_count;
+	// var_dump($count);
+	if($loop->max_num_pages==0){
+		if($count==0){
+			?>
+			<style>
+				.style_project_read_more {
+					display: none;
+				}
+			</style>
+			<?php 
+		}
+	}
+	else{
+	if($loop->max_num_pages==$paged || $loop->max_num_pages<$paged){?>
+			<style>
+				.style_project_read_more {
+					display: none;
+				}
+			</style>
+	<?php 
+	}
+	}
+	while ( $loop->have_posts() ) : $loop->the_post(); global $product;
+		?>
+		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
+			<div  class="project-img">
+			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+			</div>
+			<div class="project-info">
+				<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
+				<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
+			</h5></div>
+				<div class="post-excerpt-fix hiden-xs"><?php the_excerpt();?></div>
+			</div>
+		</div>
+		
+		<div class="<?php echo get_the_ID();?> modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="modal_body_fix col-md-12 p_l_r_0">
+						<div class="col-md-6 p_l_r_0 p_relative">
+							<div class="project-img1">
+							<?php $image_popup = get_field('image_popup') ;
+							if($image_popup !=''){ ?>
+								<img src="<?php echo $image_popup['url'];?>" />
+							<?php 
+							}
+							else{ ?>
+								<a class = "style_image_thumbnail" href="<?php the_permalink();?>"><?php the_post_thumbnail();?></a>
+							<?php	
+							}
+							?>	
+							</div>
+							<div class="project_img1_2">
+							</div>
+						</div>
+						<div class="col-md-6  p_l_r_0 color-white p_relative">
+							<div class="p_l_t_30">
+								<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
+								<div class="project-info1">
+									<div class="project-info1_ok">
+										<a href="<?php the_permalink();?>"><?php the_title();?></a>
+									</div>
+									<div class="post-excerpt-fix-popup hiden-xs"><?php the_excerpt();?></div>
+									
+								</div>
+								<div class="project_info_bottom">
+									<div class="col-md-6 p_l_r_0 project_info_bottom1_6">
+										<div class="project_info1_a_share">
+											<p>SHARE</p>
+											<?php echo do_shortcode( "[simple-social-share]" ); ?>
+										</div>
+									</div>
+									<div class="col-md-6 p_l_r_0 project_info_bottom2_6">
+										<div class="project_info1_a_work">
+											<a href="#">WORK WITH US</a>
+											
+										</div>
+									</div>
+								</div>
+								<div class="project-info1">
+									<div class="project_info1_ok11">
+										<p>RELATED PROJECTS</p>
+									</div>
+									<?php 
+										$id = get_the_ID();
+										$args1 = array( 'post_type' => 'projects', 'posts_per_page' =>3, 'post__not_in'=> array( $id) );
+										$loop1 = new WP_Query( $args1 );	
+									?>
+									<div class="project_info1_ok1">
+										<?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
+											<div class="col-md-3 ">
+												<div class="project_img1_ok_col_3">
+													<div class="project_img1_ok">
+														<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+													</div>
+													<div class="project_info1_a_title">
+														<a href="javascript:void(0);"><?php the_title();?></a>
+													</div>
+												</div>
+											</div>
+										<?php  endwhile;?>
+										<div class="col-md-3">
+											<div class="project_info1_a_see_more">
+												<a href="javascript:void(0);">See more</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		  </div>
+		</div>
+	<?php 
+	endwhile;?>
+	<div id="ajax_posts_f_project" class="row">
+		<input type="hidden" class="ajax_posts_f_page_project" value="<?php echo (int)$paged+1;?>">
+	</div>
+	<?php			
+exit; 
+}
+add_action('wp_ajax_nopriv_see_more_project_our_ajax', 'see_more_project_our_ajax'); 
+add_action('wp_ajax_see_more_project_our_ajax', 'see_more_project_our_ajax');
+
+function load_more_services_ajax(){
+		$paged = $_POST["paged"];
+		$i = $_POST["i"];
+				$args = array(
+				'posts_per_page'   => 3,
+				'orderby'          => 'post_date',
+				'order'            => 'DESC',
+				'post_type'        => 'post',
+				'post_status'      => 'publish',
+				'paged'    => $paged,
+				);
+				$the_query = new WP_Query( $args );
+				
+				// var_dump($the_query->request);
+				
+				if ( $the_query->have_posts() ) { 
+					while ( $the_query->have_posts() ) { 
+					$the_query->the_post();
+					?>	
+						<?php if($the_query->max_num_pages==$paged || $the_query->max_num_pages<$paged){?>
+							<style>
+								#read_more_services {
+									display: none;
+								}
+							</style>
+						<?php } 
+					$news_taxonomy = get_the_terms( get_the_ID(), 'category', '', '' );  
+					// var_dump($news_taxonomy);
+					$news_taxonomy_link = get_term_link($news_taxonomy[0]->term_id, 'category' );
+					// var_dump($news_taxonomy_link);
+					if($i%2==0){
+					?>
+					<div class="col-md-12 no-padding">
+						<div class="col-md-6 no-padding">
+							<div  class=" fl style_content_get_news">
+								<div  class="col-ms-12 fl style_image_news">
+									<?php the_post_thumbnail();?>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 no-padding">
+							<div  class=" fl style_content_news">
+								<div class="btn-see style_content_news_a">
+									<a href="<?php echo $news_taxonomy_link;?>"> <?php echo $news_taxonomy[0]->name;  ?></a>
+								</div>
+								<div  class="col-ms-12 fl style_title_news">
+									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+								</div>
+								<div  class="col-ms-12 fl style_c_d">
+									<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span> 
+								</div>
+								<div  class="col-ms-12 fl style_content_news_main">
+									<?php  echo get_the_excerpt(); ?>
+								</div>
+								<div  class="col-ms-12 fl style_news_read_more">
+									<a  href="<?php the_permalink(); ?>">READ MORE</a>
+								</div>
+								</div>
+							</div>
+						</div>
+						<?php 
+						}
+						else{
+						?>
+						<div class="col-md-12 no-padding">
+							<div class="col-md-6 no-padding d_n style_content_get_news_display1">
+								<div  class=" fl style_content_get_news">
+									<div  class="col-ms-12 fl style_image_news">
+										<?php the_post_thumbnail();?>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 no-padding">
+								<div  class=" fl style_content_news">
+									<div class="btn-see style_content_news_a">
+										<a href="<?php echo $news_taxonomy_link;?>"> <?php echo $news_taxonomy[0]->name;  ?></a>
+									</div>
+									<div  class="col-ms-12 fl style_title_news">
+										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+									</div>
+									<div  class="col-ms-12 fl style_c_d">
+										<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span> 
+									</div>
+									<div  class="col-ms-12 fl style_content_news_main">
+										<?php  echo get_the_excerpt(); ?>
+									</div>
+									<div  class="col-ms-12 fl style_news_read_more">
+										<a href="<?php the_permalink(); ?>">READ MORE</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 no-padding style_content_get_news_display2">
+								<div  class=" fl style_content_get_news">
+									<div  class="col-ms-12 fl style_image_news">
+										<?php the_post_thumbnail();?>
+									</div>
+								</div>
+							</div>
+						</div>
+								
+						<?php
+						}
+						$i++;
+					}?>
+					<div id="ajax_posts_f2" class="row">
+						<input type="hidden" class="ajax_posts_f_page_se" value="<?php echo (int)$paged+1;?>">
+						<input type="hidden" class="ajax_posts_f_se_i" value="<?php echo $i;?>">
+					</div>
+				<?php 
+				}	
+exit; 
+}
+add_action('wp_ajax_nopriv_load_more_services_ajax', 'load_more_services_ajax'); 
+add_action('wp_ajax_load_more_services_ajax', 'load_more_services_ajax');

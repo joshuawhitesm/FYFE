@@ -118,6 +118,26 @@ function add_sectors_post_type()
  
 }
 add_action('init', 'add_sectors_post_type');
+
+add_action('init', 'create_sectors_cat');
+ 
+function create_sectors_cat() {
+    register_taxonomy('sectors_cat', 'sectors', array(
+            'label' => 'Brand',
+            'labels' => array(
+                'name'          => __('Team Category'),
+                'singular_name' => __('Team Category'),
+                'add_new_item'  => __('Add New Team Category'),
+                'new_item'      => __('New Team Category'),
+                'add_new'       => __('Add Team Category'),
+                'edit_item'     => __('Edit Team Cat')
+            ),
+            'public' => true,
+            'hierarchical' => true
+        )
+    );
+}
+
 function add_projects_post_type()
 {
     $label = array(
@@ -197,6 +217,43 @@ function create_project_cat() {
         )
     );
 }
+add_action('init', 'create_project_services');
+ 
+function create_project_services() {
+    register_taxonomy('project_services', 'projects', array(
+            'label' => 'Brand',
+            'labels' => array(
+                'name'          => __('Project Services'),
+                'singular_name' => __('Project Services'),
+                'add_new_item'  => __('Add New Project Services'),
+                'new_item'      => __('New Project Services'),
+                'add_new'       => __('Add Project Services'),
+                'edit_item'     => __('Edit Project Services')
+            ),
+            'public' => true,
+            'hierarchical' => true
+        )
+    );
+}
+add_action('init', 'create_project_sectors');
+ 
+function create_project_sectors() {
+    register_taxonomy('project_sectors', 'projects', array(
+            'label' => 'Brand',
+            'labels' => array(
+                'name'          => __('Project Sectors'),
+                'singular_name' => __('Project Sectors'),
+                'add_new_item'  => __('Add New Project Sectors'),
+                'new_item'      => __('New Project Sectors'),
+                'add_new'       => __('Add Project Sectors'),
+                'edit_item'     => __('Edit Project Sectors')
+            ),
+            'public' => true,
+            'hierarchical' => true
+        )
+    );
+}
+
 function add_teams_post_type()
 {
     $label = array(
