@@ -126,7 +126,7 @@ function our_sectors_func($atts) {
 	</div>
 
 	</div>
-	<div class="slhome_list slhome_list_sectors1 sectors1 col-lg-5ths">
+	<div class="vertical-centering slhome_list slhome_list_sectors1 sectors1 col-lg-5ths">
 		<h4><a href="/?page_id=789">OUR SECTORS</a></h4>
 					<div class="dot-slider">
 					<ol class="">
@@ -1466,7 +1466,7 @@ function our_sliderhome_func($atts) {
 	</div>
 
 	</div>
-	<div class="slhome_list slhome_list_sliderhome left_0 col-lg-5ths">
+	<div class="slhome_list slhome_list_sliderhome vertical-centering left_0 col-lg-5ths">
 		<div class="dot-slider">
 			<ol class="">
 				<?php
