@@ -12,7 +12,7 @@
 ?>
 
 </div><!-- #main -->
-<div class="ft-contact col-xs-12">
+<div class="ft-contact col-xs-12" id="contact_home_bottom">
     <?php echo do_shortcode('[contact]'); ?>
 </div>
 </section><!-- section -->
@@ -39,6 +39,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
 jQuery(document).ready( function($) {
+	$('.sliderhome_75370').on("click", function() {
+		$('html,body').animate({scrollTop: $("#contact_home_bottom").offset().top - 80 },'slow');
+		
+	});
 	$('.click_top_scroll').on("click", function() {
 		$('html,body').animate({scrollTop: $("#sesion_2_home_fyfe_project ").offset().top - 80 },'slow');
 		// alert('go');

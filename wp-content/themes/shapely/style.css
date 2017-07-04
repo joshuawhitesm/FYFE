@@ -4613,7 +4613,7 @@ a.s3-linkedin.hint--top {
     color: #000;
 }
 .style_home_fyfe_contact_form {
-    padding: 35px 35px 0px 35px !important;
+    padding: 65px 35px 0px 35px !important;
 }
 div#location-content_title a {
     color: #000;
@@ -5665,6 +5665,32 @@ height: 20vw;
 	height: 25px;
 }
 .modal_fix_4_7 {
-    width: 700px;
-    margin: 0 auto;
+    width: 60%;
+    margin: 0 auto; 
+}
+.no-padding{
+	padding-left:0px;
+	padding-right:0px;
+}
+.style_home_fyfe_contact_form label {
+    width: 100%;
+	margin-bottom: 25px;
+}
+.style_home_fyfe_contact_form select {
+    border: 1px solid #ccc;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #000;
+    width: 100%;
+    height: 32px;
+    padding-left: 20px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    border-radius: 0;
+}
+.style_home_fyfe_contact_form  textarea {
+    margin-bottom: 0px;
+}
+.style_home_fyfe_contact_form .wpcf7{
+    margin: 0 -15px;
 }

@@ -587,14 +587,14 @@ function contact_shortcode($args, $content) {
 	
 	ob_start();
 	?>
-	<div class="col-xs-5ths_f col-xs-6 no-padding style_home_fyfe_contact_form ">
+	<div class="col-md-6 col-xs-5ths_ff col-xs-6 no-padding style_home_fyfe_contact_form ">
 		<h4>CONTACT US</h4>
 		<?php 
 			echo do_shortcode('[contact-form-7 id="171" title="Contact Form"]'); 
 		?>
 	</div>
 	
-	<div class="col-xs-7ths_f col-xs-6 no-padding bg-yellow ">
+	<div class="col-md-3 col-xs-7ths_ff col-xs-6 no-padding bg-yellow ">
 		<div id="location-content">
 			<?php 
 			$args2 = array( 'post_type' => 'locations', 'posts_per_page' => -1 );
@@ -733,8 +733,8 @@ function contact_shortcode($args, $content) {
 	// echo json_encode($arr_info);
 	// $arr_info_json = json_encode($arr_info);
 	?>
-	<div class="col-md-6 no-padding">
-	<div id="map" style="width: 100%; height: 630px;"></div>
+	<div class="col-md-3 no-padding">
+	<div id="map"  style="width: 100%; height: 630px;"></div>
 	<input type="hidden" id="result" value="">
 	
 	<script>
@@ -742,10 +742,10 @@ function contact_shortcode($args, $content) {
 
         var uluru = {lat: <?php echo $arr_info_center[0][lat];?>, lng: <?php echo $arr_info_center[0][lng];?>};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
+          zoom: 2,
           center: uluru,
 		  mapTypeControl: false,
-		 styles: [
+			styles: [
 			  {
 				"elementType": "geometry",
 				"stylers": [
@@ -953,6 +953,7 @@ function contact_shortcode($args, $content) {
 		
 		
 	}
+	
 	function setMarkers(map,arr_info_json) {
         // Adds markers to the map.
 
@@ -1491,28 +1492,14 @@ function our_sliderhome_func($atts) {
 				wp_reset_postdata();
 				}?>
 			</ol>
-			<div class="sliderhome_75370" data-toggle="modal" data-target="#myModal">
+			<div class="sliderhome_75370" >
 				<img src="http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/04/75370-200.png" alt="sliderhome">
-			</div>
-			<div class="modal fade modal_fix_4_7" id="myModal" role="dialog">
-				<div class="modal-dialog">
-				
-				  <!-- Modal content-->
-				  <div class="modal-content">
-					<div class="modal-body">
-					  <p>Some text in the modal.</p>
-					</div>
-					<div class="modal-footer">
-					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
-				  </div>
-				  
-				</div>
 			</div>
 		</div>
 	</div>
     
   </div>
+  
   <style type="text/css">
   	.text_yellow{
   		color: #f1ac08; 
