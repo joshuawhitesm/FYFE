@@ -346,15 +346,17 @@ function prefix_load_cat_posts () {
 	if ( $the_query->have_posts() ) {
 	while ( $the_query->have_posts() ) {
 		$the_query->the_post();?>
+		<?php $terms  = get_the_terms( get_the_ID(), 'project_services', '', '' );  ?>
 		<div class="col-md-3 col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 			<div  class="project-img">
 			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
 			</div>
 			<div class="project-info">
-				<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
+				<?php foreach($terms as $value ){?>
+					<div class="btn-see btn_see_fix"><a><?php echo $value->name;?></a></div>
+				<?php } ?>
 				<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
-</h5></div>
-				<div class="post-excerpt-fix hiden-xs"><?php the_excerpt();?></div>
+				</h5></div>
 			</div>
 		</div>
 		<div class="<?php echo get_the_ID();?> modal fade" role="dialog">
@@ -480,17 +482,19 @@ function prefix_load_cat_teams () {
 	if ( $the_query->have_posts() ) {
 	while ( $the_query->have_posts() ) {
 		$the_query->the_post();?>
+		<?php $terms  = get_the_terms( get_the_ID(), 'teams_cat', '', '' );  ?>
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 			<div class="teams-img">
 			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
 			</div>
 			<div class="project-info">
-				<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'teams_cat', '', '' );  ?></div>
+				<?php foreach($terms as $value ){?>
+					<div class="btn-see btn_see_fix"><a><?php echo $value->name;?></a></div>
+				<?php } ?>
 				<div class="title-post-fix"><h5>
 				<button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
 					</h5>
 				</div>
-				<div class="post-excerpt-fix hiden-xs"><?php the_excerpt();?></div>
 			</div>
 		</div>
 		<div class="<?php echo get_the_ID();?> modal fade" role="dialog">
@@ -1121,6 +1125,177 @@ add_action('wp_ajax_nopriv_project_our_ajax', 'project_our_ajax');
 add_action('wp_ajax_project_our_ajax', 'project_our_ajax');
 
 
+add_shortcode( 'our_people', 'our_people_shortcode' );
+function our_people_shortcode($args, $content) {
+	
+	ob_start();
+	?>
+	
+	<div id="category-post-content" class="col-lg-20ths_fix col-xs-12 no-padding">
+	<div class="m_st_20_bul_p">
+	<div id="project_our_ajax">
+	<?php 
+	if ( get_query_var('paged') ) {
+		$paged = get_query_var('paged');
+	} elseif ( get_query_var('page') ) {
+		$paged = get_query_var('page');
+	} else {
+		$paged = 1;
+	}
+	$atts = shortcode_atts( array(
+		'number_posts' => 1000,
+		'post_type' => 'teams',
+		), $atts, 'feature' );		
+	$args = array(
+	'posts_per_page'   => $atts['number_posts'],
+	'orderby'          => 'date',
+	'order'            => 'ASC',
+	'post_type'        => $atts['post_type'],
+	'post_status'      => 'publish',
+	'paged'    => $paged,
+	);
+	$loop = new WP_Query( $args );	
+	?>
+	<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;
+		?>
+		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
+			<div  class="project-img">
+			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+			</div>
+			<div class="project-info">
+				<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
+				<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
+			</h5></div>
+			</div>
+		</div>
+		
+		<div class="<?php echo get_the_ID();?> modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="modal_body_fix col-md-12 p_l_r_0">
+						<div class="col-md-6 p_l_r_0 p_relative">
+							<div class="project-img1">
+							<?php $image_popup = get_field('image_popup') ;
+							if($image_popup !=''){ ?>
+								<img src="<?php echo $image_popup['url'];?>" />
+							<?php 
+							}
+							else{ ?>
+								<a class = "style_image_thumbnail" href="<?php the_permalink();?>"><?php the_post_thumbnail();?></a>
+							<?php	
+							}
+							?>	
+							</div>
+							<div class="project_img1_2">
+							</div>
+						</div>
+						<div class="col-md-6  p_l_r_0 color-white p_relative">
+							<div class="p_l_t_30">
+								<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
+								<div class="project-info1">
+									<div class="project-info1_ok">
+										<a href="<?php the_permalink();?>"><?php the_title();?></a>
+									</div>
+									<div class="post-excerpt-fix-popup hiden-xs"><?php the_excerpt();?></div>
+									
+								</div>
+								<div class="project_info_bottom">
+									<div class="col-md-6 p_l_r_0 project_info_bottom1_6">
+										<div class="project_info1_a_share">
+											<p>SHARE</p>
+											<?php echo do_shortcode( "[simple-social-share]" ); ?>
+										</div>
+									</div>
+									<div class="col-md-6 p_l_r_0 project_info_bottom2_6">
+										<div class="project_info1_a_work">
+											<a href="#">WORK WITH US</a>
+											
+										</div>
+									</div>
+								</div>
+								<div class="project-info1">
+									<div class="project_info1_ok11">
+										<p>RELATED PROJECTS</p>
+									</div>
+									<?php 
+										$id = get_the_ID();
+										$args1 = array( 'post_type' => 'projects', 'posts_per_page' =>3, 'post__not_in'=> array( $id) );
+										$loop1 = new WP_Query( $args1 );	
+									?>
+									<div class="project_info1_ok1">
+										<?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
+											<div class="col-md-3 ">
+												<div class="project_img1_ok_col_3">
+													<div class="project_img1_ok">
+														<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+													</div>
+													<div class="project_info1_a_title">
+														<a href="javascript:void(0);"><?php the_title();?></a>
+													</div>
+												</div>
+											</div>
+										<?php  endwhile;?>
+										<div class="col-md-3">
+											<div class="project_info1_a_see_more">
+												<a href="javascript:void(0);">See more</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		  </div>
+		</div>
+	<?php  endwhile;?>
+		<div id="ajax_posts_f_project" class="row">
+			<input type="hidden" class="ajax_posts_f_page_project" value="2">
+		</div>
+	 <?php wp_reset_query(); ?>
+	</div>
+	<script type="text/javascript">
+			jQuery(document).ready( function($) {
+			var ajaxUrl1 = "<?php echo admin_url('admin-ajax.php')?>";
+			$("#read_more_project").on("click", function() {
+			var paged = $('.ajax_posts_f_page_project').last().val();
+			var name_services = $('.name_services_hidden').val();
+			var name_sectors = $('.name_sectors_hidden').val();
+			// var paged = $('.ajax_posts_f_page').last().val();
+			$.post(ajaxUrl1, {
+				action: "see_more_project_our_ajax",
+				paged : paged,
+				name_services : name_services,
+				name_sectors : name_sectors,
+				},'html')
+				.success(function(posts1345) {				
+				$("#project_our_ajax").append(posts1345);			
+				});
+			});	
+			});			
+	</script>
+	</div>
+	
+	
+	</div>
+	
+<?php wp_reset_query(); ?>
+<?php
+	$out = ob_get_contents();
+	ob_end_clean();
+	return $out;
+}
+
+
 
 /*================project short code=================*/
 
@@ -1270,14 +1445,13 @@ function our_projects_shortcode($args, $content) {
 	<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;
 		?>
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-			<div  class="project-img">
+			<div  class="project-img project-img--square">
 			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
 			</div>
 			<div class="project-info">
 				<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
 				<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
 			</h5></div>
-				<div class="post-excerpt-fix hiden-xs"><?php the_excerpt();?></div>
 			</div>
 		</div>
 		
@@ -1513,14 +1687,14 @@ function see_more_project_our_ajax(){
 	while ( $loop->have_posts() ) : $loop->the_post(); global $product;
 		?>
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-			<div  class="project-img">
+			<div  class="project-img project-img--square">
+
 			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
 			</div>
 			<div class="project-info">
 				<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
 				<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
 			</h5></div>
-				<div class="post-excerpt-fix hiden-xs"><?php the_excerpt();?></div>
 			</div>
 		</div>
 		
@@ -1737,3 +1911,6 @@ exit;
 }
 add_action('wp_ajax_nopriv_load_more_services_ajax', 'load_more_services_ajax'); 
 add_action('wp_ajax_load_more_services_ajax', 'load_more_services_ajax');
+
+
+

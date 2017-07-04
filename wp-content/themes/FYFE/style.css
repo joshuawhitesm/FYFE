@@ -2236,3 +2236,8 @@ nav {
     padding: 5px !important;
     /* text-transform: uppercase; */
 }
+
+/*Custom*/
+#sesion_1_home_fyfe_project{
+	display: none!important;
+}

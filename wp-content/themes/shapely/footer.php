@@ -12,6 +12,9 @@
 ?>
 
 </div><!-- #main -->
+<div class="ft-contact col-xs-12">
+    <?php echo do_shortcode('[contact]'); ?>
+</div>
 </section><!-- section -->
 
 

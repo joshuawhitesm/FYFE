@@ -230,3 +230,110 @@ function add_waikerie_submenu() {
 }
 
 add_action( 'genesis_after_header', 'add_waikerie_submenu', 10 );
+
+
+
+//Slider Home Custom Post Type
+function sliderhome_func() {
+
+	$labels = array(
+		'name'                  => _x( 'Slider Home', 'Post Type General Name', 'text-domain' ),
+		'singular_name'         => _x( 'Slider Home', 'Post Type Singular Name', 'text-domain' ),
+		'menu_name'             => __( 'Slider Home', 'text-domain' ),
+		'name_admin_bar'        => __( 'Post Type', 'text-domain' ),
+		'archives'              => __( 'Item Archives', 'text-domain' ),
+		'parent_item_colon'     => __( 'Parent Item:', 'text-domain' ),
+		'all_items'             => __( 'All Items', 'text-domain' ),
+		'add_new_item'          => __( 'Add New Item', 'text-domain' ),
+		'add_new'               => __( 'Add New', 'text-domain' ),
+		'new_item'              => __( 'New Item', 'text-domain' ),
+		'edit_item'             => __( 'Edit Item', 'text-domain' ),
+		'update_item'           => __( 'Update Item', 'text-domain' ),
+		'view_item'             => __( 'View Item', 'text-domain' ),
+		'search_items'          => __( 'Search Item', 'text-domain' ),
+		'not_found'             => __( 'Not found', 'text-domain' ),
+		'not_found_in_trash'    => __( 'Not found in Trash', 'text-domain' ),
+		'featured_image'        => __( 'Featured Image', 'text-domain' ),
+		'set_featured_image'    => __( 'Set featured image', 'text-domain' ),
+		'remove_featured_image' => __( 'Remove featured image', 'text-domain' ),
+		'use_featured_image'    => __( 'Use as featured image', 'text-domain' ),
+		'insert_into_item'      => __( 'Insert into item', 'text-domain' ),
+		'uploaded_to_this_item' => __( 'Uploaded to this item', 'text-domain' ),
+		'items_list'            => __( 'Items list', 'text-domain' ),
+		'items_list_navigation' => __( 'Items list navigation', 'text-domain' ),
+		'filter_items_list'     => __( 'Filter items list', 'text-domain' ),
+	);
+	$args = array(
+		'label'                 => __( 'Slider Home', 'text-domain' ),
+		'description'           => __( 'Slider Home', 'text-domain' ),
+		'labels'                => $labels,
+		'supports'              => array( 'title', 'editor', 'thumbnail', 'custom-fields', ),
+		'hierarchical'          => false,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 5,
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => true,
+		'can_export'            => true,
+		'has_archive'           => true,
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'capability_type'       => 'page',
+	);
+	register_post_type( 'slider-home', $args );
+
+}
+add_action( 'init', 'sliderhome_func', 0 );
+
+
+//Short Code Testimonials
+add_shortcode( 'our_testi', 'our_testi_func' );
+function our_testi_func($atts) {
+	ob_start();
+	$atts = shortcode_atts( array(
+		'number_posts' => 10,
+		'post_type' => 'testimonials',
+		), $atts, 'testimonials' );
+	
+    $args = ( array(
+        'post_type' => $atts['post_type'],
+		'posts_per_page' => $atts['number_posts'],
+		'order' => 'ASC'
+		// 'paged' => $paged,
+    ) );
+	$query = new WP_Query($args);?>
+	<div class="col-ms-12 testi"> 
+	<?php
+	if ($query->have_posts()) { 
+		while ($query->have_posts()) { 
+		$query->the_post();?>
+			<div class="col-ms-55 testi-members" >
+
+				<div class="col-ms-12 testi-img">
+					<?php //the_post_thumbnail();?>
+				</div>
+
+				<div class="col-ms-11 testi-info">
+
+					<div class="col-ms-12 content">
+						<?php the_content();?>
+					</div>
+					<br>
+					<div class="col-ms-12 title">
+						<b><?php the_title();?></b>
+						<p><?php the_field('employment');?></p>
+					</div>
+
+				</div>
+
+			</div>
+		<?php
+		}
+		wp_reset_postdata();
+	}?> 
+	</div>
+	<?php
+$myvariable = ob_get_clean();
+	return $myvariable;
+}

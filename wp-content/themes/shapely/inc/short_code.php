@@ -4,10 +4,10 @@ function product_shortcode($args, $content) {
 	$title = $args['title'] ;
 	$des = $args['des'] ;
 	ob_start();
-	$args = array( 'post_type' => 'expertise', 'posts_per_page' => 8 );
+	$args = array( 'post_type' => 'expertise', 'posts_per_page' => 12 );
 	$loop = new WP_Query( $args );?>
 	<div class="wpb_column vc_column_container col-lg-5ths text-center item-center-fix">
-	<div class="vc_column-inner no-padding center-fix-item">
+	<div class="vc_column-inner no-padding center-fix-item expertise_p_t_h4">
 		<h4><?php echo $title;?></h4>
 		<p><?php echo $des;?></p>
 	</div>
@@ -69,10 +69,132 @@ function post_shortcode($args, $content) {
 add_shortcode( 'post_home', 'post_shortcode' );
 
 /*================sectors short code=================*/
+
+//Sector fix 3-7-2017
+
+
+//Short Code Slider Home
+add_shortcode( 'sectors1', 'our_sectors_func' );
+function our_sectors_func($atts) {
+	ob_start();
+	$atts = shortcode_atts( array(
+		'number_posts' => 8,
+		'post_type' => 'sectors',
+		), $atts, 'sectors' );
+	
+    $args = ( array(
+        'post_type' => $atts['post_type'],
+		'posts_per_page' => $atts['number_posts'],
+		'order' => 'ASC'
+    ) );
+
+	$query = new WP_Query($args);?>
+	<div class="slhome"> 
+		<div id="myCarousel2" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+   
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+	<?php
+	if ($query->have_posts()) { 
+		while ($query->have_posts()) { 
+		$query->the_post();?>
+
+	  <div id="myCarousel<?php echo get_the_ID(); ?>" class="item item-fix2">
+        <div class="img_slhome col-lg-20ths col-xs-12 no-padding glr-right color-white">
+			<?php the_post_thumbnail('shapely-full');?>
+			<div class="slhome_des col-xs-5"><?php the_field('description');?></div>
+		</div>
+		<div class="wpb_column vc_column_container col-lg-5ths item-center-fix2">
+			<div class="vc_column-inner no-padding center-fix-item text-left">
+				<!-- <h4><a href="/?page_id=789">OUR SECTORS</a></h4> -->
+			</div>
+		</div>
+      </div>
+
+		<?php
+		}
+	}?> 
+	<div class="btn-slider slhomebt">
+		<a class="leftbt" href="#myCarousel2" data-slide="prev">
+		  <span class="glyphicon glyphicon-chevron-left"></span>
+		  <span class="sr-only">Previous</span>
+		</a>
+		<a class="rightbt" href="#myCarousel2" data-slide="next">
+		  <span class="glyphicon glyphicon-chevron-right"></span>
+		  <span class="sr-only">Next</span>
+		</a>
+		
+	</div>
+
+	</div>
+	<div class="slhome_list slhome_list_sectors1 sectors1 col-lg-5ths">
+		<h4><a href="/?page_id=789">OUR SECTORS</a></h4>
+					<div class="dot-slider">
+					<ol class="">
+
+		<?php 
+
+		$args2 = ( array(
+	        'post_type' => 'sectors',
+			'posts_per_page' =>8,
+			'order' => 'ASC'
+	    ) );
+		$i=1;
+	    $query2 = new WP_Query($args2);
+	    if ($query2->have_posts()) { 
+		while ($query2->have_posts()) { 
+		$query2->the_post();?>
+
+			<li data-target="#myCarousel2" data-slide-to="<?php the_field('data_slider');?>" class="slhome_title slhome_title_sector slhp_<?php the_field('data_slider');?> <?php if($i==1){echo 'current';}?>"><b><?php the_title();?></b></li>
+			<script>
+					jQuery('.slhome_title_sector.slhp_<?php the_field('data_slider');?>').on("click", function() {
+						jQuery(".slhome_list_sectors1 li").removeClass("current");
+						jQuery(".slhome_title_sector.slhp_<?php the_field('data_slider');?>").addClass("current");
+					});
+			</script>
+		<?php $i++;
+		}
+		wp_reset_postdata();
+	}?>
+				  	</ol>
+				</div>
+	</div>
+    
+  </div>
+  <style type="text/css">
+  	.text_yellow{
+  		color: #f1ac08; 
+  	}
+  </style>
+  <script>
+    jQuery(document).ready(function(){
+
+    	jQuery(".item-fix2:first").addClass("active");
+		jQuery('.slhome_title').click(function(){
+			jQuery(".slhome_title").toggleClass('text_yellow');
+	});
+
+});
+  </script>
+
+
+
+	</div>
+	<?php
+$myvariable = ob_get_clean();
+	return $myvariable;
+}
+
+
+//End ector fix 3-7-2017
+
+
+
 function sectors_shortcode($args, $content) {
 	
 	ob_start();
-	$args = array( 'post_type' => 'sectors', 'posts_per_page' => 5, 'order'   => 'ASC', );
+	$args = array( 'post_type' => 'sectors', 'posts_per_page' => 8, 'order'   => 'ASC', );
 	$loop = new WP_Query( $args );
 	?>
 	
@@ -147,15 +269,17 @@ function project_shortcode($args, $content) {
 	$loop = new WP_Query( $args );	
 	?>
 	<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
+		<?php $terms  = get_the_terms( get_the_ID(), 'project_services', '', '' );  ?>
 		<div class="col-md-3 col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-			<div  class="project-img">
+			<div  class="project-img project-img--square">
 			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
 			</div>
 			<div class="project-info">
-				<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
+				<?php foreach($terms as $value ){?>
+					<div class="btn-see btn_see_fix"><a><?php echo $value->name;?></a></div>
+				<?php } ?>
 				<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
-</h5></div>
-				<div class="post-excerpt-fix hiden-xs"><?php the_excerpt();?></div>
+				</h5></div>
 			</div>
 		</div>
 		
@@ -299,7 +423,7 @@ function teams_shortcode($args, $content) {
 	$title= $args['title'];
 	ob_start();
 	?>
-	<div class="wpb_column vc_column_container col-lg-5ths text-center item-center-fix">
+	<div class="wpb_column vc_column_container col-lg-5ths text-center item-center-fix teams_style_fix_4_7">
 		<div class="vc_column-inner no-padding center-fix-item p_relative">
 			<h4 class="teams-title"><?php echo $title;?></h4>
 				
@@ -331,21 +455,23 @@ function teams_shortcode($args, $content) {
 	</div>
 	<div id="teams-post-content">
 		<?php 
-			$args = array( 'post_type' => 'teams', 'posts_per_page' => 9 );
+			$args = array( 'post_type' => 'teams', 'posts_per_page' => 9, 'orderby' => 'date', 'order' => 'ASC' );
 			$loop = new WP_Query( $args );	
 		?>
 		<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
+		<?php $terms  = get_the_terms( get_the_ID(), 'teams_cat', '', '' );  ?>
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 			<div class="teams-img">
 			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
 			</div>
 			<div class="project-info">
-				<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'teams_cat', '', '' );  ?></div>
+				<?php foreach($terms as $value ){?>
+					<div class="btn-see btn_see_fix"><a><?php echo $value->name;?></a></div>
+				<?php } ?>
 				<div class="title-post-fix"><h5>
 				<button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
 					</h5>
 				</div>
-				<div class="post-excerpt-fix hiden-xs"><?php the_excerpt();?></div>
 			</div>
 		</div>
 		<div class="<?php echo get_the_ID();?> modal fade" role="dialog">
@@ -1283,5 +1409,116 @@ function sectors_news_shortcode($args, $content) {
 	return $myvariable;
 }
 
+//Short Code Slider Home
+add_shortcode( 'our_sliderhome', 'our_sliderhome_func' );
+function our_sliderhome_func($atts) {
+	ob_start();
+	$atts = shortcode_atts( array(
+		'number_posts' => 10,
+		'post_type' => 'sliderhome',
+		), $atts, 'sliderhome' );
+	
+    $args = ( array(
+        'post_type' => $atts['post_type'],
+		'posts_per_page' => $atts['number_posts'],
+		'order' => 'ASC'
+    ) );
 
+	$query = new WP_Query($args);?>
+	<div class="slhome"> 
+		<div id="myCarousel1" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+   
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+	<?php
+	if ($query->have_posts()) { 
+		while ($query->have_posts()) { 
+		$query->the_post();?>
+
+	  <div id="myCarousel<?php echo get_the_ID(); ?>" class="item item-fix1">
+        <div class="img_slhome fl_r col-lg-20ths col-xs-12 no-padding glr-right color-white">
+			<?php the_post_thumbnail('shapely-full');?>
+			<div class="slhome_des col-xs-5"><?php the_field('description');?></div>
+		</div>
+		<div class="wpb_column vc_column_container col-lg-5ths item-center-fix2">
+			<div class="vc_column-inner no-padding center-fix-item text-left">
+				<!-- <h4><a href="#"><?php the_title();?></a></h4> -->
+			</div>
+		</div>
+      </div>
+
+		<?php
+		}
+	}?> 
+	<div class="btn-slider right_34 slhomebt">
+		<a class="leftbt" href="#myCarousel1" data-slide="prev">
+		  <span class="glyphicon glyphicon-chevron-left"></span>
+		  <span class="sr-only">Previous</span>
+		</a>
+		<a class="rightbt" href="#myCarousel1" data-slide="next">
+		  <span class="glyphicon glyphicon-chevron-right"></span>
+		  <span class="sr-only">Next</span>
+		</a>
+		
+	</div>
+
+	</div>
+	<div class="slhome_list slhome_list_sliderhome left_0 col-lg-5ths">
+		<div class="dot-slider">
+			<ol class="">
+				<?php 
+
+				$args2 = ( array(
+					'post_type' => 'sliderhome',
+					'posts_per_page' =>10,
+					'order' => 'ASC'
+				) );
+				$i=1;
+				$query2 = new WP_Query($args2);
+				if ($query2->have_posts()) { 
+				while ($query2->have_posts()) { 
+				$query2->the_post();?>
+					<li data-target="#myCarousel1" data-slide-to="<?php the_field('data_slide');?>" class="margin_l_1o5 slhome_title_sliderhome slhome_title slhp_<?php the_field('data_slide');?> <?php if($i==1){echo 'current';}?>"><b><?php the_title();?></b></li>
+					<script>
+					jQuery('.slhome_title_sliderhome.slhp_<?php the_field('data_slide');?>').on("click", function() {
+						jQuery(".slhome_list_sliderhome li").removeClass("current");
+						jQuery(".slhome_title_sliderhome.slhp_<?php the_field('data_slide');?>").addClass("current");
+					});
+					</script>
+				<?php $i++;
+				}
+				wp_reset_postdata();
+				}?>
+			</ol>
+			<div class="sliderhome_75370">
+				<img src="http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/04/75370-200.png" alt="sliderhome">
+			</div>
+		</div>
+	</div>
+    
+  </div>
+  <style type="text/css">
+  	.text_yellow{
+  		color: #f1ac08; 
+  	}
+  </style>
+  <script>
+    jQuery(document).ready(function(){
+
+    	jQuery(".item-fix1:first").addClass("active");
+		jQuery('.slhome_title').click(function(){
+			jQuery(".slhome_title").toggleClass('text_yellow');
+	});
+
+});
+  </script>
+
+
+
+	</div>
+	<?php
+$myvariable = ob_get_clean();
+	return $myvariable;
+}
 
