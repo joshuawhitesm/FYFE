@@ -113,7 +113,7 @@ function our_sectors_func($atts) {
 		<?php
 		}
 	}?>
-	<div class="btn-slider slhomebt">
+	<div class="btn-slider hsu-slider-styling slhomebt">
 		<a class="leftbt" href="#myCarousel2" data-slide="prev">
 		  <span class="glyphicon glyphicon-chevron-left"></span>
 		  <span class="sr-only">Previous</span>
@@ -122,7 +122,6 @@ function our_sectors_func($atts) {
 		  <span class="glyphicon glyphicon-chevron-right"></span>
 		  <span class="sr-only">Next</span>
 		</a>
-
 	</div>
 
 	</div>
@@ -1453,7 +1452,7 @@ function our_sliderhome_func($atts) {
 		<?php
 		}
 	}?>
-	<div class="btn-slider right_34 slhomebt">
+	<div class="btn-slider hsu-slider-styling slhomebt">
 		<a class="leftbt" href="#myCarousel1" data-slide="prev">
 		  <span class="glyphicon glyphicon-chevron-left"></span>
 		  <span class="sr-only">Previous</span>
