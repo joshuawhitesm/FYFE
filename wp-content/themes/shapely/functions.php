@@ -346,7 +346,7 @@ function prefix_load_cat_posts () {
 	if ( $the_query->have_posts() ) {
 	while ( $the_query->have_posts() ) {
 		$the_query->the_post();?>
-		<?php $terms  = get_the_terms( get_the_ID(), 'project_services', '', '' );  ?>
+		<?php $terms  = get_the_terms( get_the_ID(), 'project_cat', '', '' );  ?>
 		<div class="col-md-3 col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 			<div  class="project-img">
 			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>

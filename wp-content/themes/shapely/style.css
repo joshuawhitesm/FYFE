@@ -5644,6 +5644,7 @@ height: 20vw;
 .sliderhome_75370 {
     width: 100%;
     text-align: center;
+	cursor: pointer;
 }
 .image_automatic_page figure {
     padding: 0em;
@@ -5662,4 +5663,8 @@ height: 20vw;
     width: auto;
     margin-right: 7px;
 	height: 25px;
+}
+.modal_fix_4_7 {
+    width: 700px;
+    margin: 0 auto;
 }

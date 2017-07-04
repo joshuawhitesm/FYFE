@@ -269,7 +269,7 @@ function project_shortcode($args, $content) {
 	$loop = new WP_Query( $args );	
 	?>
 	<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
-		<?php $terms  = get_the_terms( get_the_ID(), 'project_services', '', '' );  ?>
+		<?php $terms  = get_the_terms( get_the_ID(), 'project_cat', '', '' );  ?>
 		<div class="col-md-3 col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 			<div  class="project-img project-img--square">
 			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
@@ -1491,8 +1491,23 @@ function our_sliderhome_func($atts) {
 				wp_reset_postdata();
 				}?>
 			</ol>
-			<div class="sliderhome_75370">
+			<div class="sliderhome_75370" data-toggle="modal" data-target="#myModal">
 				<img src="http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/04/75370-200.png" alt="sliderhome">
+			</div>
+			<div class="modal fade modal_fix_4_7" id="myModal" role="dialog">
+				<div class="modal-dialog">
+				
+				  <!-- Modal content-->
+				  <div class="modal-content">
+					<div class="modal-body">
+					  <p>Some text in the modal.</p>
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				  </div>
+				  
+				</div>
 			</div>
 		</div>
 	</div>
