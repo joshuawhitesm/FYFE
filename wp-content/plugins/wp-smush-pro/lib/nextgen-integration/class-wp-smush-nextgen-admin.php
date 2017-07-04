@@ -158,7 +158,7 @@ if ( ! class_exists( 'WpSmushNextGenAdmin' ) ) {
 				'resmush'       => esc_html__( 'Super-Smush', 'wp-smushit' ),
 				'smush_now'     => esc_html__( 'Smush Now', 'wp-smushit' ),
 				"error_in_bulk" => esc_html__( '{{errors}} image(s) were skipped due to an error.', 'wp-smushit' ),
-				"all_resmushed" => esc_html__( 'All images are fully optimised.', 'wp-smushit' ),
+				"all_resmushed" => esc_html__( 'All images are fully optimized.', 'wp-smushit' ),
 				'restore'       => esc_html__( "Restoring image..", "wp-smushit" ),
 				'smushing'      => esc_html__( "Smushing image..", "wp-smushit" ),
 				'checking'      => esc_html__( "Checking images..", "wp-smushit" )
@@ -443,7 +443,7 @@ if ( ! class_exists( 'WpSmushNextGenAdmin' ) ) {
 						<img src="<?php echo WP_SMUSH_URL . 'assets/images/icon-gzip.svg'; ?>" width="14px">
 					</i>
 					<span class="wp-smush-notice-text">
-						<?php printf( _n( "%s, you have %s%s%d%s image%s that needs smushing!", "%s, you have %s%s%d%s images%s that need smushing!", $this->remaining_count, "wp-smushit" ), $wpsmushit_admin->get_user_name(), '<strong>', '<span class="wp-smush-remaining-count">', $this->remaining_count, '</span>', '</strong>' ); ?>
+						<?php printf( _n( "%s, you have %s%s%d%s attachment%s that needs smushing!", "%s, you have %s%s%d%s attachments%s that need smushing!", $this->remaining_count, "wp-smushit" ), $wpsmushit_admin->get_user_name(), '<strong>', '<span class="wp-smush-remaining-count">', $this->remaining_count, '</span>', '</strong>' ); ?>
 					</span>
 				</div>
 				<hr class="wp-smush-sep">
@@ -499,7 +499,7 @@ if ( ! class_exists( 'WpSmushNextGenAdmin' ) ) {
 			//NextGen Stats
 			$this->stats = $wpsmushnextgenstats->get_smush_stats();
 
-			$button = '<span class="spinner"></span><button tooltip="' . esc_html__( "Lets you check if any images can be further optimised. Useful after changing settings.", "wp-smushit" ) . '" data-type="nextgen" class="wp-smush-title button button-grey button-small wp-smush-scan">' . esc_html__( "RE-CHECK IMAGES", "wp-smushit" ) . '</button>';
+			$button = '<span class="spinner"></span><button tooltip="' . esc_html__( "Lets you check if any images can be further optimized. Useful after changing settings.", "wp-smushit" ) . '" data-type="nextgen" class="wp-smush-title button button-grey button-small wp-smush-scan">' . esc_html__( "RE-CHECK IMAGES", "wp-smushit" ) . '</button>';
 			$this->bulk_ui->container_header( 'smush-stats-wrapper', 'wp-smush-stats-box', esc_html__( "STATS", "wp-smushit" ), $button );
 			$dasharray = 125.663706144;
 			$dash_offset = $this->total_count > 0 ? $dasharray - ( $dasharray * ( $smushed_count / $this->total_count ) ) : $dasharray; ?>
@@ -528,7 +528,7 @@ if ( ! class_exists( 'WpSmushNextGenAdmin' ) ) {
 						<div class="wp-smush-smush-stats-wrapper">
 							<span class="wp-smush-optimised"><?php echo $smushed_count; ?></span>/<span><?php echo $this->total_count; ?></span>
 						</div>
-						<span class="total-stats-label"><strong><?php esc_html_e( "ATTACHMENTS SMUSHED", "wp-smushit" ); ?></strong></span>
+						<span class="total-stats-label"><strong><?php esc_html_e( "IMAGES SMUSHED", "wp-smushit" ); ?></strong></span>
 					</div>
 				</div>
 			</div>
@@ -550,7 +550,7 @@ if ( ! class_exists( 'WpSmushNextGenAdmin' ) ) {
 				<hr>
 				<div class="row super-smush-attachments">
 					<span class="float-l wp-smush-stats-label">
-						<strong><?php esc_html_e( "ATTACHMENTS SUPER-SMUSHED", "wp-smushit" ); ?></strong>
+						<strong><?php esc_html_e( "IMAGES SUPER-SMUSHED", "wp-smushit" ); ?></strong>
 					</span>
 					<span class="float-r wp-smush-stats">
 						<?php
@@ -622,7 +622,7 @@ if ( ! class_exists( 'WpSmushNextGenAdmin' ) ) {
 			}
 
 			//Update Stats
-			update_option( 'wp_smush_stats_nextgen', $nextgen_stats );
+			update_option( 'wp_smush_stats_nextgen', $nextgen_stats, false );
 
 			//Remove from Super Smush list
 			$wpsmushit_admin->update_super_smush_count( $attachment_id, 'remove', 'wp-smush-super_smushed_nextgen' );
