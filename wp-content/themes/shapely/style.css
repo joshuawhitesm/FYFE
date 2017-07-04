@@ -1035,7 +1035,7 @@ a {
 }
 
 a:hover {
-    
+
     text-decoration: none;
 }
 
@@ -2247,7 +2247,7 @@ img {
     .logo-carousel .slides li {
         width: 100%;
     }
-	
+
 }
 
 /*!---------- 15. IMAGE GALLERIES ----------*/
@@ -3228,7 +3228,7 @@ blockquote {
   padding-left: 0;
   margin-left: 0; }
   .widget.widget_archive > div ul li, .widget.widget_archive ul li, .widget.widget_categories > div ul li, .widget.widget_categories ul li, .widget.widget_meta > div ul li, .widget.widget_meta ul li, .widget.widget_pages > div ul li, .widget.widget_pages ul li, .widget.widget_nav_menu > div ul li, .widget.widget_nav_menu ul li {
-  
+
     padding-bottom: 10px;}
     .widget.widget_archive > div ul li:last-of-type, .widget.widget_archive ul li:last-of-type, .widget.widget_categories > div ul li:last-of-type, .widget.widget_categories ul li:last-of-type, .widget.widget_meta > div ul li:last-of-type, .widget.widget_meta ul li:last-of-type, .widget.widget_pages > div ul li:last-of-type, .widget.widget_pages ul li:last-of-type, .widget.widget_nav_menu > div ul li:last-of-type, .widget.widget_nav_menu ul li:last-of-type {
       border: none;
@@ -3772,20 +3772,20 @@ color:#fff;	  }
 	.bg-full {
     background-size: 100% 100% !important;
 	}
-	
+
 }
 @media all and (min-width: 550px) {
     .author-bio .author-social {
       position: absolute;
       right: 20px;
-      top: 0; } 
+      top: 0; }
 }
 .author-bio .author-social li {
-    padding: 0 5px; 
+    padding: 0 5px;
 }
 .author-bio .author-social li a {
     color: #001c28;
-    font-size: 12px; 
+    font-size: 12px;
 }
 
 .author-bio-left-side .col-sm-2, .author-bio-left-side .col-sm-10 {
@@ -3821,7 +3821,7 @@ color:#fff;	  }
   padding-top: 30px; }
 
 body {
-   
+
     max-width: 100% !important;
 }
 .btn.searchsubmit {
@@ -3853,7 +3853,7 @@ ul.icon-fix li {
 .text-footer-fix{
 text-transform: uppercase;
     font-size: 11px;
-	opacity:0.2;	
+	opacity:0.2;
 	margin-top:30px;
 	color: #a5b3af !important;
 	float:right;
@@ -3862,7 +3862,7 @@ text-transform: uppercase;
 p.text-right {
     color: #a5b3af !important;
     text-align: right;
-    
+
 }
 .icon-fix a {
     padding-top: 8px;
@@ -4006,7 +4006,7 @@ ul.post-categories {
 }
 .btn-see a {
     background: #f1ac08;
-    padding: 4px 15px; 
+    padding: 4px 15px;
     border-radius: 10px;
 	color:#fff;
 	font-size:12px;
@@ -4123,6 +4123,14 @@ a.icon-see {
 .teams-img {
     height: 405px;
     overflow: hidden;
+}
+.project-item {
+    position: relative;
+}
+
+.project-item--small img {
+    width: 200px;
+    height: 200px;
 }
 .project-item:hover .project-info{
 	opacity:1;
@@ -4311,7 +4319,7 @@ textarea.wpcf7-form-control.wpcf7-textarea {
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
-    from {opacity: 0;} 
+    from {opacity: 0;}
     to {opacity: 1;}
 }
 
@@ -4464,6 +4472,11 @@ button.close {
     word-spacing: 50px;
 	letter-spacing:5px;
 }
+.past-project-see-more a {
+    word-spacing: 10px;
+    padding: 0 20px;
+}
+
 .project_info1_a_work a {
     text-transform: uppercase;
     font-size: 20px;
@@ -4523,7 +4536,7 @@ a.btn-filled.btn {
     display: none;
 }
 .project-img1 a.style_image_thumbnail img {
-    width: 100%;
+    width: auto;
 }
 .project_info1_ok_100 {
     width: 100%;
@@ -4882,7 +4895,7 @@ div#ajax_posts_f_project {
     height: 535px;
     overflow: hidden;
 	}
-	
+
 }
 @media screen and (max-width:1200px){
 	.icon-see {
@@ -4891,7 +4904,7 @@ div#ajax_posts_f_project {
     width: 100%;
     font-size: 30px;
     color: #000;
-	} 
+	}
 	div#sesion_2_home_fyfe_project p{
     margin-bottom: 5px;
     margin-top: 0;
@@ -5183,7 +5196,7 @@ div#ajax_posts_f_project {
 	.p_l_t_30 {
     padding: 30px !important;
 	}
-	
+
 }
 @media screen and (max-width:768px){
 	.project_info1_a_work {
@@ -5262,7 +5275,7 @@ div#ajax_posts_f_project {
 	.project-img {
     height: auto;
     overflow: hidden;
-	}	
+	}
 	.teams-img {
     height: auto;
     overflow: hidden;
@@ -5548,8 +5561,7 @@ a.style_image_archive img {
     text-align: right;
 }
 .img_slhome img{
-    max-height: 480px;
-    height: 480px;
+    height: 100vh;
 }
 .slhome_list{
     float: right;
@@ -5557,7 +5569,7 @@ a.style_image_archive img {
     left: 80%;
     bottom: 0%;
     background: white;
-    height: 480px;
+    height: 100vh;
 }
 .slhome_list ol{
     margin: 0;
@@ -5666,7 +5678,7 @@ height: 20vw;
 }
 .modal_fix_4_7 {
     width: 60%;
-    margin: 0 auto; 
+    margin: 0 auto;
 }
 .no-padding{
 	padding-left:0px;
