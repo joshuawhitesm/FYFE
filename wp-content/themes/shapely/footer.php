@@ -33,7 +33,7 @@
 	<a class="btn btn-sm fade-half back-to-top inner-link" href="#top"><i class="fa fa-angle-up"></i></a>
 </footer><!-- #colophon -->
 </div>
-</div><!-- #page -->	
+</div><!-- #page -->
 
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -41,13 +41,13 @@
 jQuery(document).ready( function($) {
 	$('.sliderhome_75370').on("click", function() {
 		$('html,body').animate({scrollTop: $("#contact_home_bottom").offset().top - 80 },'slow');
-		
+
 	});
 	$('.click_top_scroll').on("click", function() {
 		$('html,body').animate({scrollTop: $("#sesion_2_home_fyfe_project ").offset().top - 80 },'slow');
 		// alert('go');
 	});
-});	
+});
 function cat_ajax_get(catID) {
     jQuery("a.ajax").removeClass("current");
     jQuery("a.ajax").addClass("current"); //adds class current to the category menu item being displayed so you can style it with css
@@ -59,24 +59,6 @@ function cat_ajax_get(catID) {
         data: {"action": "load-filter", cat: catID, 'refresh_cart': 'yes' },
         success: function(response) {
             jQuery("#category-post-content").html(response);
-            jQuery("#loading-animation").hide();
-            return false;
-        }
-    });
-}
-</script>
-<script>
-function team_ajax_get(catID) {
-    jQuery("a.ajax").removeClass("current");
-    jQuery("a.ajax").addClass("current"); //adds class current to the category menu item being displayed so you can style it with css
-    jQuery("#loading-animation").show();
-    var ajaxurl = '<?php echo admin_url( 'admin-ajax.php' ); ?>';
-    jQuery.ajax({
-        type: 'POST',
-        url: ajaxurl,
-        data: {"action": "load_cat_teams", teams_cat: catID },
-        success: function(response) {
-            jQuery("#teams-post-content").html(response);
             jQuery("#loading-animation").hide();
             return false;
         }

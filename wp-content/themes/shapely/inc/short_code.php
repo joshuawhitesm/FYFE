@@ -407,7 +407,9 @@ function project_shortcode($args, $content) {
 				}
 				echo '</ul>';
 				?>
-				<a class="see-a" href="/?page_id=1052">SEE MORE</a>
+				<div class="btn-see">
+					<a href="/?page_id=1052">SEE MORE</a>
+				</div>
 		</div>
 	</div>
 
@@ -428,30 +430,9 @@ function teams_shortcode($args, $content) {
 	<div class="wpb_column vc_column_container col-lg-5ths text-center item-center-fix teams_style_fix_4_7">
 		<div class="vc_column-inner no-padding center-fix-item p_relative">
 			<h4 class="teams-title"><?php echo $title;?></h4>
-			<?php
-			// your taxonomy name
-			$tax = 'teams_cat';
-
-			// get the terms of taxonomy
-			$terms = get_terms( $tax, $args = array(
-			  'hide_empty' => false, // do not hide empty terms
-			));
-
-			echo '<ul id="category-menu2" class="list-unstyled2"> <li class="init2">FILTER BY SECTOR</li>';
-			// loop through all terms
-			foreach( $terms as $term ) {
-
-				// Get the term link
-				$term_link = get_term_link( $term );
-
-				if( $term->count !== 0 )
-					?>
-					<li data-value="value <?php echo $term->term_id; ?>" id="cat-<?php echo $term->term_id; ?>"><a class="<?php echo $term->slug; ?> ajax" onclick="team_ajax_get('<?php echo $term->term_id; ?>');" href="javascrip:void(0)">FILTER BY <?php echo $term->name; ?></a></li>
-					<?php
-			}
-			echo '</ul>';
-			?>
-			<a class="see-a see-a-teams" href="#">SEE MORE</a>
+			<div class="btn-see">
+				<a href="/?page_id=1052">SEE MORE</a>
+			</div>
 		</div>
 	</div>
 	<div id="teams-post-content">

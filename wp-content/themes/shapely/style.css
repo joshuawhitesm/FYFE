@@ -4567,13 +4567,6 @@ a:hover {
 a.icon-see:hover {
     color: #000;
 }
-a.see-a {
-    float: left;
-    width: 100%;
-    color: #f1ac08;
-    text-decoration: underline;
-    margin-top: 30px;
-}
 .teams-img img {
     width: 100%;
     /* max-height: 450px; */
@@ -4583,9 +4576,6 @@ ul#category-menu2 {
 }
 h4.teams-title {
     margin-bottom: 35px;
-}
-a.see-a.see-a-teams {
-    margin-top: 35px;
 }
 .bg-yellow {
     background-color: #f1ac08;
@@ -5067,15 +5057,6 @@ div#location-content {
     position: absolute;
     z-index: 1;
     left: 0px;
-    right: 0px;
-}
-a.see-a.see-a-teams {
-    margin-top: 60px;
-}
-.p_relative a.see-a {
-    position: absolute;
-    left: 0px;
-    z-index: 0;
     right: 0px;
 }
 div#s-share-buttons {
@@ -6111,7 +6092,7 @@ a.style_image_archive img {
 }
 .modal-content .project-img1 img {
     height: auto !important;
-} 
+}
 .project-img1 a.style_image_thumbnail img {
     width: 100%;
 }
