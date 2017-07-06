@@ -143,7 +143,11 @@ button, input, optgroup, select, textarea {
     font: inherit;
     margin: 0;
 }
-
+.col-md-6.p_l_r_0.color-white.p_relative {
+    height: 100vh;
+	overflow-y: scroll !important;
+    overflow-x: hidden !important;
+}
 button {
     overflow: visible;
 }
@@ -980,7 +984,7 @@ hr {
 /*!---------- 3. TYPOGRAPHY ----------*/
 
 h1, h2, h3, h4, h5, h6, p, ul, ol, table, blockquote, input, textarea {
-    margin-bottom: 24px;
+        margin-bottom: 10px;
     margin-top: 0;
     padding: 0;
 }
@@ -4791,9 +4795,10 @@ button.close {
 }
 .project-info1_ok a {
     font-size: 30px;
-    padding: 15px 0 30px 0;
+    padding: 15px 0 20px 0;
     float: left;
     width: 100%;
+	    line-height: 1.2;
 }
 /* .project_info1_ok1 .col-md-3:first-child { */
 /* padding-left: 0px; */
@@ -4812,7 +4817,7 @@ button.close {
 .project_info1_ok11 p {
     text-transform: uppercase;
     font-size: 20px;
-    padding: 0px 0 30px 0;
+    padding: 10px 0 10px 0;
     float: left;
     font-weight: normal;
     width: 100%;
@@ -4832,8 +4837,6 @@ button.close {
     text-transform: uppercase;
     font-size: 20px;
     text-align: center;
-    word-spacing: 50px;
-    letter-spacing: 5px;
 }
 .past-project-see-more a {
     word-spacing: 10px;
@@ -4868,7 +4871,7 @@ button.close {
 }
 .project_info1_a_share p {
     text-transform: uppercase;
-    font-size: 20px;
+    font-size: 30px;
     margin-bottom: 0px;
 }
 .project-item {
@@ -5077,13 +5080,13 @@ a.see-a.see-a-teams {
 }
 div#s-share-buttons {
     margin-left: -10px;
-    margin-top: 10px;
+    margin-top: 18px;
 }
-.project_info_bottom .project_info_bottom1_6 {
+/*.project_info_bottom .project_info_bottom1_6 {
     margin-top: 20px;
     position: absolute;
     bottom: -115px;
-}
+}*/
 .project_info_bottom .project_info_bottom2_6 {
     margin-top: 20px;
     position: absolute;
@@ -5294,8 +5297,8 @@ div#ajax_posts_f_project {
         align-items: center;
         position: relative;
         display: flex;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 0px;
+        padding-bottom: 0px;
         padding-left: 20px;
         padding-right: 20px;
     }
@@ -6081,7 +6084,11 @@ a.style_image_archive img {
     left: 20%;
     right: 0;
 }
-
+#myCarousel2 .hsu-slider-styling {
+    left: 0px;
+    right: 0;
+    width: 80%;
+}
 .hsu-slider-styling .leftbt {
     left: 2em;
     right: initial;
@@ -6092,3 +6099,167 @@ a.style_image_archive img {
     right: 2em;
     left: initial;
 }
+/*===================================== fixx css 06_07_2017================================================*/
+.list-cat-fix2 a:first-child {
+    display: block !important;
+    width: auto;
+    clear: both;
+    /* max-width: 164px; */
+    float: left;
+    pointer-events: none;
+    cursor: default;
+}
+.modal-content .project-img1 img {
+    height: auto !important;
+} 
+.project-img1 a.style_image_thumbnail img {
+    width: 100%;
+}
+.project_info1_a_see_more a{
+	color:#f1ac08;
+	}
+	a.s3-linkedin.hint--top.linkedin-user {
+    float: left;
+    width: 35px;
+    margin-top: -5px;
+    color: #fff;
+	}
+	.s-share-w-c a:hover {
+    -webkit-transform: initial !important;
+    -moz-transform: initial !important;
+    -o-transform: rinitial !important;
+}
+.modal-logo {
+    text-align: right;
+}
+/*===================================== fixx css 06_07_2017================================================*/
+@media only screen and (max-width: 1200px) and (min-width: 980px)  {
+	.project-img--square {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+div#sesion_2_home_fyfe_project {
+    height: auto;
+    overflow: hidden;
+}
+.project-img--square a img {
+    width: 100%;
+    height: 100%;
+}
+#myCarousel1 .carousel-inner {
+    position: relative;
+    width: 70%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 30%;
+}
+#myCarousel2 .carousel-inner {
+    position: relative;
+    width: 70%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 0%;
+}
+.slhome_list {
+    float: left;
+    position: absolute;
+    left: 70%;
+    top: 0%;
+    background: white;
+    height: auto;
+width: 30%;}
+	.slhome_list li{
+	    line-height: 28px;
+    margin: 5px 1em 5px 1em;
+	    font-size: 16px;
+}
+.hsu-slider-styling{
+	left:0px;
+}
+
+}
+@media screen and (max-width: 1200px) {
+	.teams_style_fix_4_7{
+		padding-bottom: 145px !important;
+	}
+	.expertise_p_t_h4 h4 {
+    padding-top: 10px;
+}
+#myCarousel2 .hsu-slider-styling {
+    left: 0px;
+    right: 0;
+    width: 100%;
+}
+.sliderhome_75370 {
+    width: 140px;
+}
+.col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
+    height: 405px;
+}
+}
+
+@media screen and (max-width: 980px) {
+	.slhome_list {
+    float: right;
+    position: initial;
+    left: 80%;
+    bottom: 0%;
+    background: white;
+    height: auto;
+    width: 100%;
+}
+.sliderhome_75370 {
+    text-align: center;
+}
+.expertise_p_t_h4 h4{
+	padding-top:0px;
+}
+.hsu-slider-styling{
+	left:0px;
+}
+.slhome_list li {
+    font-size: 16px;
+    line-height: 28px;
+	text-align:center;
+}
+.hsu-slider-styling {
+    left: 0px;
+    right: 0;
+}
+.col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
+        height: auto;
+}
+
+@media screen and (max-width: 980px) {
+	.project-img--square {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.project-img--square a img {
+    width: 100%;
+    height: 100%;
+}
+.img_slhome img {
+    height: auto;
+}
+.style_home_fyfe_contact_form {
+    margin-bottom: 30px;
+}
+.sliderhome_75370 {
+    width: 100%;
+    margin-bottom: 15px !important;
+}
+.slhome_list h4 {
+    text-align: center;
+}
+}
+
+/* MT CSS 07/06/2017 */
+.modal-logo{text-align: right;}
+.modal-logo .logo{margin-top: -17px;}

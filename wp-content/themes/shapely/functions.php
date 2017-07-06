@@ -365,7 +365,10 @@ function prefix_load_cat_posts () {
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<div class="modal-logo">
+						<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.svg" class="logo" alt="FYFE">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
 				</div>
 				<div class="modal-body">
 					<div class="modal_body_fix col-md-12 p_l_r_0">
@@ -374,26 +377,27 @@ function prefix_load_cat_posts () {
 							<?php $image_popup = get_field('image_popup') ;
 							if($image_popup !=''){ ?>
 								<img src="<?php echo $image_popup['url'];?>" />
-							<?php 
+							<?php
 							}
 							else{ ?>
 								<a class = "style_image_thumbnail" href="<?php the_permalink();?>"><?php the_post_thumbnail();?></a>
-							<?php	
+							<?php
 							}
-							?>	
+							?>
 							</div>
 							<div class="project_img1_2">
 							</div>
 						</div>
 						<div class="col-md-6  p_l_r_0 color-white p_relative">
 							<div class="p_l_t_30">
-								<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
+								
 								<div class="project-info1">
 									<div class="project-info1_ok">
 										<p><?php the_title();?></p>
 									</div>
-									<div class="post-excerpt-fix hiden-xs"><?php the_excerpt();?></div>
-									
+									<div class="btn-see list-cat-fix list-cat-fix2 "><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
+									<div class="post-excerpt-fix-popup hiden-xs"><?php the_excerpt();?></div>
+
 								</div>
 								<div class="project_info_bottom">
 									<div class="col-md-6 p_l_r_0 project_info_bottom1_6">
@@ -402,43 +406,41 @@ function prefix_load_cat_posts () {
 											<?php echo do_shortcode( "[simple-social-share]" ); ?>
 										</div>
 									</div>
-									<div class="col-md-6 p_l_r_0 project_info_bottom2_6">
-										<div class="project_info1_a_work">
-											<a href="#">WORK WITH US</a>
-											
-										</div>
-									</div>
 								</div>
 								<div class="project-info1">
 									<div class="project_info1_ok11">
-										<p>Related pROJECTS</p>
+										<p>RELATED PROJECTS</p>
 									</div>
-									<?php 
+									<?php
 										$id = get_the_ID();
 										$args1 = array( 'post_type' => 'projects', 'posts_per_page' =>3, 'post__not_in'=> array( $id) );
-										$loop1 = new WP_Query( $args1 );	
+										$loop1 = new WP_Query( $args1 );
 									?>
 									<div class="project_info1_ok1">
 										<?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
-											<div class="col-md-3 ">
-												<div class="project_img1_ok_col_3">
-													<div class="project_img1_ok">
-														<a href="<?php the_permalink();?>"><?php the_post_thumbnail();?></a>
+											<span class="no-padding color-white project-item project-item--small">
+												<?php the_post_thumbnail();?>
+
+											  <div class="project-info">
+													<div class="btn-see list-cat-fix"></div>
+													<div class="title-post-fix">
+														<h5>
+															<button type="button" href="javascript:void(0);"class="btn btn-info btn-lg">
+																<?php echo the_title(); ?>
+															</button>
+													</h5>
 													</div>
-													<div class="project_info1_a_title">
-														<a href="<?php the_permalink();?>"><?php the_title();?></a>
-													</div>
-												</div>
-											</div>
+											  </div>
+											</span>
 										<?php  endwhile;?>
-										<div class="col-md-3">
+										<div class="col-md-12">
 											<div class="project_info1_a_see_more">
-												<a href="<?php the_permalink();?>">See more</a>
+												<a href="javascript:void(0);">See more</a>
 											</div>
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
@@ -498,100 +500,104 @@ function prefix_load_cat_teams () {
 			</div>
 		</div>
 		<div class="<?php echo get_the_ID();?> modal fade" role="dialog">
-		  <div class="modal-dialog">
-
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				<div class="modal-body">
-					<div class="modal_body_fix col-md-12 p_l_r_0">
-						<div class="col-md-6 p_l_r_0 p_relative">
-							<div class="project-img1">
-							<?php $image_popup = get_field('image_popup') ;
-							if($image_popup !=''){ ?>
-								<img src="<?php echo $image_popup['url'];?>" />
-							<?php 
-							}
-							else{ ?>
-								<a class = "style_image_thumbnail" href="<?php the_permalink();?>"><?php the_post_thumbnail();?></a>
-							<?php	
-							}
-							?>	
-							</div>
-							<div class="project_img1_2">
+			    <div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<div class="modal-logo">
+								<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.svg" class="logo" alt="FYFE">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
 							</div>
 						</div>
-						<div class="col-md-6  p_l_r_0 color-white p_relative">
-							<div class="p_l_t_30">
-								<?php 
-								$status = get_field('status') ;
-								$location = get_field('location') ;
-								
-								?>
-								<div class="project-info1_ok project_info1_ok_100">
-									<h6><?php the_title();?></h6><span><?php echo $location;?></span>
-								</div>
-								<div class="project-info1">
-									<div class="project-info1_ok">
-										<a href="<?php the_permalink();?>"><?php echo $status;?></a>
+						<div class="modal-body">
+							<div class="modal_body_fix col-md-12 p_l_r_0">
+								<div class="col-md-6 p_l_r_0 p_relative">
+									<div class="project-img1">
+										<?php the_post_thumbnail();?>
 									</div>
-									<div class="post-excerpt-fix-popup hiden-xs"><?php the_excerpt();?></div>
-									
+									<div class="project_img1_2">
+									</div>
 								</div>
-								<div class="project_info_bottom">
-									<div class="col-md-6 p_l_r_0 project_info_bottom1_6">
-										<div class="project_info1_a_share">
-											<p>SHARE</p>
-											<?php echo do_shortcode( "[simple-social-share]" ); ?>
+								<div class="col-md-6  p_l_r_0 color-white p_relative">
+									<div class="p_l_t_30">
+										<?php
+											$status = get_field('status') ;
+											$location = get_field('location') ;
+											$email = get_field('email') ;
+											$phone = get_field('phone') ;
+										?>
+										<div class="project-info1_ok project_info1_ok_100">
+											<h6><a href="<?php the_field('linkedin');?>" target="_blank" title="Share to LinkedIn" class="s3-linkedin hint--top linkedin-user"></a><?php the_title();?></h6>
 										</div>
-									</div>
-									<div class="col-md-6 p_l_r_0 project_info_bottom2_6">
-										<div class="project_info1_a_work">
-											<a href="#">WORK WITH US</a>
-											
+										<div class="project-info1">
+											<div class="project-info1_ok">
+												<p><?php echo $status;?></p>
+											</div>
+											<div class="post-excerpt-fix-popup hiden-xs">
+											  	<?php the_content();?>
+											  	<?php if (!empty($email)) { ?>
+											      	<p>
+												      	<span>Email:</span>
+												      	<a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
+											      	</p>
+											  	<?php } ?>
+											  	<?php if (!empty($phone)) { ?>
+												    <p>
+													    <span>Phone:</span>
+													    <a href="tel:<?php echo $phone; ?>"><?php echo $phone; ?></a>
+												    </p>
+											  	<?php } ?>
+											</div>
 										</div>
-									</div>
-								</div>
-								<div class="project-info1">
-									<div class="project_info1_ok11">
-										<p>PAST PROJECTS</p>
-									</div>
-									<?php 
-										$id = get_the_ID();
-										$args1 = array( 'post_type' => 'projects', 'posts_per_page' =>3, 'post__not_in'=> array( $id) );
-										$loop1 = new WP_Query( $args1 );	
-									?>
-									<div class="project_info1_ok1">
-										<?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
-											<div class="col-md-3 ">
-												<div class="project_img1_ok_col_3">
-													<div class="project_img1_ok">
-														<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
-													</div>
-													<div class="project_info1_a_title">
-														<a href="javascript:void(0);"><?php the_title();?></a>
-													</div>
+
+										<div class="project_info_bottom">
+											<div class="col-md-6 p_l_r_0">
+												<div class="project_info1_a_share">
+													<p>SHARE</p>
+													<?php echo do_shortcode( "[simple-social-share]" ); ?>
 												</div>
 											</div>
-										<?php  endwhile;?>
-										<div class="col-md-3">
-											<div class="project_info1_a_see_more">
+										</div>
+
+										<?php
+											$past_projects = new WP_Query(array(
+											  'post_type' => 'projects',
+											  'posts_per_page' =>3,
+											  'post__not_in'=> array(get_the_ID())
+											));
+										?>
+
+										<div class="past-project">
+											<h5>PAST PROJECTS</h5>
+
+											<?php while($past_projects->have_posts()) : $past_projects->the_post(); global $product1; ?>
+												<span class="no-padding color-white project-item project-item--small" data-toggle="modal" data-target=".1628">
+													<?php the_post_thumbnail();?>
+
+												  <div class="project-info">
+														<div class="btn-see list-cat-fix"></div>
+														<div class="title-post-fix">
+															<h5>
+																<button type="button" class="btn btn-info btn-lg">
+																	<?php echo the_title(); ?>
+																</button>
+													  	</h5>
+														</div>
+												  </div>
+												</span>
+											<?php endwhile; ?>
+
+											<span class="past-project-see-more project_info1_a_see_more">
 												<a href="javascript:void(0);">See more</a>
-											</div>
+											</span>
 										</div>
 									</div>
 								</div>
-								
 							</div>
 						</div>
 					</div>
-				</div>
+			    </div>
 			</div>
-
-		  </div>
-		</div>
 	<?php }
 	/* Restore original Post Data */
 		wp_reset_postdata();
@@ -1529,7 +1535,7 @@ function our_projects_shortcode($args, $content) {
 										<?php  endwhile;?>
 										<div class="col-md-3">
 											<div class="project_info1_a_see_more">
-												<a href="javascript:void(0);">See more</a>
+												<a href="javascript:void(0);">See more1</a>
 											</div>
 										</div>
 									</div>
@@ -1911,6 +1917,3 @@ exit;
 }
 add_action('wp_ajax_nopriv_load_more_services_ajax', 'load_more_services_ajax'); 
 add_action('wp_ajax_load_more_services_ajax', 'load_more_services_ajax');
-
-
-
