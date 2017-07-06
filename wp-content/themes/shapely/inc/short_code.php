@@ -15,8 +15,10 @@ function product_shortcode($args, $content) {
 	<div class="col-lg-20ths col-xs-12 no-padding glr-right">
 	<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
 	<div class="col-md-3 col-xs-6 no-padding text-center height-fix">
-		<div class='img-hover-fix'><?php the_post_thumbnail();?></div>
-		<div class="title-hover"><h3><?php the_title();?></h3></div>
+		<a href="<?php echo get_permalink(); ?>">
+			<div class='img-hover-fix'><?php the_post_thumbnail();?></div>
+			<div class="title-hover"><h3><?php the_title();?></h3></div>
+		</a>
 	</div>
 <?php  endwhile;?>
 </div>
