@@ -124,7 +124,6 @@ if ( ! class_exists( 'WpSmush' ) ) {
 			//Load NextGen Gallery, S3, if hooked too late or early, auto smush doesn't works, also Load after settings have been saved on init action
 			add_action( 'plugins_loaded', array( $this, 'load_modules' ), 90 );
 
-
 			//Send Smush Stats for pro members
 			add_filter( 'wpmudev_api_project_extra_data-912164', array( $this, 'send_smush_stats' ) );
 
@@ -1495,11 +1494,11 @@ if ( ! class_exists( 'WpSmush' ) ) {
 			//Smush NextGen key
 			$opt_nextgen     = WP_SMUSH_PREFIX . 'nextgen';
 			$opt_nextgen_val = $wpsmush_settings->get_setting( $opt_nextgen, false );
+
+			require_once( WP_SMUSH_DIR . '/lib/class-wp-smush-nextgen.php' );
 			if ( ! $opt_nextgen_val ) {
 				return;
 			}
-
-			require_once( WP_SMUSH_DIR . '/lib/class-wp-smush-nextgen.php' );
 			require_once( WP_SMUSH_DIR . '/lib/nextgen-integration/class-wp-smush-nextgen-admin.php' );
 			require_once( WP_SMUSH_DIR . '/lib/nextgen-integration/class-wp-smush-nextgen-stats.php' );
 			require_once( WP_SMUSH_DIR . '/lib/nextgen-integration/class-wp-smush-nextgen-bulk.php' );

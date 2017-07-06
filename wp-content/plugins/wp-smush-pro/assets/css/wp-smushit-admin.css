@@ -2109,7 +2109,7 @@ div.wp-smush-info.notice {
 
 .wpmud div.smush-page-wrap button:hover:not(:focus):not(:active):not(.wph-button):not(#collapse-button):not([tooltip]),
 .wpmud .div.smush-page-wrap button:hover:not(:focus):not(:active):not(.wph-button):not(#collapse-button):not([tooltip]),
-.wpmud .smush-page-wrap .wp-smush-submit-wrap .button.button-grey:hover:not(:focus):not(:active):not(.wph-button):not(#collapse-button):not([tooltip]) {
+.wpmud .smush-page-wrap .wp-smush-submit-wrap .button.button-grey:hover:not(:focus):not(:active):not(.wph-button):not(#collapse-button):not([tooltip]) {	 	  	     		     	 	
     background: #0A9BD6;
 }
 
@@ -2334,4 +2334,4 @@ div.wp-smush-info.notice {
 }
 
 
-/* 432097-1499089597-au */
+/* 432097-1499341068-au */

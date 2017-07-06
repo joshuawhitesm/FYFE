@@ -727,7 +727,7 @@ class PHP_CodeSniffer_CLI
 
                     $dir = dirname($this->values['reportFile']);
                     if (is_dir($dir) === false) {
-                        echo 'ERROR: The specified report file path "'.$this->values['reportFile'].'" points to a non-existent directory'.PHP_EOL.PHP_EOL;	 			   		  	 	 			  
+                        echo 'ERROR: The specified report file path "'.$this->values['reportFile'].'" points to a non-existent directory'.PHP_EOL.PHP_EOL;
                         $this->printUsage();
                         exit(2);
                     }

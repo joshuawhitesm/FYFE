@@ -104,8 +104,8 @@ class Main extends Controller {
 		$loginLockoutThisWeek = 0;
 		$lockout404ThisWeek   = 0;
 		//time
-		$todayMidnight = strtotime( 'today midnight', current_time( 'timestamp' ) );
-		$firstThisWeek = strtotime( 'first day of this week', current_time( 'timestamp' ) );
+		$todayMidnight = strtotime( '-24 hours', current_time( 'timestamp' ) );
+		$firstThisWeek = strtotime( 'monday this week', current_time( 'timestamp' ) );
 		foreach ( $lockouts as $k => $log ) {
 			//the other as DESC, so first will be last lockout
 			if ( $k == 0 ) {
@@ -155,9 +155,7 @@ class Main extends Controller {
 			) );
 		}
 
-		wp_send_json_error( array(
-
-		) );
+		wp_send_json_error( array() );
 	}
 
 	/**

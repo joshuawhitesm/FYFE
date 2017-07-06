@@ -138,9 +138,9 @@ jQuery(function ($) {
             this.$status = this.$button.parent().find('.smush-status');
 
             //Added for NextGen support
-            this.smush_type = typeof smush_type ? smush_type : false;
-            this.single_ajax_suffix = this.smush_type ? 'smush_manual_nextgen' : 'wp_smushit_manual';
-            this.bulk_ajax_suffix = this.smush_type ? 'wp_smushit_nextgen_bulk' : 'wp_smushit_bulk';
+            this.smush_type = 'undefined' != typeof smush_type ? smush_type : 'media';
+            this.single_ajax_suffix = 'nextgen' == this.smush_type ? 'smush_manual_nextgen' : 'wp_smushit_manual';
+            this.bulk_ajax_suffix = 'nextgen' == this.smush_type ? 'wp_smushit_nextgen_bulk' : 'wp_smushit_bulk';
             this.url = this.is_bulk ? smushAddParams(this.url, {action: this.bulk_ajax_suffix}) : smushAddParams(this.url, {action: this.single_ajax_suffix});
         };
 
@@ -317,7 +317,7 @@ jQuery(function ($) {
 
             //Update localized stats
             if (_res && ( 'undefined' != typeof _res.data || 'undefined' != typeof _res.data.stats )) {
-                update_localized_stats( _res.data.stats, 'media' );
+                update_localized_stats( _res.data.stats, this.smush_type );
             }
 
             if (!this.is_bulk_resmush) {
@@ -1188,7 +1188,7 @@ jQuery(function ($) {
         }
 
         //No need to increase attachment count, resize, conversion savings for directory smush
-        if ('directory_smush' != type) {
+        if ('media' == type) {
             wp_smushit_data.count_smushed = parseInt(wp_smushit_data.count_smushed) + 1;
 
             //Increase smushed image count
@@ -1204,9 +1204,15 @@ jQuery(function ($) {
 
             //Add to Conversion Savings
             wp_smushit_data.savings_conversion = 'undefined' != typeof image_stats.savings_conversion && 'undefined' != typeof image_stats.savings_conversion.bytes ? parseInt(wp_smushit_data.savings_conversion) + parseInt(image_stats.savings_conversion.bytes ) : parseInt(wp_smushit_data.savings_conversion);
-        } else {
+        } else if( 'directory_smush' == type ) {
             //Increase smushed image count
             wp_smushit_data.count_images = parseInt(wp_smushit_data.count_images) + 1;
+        }else if( 'nextgen' == type ) {
+            wp_smushit_data.count_smushed = parseInt(wp_smushit_data.count_smushed) + 1;
+            wp_smushit_data.count_supersmushed = parseInt(wp_smushit_data.count_supersmushed) + 1;
+
+            //Increase smushed image count
+            wp_smushit_data.count_images = parseInt(wp_smushit_data.count_images) + parseInt(image_stats.count);
         }
 
         //If we have savings

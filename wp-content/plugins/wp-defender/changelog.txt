@@ -4,6 +4,13 @@ Tested up to: 4.7.4
 
 Change Log:
 
+1.6.2 - 2017-05-07
+----------------------------------------------------------------------
+- New: CSV export for Audit Logging.
+- Improvement: Email reports now have unsubscribe link, and link to Reports where email reports can be turned off.
+- Fix: Typo in Audit email.
+- Other minor enhancements/fixes
+
 1.6.1 - 2017-21-06
 ----------------------------------------------------------------------
 - Improvement: Improved IP Lockout performance.
@@ -174,4 +181,4 @@ Fixed: Scanning was sometimes slow or getting stuck
 - First release
 
 
-432097-1499089701-ai
+432097-1499341059-au
