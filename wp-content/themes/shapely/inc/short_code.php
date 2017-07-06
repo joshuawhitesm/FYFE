@@ -312,7 +312,7 @@ function project_shortcode($args, $content) {
 						</div>
 						<div class="col-md-6  p_l_r_0 color-white p_relative">
 							<div class="p_l_t_30">
-								
+
 								<div class="project-info1">
 									<div class="project-info1_ok">
 										<p><?php the_title();?></p>
@@ -1287,7 +1287,6 @@ function sectors_news_shortcode($args, $content) {
 		'post_type' => 'sectors',
 		), $atts, 'sectors_news' );
 	$args1 = array(
-	'posts_per_page'   => $atts['number_posts'],
 	'orderby'          => 'post_date',
 	'order'            => 'DESC',
 	'post_type'        => $atts['post_type'],
@@ -1396,28 +1395,6 @@ function sectors_news_shortcode($args, $content) {
 			<input type="hidden" class="ajax_posts_f_i" value="<?php echo $i;?>">
 		</div>
 		</div>
-		<div  class="col-ms-12 fl style_news_read_more t_c">
-			<a id="read_more_news" href="javascript:void(0);">SEE MORE</a>
-		</div>
-		<script type="text/javascript">
-			jQuery(document).ready( function($) {
-			var ajaxUrl1 = "<?php echo admin_url('admin-ajax.php')?>";
-			$("#read_more_news").on("click", function() {
-			var paged = $('.ajax_posts_f_page').last().val();
-			var i = $('.ajax_posts_f_i').last().val();
-			// var paged = $('.ajax_posts_f_page').last().val();
-			$.post(ajaxUrl1, {
-				action: "load_more_sectors_ajax",
-				paged : paged,
-				i : i,
-				},'html')
-				.success(function(posts1345) {
-
-				$("#news_load").append(posts1345);
-				});
-			});
-			});
-		</script>
 	</div>
 	<?php
 	$myvariable = ob_get_clean();
