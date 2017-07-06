@@ -263,7 +263,7 @@ function project_shortcode($args, $content) {
 
 	<div id="category-post-content" class="col-lg-20ths col-xs-12 no-padding">
 	<?php
-	$args = array( 'post_type' => 'projects', 'posts_per_page' => 8 );
+	$args = array( 'post_type' => 'projects', 'posts_per_page' => 20 );
 	$loop = new WP_Query( $args );
 	?>
 	<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
@@ -454,7 +454,7 @@ function teams_shortcode($args, $content) {
 	</div>
 	<div id="teams-post-content">
 		<?php
-			$args = array( 'post_type' => 'teams', 'posts_per_page' => 9, 'orderby' => 'date', 'order' => 'ASC' );
+			$args = array( 'post_type' => 'teams', 'posts_per_page' => 19, 'orderby' => 'date', 'order' => 'ASC' );
 			$loop = new WP_Query( $args );
 		?>
 		<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
