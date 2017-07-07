@@ -61,5 +61,14 @@
 	<div id="content" class="main-container">
 
 		<section class="content-area <?php echo ( get_theme_mod( 'top_callout', true ) ) ? '' : ' pt0 ' ?>">
+		<?php if(is_tax('sectors_cat')){?>
+		<div id="main" role="main">
+			
+		<?php } elseif(is_singular('sectors')){?>
+		<div id="main" role="main">
+		<?php } elseif(is_page_template( 'page-templates/template-services.php' )){?>
+		<div id="main" role="main">
+		<?php } else{?>
 			<div id="main" class="<?php echo ( ! is_page_template( 'page-templates/template-home.php' ) ) ? 'container' : ''; ?>"
 			     role="main">
+		<?php }

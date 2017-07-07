@@ -3844,6 +3844,7 @@ blockquote:after {
 .post-content .post-meta {
     list-style-type: none;
     margin-left: 0;
+	float:left;
 }
 .post-content .post-meta li {
     position: relative;
@@ -3939,7 +3940,7 @@ blockquote:after {
 }
 
 .shapely-next-prev {
-    padding-bottom: 35px;
+    padding: 35px;
 }
 
 .shapely-tags {
@@ -4459,7 +4460,7 @@ a.icon-see {
 .project-info {
     position: absolute;
     bottom: 10px;
-    z-index: 1;
+    z-index: 2;
     font-size: 12px;
     line-height: 18px;
     left: 0%;
@@ -4472,9 +4473,32 @@ a.icon-see {
     width: 100%;
 }
 .project-img {
-    height: 409px;
-    // width: 273px;
+
     overflow: hidden;
+}
+.bg-title-fix {
+    padding: 50px;
+    background: #464646;
+    color: #fff;
+    font-size: 22px;
+    text-align: center;
+	text-transform:uppercase;
+	float: left;
+    width: 100%;
+}
+.pd--t-20{
+	padding-top:20px;
+}
+.img-95 img{
+	width:95%;
+}
+#category-post-content>.project-item:hover:before, #project_our_ajax>.project-item:hover:before{
+	position:absolute;
+	z-index:2;	
+	width:100%;
+	height:100%;
+	content:'';
+	background:rgba(0, 0, 0, 0.47);
 }
 .teams-img {
     height: 405px;
@@ -4806,14 +4830,11 @@ button.close {
 }
 .project_info1_ok11 p {
     text-transform: uppercase;
-    font-size: 20px;
+    font-size: 30px;
     padding: 10px 0 10px 0;
     float: left;
     font-weight: normal;
     width: 100%;
-}
-.project_info1_ok1 {
-    margin: 0 -15px;
 }
 .project_info1_a_title a {
     font-size: 14px;
@@ -4855,6 +4876,11 @@ button.close {
     text-align: center;
     padding-right: 60px;
     padding-top: 40px;
+	float:left;
+	width:100%;
+}
+.sectors1 li{
+	margin-left:1em;
 }
 .project_info_bottom .col-md-6 {
     margin-top: 20px;
@@ -5044,7 +5070,7 @@ div#location-content {
     position: absolute;
     top: 0px;
     right: 0px;
-    height: 800px;
+    height: 100vh;
     box-shadow: -20px 0px 84px 71px #acacac;
     background: #acacac;
     width: 9px;
@@ -5909,14 +5935,16 @@ a.style_image_archive img {
 }
 
 .slhome_des {
-    float: right;
-    display: inline-block;
     position: absolute;
-    z-index: 11111;
-    bottom: 85%;
-    left: 57%;
-    font-size: 19px;
-    text-align: right;
+    bottom: 27px;
+    z-index: 9999;
+    background: #f1ac08;
+    width: auto;
+    left: 10px;
+    border-radius: 50px;
+}
+.entry-meta.col-md-3.no-padding {
+    margin-bottom: 13px;
 }
 .img_slhome img {
     height: 100vh;
@@ -5932,11 +5960,14 @@ a.style_image_archive img {
 .slhome_list ol {
     margin: 0;
 }
+.project-img1 img {
+    width: 100%;
+}
 .slhome_list li {
     list-style-type: none;
-    font-size: 24px;
+        font-size: 16px;
     line-height: 32px;
-    margin: 1em 1em 1em 1em;
+    margin: 1em 0em 1em 15px;
 }
 .slhome_list li:hover {
     cursor: pointer;
@@ -6081,6 +6112,14 @@ a.style_image_archive img {
     left: initial;
 }
 /*===================================== fixx css 06_07_2017================================================*/
+.past-project h5{
+	font-size: 30px;
+    font-weight: 100;
+    padding: 10px 0px;
+}
+.container.nav-bar {
+    width: 96%;
+}
 .list-cat-fix2 a:first-child {
     display: block !important;
     width: auto;
@@ -6091,20 +6130,36 @@ a.style_image_archive img {
     cursor: default;
 }
 .modal-content .project-img1 img {
-    height: auto !important;
+    height: 100vh !important;
 }
 .project-img1 a.style_image_thumbnail img {
     width: 100%;
 }
-.project_info1_a_see_more a{
-	color:#f1ac08;
-	}
-	a.s3-linkedin.hint--top.linkedin-user {
+.project_info1_a_see_more a {
+    color: #fff;
+    background-color: #f1ac08;
+    padding: 8px 10px;
+    margin-top: 20px;
     float: left;
-    width: 35px;
+    border-radius: 50px;
+}
+.modal-logo  .logo {
+    height: auto;
+    width: 80%;
+}
+.modal-logo {
+    text-align: right;
+    position: absolute;
+    right: 10%;
+}	
+.linkedin-user {
+    float: right !important;
+    width: 35px !important;
     margin-top: -5px;
     color: #fff;
-	}
+    padding: 0px !important;
+    margin-left: 10px;
+}
 	.s-share-w-c a:hover {
     -webkit-transform: initial !important;
     -moz-transform: initial !important;

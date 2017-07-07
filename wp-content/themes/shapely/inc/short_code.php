@@ -104,7 +104,7 @@ function our_sectors_func($atts) {
 	  <div id="myCarousel<?php echo get_the_ID(); ?>" class="item item-fix2">
         <div class="img_slhome col-lg-20ths col-xs-12 no-padding glr-right color-white">
 			<?php the_post_thumbnail('shapely-full');?>
-			<div class="slhome_des col-xs-5"><?php the_field('description');?></div>
+			<div class="slhome_des col-xs-5"><?php the_title();?></div>
 		</div>
 		<div class="wpb_column vc_column_container col-lg-5ths item-center-fix2">
 			<div class="vc_column-inner no-padding center-fix-item text-left">
@@ -265,7 +265,7 @@ function project_shortcode($args, $content) {
 
 	<div id="category-post-content" class="col-lg-20ths col-xs-12 no-padding">
 	<?php
-	$args = array( 'post_type' => 'projects', 'posts_per_page' => 20 );
+	$args = array( 'post_type' => 'projects', 'posts_per_page' => 8 );
 	$loop = new WP_Query( $args );
 	?>
 	<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
@@ -276,7 +276,7 @@ function project_shortcode($args, $content) {
 			</div>
 			<div class="project-info">
 				<?php foreach($terms as $value ){?>
-					<div class="btn-see btn_see_fix"><a><?php echo $value->name;?></a></div>
+					<!--<div class="btn-see btn_see_fix"><a><?php echo $value->name;?></a></div>-->
 				<?php } ?>
 				<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
 				</h5></div>
@@ -289,10 +289,8 @@ function project_shortcode($args, $content) {
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
-					<div class="modal-logo">
-						<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.svg" class="logo" alt="FYFE">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+					
 				</div>
 				<div class="modal-body">
 					<div class="modal_body_fix col-md-12 p_l_r_0">
@@ -304,7 +302,7 @@ function project_shortcode($args, $content) {
 							<?php
 							}
 							else{ ?>
-								<a class = "style_image_thumbnail" href="<?php the_permalink();?>"><?php the_post_thumbnail();?></a>
+								<a class = "style_image_thumbnail" href="#"><?php the_post_thumbnail();?></a>
 							<?php
 							}
 							?>
@@ -313,6 +311,9 @@ function project_shortcode($args, $content) {
 							</div>
 						</div>
 						<div class="col-md-6  p_l_r_0 color-white p_relative">
+						<div class="modal-logo">
+							<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.svg" class="logo" alt="FYFE">
+						</div>
 							<div class="p_l_t_30">
 
 								<div class="project-info1">
@@ -385,27 +386,20 @@ function project_shortcode($args, $content) {
 			<?php $categories = get_categories(); ?>
 
 				<?php
-				// your taxonomy name
-				$tax = 'project_cat';
-
-				// get the terms of taxonomy
+				/*$tax = 'project_cat';
 				$terms = get_terms( $tax, $args = array(
-				  'hide_empty' => false, // do not hide empty terms
+				  'hide_empty' => false,
 				));
 
 				echo '<ul id="category-menu" class="list-unstyled"> <li class="init">ALL</li>';
-				// loop through all terms
 				foreach( $terms as $term ) {
-
-					// Get the term link
 					$term_link = get_term_link( $term );
-
 					if( $term->count !== 0 )
 						?>
 						<li><a class="<?php echo $term->slug; ?> ajax" onclick="cat_ajax_get('<?php echo $term->term_id; ?>');" href="javascrip:void(0)"><?php echo $term->name; ?></a></li>
 						<?php
 				}
-				echo '</ul>';
+				echo '</ul>';*/
 				?>
 				<div class="btn-see">
 					<a href="/?page_id=1052">SEE MORE</a>
@@ -437,7 +431,7 @@ function teams_shortcode($args, $content) {
 	</div>
 	<div id="teams-post-content">
 		<?php
-			$args = array( 'post_type' => 'teams', 'posts_per_page' => 19, 'orderby' => 'date', 'order' => 'ASC' );
+			$args = array( 'post_type' => 'teams', 'posts_per_page' => 9, 'orderby' => 'date', 'order' => 'ASC' );
 			$loop = new WP_Query( $args );
 		?>
 		<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
@@ -462,21 +456,32 @@ function teams_shortcode($args, $content) {
 					<!-- Modal content-->
 					<div class="modal-content">
 						<div class="modal-header">
-							<div class="modal-logo">
-								<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.svg" class="logo" alt="FYFE">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-							</div>
+							
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
 						<div class="modal-body">
 							<div class="modal_body_fix col-md-12 p_l_r_0">
+							
 								<div class="col-md-6 p_l_r_0 p_relative">
 									<div class="project-img1">
-										<?php the_post_thumbnail();?>
+									<?php $image_popup = get_field('image_popup') ;
+									if($image_popup !=''){ ?>
+										<img src="<?php echo $image_popup['url'];?>" />
+									<?php
+									}
+									else{ ?>
+										<a class = "style_image_thumbnail" href="#"><?php the_post_thumbnail();?></a>
+									<?php
+									}
+									?>
 									</div>
 									<div class="project_img1_2">
 									</div>
 								</div>
 								<div class="col-md-6  p_l_r_0 color-white p_relative">
+								<div class="modal-logo">
+									<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.svg" class="logo" alt="FYFE">
+								</div>
 									<div class="p_l_t_30">
 										<?php
 											$status = get_field('status') ;
@@ -485,7 +490,7 @@ function teams_shortcode($args, $content) {
 											$phone = get_field('phone') ;
 										?>
 										<div class="project-info1_ok project_info1_ok_100">
-											<h6><a href="<?php the_field('linkedin');?>" target="_blank" title="Share to LinkedIn" class="s3-linkedin hint--top linkedin-user"></a><?php the_title();?></h6>
+											<h6><a href="<?php the_field('linkedin');?>" target="_blank" class="linkedin-user"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a><?php the_title();?></h6>
 										</div>
 										<div class="project-info1">
 											<div class="project-info1_ok">
@@ -1440,7 +1445,7 @@ function our_sliderhome_func($atts,$args) {
 
 	</div>
 	<div class="slhome_list slhome_list_sliderhome vertical-centering left_0 col-lg-5ths">
-		<h4><a href="/"><?php echo $title;?></a></h4>
+		<h4><a href="http://fyfe-project.sunbeardigital.com/?page_id=1101">KEY SERVICES</a></h4>
 		<div class="dot-slider">
 			<ol class="">
 				<?php
@@ -1455,7 +1460,7 @@ function our_sliderhome_func($atts,$args) {
 				if ($query2->have_posts()) {
 				while ($query2->have_posts()) {
 				$query2->the_post();?>
-					<li data-target="#myCarousel1" data-slide-to="<?php the_field('data_slide');?>" class="margin_l_1o5 slhome_title_sliderhome slhome_title slhp_<?php the_field('data_slide');?> <?php if($i==1){echo 'current';}?>"><b><?php the_title();?></b></li>
+					<li data-target="#myCarousel1" data-slide-to="<?php the_field('data_slide');?>" class="slhome_title_sliderhome slhome_title slhp_<?php the_field('data_slide');?> <?php if($i==1){echo 'current';}?>"><b><?php the_title();?></b></li>
 					<script>
 					jQuery('.slhome_title_sliderhome.slhp_<?php the_field('data_slide');?>').on("click", function() {
 						jQuery(".slhome_list_sliderhome li").removeClass("current");
@@ -1468,7 +1473,7 @@ function our_sliderhome_func($atts,$args) {
 				}?>
 			</ol>
 			<div class="sliderhome_75370" >
-				<img src="http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/04/75370-200.png" alt="sliderhome">
+				<img src="<?php echo bloginfo('template_directory'); ?>/inc/img/maps.png" alt="sliderhome">
 			</div>
 		</div>
 	</div>
