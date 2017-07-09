@@ -4410,7 +4410,7 @@ a.see-more {
     -ms-flex-align: center;
     align-items: center;
     display: flex;
-    padding-top: 13%;
+    padding-top: 30px;
     padding-bottom: 30px;
 }
 .vc_row.vc_row-o-content-middle:not(.vc_row-o-equal-height) .item-center-fix2 {
@@ -4492,7 +4492,8 @@ a.icon-see {
 .img-95 img{
 	width:95%;
 }
-#category-post-content>.project-item:hover:before, #project_our_ajax>.project-item:hover:before{
+/*#category-post-content>.project-item:hover:before,*/
+#project_our_ajax>.project-item:hover:before {
 	position:absolute;
 	z-index:2;	
 	width:100%;
@@ -4511,6 +4512,14 @@ a.icon-see {
 .project-item--small img {
     width: 200px;
     height: 200px;
+}
+.project-item .project-img--square {
+    width: auto;
+}
+div.project-item > .project-info {
+    bottom: 0;
+    width: 100%;
+    background: rgba(255, 255, 0, 0.3);
 }
 .project-item:hover .project-info {
     opacity: 1;
@@ -4830,7 +4839,7 @@ button.close {
 }
 .project_info1_ok11 p {
     text-transform: uppercase;
-    font-size: 30px;
+    font-size: 22px;
     padding: 10px 0 10px 0;
     float: left;
     font-weight: normal;
@@ -4887,12 +4896,22 @@ button.close {
 }
 .project_info1_a_share p {
     text-transform: uppercase;
-    font-size: 30px;
+    font-size: 22px;
     margin-bottom: 0px;
+    display: inline-block;
+    margin-right: 10px;
 }
+.project_info1_a_share #s-share-buttons {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 0 !important;
+}
+
 .project-item {
     cursor: pointer;
 }
+
+
 a.ss-button-linkedin {
     background-image: url(/wp-content/uploads/2017/04/in.png) !important;
     background-position: center !important;
@@ -5019,7 +5038,7 @@ a.s3-linkedin.hint--top {
     color: #000;
 }
 .style_home_fyfe_contact_form {
-    padding: 65px 35px 0px 35px !important;
+    padding: 25px 35px 0px 35px !important;
 }
 div#location-content_title a {
     color: #000;
@@ -5132,9 +5151,9 @@ span.style_c_d2 {
     padding-bottom: 15px;
 }
 .style_content_news_main {
-    line-height: 16px;
+    line-height: 2.5;
     margin-bottom: 30px;
-    height: 96px;
+    max-height: 180px;
     overflow: hidden;
 }
 .style_news_read_more a {
@@ -5953,7 +5972,8 @@ a.style_image_archive img {
     float: right;
     position: absolute;
     left: 80%;
-    bottom: 0%;
+    /*bottom: 0%;*/
+    top: 0;
     background: white;
     height: 100vh;
 }
@@ -6033,7 +6053,7 @@ a.style_image_archive img {
     line-height: normal;
 }
 .slhome_list li.current {
-    color: #f1ac08;
+    /*color: #f1ac08;*/
 }
 .container.nav-bar {
     width: 1290px;
@@ -6049,7 +6069,7 @@ a.style_image_archive img {
     overflow: auto;
 }
 .expertise_p_t_h4 h4 {
-    padding-top: 180px;
+    /*padding-top: 180px;*/
 }
 .teams_style_fix_4_7 {
     padding-top: 8% !important;
@@ -6171,131 +6191,184 @@ a.style_image_archive img {
 /*===================================== fixx css 06_07_2017================================================*/
 @media only screen and (max-width: 1200px) and (min-width: 980px)  {
 	.project-img--square {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-div#sesion_2_home_fyfe_project {
-    height: auto;
-    overflow: hidden;
-}
-.project-img--square a img {
-    width: 100%;
-    height: 100%;
-}
-#myCarousel1 .carousel-inner {
-    position: relative;
-    width: 70%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    left: 30%;
-}
-#myCarousel2 .carousel-inner {
-    position: relative;
-    width: 70%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    left: 0%;
-}
-.slhome_list {
-    float: left;
-    position: absolute;
-    left: 70%;
-    top: 0%;
-    background: white;
-    height: auto;
-width: 30%;}
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    div#sesion_2_home_fyfe_project {
+        height: auto;
+        overflow: hidden;
+    }
+    .project-img--square a img {
+        width: 100%;
+        height: 100%;
+    }
+    #myCarousel1 .carousel-inner {
+        position: relative;
+        width: 70%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        left: 30%;
+    }
+    #myCarousel2 .carousel-inner {
+        position: relative;
+        width: 70%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        left: 0%;
+    }
+    .slhome_list {
+        float: left;
+        position: absolute;
+        left: 70%;
+        top: 0%;
+        background: white;
+        height: auto;
+        width: 30%;
+    }
 	.slhome_list li{
 	    line-height: 28px;
-    margin: 5px 1em 5px 1em;
+        margin: 5px 1em 5px 1em;
 	    font-size: 16px;
-}
-.hsu-slider-styling{
-	left:0px;
+    }
+    .hsu-slider-styling{
+        left:0px;
+    }
 }
 
-}
 @media screen and (max-width: 1200px) {
 	.teams_style_fix_4_7{
 		padding-bottom: 145px !important;
 	}
 	.expertise_p_t_h4 h4 {
-    padding-top: 10px;
-}
-#myCarousel2 .hsu-slider-styling {
-    left: 0px;
-    right: 0;
-    width: 100%;
-}
-.sliderhome_75370 {
-    width: 140px;
-}
-.col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-    height: 405px;
-}
+        /*padding-top: 10px;*/
+    }
+    #myCarousel2 .hsu-slider-styling {
+        left: 0px;
+        right: 0;
+        width: 100%;
+    }
+    .sliderhome_75370 {
+        width: 140px;
+    }
+    .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
+        height: 405px;
+    }
 }
 
 @media screen and (max-width: 980px) {
-	.slhome_list {
-    float: right;
-    position: initial;
-    left: 80%;
-    bottom: 0%;
-    background: white;
-    height: auto;
-    width: 100%;
-}
-.sliderhome_75370 {
-    text-align: center;
-}
-.expertise_p_t_h4 h4{
-	padding-top:0px;
-}
-.hsu-slider-styling{
-	left:0px;
-}
-.slhome_list li {
-    font-size: 16px;
-    line-height: 28px;
-	text-align:center;
-}
-.hsu-slider-styling {
-    left: 0px;
-    right: 0;
-}
-.col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
+    .slhome_list {
+        float: right;
+        position: initial;
+        left: 80%;
+        bottom: 0%;
+        background: white;
         height: auto;
+        width: 100%;
+    }
+
+    .sliderhome_75370 {
+        text-align: center;
+    }
+
+    .expertise_p_t_h4 h4 {
+        padding-top: 0px;
+    }
+
+    .hsu-slider-styling {
+        left: 0px;
+    }
+
+    .slhome_list li {
+        font-size: 16px;
+        line-height: 28px;
+        text-align: center;
+    }
+
+    .hsu-slider-styling {
+        left: 0px;
+        right: 0;
+    }
+
+    .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
+        height: auto;
+    }
 }
 
 @media screen and (max-width: 980px) {
 	.project-img--square {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-.project-img--square a img {
-    width: 100%;
-    height: 100%;
-}
-.img_slhome img {
-    height: auto;
-}
-.style_home_fyfe_contact_form {
-    margin-bottom: 30px;
-}
-.sliderhome_75370 {
-    width: 100%;
-    margin-bottom: 15px !important;
-}
-.slhome_list h4 {
-    text-align: center;
-}
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .project-img--square a img {
+        width: 100%;
+        height: 100%;
+    }
+    .img_slhome img {
+        height: auto;
+    }
+    .style_home_fyfe_contact_form {
+        margin-bottom: 30px;
+    }
+    .sliderhome_75370 {
+        width: 100%;
+        margin-bottom: 15px !important;
+    }
+    .slhome_list h4 {
+        text-align: center;
+    }
 }
 
 /* MT CSS 07/06/2017 */
 .modal-logo{text-align: right;}
-.modal-logo .logo{margin-top: -17px;}
+/*.modal-logo .logo{margin-top: -17px;}*/
+.modal-header .close { margin-right: 10px; }
+
+/* added by Michael */
+ul {
+    margin-left: 0;
+    list-style: inside;
+    color: #8c979e;
+}
+
+.search-results .post-title a,
+.search-results .post-title {
+    font-size: 30px;
+}
+.search-results .widget.widget_nav_menu .menu > li a {
+    color: black;
+}
+.widget-handle.toggle-search .function {
+    visibility: visible;
+    opacity: 1;
+}
+
+.past-project h5 {
+    font-size: 22px;
+}
+.sectors_cat-sector .entry-content .dropcaps-content11 p {
+    margin-bottom: 18px;
+}
+#contact_home_bottom label br {
+    display: none;
+}
+#contact_home_bottom div.wpcf7-validation-errors {
+    border: none;
+}
+
+.project-modal .project-info1_ok p {
+    padding-top: 35px;
+}
+.project-modal .list-cat-fix2 a {
+    display: inline !important;
+    width: auto;
+    pointer-events: inherit;
+    cursor: pointer;
+    margin-right: 10px;
+    float: none;
+}

@@ -106,6 +106,9 @@
 			if ( !e ) e = window.event;
 			e.stopPropagation();
 		});
+		$('#searchform #searchsubmit').click(function() {
+			$(this).parents('.search-widget-handle').addClass('toggle-search');
+		});
 
 		// Image Sliders
 		$('.slider-all-controls').flexslider({
@@ -285,6 +288,9 @@
 				});
 			});
 		} // end
+
+		// added by Michael
+		$('a[href$="pdf"]').attr('target', '_blank');
 	});
 
 	jQuery(window).load(function ($) {

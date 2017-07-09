@@ -31,7 +31,7 @@
 					<div class="row">
 						<div class="module left site-title-container">
 							<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-								<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.svg" class="logo" alt="FYFE">
+								<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.png" class="logo" alt="FYFE">
 							</a>
 						</div>
 						<div class="module widget-handle mobile-toggle right visible-sm visible-xs">

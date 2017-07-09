@@ -49,7 +49,7 @@ $layout_class = shapely_get_layout_class(); ?>
 
 		<?php
 		if ( $layout_class == 'sidebar-right' ):
-			get_sidebar();
+			//get_sidebar();
 		endif;
 		?>
 	</div>

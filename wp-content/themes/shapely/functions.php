@@ -234,7 +234,7 @@ function shapely_scripts() {
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/inc/css/font-awesome.min.css' );
 
 	// Add Google Fonts
-	
+
 	// Add slider CSS
 	wp_enqueue_style( 'flexslider', get_template_directory_uri() . '/inc/css/flexslider.css' );
 
@@ -387,7 +387,7 @@ function prefix_load_cat_posts () {
 						</div>
 						<div class="col-md-6  p_l_r_0 color-white p_relative">
 						<div class="modal-logo">
-							<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.svg" class="logo" alt="FYFE">
+							<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.png" class="logo" alt="FYFE">
 							
 						</div>
 							<div class="p_l_t_30">
@@ -519,7 +519,7 @@ function prefix_load_cat_teams () {
 								</div>
 								<div class="col-md-6  p_l_r_0 color-white p_relative">
 								<div class="modal-logo">
-									<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.svg" class="logo" alt="FYFE">
+									<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.png" class="logo" alt="FYFE">
 									
 								</div>
 									<div class="p_l_t_30">
@@ -1173,9 +1173,9 @@ function our_people_shortcode($args, $content) {
 					<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
 				</div>
 				<div class="project-info">
-					<?php foreach($terms as $value ){?>
-					<div class="btn-see btn_see_fix"><a><?php echo $value->name;?></a></div>
-					<?php } ?>
+					<?php /*foreach($terms as $value ){*/?><!--
+					<div class="btn-see btn_see_fix"><a><?php /*echo $value->name;*/?></a></div>
+					--><?php /*} */?>
 					<div class="title-post-fix">
 						<h5>
 							<button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
@@ -1184,7 +1184,7 @@ function our_people_shortcode($args, $content) {
 				</div>
 			</div>
 		
-	<div class="<?php echo get_the_ID();?> modal fade" role="dialog">
+			<div class="<?php echo get_the_ID();?> modal fade" role="dialog">
 			    <div class="modal-dialog">
 					<!-- Modal content-->
 					<div class="modal-content">
@@ -1212,7 +1212,7 @@ function our_people_shortcode($args, $content) {
 								</div>
 								<div class="col-md-6  p_l_r_0 color-white p_relative">
 								<div class="modal-logo">
-									<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.svg" class="logo" alt="FYFE">
+									<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.png" class="logo" alt="FYFE">
 									
 								</div>
 									<div class="p_l_t_30">
@@ -1246,15 +1246,6 @@ function our_people_shortcode($args, $content) {
 											</div>
 										</div>
 
-										<div class="project_info_bottom">
-											<div class="col-md-6 p_l_r_0">
-												<div class="project_info1_a_share">
-													<p>SHARE</p>
-													<?php echo do_shortcode( "[simple-social-share]" ); ?>
-												</div>
-											</div>
-										</div>
-
 										<?php
 											$past_projects = new WP_Query(array(
 											  'post_type' => 'projects',
@@ -1282,11 +1273,17 @@ function our_people_shortcode($args, $content) {
 												  </div>
 												</span>
 											<?php endwhile; ?>
-
-											<span class="past-project-see-more project_info1_a_see_more">
-												<a href="javascript:void(0);">See more</a>
-											</span>
 										</div>
+
+										<div class="project_info_bottom">
+											<div class="col-md-6 p_l_r_0">
+												<div class="project_info1_a_share">
+													<p>SHARE</p>
+													<?php echo do_shortcode( "[simple-social-share]" ); ?>
+												</div>
+											</div>
+										</div>
+
 									</div>
 								</div>
 							</div>
@@ -1338,7 +1335,7 @@ function our_people_shortcode($args, $content) {
 
 add_shortcode( 'our_projects', 'our_projects_shortcode' );
 function our_projects_shortcode($args, $content) {
-	
+
 	ob_start();
 	?>
 	
@@ -1495,7 +1492,7 @@ function our_projects_shortcode($args, $content) {
 			</div>
 		</div>
 		
-		<div class="<?php echo get_the_ID();?> modal fade" role="dialog">
+		<div class="<?php echo get_the_ID();?> modal fade project-modal" role="dialog">
 		  <div class="modal-dialog">
 
 			<!-- Modal content-->
@@ -1524,7 +1521,7 @@ function our_projects_shortcode($args, $content) {
 						</div>
 						<div class="col-md-6  p_l_r_0 color-white p_relative">
 						<div class="modal-logo">
-							<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.svg" class="logo" alt="FYFE">
+							<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.png" class="logo" alt="FYFE">
 						</div>
 							<div class="p_l_t_30">
 
@@ -1536,14 +1533,7 @@ function our_projects_shortcode($args, $content) {
 									<div class="post-excerpt-fix-popup hiden-xs"><?php the_excerpt();?></div>
 
 								</div>
-								<div class="project_info_bottom">
-									<div class="col-md-6 p_l_r_0 project_info_bottom1_6">
-										<div class="project_info1_a_share">
-											<p>SHARE</p>
-											<?php echo do_shortcode( "[simple-social-share]" ); ?>
-										</div>
-									</div>
-								</div>
+
 								<div class="project-info1">
 									<div class="project_info1_ok11">
 										<p>RELATED PROJECTS</p>
@@ -1570,10 +1560,14 @@ function our_projects_shortcode($args, $content) {
 											  </div>
 											</span>
 										<?php  endwhile;?>
-										<div class="col-md-12">
-											<div class="project_info1_a_see_more">
-												<a href="javascript:void(0);">See more</a>
-											</div>
+									</div>
+								</div>
+
+								<div class="project_info_bottom">
+									<div class="col-md-6 p_l_r_0 project_info_bottom1_6">
+										<div class="project_info1_a_share">
+											<p>SHARE</p>
+											<?php echo do_shortcode( "[simple-social-share]" ); ?>
 										</div>
 									</div>
 								</div>
@@ -1954,3 +1948,5 @@ exit;
 }
 add_action('wp_ajax_nopriv_load_more_services_ajax', 'load_more_services_ajax'); 
 add_action('wp_ajax_load_more_services_ajax', 'load_more_services_ajax');
+
+//require get_template_directory() . '/inc/custom_functions.php';
