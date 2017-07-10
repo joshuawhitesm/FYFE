@@ -6,7 +6,7 @@ function product_shortcode($args, $content) {
 	ob_start();
 	$args = array( 'post_type' => 'expertise', 'posts_per_page' => 14, /*'orderby'=> 'title', */'order' => 'ASC' );
 	$loop = new WP_Query( $args );?>
-	<div class="wpb_column vc_column_container col-lg-5ths text-center item-center-fix">
+	<div class="wpb_column vc_column_container col-lg-5ths text-center column-title">
 		<div class="vc_column-inner no-padding center-fix-item expertise_p_t_h4">
 			<h4><a href="/?page_id=1101"><?php echo $title;?></a></h4>
 			<p><?php echo $des;?></p>
@@ -54,14 +54,14 @@ function post_shortcode($args, $content) {
 	</div>
 <?php  endwhile;?>
 </div>
-<div class="wpb_column vc_column_container col-lg-5ths text-center item-center-fix">
+<div class="wpb_column vc_column_container col-lg-5ths text-center column-title">
 	<div class="vc_column-inner no-padding center-fix-item">
 		<h4><a href="/?page_id=791"><?php echo $title;?></a></h4>
 
 		<!--<a href="/?page_id=791" target="_blank" class="icon-see" rel="noopener noreferrer">&rarr;</a>-->
-		<div class="btn-see">
+		<!--<div class="btn-see">
 			<a href="/?page_id=791" target="_blank" rel="noopener noreferrer">SEE MORE</a>
-		</div>
+		</div>-->
 	</div>
 	</div>
 <?php wp_reset_query(); ?>
@@ -269,7 +269,7 @@ function project_shortcode($args, $content) {
 	?>
 
 	<div class="wpb_column vc_column_container text-center item-center-fix col-lg-5ths pull-right our-project-title before">
-		<div class="vc_column-inner no-padding center-fix-item p_relative">
+		<div class="vc_column-inner no-padding center-fix-item p_relative item-center-fix column-title">
 			<h4><a href="/?page_id=1052"><?php echo $title;?></a></h4>
 			<div class="btn-see">
 				<a href="/?page_id=1052">SEE MORE</a>
@@ -280,10 +280,33 @@ function project_shortcode($args, $content) {
 	<div id="category-post-content" class="">
 		<?php
 		$args = array( 'post_type' => 'projects', 'posts_per_page' => 9 );
-		$loop = new WP_Query( $args );
+		$loop = new WP_Query( $args );$count=0;
 		?>
-		<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
+		<?php while ( $loop->have_posts() ) : $loop->the_post(); $count++; global $product;?>
 			<?php $terms  = get_the_terms( get_the_ID(), 'project_cat', '', '' );  ?>
+			
+			<?php if($count==4){?>
+				<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
+					<div  class="project-img project-img--square">
+						<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+					</div>
+					<div class="project-info">
+						<?php foreach($terms as $value ){?>
+							<!--<div class="btn-see btn_see_fix"><a><?php echo $value->name;?></a></div>-->
+						<?php } ?>
+						<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
+						</h5></div>
+					</div>
+				</div>
+				<div class="wpb_column vc_column_container text-center col-lg-5ths pull-right our-project-title after project-img project-img--square">
+					<div class="vc_column-inner no-padding center-fix-item p_relative column-title">
+						<h4><a href="/?page_id=1052"><?php echo $title;?></a></h4>
+						<div class="btn-see">
+							<a href="/?page_id=1052">SEE MORE</a>
+						</div>
+					</div>
+				</div>
+			<?php } else{ ?>
 			<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 				<div  class="project-img project-img--square">
 				<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
@@ -296,7 +319,7 @@ function project_shortcode($args, $content) {
 					</h5></div>
 				</div>
 			</div>
-
+			<?php } ?>
 			<div class="<?php echo get_the_ID();?> modal fade project-modal" role="dialog">
 			  <div class="modal-dialog">
 
@@ -336,7 +359,7 @@ function project_shortcode($args, $content) {
 										</div>
 
 										<div class="btn-see list-cat-fix list-cat-fix2"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
-										<div class="post-excerpt-fix-popup hiden-xs"><?php the_excerpt();?></div>
+										<div class="post-excerpt-fix-popup hiden-xs"><?php the_content();?></div>
 
 									</div>
 
@@ -391,14 +414,7 @@ function project_shortcode($args, $content) {
 		<?php wp_reset_query(); ?>
 	</div>
 
-	<div class="wpb_column vc_column_container text-center item-center-fix col-lg-5ths pull-right our-project-title after">
-		<div class="vc_column-inner no-padding center-fix-item p_relative">
-			<h4><a href="/?page_id=1052"><?php echo $title;?></a></h4>
-			<div class="btn-see">
-				<a href="/?page_id=1052">SEE MORE</a>
-			</div>
-		</div>
-	</div>
+	
 
 <?php
 	$out = ob_get_contents();
@@ -411,7 +427,7 @@ function teams_shortcode($args, $content) {
 	$title= $args['title'];
 	ob_start();
 	?>
-	<div class="wpb_column vc_column_container col-lg-5ths text-center item-center-fix teams_style_fix_4_7">
+	<div class="wpb_column vc_column_container col-lg-5ths text-center teams_style_fix_4_7 column-title">
 		<div class="vc_column-inner no-padding center-fix-item p_relative">
 			<h4 class="teams-title"><?php echo $title;?></h4>
 			<div class="btn-see">
@@ -565,383 +581,392 @@ function contact_shortcode($args, $content) {
 	ob_start();
 	?>
 
-	<div class="col-md-3 no-padding">
-		<div id="map"  style="width: 100%; height: 630px;"></div>
-		<input type="hidden" id="result" value="">
-	</div>
-
-	<div class="col-md-3 col-xs-7ths_ff col-xs-12 no-padding bg-yellow ">
-		<div id="location-content">
-			<?php
-			$args2 = array( 'post_type' => 'locations', 'posts_per_page' => -1 );
-			$loop2 = new WP_Query( $args2 );
-			?>
-
-			<div id="location-content_title">
-				<?php
-				$i=0;
-				$arr_info_center = array() ;
-
-				while ( $loop2->have_posts() ) : $loop2->the_post(); global $product2;
-					$current_cat = ($i<1) ? 'current_cat' : '';
-					//$maps_center1 = get_field( "maps" );
-
-					$maps_center = get_field( "maps" );
-					$arr_center = array();
-					$arr_center['id'] = get_the_ID();
-					$arr_center['name_location'] = get_field( "name_location" );
-					$arr_center['address']= isset($maps_center['address']) ? $maps_center['address'] : '';
-					$arr_center['lat']= isset($maps_center['lat']) ? $maps_center['lat'] : '';
-					$arr_center['lng']= isset($maps_center['lng']) ? $maps_center['lng'] : '';
-					$arr_center['title']= get_the_title();
-					$arr_center['visible'] = ($i<1) ? '1' : '0';
-
-					$arr_center['arr_info'] = array();
-					?>
-					<a id="location_<?php the_ID();?>"
-					   class="location_remove <?php echo $current_cat; ?>"
-					   href="javascript:void(0);"
-					   data-location-id="<?php the_ID(); ?>"
-					   data-lat="<?php echo $arr_center['lat']; ?>"
-					   data-lng="<?php echo $arr_center['lng']; ?>">
-						<?php the_title();?>
-					</a>
-					<?php
-					if( have_rows('location_information') ):
-						// loop through the rows of data
-						while ( have_rows('location_information') ) : the_row();
-							$arr = array();
-							// display a sub field value ?>
-							<?php
-							$location_name = get_sub_field('location_name');
-							$information_detail = get_sub_field('information_detail');
-							$arr1 = array();
-							$arr1['name']= $location_name;
-							$arr1['information_detail']= $information_detail;
-							$maps_child = get_sub_field('maps_child', false);
-							if( !empty($maps_child) ):
-								// echo '<a class="lat-item">' . $maps_child['lat'] .' - ';
-								// echo $maps_child['lng'].'</a>';
-								$arr1['address']= $maps_child['address'];
-								$arr1['lat']= $maps_child['lat'];
-								$arr1['lng']= $maps_child['lng'];
-							endif;
-
-							$arr_center['arr_info'][] = $arr1;
-						endwhile;
-					else :
-						// no rows found
-
-					endif;
-
-					$arr_info_center[] = $arr_center;
-					$i++;
-				endwhile;
-				wp_reset_query();?>
-			</div>
-
-			<div id="location-content_main">
-				<?php foreach($arr_info_center as $item) { ?>
-					<div id="location-box-<?php echo $item['id'] ?>" class="location-box" style="<?php echo ($item['visible'] == '1') ? '' : 'display:none;' ?>">
-						<h2><?php echo $item['name_location'];?></h2>
-
-						<?php foreach($item['arr_info'] as $arrItem) { ?>
-							<h3><?php echo $arrItem['name'];?></h3>
-							<?php echo $arrItem['information_detail']; ?>
-						<?php } ?>
-
-						<script>
-							var addr_info_<?php echo $item['id'] ?> = <?php echo json_encode($item['arr_info']); ?>;
-						</script>
-					</div>
-				<?php } ?>
-			</div>
-
+	<?php if(is_front_page()) { ?>
+		<div class="col-md-3 no-padding">
+			<div id="map"  style="width: 100%; height: 630px;"></div>
+			<input type="hidden" id="result" value="">
 		</div>
 
-		<script type="text/javascript">
-			var map = null;
-			var marker = [];
+		<div class="col-md-3 col-xs-7ths_ff col-xs-12 no-padding bg-yellow ">
+			<div id="location-content">
+				<?php
+				$args2 = array( 'post_type' => 'locations', 'posts_per_page' => -1 );
+				$loop2 = new WP_Query( $args2 );
+				?>
 
-			jQuery(document).ready( function($) {
-				$(".location_remove").on("click", function() {
-					if($(this).hasClass('current_cat')) return;
+				<div id="location-content_title">
+					<?php
+					$i=0;
+					$arr_info_center = array() ;
 
-					$(".location_remove").removeClass("current_cat");
-					$(this).addClass("current_cat");
+					while ( $loop2->have_posts() ) : $loop2->the_post(); global $product2;
+						$current_cat = ($i<1) ? 'current_cat' : '';
+						//$maps_center1 = get_field( "maps" );
 
-					var locationId = $(this).data('location-id');
-					var boxId = '#location-box-' + locationId;
+						$maps_center = get_field( "maps" );
+						$arr_center = array();
+						$arr_center['id'] = get_the_ID();
+						$arr_center['name_location'] = get_field( "name_location" );
+						$arr_center['address']= isset($maps_center['address']) ? $maps_center['address'] : '';
+						$arr_center['lat']= isset($maps_center['lat']) ? $maps_center['lat'] : '';
+						$arr_center['lng']= isset($maps_center['lng']) ? $maps_center['lng'] : '';
+						$arr_center['title']= get_the_title();
+						$arr_center['visible'] = ($i<1) ? '1' : '0';
 
-					$('.location-box').hide();
-					$(boxId).show();
+						$arr_center['arr_info'] = array();
+						?>
+						<a id="location_<?php the_ID();?>"
+						   class="location_remove <?php echo $current_cat; ?>"
+						   href="javascript:void(0);"
+						   data-location-id="<?php the_ID(); ?>"
+						   data-lat="<?php echo $arr_center['lat']; ?>"
+						   data-lng="<?php echo $arr_center['lng']; ?>">
+							<?php the_title();?>
+						</a>
+						<?php
+						if( have_rows('location_information') ):
+							// loop through the rows of data
+							while ( have_rows('location_information') ) : the_row();
+								$arr = array();
+								// display a sub field value ?>
+								<?php
+								$location_name = get_sub_field('location_name');
+								$information_detail = get_sub_field('information_detail');
+								$arr1 = array();
+								$arr1['name']= $location_name;
+								$arr1['information_detail']= $information_detail;
+								$maps_child = get_sub_field('maps_child', false);
+								if( !empty($maps_child) ):
+									// echo '<a class="lat-item">' . $maps_child['lat'] .' - ';
+									// echo $maps_child['lng'].'</a>';
+									$arr1['address']= $maps_child['address'];
+									$arr1['lat']= $maps_child['lat'];
+									$arr1['lng']= $maps_child['lng'];
+								endif;
 
-					if(map != null) {
-						clearMarkers();
-						setMarkers(map, eval('addr_info_'+locationId));
+								$arr_center['arr_info'][] = $arr1;
+							endwhile;
+						else :
+							// no rows found
+
+						endif;
+
+						$arr_info_center[] = $arr_center;
+						$i++;
+					endwhile;
+					wp_reset_query();?>
+				</div>
+
+				<div id="location-content_main">
+					<?php foreach($arr_info_center as $item) { ?>
+						<div id="location-box-<?php echo $item['id'] ?>" class="location-box" style="<?php echo ($item['visible'] == '1') ? '' : 'display:none;' ?>">
+							<h2><?php echo $item['name_location'];?></h2>
+
+							<?php foreach($item['arr_info'] as $arrItem) { ?>
+								<h3><?php echo $arrItem['name'];?></h3>
+								<?php echo $arrItem['information_detail']; ?>
+							<?php } ?>
+
+							<script>
+								var addr_info_<?php echo $item['id'] ?> = <?php echo json_encode($item['arr_info']); ?>;
+							</script>
+						</div>
+					<?php } ?>
+				</div>
+
+			</div>
+
+			<script type="text/javascript">
+				var map = null;
+				var marker = [];
+
+				jQuery(document).ready( function($) {
+					$(".location_remove").on("click", function() {
+						if($(this).hasClass('current_cat')) return;
+
+						$(".location_remove").removeClass("current_cat");
+						$(this).addClass("current_cat");
+
+						var locationId = $(this).data('location-id');
+						var boxId = '#location-box-' + locationId;
+
+						$('.location-box').hide();
+						$(boxId).show();
+
+						if(map != null) {
+							clearMarkers();
+							setMarkers(map, eval('addr_info_'+locationId));
+						}
+					});
+				});
+
+				function initMap(lat, lng, arr_info_json) {
+					var lat = <?php echo $arr_info_center[0]['lat'];?>;
+					var lng = <?php echo $arr_info_center[0]['lng'];?>;
+					var arr_info_json = <?php echo json_encode($arr_info_center[0]['arr_info']); ?>;
+
+					var uluru = {lat: lat, lng: lng};
+					map = new google.maps.Map(document.getElementById('map'), {
+						zoom: 2,
+						center: uluru,
+						mapTypeControl: false,
+						styles: [
+							{
+								"elementType": "geometry",
+								"stylers": [
+									{
+										"color": "#f5f5f5"
+									}
+								]
+							},
+							{
+								"elementType": "labels.icon",
+								"stylers": [
+									{
+										"visibility": "off"
+									}
+								]
+							},
+							{
+								"elementType": "labels.text.fill",
+								"stylers": [
+									{
+										"color": "#616161"
+									}
+								]
+							},
+							{
+								"elementType": "labels.text.stroke",
+								"stylers": [
+									{
+										"color": "#f5f5f5"
+									}
+								]
+							},
+							{
+								"featureType": "administrative.land_parcel",
+								"elementType": "labels.text.fill",
+								"stylers": [
+									{
+										"color": "#bdbdbd"
+									}
+								]
+							},
+							{
+								"featureType": "poi",
+								"elementType": "geometry",
+								"stylers": [
+									{
+										"color": "#eeeeee"
+									}
+								]
+							},
+							{
+								"featureType": "poi",
+								"elementType": "labels.text.fill",
+								"stylers": [
+									{
+										"color": "#757575"
+									}
+								]
+							},
+							{
+								"featureType": "poi.park",
+								"elementType": "geometry",
+								"stylers": [
+									{
+										"color": "#e5e5e5"
+									}
+								]
+							},
+							{
+								"featureType": "poi.park",
+								"elementType": "labels.text.fill",
+								"stylers": [
+									{
+										"color": "#9e9e9e"
+									}
+								]
+							},
+							{
+								"featureType": "road",
+								"elementType": "geometry",
+								"stylers": [
+									{
+										"color": "#ffffff"
+									}
+								]
+							},
+							{
+								"featureType": "road.arterial",
+								"elementType": "labels.text.fill",
+								"stylers": [
+									{
+										"color": "#757575"
+									}
+								]
+							},
+							{
+								"featureType": "road.highway",
+								"elementType": "geometry",
+								"stylers": [
+									{
+										"color": "#dadada"
+									}
+								]
+							},
+							{
+								"featureType": "road.highway",
+								"elementType": "labels.text.fill",
+								"stylers": [
+									{
+										"color": "#616161"
+									}
+								]
+							},
+							{
+								"featureType": "road.local",
+								"elementType": "labels.text.fill",
+								"stylers": [
+									{
+										"color": "#9e9e9e"
+									}
+								]
+							},
+							{
+								"featureType": "transit.line",
+								"elementType": "geometry",
+								"stylers": [
+									{
+										"color": "#e5e5e5"
+									}
+								]
+							},
+							{
+								"featureType": "transit.station",
+								"elementType": "geometry",
+								"stylers": [
+									{
+										"color": "#eeeeee"
+									}
+								]
+							},
+							{
+								"featureType": "water",
+								"elementType": "geometry",
+								"stylers": [
+									{
+										"color": "#c9c9c9"
+									}
+								]
+							},
+							{
+								"featureType": "water",
+								"elementType": "labels.text.fill",
+								"stylers": [
+									{
+										"color": "#9e9e9e"
+									}
+								]
+							}
+						]
+					});
+					var image = {
+						url: 'http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/07/icon_marker.png',
+						// This marker is 20 pixels wide by 32 pixels high.
+						size: new google.maps.Size(32, 32),
+						// The origin for this image is (0, 0).
+						origin: new google.maps.Point(0, 0),
+						// The anchor for this image is the base of the flagpole at (0, 32).
+						anchor: new google.maps.Point(16, 32)
+					};
+
+					//Khoi tao ban dau neu chua co ajax load click
+					setMarkers(map,arr_info_json);
+				}
+
+				function setMarkers(map,arr_info_json) {
+					// Adds markers to the map.
+
+					// Marker sizes are expressed as a Size of X,Y where the origin of the image
+					// (0,0) is located in the top left of the image.
+
+					// Origins, anchor positions and coordinates of the marker increase in the X
+					// direction to the right and in the Y direction down.
+					var image = {
+						url: 'http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/07/icon_marker.png',
+						// This marker is 20 pixels wide by 32 pixels high.
+						size: new google.maps.Size(32, 32),
+						// The origin for this image is (0, 0).
+						origin: new google.maps.Point(0, 0),
+						// The anchor for this image is the base of the flagpole at (0, 32).
+						anchor: new google.maps.Point(16, 32)
+					};
+					// Shapes define the clickable region of the icon. The type defines an HTML
+					// <area> element 'poly' which traces out a polygon as a series of X,Y points.
+					// The final coordinate closes the poly by connecting to the first coordinate.
+					var shape = {
+						coords: [1, 1, 1, 20, 18, 20, 18, 1],
+						type: 'poly'
+					};
+					// var beaches;
+					//neu em lam the nay no chi luon gan = 2 diem minh phair bien function nay thanh function chung
+					for (var i = 0; i < arr_info_json.length; i++) {
+
+						var arr_maker = arr_info_json[i];
+						var lat = parseFloat(arr_maker.lat);
+						var lng = parseFloat(arr_maker.lng);
+						marker[i] = new google.maps.Marker({
+							position: {lat: lat, lng: lng},
+							map: map,
+							icon: image,
+							title: arr_maker.lat,
+							zIndex: arr_maker.lat,
+							data: arr_maker.address,
+						});
+
+						google.maps.event.addListener(marker[i], 'mouseover', function() {
+							if (!this.getMap()._infoWindow) {
+								this.getMap()._infoWindow = new google.maps.InfoWindow();
+							}
+
+							this.getMap()._infoWindow.setContent(this.data);
+							this.getMap()._infoWindow.open(this.getMap(), this);
+						});
+
+						google.maps.event.addListener(marker[i], 'mouseout', function() {
+							if (!this.getMap()._infoWindow) {
+								this.getMap()._infoWindow = new google.maps.InfoWindow();
+							}
+
+							this.getMap()._infoWindow.close();
+						});
 					}
-				});
-			});
-
-			function initMap(lat, lng, arr_info_json) {
-				var lat = <?php echo $arr_info_center[0]['lat'];?>;
-				var lng = <?php echo $arr_info_center[0]['lng'];?>;
-				var arr_info_json = <?php echo json_encode($arr_info_center[0]['arr_info']); ?>;
-
-				var uluru = {lat: lat, lng: lng};
-				map = new google.maps.Map(document.getElementById('map'), {
-					zoom: 2,
-					center: uluru,
-					mapTypeControl: false,
-					styles: [
-						{
-							"elementType": "geometry",
-							"stylers": [
-								{
-									"color": "#f5f5f5"
-								}
-							]
-						},
-						{
-							"elementType": "labels.icon",
-							"stylers": [
-								{
-									"visibility": "off"
-								}
-							]
-						},
-						{
-							"elementType": "labels.text.fill",
-							"stylers": [
-								{
-									"color": "#616161"
-								}
-							]
-						},
-						{
-							"elementType": "labels.text.stroke",
-							"stylers": [
-								{
-									"color": "#f5f5f5"
-								}
-							]
-						},
-						{
-							"featureType": "administrative.land_parcel",
-							"elementType": "labels.text.fill",
-							"stylers": [
-								{
-									"color": "#bdbdbd"
-								}
-							]
-						},
-						{
-							"featureType": "poi",
-							"elementType": "geometry",
-							"stylers": [
-								{
-									"color": "#eeeeee"
-								}
-							]
-						},
-						{
-							"featureType": "poi",
-							"elementType": "labels.text.fill",
-							"stylers": [
-								{
-									"color": "#757575"
-								}
-							]
-						},
-						{
-							"featureType": "poi.park",
-							"elementType": "geometry",
-							"stylers": [
-								{
-									"color": "#e5e5e5"
-								}
-							]
-						},
-						{
-							"featureType": "poi.park",
-							"elementType": "labels.text.fill",
-							"stylers": [
-								{
-									"color": "#9e9e9e"
-								}
-							]
-						},
-						{
-							"featureType": "road",
-							"elementType": "geometry",
-							"stylers": [
-								{
-									"color": "#ffffff"
-								}
-							]
-						},
-						{
-							"featureType": "road.arterial",
-							"elementType": "labels.text.fill",
-							"stylers": [
-								{
-									"color": "#757575"
-								}
-							]
-						},
-						{
-							"featureType": "road.highway",
-							"elementType": "geometry",
-							"stylers": [
-								{
-									"color": "#dadada"
-								}
-							]
-						},
-						{
-							"featureType": "road.highway",
-							"elementType": "labels.text.fill",
-							"stylers": [
-								{
-									"color": "#616161"
-								}
-							]
-						},
-						{
-							"featureType": "road.local",
-							"elementType": "labels.text.fill",
-							"stylers": [
-								{
-									"color": "#9e9e9e"
-								}
-							]
-						},
-						{
-							"featureType": "transit.line",
-							"elementType": "geometry",
-							"stylers": [
-								{
-									"color": "#e5e5e5"
-								}
-							]
-						},
-						{
-							"featureType": "transit.station",
-							"elementType": "geometry",
-							"stylers": [
-								{
-									"color": "#eeeeee"
-								}
-							]
-						},
-						{
-							"featureType": "water",
-							"elementType": "geometry",
-							"stylers": [
-								{
-									"color": "#c9c9c9"
-								}
-							]
-						},
-						{
-							"featureType": "water",
-							"elementType": "labels.text.fill",
-							"stylers": [
-								{
-									"color": "#9e9e9e"
-								}
-							]
-						}
-					]
-				});
-				var image = {
-					url: 'http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/07/icon_marker.png',
-					// This marker is 20 pixels wide by 32 pixels high.
-					size: new google.maps.Size(32, 32),
-					// The origin for this image is (0, 0).
-					origin: new google.maps.Point(0, 0),
-					// The anchor for this image is the base of the flagpole at (0, 32).
-					anchor: new google.maps.Point(16, 32)
-				};
-
-				//Khoi tao ban dau neu chua co ajax load click
-				setMarkers(map,arr_info_json);
-			}
-
-			function setMarkers(map,arr_info_json) {
-				// Adds markers to the map.
-
-				// Marker sizes are expressed as a Size of X,Y where the origin of the image
-				// (0,0) is located in the top left of the image.
-
-				// Origins, anchor positions and coordinates of the marker increase in the X
-				// direction to the right and in the Y direction down.
-				var image = {
-					url: 'http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/07/icon_marker.png',
-					// This marker is 20 pixels wide by 32 pixels high.
-					size: new google.maps.Size(32, 32),
-					// The origin for this image is (0, 0).
-					origin: new google.maps.Point(0, 0),
-					// The anchor for this image is the base of the flagpole at (0, 32).
-					anchor: new google.maps.Point(16, 32)
-				};
-				// Shapes define the clickable region of the icon. The type defines an HTML
-				// <area> element 'poly' which traces out a polygon as a series of X,Y points.
-				// The final coordinate closes the poly by connecting to the first coordinate.
-				var shape = {
-					coords: [1, 1, 1, 20, 18, 20, 18, 1],
-					type: 'poly'
-				};
-				// var beaches;
-				//neu em lam the nay no chi luon gan = 2 diem minh phair bien function nay thanh function chung
-				for (var i = 0; i < arr_info_json.length; i++) {
-
-					var arr_maker = arr_info_json[i];
-					var lat = parseFloat(arr_maker.lat);
-					var lng = parseFloat(arr_maker.lng);
-					marker[i] = new google.maps.Marker({
-						position: {lat: lat, lng: lng},
-						map: map,
-						icon: image,
-						title: arr_maker.lat,
-						zIndex: arr_maker.lat,
-						data: arr_maker.address,
-					});
-
-					google.maps.event.addListener(marker[i], 'mouseover', function() {
-						if (!this.getMap()._infoWindow) {
-							this.getMap()._infoWindow = new google.maps.InfoWindow();
-						}
-
-						this.getMap()._infoWindow.setContent(this.data);
-						this.getMap()._infoWindow.open(this.getMap(), this);
-					});
-
-					google.maps.event.addListener(marker[i], 'mouseout', function() {
-						if (!this.getMap()._infoWindow) {
-							this.getMap()._infoWindow = new google.maps.InfoWindow();
-						}
-
-						this.getMap()._infoWindow.close();
-					});
-				}
-			}
-
-			function clearMarkers() {
-				for (var i = 0; i < marker.length; i++) {
-					marker[i].setMap(null);
 				}
 
-				marker = [];
-			}
-		</script>
-		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWerbOyH_bpvHxMOokfcP8L5ClwqD2xY4&callback=initMap"></script>
-	</div>
+				function clearMarkers() {
+					for (var i = 0; i < marker.length; i++) {
+						marker[i].setMap(null);
+					}
 
-	<div class="col-md-6 col-xs-5ths_ff col-xs-12 no-padding style_home_fyfe_contact_form ">
-		<h4>CONTACT US</h4>
-		<?php echo do_shortcode('[contact-form-7 id="171" title="Contact Form"]'); ?>
-	</div>
+					marker = [];
+				}
+			</script>
+			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWerbOyH_bpvHxMOokfcP8L5ClwqD2xY4&callback=initMap"></script>
+		</div>
+
+		<div class="col-md-6 col-xs-5ths_ff col-xs-12 no-padding style_home_fyfe_contact_form ">
+			<h4>CONTACT US</h4>
+			<?php echo do_shortcode('[contact-form-7 id="171" title="Contact Form"]'); ?>
+		</div>
+	<?php } else { ?>
+		<div class="chat-box clearfix">
+			<h3 class="text-center">READY TO CHAT?</h3>
+			<div class="col-ms-12 fl style_news_read_more t_c style_project_read_more">
+				<a id="read_more_project" href="/#contact_home_bottom">CONTACT FYFE</a>
+			</div>
+		</div>
+	<?php } ?>
 
 	<?php
 	$out = ob_get_contents();

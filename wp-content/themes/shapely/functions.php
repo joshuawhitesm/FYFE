@@ -397,7 +397,7 @@ function prefix_load_cat_posts () {
 										<p><?php the_title();?></p>
 									</div>
 									<div class="btn-see list-cat-fix list-cat-fix2 "><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
-									<div class="post-excerpt-fix-popup hiden-xs"><?php the_excerpt();?></div>
+									<div class="post-excerpt-fix-popup hiden-xs"><?php the_content();?></div>
 
 								</div>
 								<div class="project_info_bottom">
@@ -1067,7 +1067,7 @@ function project_our_ajax(){
 									<div class="project-info1_ok">
 										<a href="<?php the_permalink();?>"><?php the_title();?></a>
 									</div>
-									<div class="post-excerpt-fix-popup hiden-xs"><?php the_excerpt();?></div>
+									<div class="post-excerpt-fix-popup hiden-xs"><?php the_content();?></div>
 									
 								</div>
 								<div class="project_info_bottom">
@@ -1530,7 +1530,7 @@ function our_projects_shortcode($args, $content) {
 										<p><?php the_title();?></p>
 									</div>
 									<div class="btn-see list-cat-fix list-cat-fix2 "><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
-									<div class="post-excerpt-fix-popup hiden-xs"><?php the_excerpt();?></div>
+									<div class="post-excerpt-fix-popup hiden-xs"><?php the_content();?></div>
 
 								</div>
 
@@ -1768,7 +1768,7 @@ function see_more_project_our_ajax(){
 									<div class="project-info1_ok">
 										<a href="<?php the_permalink();?>"><?php the_title();?></a>
 									</div>
-									<div class="post-excerpt-fix-popup hiden-xs"><?php the_excerpt();?></div>
+									<div class="post-excerpt-fix-popup hiden-xs"><?php the_content();?></div>
 									
 								</div>
 								<div class="project_info_bottom">
