@@ -421,7 +421,7 @@ function teams_shortcode($args, $content) {
 	</div>
 	<div id="teams-post-content">
 		<?php
-			$args = array( 'post_type' => 'teams', 'posts_per_page' => 24, 'orderby' => 'date', 'order' => 'ASC' );
+			$args = array( 'post_type' => 'teams', 'posts_per_page' => 9, 'orderby' => 'date', 'order' => 'ASC' );
 			$loop = new WP_Query( $args );
 		?>
 		<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
