@@ -13,12 +13,7 @@
 
 </div><!-- #main -->
 <div class="ft-contact col-xs-12" id="contact_home_bottom">
-	<?php if(is_home() || is_front_page()){?>
-    <?php echo do_shortcode('[contact]'); 
-	} else {?>
-		<div class="contact-bottom-fix"><a href="http://fyfe-project.sunbeardigital.com/#contact_home_bottom">CONTACT FYFE</a></div>
-	<?php }
-	?>
+    <?php echo do_shortcode('[contact]'); ?>
 </div>
 </section><!-- section -->
 
@@ -112,12 +107,6 @@ jQuery("#category-menu2").on("click", "li:not(.init2)", function() {
     jQuery(this).addClass('selected');
     jQuery("#category-menu2").children('.init2').html(jQuery(this).html());
     allOptions2.toggle();
-});
-jQuery(".name_sectors-title").click(function(){
-    jQuery(".name_sectors-item").toggle(500);
-});
-jQuery(".name-services-title").click(function(){
-    jQuery(".name_services-fix").toggle(500);
 });
 </script>
 <?php wp_footer(); ?>
