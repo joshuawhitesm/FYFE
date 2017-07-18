@@ -74,13 +74,14 @@ $left_side   = get_theme_mod( 'post_author_left_side', false );
 				</div>
 			</div>
 		<?php else: ?>
-			<div class="col-md-6 no-padding shapely-content1 img-95 <?php echo $dropcaps ? 'dropcaps-content11' : ''; ?>">
+			<div class="col-md-12 no-padding shapely-content1 img-100 <?php echo $dropcaps ? 'dropcaps-content11' : ''; ?>">
 				<?php
 				the_post_thumbnail();
 
 				?>
 			</div>
-			<div class="col-md-6 no-padding shapely-content1 pd--t-20 <?php echo $dropcaps ? 'dropcaps-content11' : ''; ?>">
+			<div class="col-md-12 no-padding shapely-content1 pd--t-20 <?php echo $dropcaps ? 'dropcaps-content11' : ''; ?>">
+			<h2><?php the_title();?></h2>
 				<?php
 				the_content();
 				?>
@@ -98,18 +99,18 @@ $left_side   = get_theme_mod( 'post_author_left_side', false );
 	<?php
 	if ( is_single() ):
 		$prev = get_previous_post_link();
-		$prev = str_replace( '&laquo;', '<div class="wrapper"><span class="fa fa-angle-left"></span>', $prev );
-		$prev = str_replace( '</a>', '</a></div>', $prev );
+		$prev = str_replace( '&laquo;', '<div class="wrapper">', $prev );
+		$prev = str_replace( '</a>', '</a> <span class="fa fa-angle-right"></span></div>', $prev );
 		$next = get_next_post_link();
-		$next = str_replace( '&raquo;', '<span class="fa fa-angle-right"></span></div>', $next );
-		$next = str_replace( '<a', '<div class="wrapper"><a', $next );
+		$next = str_replace( '<a', '<div class="wrapper"> <span class="fa fa-angle-left"></span> <a', $next );
+		$next = str_replace( '&raquo;', '</div>', $next );
 		?>
 		<div class="shapely-next-prev row container">
 			<div class="col-md-6 text-left">
-				<?php echo wp_kses_post( $prev ) ?>
+			<?php echo wp_kses_post( $next ) ?>
 			</div>
 			<div class="col-md-6 text-right">
-				<?php echo wp_kses_post( $next ) ?>
+			<?php echo wp_kses_post( $prev ) ?>
 			</div>
 		</div>
 

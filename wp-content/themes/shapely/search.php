@@ -14,7 +14,7 @@ $layout_class = shapely_get_layout_class(); ?>
 			get_sidebar();
 		endif;
 		?>
-		<section id="primary" class="content-area col-md-8 mb-xs-24 <?php echo esc_attr( $layout_class ); ?>">
+		<section id="primary" class="content-area col-md-offset-2 col-md-8 col-sm-12 col-xs-12 mb-xs-24 search-fix-tn <?php echo esc_attr( $layout_class ); ?>">
 			<main id="main" class="site-main" role="main">
 
 				<?php
@@ -27,7 +27,9 @@ $layout_class = shapely_get_layout_class(); ?>
 					<?php
 					/* Start the Loop */
 					while ( have_posts() ) : the_post();
-
+					?>
+					<?php if (is_search() && ($post->post_type=='page')) continue; ?>
+					<?php
 						/**
 						 * Run the loop for the search to output the results.
 						 * If you want to overload this in a child theme then include a file

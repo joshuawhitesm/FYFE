@@ -1035,7 +1035,7 @@ function project_our_ajax(){
 		);
 	}
 	$loop = new WP_Query( $args );	
-	while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
+	 if ( $loop->have_posts() ) : while ( $loop->have_posts() ) : $loop->the_post(); ?>
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 			<div  class="pproject-img project-img--square">
 			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
@@ -1152,6 +1152,9 @@ function project_our_ajax(){
 		</div>
 	<?php 
 	endwhile;?>
+	<?php else : ?>
+	<p class="no_project">No Project Found!</p>
+	<?php endif ?>
 	<div id="ajax_posts_f_project" class="row">
 		<input type="hidden" class="ajax_posts_f_page_project" value="2">
 	</div>
@@ -1371,11 +1374,11 @@ function our_projects_shortcode($args, $content) {
 	<div class="m_st_20_bul_p">
 	<div class="col-md-12 p_relative  style_project_our_top">
 		<div class="col-md-8 p_relative  style_project_our_top1">
-			<div class="col-md-4 p_relative no-padding">
+			<div class="col-md-3 p_relative no-padding">
 				<h6 class="style_project_our_top1_all">All</h6>
 			</div>
-			<div class="col-md-4 p_relative no-padding style_project_our_top1_name">
-				<h5 class="name_sectors-title">Sectors</h5>
+			<div class="col-md-5 p_relative no-padding style_project_our_top1_name">
+				<h5 class="name_sectors-title">Filter by Sectors</h5>
 				<div class="name_sectors-item">
 				<?php $terms = get_terms( array(
 					'taxonomy' => 'project_sectors',
@@ -1398,7 +1401,7 @@ function our_projects_shortcode($args, $content) {
 				</div>
 			</div>
 			<div class="col-md-4 p_relative no-padding style_project_our_top1_name style_project_our_top1_name_m">
-				<h5 class="name-services-title">Services</h5>
+				<h5 class="name-services-title">Filter by Services</h5>
 				<div class="name_services-fix">
 				<?php $terms = get_terms( array(
 					'taxonomy' => 'project_services',
@@ -1506,9 +1509,10 @@ function our_projects_shortcode($args, $content) {
 	);
 	$loop = new WP_Query( $args );	
 	?>
-	<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;
+	<?php if ( $loop->have_posts() ) : while ( $loop->have_posts() ) : $loop->the_post(); ?>
+		<?php $terms  = get_the_terms( get_the_ID(), 'project_cat', '', '' );  
 		?>
-		<?php $terms  = get_the_terms( get_the_ID(), 'project_cat', '', '' );  ?>
+		
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 			<div  class="project-img project-img--square">
 			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
@@ -1626,10 +1630,14 @@ function our_projects_shortcode($args, $content) {
 		  </div>
 		</div>
 	<?php  endwhile;?>
-		<div id="ajax_posts_f_project" class="row">
-			<input type="hidden" class="ajax_posts_f_page_project" value="2">
-		</div>
-	 <?php wp_reset_query(); ?>
+	<div id="ajax_posts_f_project" class="row">
+		<input type="hidden" class="ajax_posts_f_page_project" value="2">
+	</div>
+	<?php wp_reset_query(); ?>
+	<?php  else : ?>
+		<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+	<?php endif; ?>
+		 
 	</div>
 	<div  class="col-ms-12 fl style_news_read_more t_c style_project_read_more">
 		<!--<a id="read_more_project" href="javascript:void(0);">SEE MORE</a>-->
@@ -2029,3 +2037,22 @@ function my_custom_taxonomy_columns_content( $content, $column_name, $term_id )
 	return $content;
 }
 add_filter( 'manage_project_services_custom_column', 'my_custom_taxonomy_columns_content', 10, 3 );
+
+add_filter( 'manage_expertise_posts_columns', 'set_custom_edit_book_columns' );
+add_action( 'manage_expertise_posts_custom_column' , 'custom_book_column', 10, 2 );
+
+function set_custom_edit_book_columns($columns) {
+    $columns['slug'] = __( 'Slug', 'your_text_domain' );
+    return $columns;
+}
+
+function custom_book_column( $column, $post_id ) {
+    switch ( $column ) {
+
+        case 'slug' :
+           $post = get_post($post_id); 
+			echo $slug = $post->post_name;
+            break;
+
+    }
+}

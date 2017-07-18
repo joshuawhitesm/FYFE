@@ -2,29 +2,29 @@
 function add_expertise_post_type()
 {
     $label = array(
-        'name' => 'Our Expertise', 
+        'name' => 'Our Services', 
       
-		'singular_name' => 'Our Expertise',
+		'singular_name' => 'Our Services',
 		
-		'singular' => 'Our Expertise',
+		'singular' => 'Our Services',
 		
-		'menu_name' => 'Our Expertise',
+		'menu_name' => 'Our Services',
 		
-		'parent_item_colon'   => 'Our Expertise',
+		'parent_item_colon'   => 'Our Services',
 
-		'all_items'           => 'All Our Expertise',
+		'all_items'           => 'All Our Services',
 
-		'view_item'           => 'View Our Expertise',
+		'view_item'           => 'View Our Services',
 
 		'add_new_item'        => 'Add New ',
 
 		'add_new'             => 'Add New',
 
-		'edit_item'           => 'Edit Our Expertise',
+		'edit_item'           => 'Edit Our Services',
 
-		'update_item'         => 'Update Our Expertise',
+		'update_item'         => 'Update Our Services',
 
-		'search_items'        => 'Search Our Expertise',
+		'search_items'        => 'Search Our Services',
 
 		'not_found'           => 'Not Found',
 
@@ -33,7 +33,7 @@ function add_expertise_post_type()
  
     $args = array(
         'labels' => $label, 
-        'description' => 'Our Expertise', 
+        'description' => 'Our Services', 
         'supports' => array(
             'title',
             'editor',

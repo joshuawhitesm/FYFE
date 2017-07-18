@@ -6,17 +6,28 @@ function product_shortcode($args, $content) {
 	ob_start();
 	$args = array( 'post_type' => 'expertise', 'posts_per_page' => 14, /*'orderby'=> 'title', */'order' => 'ASC' );
 	$loop = new WP_Query( $args );?>
-	<div class="wpb_column vc_column_container col-lg-5ths text-center item-center-fix">
+	<div class="wpb_column vc_column_container col-lg-5ths text-center item-center-fix height-fix-tn">
 		<div class="vc_column-inner no-padding center-fix-item expertise_p_t_h4">
 			<h4><a href="/?page_id=1101"><?php echo $title;?></a></h4>
 			<p><?php echo $des;?></p>
 		</div>
 	</div>
 	<div class="our-service-posts">
-		<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
+		<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;
+		$animated_icons = get_field('animated_icons');
+		// var_dump($animated_icons['url']);
+		?>
 		<div class="col-lg-5ths col-md-3 col-sm-4 col-xs-6 no-padding text-center height-fix">
-			<a href="<?php echo get_permalink(); ?>">
-				<div class='img-hover-fix'><?php the_post_thumbnail();?></div>
+			<a href="<?php the_field('link'); ?>">
+				<div class='img-hover-fix img-hover-fix_1'><?php the_post_thumbnail();?></div>
+				<div class='img-hover-fix d_n img-hover-fix_2'>
+					<?php if($animated_icons['url']!=''){?>
+						<img src="<?php echo $animated_icons['url']; ?>">
+					<?php } 
+					else {
+						the_post_thumbnail();
+					}?>
+				</div>
 				<div class="title-hover"><h3><?php the_title();?></h3></div>
 			</a>
 		</div>
@@ -91,7 +102,7 @@ function our_sectors_func($atts) {
 
 	$query = new WP_Query($args);?>
 	<div class="slhome">
-		<div id="myCarousel2" class="carousel slide" data-ride="carousel" data-interval="2000">
+		<div id="myCarousel2" class="carousel slide carousel-fade" data-ride="carousel" data-interval="2000">
     <!-- Indicators -->
 
     <!-- Wrapper for slides -->
@@ -104,7 +115,7 @@ function our_sectors_func($atts) {
 	  <div id="myCarousel<?php echo get_the_ID(); ?>" class="item item-fix2">
         <div class="img_slhome col-lg-20ths col-xs-12 no-padding glr-right color-white">
 			<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('shapely-full');?></a>
-			<div class="slhome_des col-xs-5"><?php the_title();?></div>
+			
 		</div>
 		<div class="wpb_column vc_column_container col-lg-5ths item-center-fix2">
 			<div class="vc_column-inner no-padding center-fix-item text-left">
@@ -128,7 +139,7 @@ function our_sectors_func($atts) {
 	</div>
 
 	</div>
-	<div class="slhome_list slhome_list_sectors1 sectors1 col-lg-5ths">
+	<div class="slhome_list slhome_list_sector1 slhome_list_sectors1 sectors1 col-lg-5ths">
 		<h4><a href="/?page_id=789">OUR SECTORS</a></h4>
 		<div class="dot-slider">
 			<ol class="">
@@ -203,7 +214,7 @@ function sectors_shortcode($args, $content) {
 	$loop = new WP_Query( $args );
 	?>
 
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
     <!-- Indicators -->
 
     <!-- Wrapper for slides -->
@@ -445,7 +456,7 @@ function teams_shortcode($args, $content) {
 		<div class="vc_column-inner no-padding center-fix-item p_relative">
 			<h4 class="teams-title"><?php echo $title;?></h4>
 			<div class="btn-see">
-				<a href="/?page_id=793">SEE MORE</a>
+				<a href="/?page_id=1410">SEE MORE</a>
 			</div>
 		</div>
 	</div>
@@ -1224,8 +1235,8 @@ function sectors_news_shortcode($args, $content) {
 		'post_type' => 'sectors',
 		), $atts, 'sectors_news' );
 	$args1 = array(
-	'orderby'          => 'post_date',
-	'order'            => 'DESC',
+	'orderby'          => 'title',
+	'order'            => 'ASC',
 	'post_type'        => $atts['post_type'],
 	'post_status'      => 'publish',
 	'paged'    => $paged,
@@ -1357,7 +1368,7 @@ function our_sliderhome_func($atts,$args) {
 
 	$query = new WP_Query($args);?>
 	<div class="slhome">
-		<div id="myCarousel1" class="carousel slide" data-ride="carousel" data-interval="2000">
+		<div id="myCarousel1" class="carousel slide carousel-fade" data-ride="carousel" data-interval="2000">
     <!-- Indicators -->
 
     <!-- Wrapper for slides -->
@@ -1369,7 +1380,7 @@ function our_sliderhome_func($atts,$args) {
 	  <div id="myCarousel<?php echo get_the_ID(); ?>" class="item item-fix1">
 	    <div class="img_slhome fl_r col-lg-20ths col-xs-12 no-padding glr-right color-white">
 			<?php the_post_thumbnail('shapely-full');?>
-			<div class="slhome_des col-xs-5"><?php the_field('description');?></div>
+			<div class="slhome_des col-xs-5"><a href="<?php the_field('link');?>"><?php the_field('description');?></a></div>
 		</div>
 		<div class="wpb_column vc_column_container col-lg-5ths item-center-fix2">
 			<div class="vc_column-inner no-padding center-fix-item text-left">

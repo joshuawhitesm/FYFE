@@ -119,6 +119,17 @@ jQuery(".name_sectors-title").click(function(){
 jQuery(".name-services-title").click(function(){
     jQuery(".name_services-fix").toggle(500);
 });
+jQuery('.carousel').carousel();
+jQuery(".glr-right img").hover(function(){
+    jQuery('.slhome_des').css("display", "block");
+    }, function(){
+    jQuery('.slhome_des').css("display", "none");
+});
+jQuery(".slhome_des").hover(function(){
+    jQuery(this).css("display", "block");
+    }, function(){
+    jQuery(this).css("display", "none");
+});
 </script>
 <?php wp_footer(); ?>
 </body>
