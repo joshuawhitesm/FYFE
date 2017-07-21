@@ -143,7 +143,7 @@ function our_sectors_func($atts) {
 	<div class="slhome_list slhome_list_sector1 slhome_list_sectors1 sectors1 col-lg-5ths">
 		<h4><a href="/?page_id=789">OUR SECTORS</a></h4>
 		<div class="dot-slider">
-			<ol class="carousel-indicators">
+			<ol class="">
 
 			<?php
 
@@ -153,17 +153,23 @@ function our_sectors_func($atts) {
 					'orderby' => 'title',
 					'order' => 'ASC'
 				) );
-				$i=0;
+				$i=1;
 				$query2 = new WP_Query($args2);
 				if ($query2->have_posts()) {
 				while ($query2->have_posts()) {
 				$query2->the_post();?>
 
-					<li data-target="#myCarousel2" data-slide-to="<?php echo $i;?>"
+					<li data-slide-to="<?php the_field('data_slider');?>"
 						class="slhome_title slhome_title_sector slhp_<?php the_field('data_slider');?>
-						<?php if($i==0){echo 'active';}?>">
+						<?php if($i==1){echo 'current';}?>">
 						<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
 					</li>
+					<script>
+							jQuery('.slhome_title_sector.slhp_<?php the_field('data_slider');?>').on("click", function() {
+								jQuery(".slhome_list_sectors1 li").removeClass("current");
+								jQuery(".slhome_title_sector.slhp_<?php the_field('data_slider');?>").addClass("current");
+							});
+					</script>
 				<?php $i++;
 				}
 				wp_reset_postdata();
@@ -609,11 +615,7 @@ function contact_shortcode($args, $content) {
 	<div class="col-md-3 col-xs-7ths_ff col-xs-12 no-padding bg-yellow ">
 		<div id="location-content">
 			<?php
-			$args2 = array( 
-				'post_type' => 'locations',
-				'posts_per_page' => -1,
-						
-			);
+			$args2 = array( 'post_type' => 'locations', 'posts_per_page' => -1 );
 			$loop2 = new WP_Query( $args2 );
 			?>
 
@@ -1368,7 +1370,7 @@ function our_sliderhome_func($atts,$args) {
 
 	$query = new WP_Query($args);?>
 	<div class="slhome">
-	<div id="myCarousel1" class="carousel slide carousel-fade" data-ride="carousel" data-interval="2000">
+	<div id="myCarousel1" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
     <!-- Indicators -->
 
     <!-- Wrapper for slides -->
@@ -1407,18 +1409,8 @@ function our_sliderhome_func($atts,$args) {
 	</div>
 	<div class="slhome_list slhome_list_sliderhome left_0 col-lg-5ths">
 		<h4><a href="/?page_id=1101">KEY SERVICES</a></h4>
-		<script>
-			setTimeout(function(){ 
-				jQuery(".carousel-indicators li a").on("click",function(){
-					var url = jQuery(this).attr('href');
-					jQuery(location).attr('href',url);
-				});
-			}, 0);
-			
-		</script>
 		<div class="dot-slider">
-			<ol class="carousel1-indicators">
-				
+			<ol class="">
 				<?php
 
 				$args2 = ( array(
@@ -1427,18 +1419,20 @@ function our_sliderhome_func($atts,$args) {
 					'orderby' => 'title',
 					'order' => 'ASC'
 				) );
-				$i=0;
+				$i=1;
 				$query2 = new WP_Query($args2);
 				if ($query2->have_posts()) {
 				while ($query2->have_posts()) {
 				$query2->the_post();?>
-					<li  data-slide-to="<?php echo $i;?>"
-						class="slhome_title_sliderhome slhome_title slhp_<?php the_field('data_slide');?>">
+					<li data-slide-to="<?php the_field('data_slide');?>"
+						class="slhome_title_sliderhome slhome_title slhp_<?php the_field('data_slide');?>
+						<?php if($i==1){echo 'current';}?>">
+
 						<?php
-						$post_slug = get_post_field( 'post_name', get_post() );
-						// var_dump($post_slug);
-						
-						$link = '/?page_id=1101/#'.$post_slug ;
+						$link = '#';
+						if($pageId = get_field('key_service_link_page')) {
+							$link = '/?page_id=' . $pageId;
+						}
 						?>
 						<a href="<?php echo $link; ?>"><?php the_title();?></a>
 					</li>
@@ -1462,7 +1456,7 @@ function our_sliderhome_func($atts,$args) {
   </style>
   <script>
     jQuery(document).ready(function(){
-		
+
     	jQuery(".item-fix1:first").addClass("active");
 		jQuery('.slhome_title').click(function(){
 			jQuery(".slhome_title").toggleClass('text_yellow');

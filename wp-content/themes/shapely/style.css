@@ -31,7 +31,9 @@ body {
     margin: 0;
     font-family: 'Ubuntu', sans-serif;
 }
-
+.menu-footer-2-container {
+    padding-top: 17px;
+}
 article,
 aside,
 details,
@@ -3764,6 +3766,24 @@ blockquote:after {
     background-color: transparent;
     color: #FFF;
 }
+.d_n{
+	display:none;
+}
+.height-fix:hover .img-hover-fix_1 {
+    display:none;
+}
+.height-fix:hover .img-hover-fix_2 {
+    display:block !important;
+}
+.sliderhome_75370 {
+    position: absolute;
+    bottom: 90px;
+    left: 0px;
+    right: 0px;
+}
+.loadingDiv {
+    padding-bottom: 3000px;
+}
 .widget.widget_calendar #next:before {
     content: '\f105';
     display: block;
@@ -5060,7 +5080,7 @@ a.s3-linkedin.hint--top {
 }
 div#location-content_title a {
     color: #000;
-    padding: 0 18px !important;
+    padding: 0 12px !important;
     text-transform: uppercase;
     line-height: 40px;
 }
@@ -6266,6 +6286,12 @@ a.style_image_archive img {
 }
 
 @media screen and (max-width: 1200px) {
+	.sliderhome_75370 {
+    position: relative;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+	}
 	.teams_style_fix_4_7{
 		padding-bottom: 145px !important;
 	}
@@ -6543,12 +6569,62 @@ p.no_project {
 	width: 100%;
 	height: 100%;
 }
-.d_n{
-	display:none;
+.height-fix_19_7 {
+    height: 270px;
 }
-.height-fix:hover .img-hover-fix_1 {
-    display:none;
+
+div#sesion_1_home_fyfe_project .carousel1-indicators {
+    bottom: inherit !important;
+    left: inherit;
+    position: relative !important;
+    z-index: 15;
+    width: 100% !important;
+    padding-left: 0;
+    margin-left: 0 !important;
+    text-align: left;
+    list-style: none;
+    float: left !important;
 }
-.height-fix:hover .img-hover-fix_2 {
-    display:block !important;
+div#sesion_1_home_fyfe_project .carousel1-indicators li {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    text-align: left;
+    margin-left: 15px !important;
+    position: relative;
+    text-indent: inherit !important;
+    cursor: pointer;
+    background-color: #000\9;
+    background-color: rgba(0,0,0,0);
+    border: 0px !important;
+    border-radius: 10px;
+}
+div#sesion_2_home_fyfe_project .carousel-indicators {
+    bottom: inherit !important;
+    left: inherit;
+    position: relative !important;
+    z-index: 15;
+    width: 100% !important;
+    padding-left: 0;
+    margin-left: 0 !important;
+    text-align: left;
+    list-style: none;
+    float: left !important;
+}
+div#sesion_2_home_fyfe_project .carousel-indicators li {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    text-align: left;
+    margin-left: 15px !important;
+    position: relative;
+    text-indent: inherit !important;
+    cursor: pointer;
+    background-color: #000\9;
+    background-color: rgba(0,0,0,0);
+    border: 0px !important;
+    border-radius: 10px;
+}
+li.active a{
+	color:#f1ac08;
 }
