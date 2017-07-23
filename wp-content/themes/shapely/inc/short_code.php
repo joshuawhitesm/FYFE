@@ -12,7 +12,7 @@ function product_shortcode($args, $content) {
 			<p><?php echo $des;?></p>
 		</div>
 	</div>
-	
+
 	<div class="our-service-posts">
 		<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;
 		$animated_icons = get_field('animated_icons');
@@ -24,7 +24,7 @@ function product_shortcode($args, $content) {
 				<div class='img-hover-fix d_n img-hover-fix_2'>
 					<?php if($animated_icons['url']!=''){?>
 						<img src="<?php echo $animated_icons['url']; ?>">
-					<?php } 
+					<?php }
 					else {
 						the_post_thumbnail();
 					}?>
@@ -49,7 +49,7 @@ function post_shortcode($args, $content) {
 	$args = array( 'post_type' => 'post', 'posts_per_page' => 1,'orderby'  => 'date', 'order'  => 'ASC', );
 	$loop = new WP_Query( $args );?>
 
-	<div class="col-lg-20ths col-xs-12 no-padding glr-right color-white">
+	<div class="col-lg-12 col-xs-12 no-padding glr-right color-white">
 	<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
 	<div class="no-padding full-width-fix">
 		<div class='img-post-fix'><?php the_post_thumbnail();?></div>
@@ -63,19 +63,18 @@ function post_shortcode($args, $content) {
 			</div>
 		</div>
 
+		<div class="info-fix-right">
+			<h4><a href="/?page_id=791"><?php echo $title;?></a></h4>
+
+			<!--<a href="/?page_id=791" target="_blank" class="icon-see" rel="noopener noreferrer">&rarr;</a>-->
+			<div class="btn-see">
+				<a href="/?page_id=791" target="_blank" rel="noopener noreferrer">SEE MORE</a>
+			</div>
+		</div>
 	</div>
 <?php  endwhile;?>
 </div>
-<div class="wpb_column vc_column_container col-lg-5ths text-center item-center-fix">
-	<div class="vc_column-inner no-padding center-fix-item">
-		<h4><a href="/?page_id=791"><?php echo $title;?></a></h4>
 
-		<!--<a href="/?page_id=791" target="_blank" class="icon-see" rel="noopener noreferrer">&rarr;</a>-->
-		<div class="btn-see">
-			<a href="/?page_id=791" target="_blank" rel="noopener noreferrer">SEE MORE</a>
-		</div>
-	</div>
-	</div>
 <?php wp_reset_query(); ?>
 <?php
 	$out = ob_get_contents();
@@ -116,7 +115,7 @@ function our_sectors_func($atts) {
 	  <div id="myCarousel<?php echo get_the_ID(); ?>" class="item item-fix2">
         <div class="img_slhome col-lg-20ths col-xs-12 no-padding glr-right color-white">
 			<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('shapely-full');?></a>
-			
+
 		</div>
 		<div class="wpb_column vc_column_container col-lg-5ths item-center-fix2">
 			<div class="vc_column-inner no-padding center-fix-item text-left">
@@ -290,7 +289,7 @@ function project_shortcode($args, $content) {
 		?>
 		<?php while ( $loop->have_posts() ) : $loop->the_post(); $count++; global $product;?>
 			<?php $terms  = get_the_terms( get_the_ID(), 'project_cat', '', '' );  ?>
-			
+
 			<?php if($count==4){?>
 				<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 				<div  class="project-img project-img--square">
@@ -367,17 +366,17 @@ function project_shortcode($args, $content) {
 										<div class="btn-see list-cat-fix list-cat-fix2">
 										<?php
 										$terms = get_the_terms( get_the_ID(), 'project_services' );
-                         
-										if ( $terms && ! is_wp_error( $terms ) ) : 
-										 
+
+										if ( $terms && ! is_wp_error( $terms ) ) :
+
 											$draught_links = array();
-										 
+
 											foreach ( $terms as $term ) {?>
 												<a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a>
 											<?php }
 											?>
-										 
-											
+
+
 										<?php endif; ?></div>
 										<div class="post-excerpt-fix-popup hiden-xs"><?php the_content();?></div>
 
@@ -434,7 +433,7 @@ function project_shortcode($args, $content) {
 		<?php wp_reset_query(); ?>
 	</div>
 
-	
+
 
 <?php
 	$out = ob_get_contents();
@@ -609,10 +608,10 @@ function contact_shortcode($args, $content) {
 	<div class="col-md-3 col-xs-7ths_ff col-xs-12 no-padding bg-yellow ">
 		<div id="location-content">
 			<?php
-			$args2 = array( 
+			$args2 = array(
 				'post_type' => 'locations',
 				'posts_per_page' => -1,
-						
+
 			);
 			$loop2 = new WP_Query( $args2 );
 			?>
@@ -1408,17 +1407,17 @@ function our_sliderhome_func($atts,$args) {
 	<div class="slhome_list slhome_list_sliderhome left_0 col-lg-5ths">
 		<h4><a href="/?page_id=1101">KEY SERVICES</a></h4>
 		<script>
-			setTimeout(function(){ 
+			setTimeout(function(){
 				jQuery(".carousel-indicators li a").on("click",function(){
 					var url = jQuery(this).attr('href');
 					jQuery(location).attr('href',url);
 				});
 			}, 0);
-			
+
 		</script>
 		<div class="dot-slider">
 			<ol class="carousel1-indicators">
-				
+
 				<?php
 
 				$args2 = ( array(
@@ -1437,7 +1436,7 @@ function our_sliderhome_func($atts,$args) {
 						<?php
 						$post_slug = get_post_field( 'post_name', get_post() );
 						// var_dump($post_slug);
-						
+
 						$link = '/?page_id=1101/#'.$post_slug ;
 						?>
 						<a href="<?php echo $link; ?>"><?php the_title();?></a>
@@ -1462,7 +1461,7 @@ function our_sliderhome_func($atts,$args) {
   </style>
   <script>
     jQuery(document).ready(function(){
-		
+
     	jQuery(".item-fix1:first").addClass("active");
 		jQuery('.slhome_title').click(function(){
 			jQuery(".slhome_title").toggleClass('text_yellow');
