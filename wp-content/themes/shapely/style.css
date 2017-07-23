@@ -4389,6 +4389,19 @@ p.text-right {
     color: #001c28;
 }
 
+@media screen and (max-width: 992px) {
+    .info-fix {
+        top: auto;
+        bottom: 10px;
+    }
+
+    .info-fix-right {
+        display: block;
+        position: static;
+        width: 100%;
+    }
+}
+
 ul.post-categories {
     list-style: none;
     padding: 0px;

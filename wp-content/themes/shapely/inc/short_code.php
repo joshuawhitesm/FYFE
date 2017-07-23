@@ -52,6 +52,15 @@ function post_shortcode($args, $content) {
 	<div class="col-lg-12 col-xs-12 no-padding glr-right color-white">
 	<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
 	<div class="no-padding full-width-fix">
+		<div class="info-fix-right">
+			<h4><a href="/?page_id=791"><?php echo $title;?></a></h4>
+
+			<!--<a href="/?page_id=791" target="_blank" class="icon-see" rel="noopener noreferrer">&rarr;</a>-->
+			<div class="btn-see">
+				<a href="/?page_id=791" target="_blank" rel="noopener noreferrer">SEE MORE</a>
+			</div>
+		</div>
+
 		<div class='img-post-fix'><?php the_post_thumbnail();?></div>
 		<div class="info-fix">
 			<!--<div class="btn-see"><?php /*the_category( $separator, $parents, $post_id ); */?> </div>-->
@@ -60,15 +69,6 @@ function post_shortcode($args, $content) {
 
 			<div class="btn-see">
 				<a href="<?php the_permalink();?>">READ MORE</a>
-			</div>
-		</div>
-
-		<div class="info-fix-right">
-			<h4><a href="/?page_id=791"><?php echo $title;?></a></h4>
-
-			<!--<a href="/?page_id=791" target="_blank" class="icon-see" rel="noopener noreferrer">&rarr;</a>-->
-			<div class="btn-see">
-				<a href="/?page_id=791" target="_blank" rel="noopener noreferrer">SEE MORE</a>
 			</div>
 		</div>
 	</div>
