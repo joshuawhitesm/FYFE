@@ -31,9 +31,7 @@ body {
     margin: 0;
     font-family: 'Ubuntu', sans-serif;
 }
-.menu-footer-2-container {
-    padding-top: 17px;
-}
+
 article,
 aside,
 details,
@@ -1179,10 +1177,6 @@ section, footer {
 
 .page-template-page-templatestemplate-home-php .content-area {
     padding: 0;
-}
-
-footer {
-    padding: 50px 0px 25px 0px;
 }
 
 .fullscreen {
@@ -4236,10 +4230,10 @@ ul.icon-fix li {
     text-transform: uppercase;
     font-size: 11px;
     opacity: 0.2;
-    margin-top: 30px;
     color: #a5b3af !important;
     float: right;
     width: 100%;
+    margin-bottom: 0;
 }
 p.text-right {
     color: #a5b3af !important;
@@ -6644,6 +6638,24 @@ div#sesion_2_home_fyfe_project .carousel-indicators li {
     border: 0px !important;
     border-radius: 10px;
 }
+
 li.active a{
 	color:#f1ac08;
+}
+
+footer {
+    padding-top: 20px;
+}
+
+.widget.widget_nav_menu > div ul#menu-footer-2 li {
+    padding-bottom: 0;
+}
+
+.widget.widget_nav_menu > div ul#menu-footer-2 li a {
+    opacity: 1;
+}
+
+.icon-fix a.icon-fix--button {
+    border-radius: 30px;
+    width: 75px;
 }

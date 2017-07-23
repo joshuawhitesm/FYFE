@@ -28,16 +28,19 @@ if ( ! is_active_sidebar( 'footer-widget-1' ) && ! is_active_sidebar( 'footer-wi
 		</div><!-- .widget-area .second -->
 	<?php endif; ?>
 
-		<div class="col-md-4 col-sm-6 footer-widget" role="complementary">
-			<?php dynamic_sidebar( 'footer-widget-3' ); ?>
-		</div><!-- .widget-area .third -->
-		<div class="col-md-4 col-sm-6 footer-widget" role="complementary">
-				<ul class="icon-fix">
-				<li class="col-md-3 col-xs-6 no-padding"><a href="#"><span>fb</span></a></li>
-				<li class="col-md-3 col-xs-6 no-padding"><a href="#"><span>tw</span></a></li>
-				<li class="col-md-3 col-xs-6 no-padding"><a href="#"><span>vk</span></a></li>
-				<li class="col-md-3 col-xs-6 no-padding"><a href="#"><span>inst</span></a></li>
-				</ul>
-				<p class="text-right text-footer-fix">Website design by: Sun bear digital</p>
-		</div><!-- .widget-area .third -->
+	<div class="col-md-3 col-sm-6 footer-widget" role="complementary">
+		<?php dynamic_sidebar( 'footer-widget-3' ); ?>
+	</div><!-- .widget-area .third -->
+
+	<div class="col-md-5 col-sm-6 footer-widget" role="complementary">
+		<ul class="icon-fix">
+			<li class="col-md-2 col-xs-6 no-padding"><a href="#" class="icon-fix--button"><span>CAREERS</span></a></li>
+			<li class="col-md-2 col-xs-6 no-padding"><a href="#"><span>fb</span></a></li>
+			<li class="col-md-2 col-xs-6 no-padding"><a href="#"><span>tw</span></a></li>
+			<li class="col-md-2 col-xs-6 no-padding"><a href="#"><span>vk</span></a></li>
+			<li class="col-md-2 col-xs-6 no-padding"><a href="#"><span>inst</span></a></li>
+		</ul>
+
+		<p class="text-right text-footer-fix">Website design by: Sun bear digital</p>
+	</div><!-- .widget-area .third -->
 </div>
