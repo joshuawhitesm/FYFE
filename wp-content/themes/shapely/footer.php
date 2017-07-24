@@ -139,6 +139,39 @@ jQuery(".slhome_des").hover(function(){
     }, function(){
     jQuery(this).css("display", "none");
 });
+var jump=function(e)
+{
+   if (e){
+       e.preventDefault();
+       var target = $(this).attr("href");
+   }else{
+       var target = location.hash;
+   }
+
+   jQuery('html,body').animate(
+   {
+       scrollTop: jQuery(target).offset().top - 80
+   },2000,function()
+   {
+       location.hash = target;
+   });
+
+}
+
+
+jQuery(document).ready(function()
+{
+    jQuery('a[href^=#]').bind("click", jump);
+
+    if (location.hash){
+        setTimeout(function(){
+            jQuery('html, body').scrollTop(0).show();
+            jump();
+        }, 0);
+    }else{
+        jQuery('html, body').show();
+    }
+});
 </script>
 <?php wp_footer(); ?>
 </body>

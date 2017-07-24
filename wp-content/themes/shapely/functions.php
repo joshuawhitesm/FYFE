@@ -427,8 +427,23 @@ function prefix_load_cat_posts () {
 										<p>RELATED PROJECTS</p>
 									</div>
 									<?php
-										$id = get_the_ID();
-										$args1 = array( 'post_type' => 'projects', 'posts_per_page' =>3, 'post__not_in'=> array( $id) );
+										 $id = get_the_ID();
+										$custom_taxterms = wp_get_object_terms( $id, 'project_services', array('fields' => 'ids') );
+										$args1 = array(
+										'post_type' => 'projects',
+										'post_status' => 'publish',
+										'posts_per_page' => 3, // you may edit this number
+										'orderby' => 'rand',
+										'tax_query' => array(
+											array(
+												'taxonomy' => 'project_services',
+												'field' => 'id',
+												'terms' => $custom_taxterms
+											)
+										),
+										'post__not_in' => array ($id),
+										);
+										
 										$loop1 = new WP_Query( $args1 );
 									?>
 									<div class="project_info1_ok1">
@@ -1109,8 +1124,23 @@ function project_our_ajax(){
 										<p>RELATED PROJECTS</p>
 									</div>
 									<?php
-										$id = get_the_ID();
-										$args1 = array( 'post_type' => 'projects', 'posts_per_page' =>3, 'post__not_in'=> array( $id) );
+										 $id = get_the_ID();
+										$custom_taxterms = wp_get_object_terms( $id, 'project_services', array('fields' => 'ids') );
+										$args1 = array(
+										'post_type' => 'projects',
+										'post_status' => 'publish',
+										'posts_per_page' => 3, // you may edit this number
+										'orderby' => 'rand',
+										'tax_query' => array(
+											array(
+												'taxonomy' => 'project_services',
+												'field' => 'id',
+												'terms' => $custom_taxterms
+											)
+										),
+										'post__not_in' => array ($id),
+										);
+										
 										$loop1 = new WP_Query( $args1 );
 									?>
 									<div class="project_info1_ok1">
@@ -1591,8 +1621,23 @@ function our_projects_shortcode($args, $content) {
 										<p>RELATED PROJECTS</p>
 									</div>
 									<?php
-										$id = get_the_ID();
-										$args1 = array( 'post_type' => 'projects', 'posts_per_page' =>3, 'post__not_in'=> array( $id) );
+										 $id = get_the_ID();
+										$custom_taxterms = wp_get_object_terms( $id, 'project_services', array('fields' => 'ids') );
+										$args1 = array(
+										'post_type' => 'projects',
+										'post_status' => 'publish',
+										'posts_per_page' => 3, // you may edit this number
+										'orderby' => 'rand',
+										'tax_query' => array(
+											array(
+												'taxonomy' => 'project_services',
+												'field' => 'id',
+												'terms' => $custom_taxterms
+											)
+										),
+										'post__not_in' => array ($id),
+										);
+										
 										$loop1 = new WP_Query( $args1 );
 									?>
 									<div class="project_info1_ok1">
@@ -1858,8 +1903,23 @@ function see_more_project_our_ajax(){
 										<p>RELATED PROJECTS</p>
 									</div>
 									<?php
-										$id = get_the_ID();
-										$args1 = array( 'post_type' => 'projects', 'posts_per_page' =>3, 'post__not_in'=> array( $id) );
+										 $id = get_the_ID();
+										$custom_taxterms = wp_get_object_terms( $id, 'project_services', array('fields' => 'ids') );
+										$args1 = array(
+										'post_type' => 'projects',
+										'post_status' => 'publish',
+										'posts_per_page' => 3, // you may edit this number
+										'orderby' => 'rand',
+										'tax_query' => array(
+											array(
+												'taxonomy' => 'project_services',
+												'field' => 'id',
+												'terms' => $custom_taxterms
+											)
+										),
+										'post__not_in' => array ($id),
+										);
+										
 										$loop1 = new WP_Query( $args1 );
 									?>
 									<div class="project_info1_ok1">
@@ -2058,4 +2118,15 @@ function custom_book_column( $column, $post_id ) {
             break;
 
     }
+}
+function excerpt($limit) {
+  $excerpt = explode(' ', get_the_excerpt(), $limit);
+  if (count($excerpt)>=$limit) {
+    array_pop($excerpt);
+    $excerpt = implode(" ",$excerpt).'...';
+  } else {
+    $excerpt = implode(" ",$excerpt);
+  }	
+  $excerpt = preg_replace('`[[^]]*]`','',$excerpt);
+  return $excerpt;
 }

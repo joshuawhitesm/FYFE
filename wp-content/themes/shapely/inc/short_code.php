@@ -161,7 +161,13 @@ function our_sectors_func($atts) {
 					<li data-target="#myCarousel2" data-slide-to="<?php echo $i;?>"
 						class="slhome_title slhome_title_sector slhp_<?php the_field('data_slider');?>
 						<?php if($i==0){echo 'active';}?>">
-						<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
+						<?php
+						$post_slug = get_post_field( 'post_name', get_post() );
+						// var_dump($post_slug);
+
+						$link = '/?page_id=789/#'.$post_slug ;
+						?>
+						<a href="<?php echo $link; ?>"><?php the_title();?></a>
 					</li>
 				<?php $i++;
 				}
@@ -387,10 +393,25 @@ function project_shortcode($args, $content) {
 											<p>RELATED PROJECTS</p>
 										</div>
 										<?php
-											$id = get_the_ID();
-											$args1 = array( 'post_type' => 'projects', 'posts_per_page' =>3, 'post__not_in'=> array( $id) );
-											$loop1 = new WP_Query( $args1 );
-										?>
+										 $id = get_the_ID();
+										$custom_taxterms = wp_get_object_terms( $id, 'project_services', array('fields' => 'ids') );
+										$args1 = array(
+										'post_type' => 'projects',
+										'post_status' => 'publish',
+										'posts_per_page' => 3, // you may edit this number
+										'orderby' => 'rand',
+										'tax_query' => array(
+											array(
+												'taxonomy' => 'project_services',
+												'field' => 'id',
+												'terms' => $custom_taxterms
+											)
+										),
+										'post__not_in' => array ($id),
+										);
+										
+										$loop1 = new WP_Query( $args1 );
+									?>
 										<div class="project_info1_ok1">
 											<?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
 												<span class="no-padding color-white project-item project-item--small">
@@ -1257,9 +1278,10 @@ function sectors_news_shortcode($args, $content) {
 		// var_dump($news_taxonomy);
 		$news_taxonomy_link = get_term_link($news_taxonomy[0]->term_id, 'sectors_cat' );
 		// var_dump($news_taxonomy_link);
+		$post_slug = get_post_field( 'post_name', get_post() );
 		if($i%2==0){
 		?>
-			<div class="col-md-12 no-padding">
+			<div class="col-md-12 no-padding " id="<?php echo $post_slug; ?>">
 				<div class="col-md-6 no-padding">
 					<div  class=" fl style_content_get_news">
 						<div  class="col-ms-12 fl style_image_news">
@@ -1280,7 +1302,7 @@ function sectors_news_shortcode($args, $content) {
 								<span class="style_c_d2"><?php /*$post_date = get_the_date( 'd/m/Y' ); echo $post_date; */?></span>
 						</div>-->
 						<div  class="col-ms-12 fl style_content_news_main">
-								<?php  echo get_the_excerpt(); ?>
+							<?php  echo excerpt(50); ?>
 						</div>
 
 						<div  class="col-ms-12 fl style_news_read_more">
@@ -1293,7 +1315,7 @@ function sectors_news_shortcode($args, $content) {
 		}
 		else{
 		?>
-			<div class="col-md-12 no-padding">
+			<div class="col-md-12 no-padding" id="<?php echo $post_slug; ?>">
 				<div class="col-md-6 no-padding d_n style_content_get_news_display1">
 					<div  class=" fl style_content_get_news">
 						<div  class="col-ms-12 fl style_image_news">
@@ -1313,7 +1335,8 @@ function sectors_news_shortcode($args, $content) {
 							<span class="style_c_d2"><?php /*$post_date = get_the_date( 'd/m/Y' ); echo $post_date; */?></span>
 						</div>-->
 						<div  class="col-ms-12 fl style_content_news_main">
-							<?php  echo get_the_excerpt(); ?>
+							
+							<?php  echo excerpt(50); ?>
 						</div>
 						<div  class="col-ms-12 fl style_news_read_more">
 							<a href="<?php the_permalink(); ?>">READ MORE</a>

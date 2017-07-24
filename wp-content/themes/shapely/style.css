@@ -6672,3 +6672,10 @@ footer {
     border-radius: 30px;
     width: 75px;
 }
+.services-img .wpb_single_image{
+	    max-height: 400px;
+    overflow: hidden;
+}
+.disable-br br{
+	
+}
