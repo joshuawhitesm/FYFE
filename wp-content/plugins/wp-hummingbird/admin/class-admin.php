@@ -227,57 +227,67 @@ class WP_Hummingbird_Admin {
 
 	/**
 	 * Show quick setup modal.
-     *
-     * @since 1.5.0
+	 *
+	 * @since 1.5.0
 	 */
-    public function maybe_show_quick_setup() {
+	public function maybe_show_quick_setup() {
 
-        // Only run on HB pages
-        $hb_pages = array(
-            'toplevel_page_wphb',
-            'hummingbird_page_wphb-performance',
-            'hummingbird_page_wphb-minification',
-            'hummingbird_page_wphb-caching',
-            'hummingbird_page_wphb-gzip',
-            'hummingbird_page_wphb-uptime',
-        );
-        if ( ! in_array( get_current_screen()->id, $hb_pages ) )
-            return;
+		// Only run on HB pages.
+		$hb_pages = array(
+			'toplevel_page_wphb',
+			'hummingbird_page_wphb-performance',
+			'hummingbird_page_wphb-minification',
+			'hummingbird_page_wphb-caching',
+			'hummingbird_page_wphb-gzip',
+			'hummingbird_page_wphb-uptime',
+			'toplevel_page_wphb-network',
+			'hummingbird_page_wphb-performance-network',
+			'hummingbird_page_wphb-minification-network',
+			'hummingbird_page_wphb-caching-network',
+			'hummingbird_page_wphb-gzip-network',
+			'hummingbird_page_wphb-uptime-network',
+		);
+		if ( ! in_array( get_current_screen()->id, $hb_pages, true ) ) {
+			return;
+		}
 
-	    if ( ! is_user_logged_in() )
-		    return;
+		if ( ! is_user_logged_in() ) {
+			return;
+		}
 
-	    // If setup has already ran - exit
-	    $quick_setup = get_option( 'wphb-quick-setup' );
-	    if ( true === $quick_setup['finished'] ) {
-	        return;
-        }
+		// If setup has already ran - exit.
+		$quick_setup = get_option( 'wphb-quick-setup' );
+		if ( true === $quick_setup['finished'] ) {
+			return;
+		}
 
-	    $enqueued = wp_script_is( 'wphb-admin', 'enqueued' );
+		$enqueued = wp_script_is( 'wphb-admin', 'enqueued' );
 
-	    if ( ! $enqueued )
-		    wphb_enqueue_admin_scripts( WPHB_VERSION );
+		if ( ! $enqueued ) {
+			wphb_enqueue_admin_scripts( WPHB_VERSION );
+		}
 
-        // Enable automatic scans by default
-        if ( wphb_is_member() ) {
-            $settings = wphb_get_settings();
-            $settings['email-notifications'] = true;
-            // Enable automatic reports for members
-            wphb_update_settings( $settings );
-        }
+		// Enable automatic scans by default.
+		if ( wphb_is_member() ) {
+			$settings = wphb_get_settings();
+			$settings['email-notifications'] = true;
+			// Enable automatic reports for members.
+			wphb_update_settings( $settings );
+		}
 
-	    wphb_quick_setup_modal();
-	    wphb_check_performance_modal();
-	    ?>
-
-	    <script>
-            jQuery(document).ready( function() {
-                var module = WPHB_Admin.getModule('dashboard');
-                module.startQuickSetup();
-            });
-        </script>
-        <?php
-    }
+		wphb_quick_setup_modal();
+		wphb_check_performance_modal();
+		?>
+		<script>
+			jQuery(document).ready( function() {
+				if ( window.WPHB_Admin ) {
+					var module = window.WPHB_Admin.getModule('dashboard');
+					module.startQuickSetup();
+				}
+			});
+		</script>
+		<?php
+	}
 
 }
 

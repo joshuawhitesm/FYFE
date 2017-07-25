@@ -292,7 +292,11 @@ function wphb_update_membership_link() {
 }
 
 function wphb_support_link() {
-	return "https://premium.wpmudev.org/forums/forum/support#question";
+	if ( wphb_is_member() ) {
+		return 'https://premium.wpmudev.org/forums/forum/support#question';
+	} else {
+		return 'https://wordpress.org/support/plugin/hummingbird-performance';
+	}
 }
 
 function wphb_cdn_link() {

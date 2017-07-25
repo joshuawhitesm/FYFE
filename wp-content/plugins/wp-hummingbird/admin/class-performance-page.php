@@ -31,7 +31,6 @@ class WP_Hummingbird_Performance_Report_Page extends WP_Hummingbird_Admin_Page {
 	    //$this->recommendations = wphb_get_number_of_issues( 'performance' );
 	    //$this->get_error_status();
     }
-
 	public function render_header() {
 		$this->get_error_status();
 
@@ -40,16 +39,16 @@ class WP_Hummingbird_Performance_Report_Page extends WP_Hummingbird_Admin_Page {
 		$run_url = wp_nonce_url( $run_url, 'wphb-run-performance-test' );
 		$next_test_on = WP_Hummingbird_Module_Performance::can_run_test();
 		?>
-        <div class="wphb-notice wphb-notice-success hidden" id="wphb-notice-performance-report-settings-updated">
-            <p><?php _e( 'Settings updated', 'wphb' ); ?></p>
-        </div>
+		<div class="wphb-notice wphb-notice-success hidden" id="wphb-notice-performance-report-settings-updated">
+			<p><?php _e( 'Settings updated', 'wphb' ); ?></p>
+		</div>
 		<section id="header">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 			<div class="actions label-and-button">
 				<?php if ( $last_report && ! is_wp_error( $last_report ) ): ?>
 					<?php
-						$data_time = strtotime( get_date_from_gmt( date( 'Y-m-d H:i:s', $last_report->data->time ) ) );
-						$disabled = true !== $next_test_on;
+					$data_time = strtotime( get_date_from_gmt( date( 'Y-m-d H:i:s', $last_report->data->time ) ) );
+					$disabled = true !== $next_test_on;
 					?>
 					<p class="actions-label">
 						<?php printf( __('Your last performance test was on <strong>%s</strong> at <strong>%s</strong>', 'wphb' ), date_i18n( get_option( 'date_format' ), $data_time ), date_i18n( get_option( 'time_format' ), $data_time ) ); ?>
@@ -76,11 +75,7 @@ class WP_Hummingbird_Performance_Report_Page extends WP_Hummingbird_Admin_Page {
 				return;
 
 			// Start the test
-			wphb_performance_clear_cache();
 			wphb_performance_init_scan();
-
-			// This will trigger the popup
-			wphb_performance_set_doing_report( true );
 
 			wp_redirect( remove_query_arg( array( 'run', '_wpnonce' ) ) );
 			exit;

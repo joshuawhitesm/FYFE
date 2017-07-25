@@ -376,8 +376,13 @@ if ( ( ! class_exists( 'Snapshot_Model_Destination_AWS' ) ) && ( version_compare
 						return true;
 
 					} else {
+						$body = $result['body'];
+						$message = $body->message;
+						if ( strpos( $message, 'AWS4-HMAC-SHA256' ) !== false ) {
+							$this->error_array['errorArray'][] = "Bucket location region is incorrect. Please select the right one.";
+						}
 						$this->error_array['errorStatus']  = true;
-						$this->error_array['errorArray'][] = "Error: Send file failed :" . $result["status"] . " :" . $result["Message"];
+						$this->error_array['errorArray'][] = 'Error: Send file failed :' . $result['status'] . ' : ' . $message;
 
 						return false;
 					}
@@ -494,19 +499,22 @@ if ( ( ! class_exists( 'Snapshot_Model_Destination_AWS' ) ) && ( version_compare
 					$destination_info['region-other'] = $d_info['region-other'];
 				}
 
+
 				if ( empty( $d_info['storage'] ) ) {
 					$destination_info['storage'] = AmazonS3::STORAGE_STANDARD;
 				} else {
 					$storage = esc_attr( $d_info['storage'] );
-					$destination_info['storage'] = isset( $this->_regions[ $storage ] ) ? $storage : AmazonS3::STORAGE_STANDARD;
+					$destination_info['storage'] = isset( $this->_storage[ $storage ] ) ? $storage : AmazonS3::STORAGE_STANDARD;
 				}
 
 				if ( empty( $d_info['acl'] ) ) {
 					$destination_info['acl'] = AmazonS3::ACL_PRIVATE;
 				} else {
 					$acl = esc_attr( $d_info['acl'] );
-					$destination_info['acl'] = isset( $this->_regions[ $acl ] ) ? $acl : AmazonS3::ACL_PRIVATE;
+					$destination_info['acl'] = isset( $this->_acl[ $acl ] ) ? $acl : AmazonS3::ACL_PRIVATE;
 				}
+
+				//var_dump( $destination_info ); exit;
 
 				return $destination_info;
 			}

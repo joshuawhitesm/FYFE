@@ -59,7 +59,7 @@ import Fetcher from './utils/fetcher';
 		 */
 		startQuickSetup: function () {
             // Show quick setup modal
-            WDP.showOverlay( '#wphb-quick-setup-modal', { class: 'wphb-modal small wphb-quick-setup-modal no-close' } );
+			window.WDP.showOverlay( '#wphb-quick-setup-modal', { class: 'wphb-modal small wphb-quick-setup-modal no-close' } );
         },
 
 		/**
@@ -77,7 +77,7 @@ import Fetcher from './utils/fetcher';
 		 */
 		runPerformanceTest: function() {
 			// Show quick setup modal
-			WDP.showOverlay("#run-performance-test-modal", { class: 'wphb-modal small wphb-progress-modal no-close' } );
+			window.WDP.showOverlay("#run-performance-test-modal", { class: 'wphb-modal small wphb-progress-modal no-close' } );
 
 			// Run performance test
 			const module = WPHB_Admin.getModule('performance');

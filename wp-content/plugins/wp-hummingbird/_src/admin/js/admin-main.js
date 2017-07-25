@@ -6,6 +6,13 @@
         // Common functionality to all screens
         init: function() {
 
+			$('body').on('change', '.mobile-nav', function () {
+				let url = $(this).val();
+				if (url.length > 0) {
+					location.href = url;
+				}
+			});
+
             function updatePerformanceGraph($wrap){
                 let $item = $wrap.find('.wphb-score-result-label'),
                     val = parseInt($item.text(), 10) || 100,

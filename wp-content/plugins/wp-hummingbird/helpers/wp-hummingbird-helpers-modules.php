@@ -366,7 +366,8 @@ function wphb_performance_set_doing_report( $status = true ) {
  * Wrapper function for WP_Hummingbird_Module_Performance::init_scan()
  */
 function wphb_performance_init_scan() {
-	// Init scan
+	// Init scan.
 	WP_Hummingbird_Module_Performance::init_scan();
+	// TODO: this creates a duplicate task from cron.
 	do_action( 'wphb_init_performance_scan' );
 }

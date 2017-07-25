@@ -18,7 +18,7 @@ class WP_Hummingbird_Module_GZip extends WP_Hummingbird_Module_Server {
 			if ( ! class_exists('SimplePie') )
 				require_once( ABSPATH . WPINC . '/class-simplepie.php' );
 
-			$result = new SimplePie_File( $file, 10, 5, null, $_SERVER['HTTP_USER_AGENT'] );
+			$result = new SimplePie_File( $file, 10, 5, null, $_SERVER['HTTP_USER_AGENT'] );	 			   		  	 	 		 	 
 
 			$headers = $result->headers;
 			if ( empty( $headers ) ) {

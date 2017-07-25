@@ -40,14 +40,14 @@ class WP_Hummingbird_Minification_Page extends WP_Hummingbird_Admin_Page {
 
 			wphb_update_settings( $options );
 
-			wp_redirect( add_query_arg( 'updated', 'true' ) );
+			wp_safe_redirect( add_query_arg( 'updated', 'true' ) );
 			exit;
 		}
 
 		if ( isset( $_POST['clear-cache'] ) ) {
 			wphb_clear_minification_cache( false );
 			$url = remove_query_arg( 'updated' );
-			wp_redirect( add_query_arg( 'wphb-cache-cleared', 'true', $url ) );
+			wp_safe_redirect( add_query_arg( 'wphb-cache-cleared', 'true', $url ) );
 			exit;
 		}
 

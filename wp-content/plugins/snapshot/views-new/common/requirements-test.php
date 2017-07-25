@@ -37,24 +37,6 @@
 							<?php endif; ?>
 						</tr>
 						<tr>
-							<th <?php if( $checks['OpenBasedir']['test'] ) : ?> colspan="2" <?php endif; ?> >
-								<?php _e( 'Open Base Dir', SNAPSHOT_I18N_DOMAIN ); ?>
-								<?php if( !$checks['OpenBasedir']['test'] ) : ?>
-								<span class="wps-tag wps-tag--red"><?php _e( 'FAIL', SNAPSHOT_I18N_DOMAIN ); ?></span>
-								<?php else : ?>
-								<span class="wps-tag wps-tag--green"><?php _e( 'PASS', SNAPSHOT_I18N_DOMAIN ); ?></span>
-								<?php endif; ?>
-							</th>
-							<?php if( !$checks['OpenBasedir']['test'] ) : ?>
-							<td>
-								<?php _e( '<b><code>open_basedir</code> is enabled</b>.
-									Issues can occur when this directive is enabled, and we recommend
-									to disable this value in your php.ini file.', SNAPSHOT_I18N_DOMAIN );
-									?>
-							</td>
-							<?php endif; ?>
-						</tr>
-						<tr>
 							<th <?php if( $checks['MaxExecTime']['test'] ) : ?> colspan="2" <?php endif; ?> >
 								<?php _e( 'Max Execution Time', SNAPSHOT_I18N_DOMAIN ); ?>
 								<?php if( !$checks['MaxExecTime']['test'] ) : ?>

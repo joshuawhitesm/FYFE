@@ -41,6 +41,9 @@ delete_option( 'wphb_settings' );
 delete_site_option( 'wphb_settings' );
 
 delete_site_option( 'wphb_version' );
+delete_site_option( 'wphb-pro' );
 
 delete_site_option( 'wphb-is-cloudflare' );
 delete_site_option( 'wphb-quick-setup' );
+delete_site_option( 'wphb-notice-free-rated-show' );
+delete_site_option( 'wphb-free-install-date' );

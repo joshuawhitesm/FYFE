@@ -1,7 +1,7 @@
 <?php
 /**
 Plugin Name: Hummingbird Pro
-Version: 1.5.3
+Version: 1.5.5
 Plugin URI:  https://premium.wpmudev.org/project/wp-hummingbird/
 Description: Hummingbird zips through your site finding new ways to make it load faster, from file compression and minification to browser caching – because when it comes to pagespeed, every millisecond counts.
 Author: WPMU DEV
@@ -32,7 +32,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
 if ( ! defined( 'WPHB_VERSION' ) ) {
-	define( 'WPHB_VERSION', '1.5.3' );
+	define( 'WPHB_VERSION', '1.5.5' );
 }
 
 if ( file_exists( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'free-mods.php' ) ) {
@@ -40,6 +40,13 @@ if ( file_exists( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'free-mods.ph
 }
 
 if ( defined( 'WPHB_WPORG' ) && WPHB_WPORG && 'wp-hummingbird/wp-hummingbird.php' != plugin_basename( __FILE__ ) ) {
+	// Add notice to rate the free version.
+	$free_installation = get_site_option( 'wphb-free-install-date' );
+	if ( empty( $free_installation ) ) {
+		update_site_option( 'wphb-notice-free-rated-show', 'yes' );
+		update_site_option( 'wphb-free-install-date', current_time( 'timestamp' ) );
+	}
+
 	// This plugin is the free version so if the Pro version is activated we need to deactivate this one.
 	if ( ! function_exists( 'is_plugin_active' ) ) {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );

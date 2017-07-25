@@ -20,5 +20,5 @@
 </div><!-- end wphb-block-entry -->
 
 <?php
-	wphb_membership_modal();	 			   		  	 	 		 	 
+	wphb_membership_modal();
 ?>

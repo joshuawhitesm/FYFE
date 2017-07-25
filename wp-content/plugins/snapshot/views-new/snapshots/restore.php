@@ -93,7 +93,7 @@ $warning = $requirements_test['warning'];
 
 								<?php
 
-								global $blogid;
+								global $blog_id;
 
 								$siteurl = '';
 								$domain = '';

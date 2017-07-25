@@ -605,6 +605,23 @@ class WP_Hummingbird_Module_Minify_Group {
 	}
 
 	/**
+	 * Add a before attribute. Normally us by add_inline_script/style functions
+	 *
+	 * @param $new_before
+	 */
+	public function add_before( $new_before ) {
+		$before = $this->get_before();
+
+		if ( ! is_array( $new_before ) ) {
+			$new_before = array( $new_before );
+		}
+
+		$before                = array_merge( $new_before, $before );
+		$this->extra['before'] = $before;
+		$this->refresh_hash();
+	}
+
+	/**
 	 * Add an after attribute. Normally us by add_inline_script/style functions
 	 *
 	 * @param $new_after
@@ -620,7 +637,7 @@ class WP_Hummingbird_Module_Minify_Group {
 			$data = array( $data );
 		}
 
-		$data                = array_merge( $new_data, $data );
+		$data                = array_unique( array_merge( $new_data, $data ) );
 		$this->extra['data'] = $data;
 		$this->refresh_hash();
 	}
@@ -632,6 +649,15 @@ class WP_Hummingbird_Module_Minify_Group {
 	 */
 	public function get_after() {
 		return isset( $this->extra['after'] ) ? $this->extra['after'] : array();
+	}
+
+	/**
+	 * Return after attribute
+	 *
+	 * @return array
+	 */
+	public function get_before() {
+		return isset( $this->extra['before'] ) ? $this->extra['before'] : array();
 	}
 
 	/**

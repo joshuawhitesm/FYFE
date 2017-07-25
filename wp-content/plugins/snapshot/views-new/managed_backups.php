@@ -6,7 +6,8 @@ $storage_status = array(
 	'total' => Snapshot_Model_Full_Remote_Storage::get()->get_total_remote_space(),
 );
 
-$percentage = $storage_status['used'] * 100 / $storage_status['total'];
+$percentage = $storage_status['used'] ? round( ( $storage_status['used'] / $storage_status['total'] ) * 100, 1 ) : 0;
+if ( $percentage > 100 ) $percentage = 100;
 
 $data = array(
 	'snapshots' => $backups,
@@ -62,7 +63,7 @@ $model = new Snapshot_Model_Full_Backup();
 							</div>
 
 							<div class="wps-summary-text">
-								<h1><?php echo size_format( intval( $storage_status['used'] ) ) ?>
+								<h1><?php echo $storage_status['used'] ? size_format( $storage_status['used'], 1 ) : 0 ; ?>
 									/ <?php echo size_format( $storage_status['total'] ) ?></h1>
 								<h5><?php _e( 'Cloud Storage Used', SNAPSHOT_I18N_DOMAIN ); ?></h5>
 							</div>

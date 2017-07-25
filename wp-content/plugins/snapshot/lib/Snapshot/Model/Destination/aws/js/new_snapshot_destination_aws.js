@@ -1,5 +1,5 @@
 jQuery(document).ready( function($) {
-	
+
 	jQuery("select#snapshot-destination-region").change(function() {
 		// console.log('changed');
 		if (jQuery(this).val() == 'other') {
@@ -12,17 +12,17 @@ jQuery(document).ready( function($) {
 	jQuery("button#snapshot-destination-test-connection").click(function() {
 
 		var destination_type 		= jQuery('input#snapshot-destination-type').val();
-	
+
 		jQuery( "#snapshot-ajax-destination-test-result" ).html('');
 		jQuery( "#snapshot-ajax-destination-test-result" ).addClass('snapshot-loading');
-		jQuery( "#snapshot-ajax-destination-test-result" ).show();		
+		jQuery( "#snapshot-ajax-destination-test-result" ).show();
 
 		var destination_info = new Object;
 
 		destination_info['type'] 		= jQuery('input#snapshot-destination-type').val();
 		if (destination_info['type'] == null)
 			destination_info['type'] = '';
-			
+
 		destination_info['name'] 		= jQuery('input#snapshot-destination-name').val();
 		if (destination_info['name'] == null)
 			destination_info['name'] = '';
@@ -32,7 +32,6 @@ jQuery(document).ready( function($) {
 			destination_info['awskey'] = '';
 
 		destination_info['ssl'] 		= jQuery('input#snapshot-destination-ssl:checked').val();
-		console.log( destination_info['ssl']  );
 		if (destination_info['ssl'] == null)
 			destination_info['ssl'] = 'no';
 
@@ -62,7 +61,7 @@ jQuery(document).ready( function($) {
 
 		if (jQuery('span#snapshot-destination-bucket-display').is(':visible')) {
 			destination_info['bucket'] 		= jQuery('span#snapshot-destination-bucket-display').html();
-		} else if (jQuery('select#snapshot-destination-bucket-list').is(':visible')) {
+		} else if (jQuery('.select-list-container').is(':visible')) {
 			destination_info['bucket'] 		= jQuery('select#snapshot-destination-bucket-list').val();
 		}
 		if (destination_info['bucket'] == null)
@@ -81,9 +80,9 @@ jQuery(document).ready( function($) {
 			dataType: 'json',
 	        success: function(reply_data) {
 				jQuery( "#snapshot-ajax-destination-test-result" ).removeClass('snapshot-loading');
-		
+
 				if (reply_data['errorStatus'] != undefined) {
-			
+
 					if (reply_data['errorStatus'] == false) {
 
 						if (reply_data['responseArray']) {
@@ -91,7 +90,7 @@ jQuery(document).ready( function($) {
 							jQuery( "#snapshot-ajax-destination-test-result" ).append('<p>'+message+'</p>');
 							jQuery( "#snapshot-ajax-destination-test-result" ).show();
 						}
-				
+
 					} else {
 						if (reply_data['errorArray']) {
 							var message = reply_data['responseArray'].join('<br />');
@@ -113,7 +112,7 @@ jQuery(document).ready( function($) {
 		destination_info['type'] 		= jQuery('input#snapshot-destination-type').val();
 		if (destination_info['type'] == null)
 			destination_info['type'] = '';
-			
+
 		destination_info['name'] 		= jQuery('input#snapshot-destination-name').val();
 		if (destination_info['name'] == null)
 			destination_info['name'] = '';
@@ -140,7 +139,7 @@ jQuery(document).ready( function($) {
 
 		if (jQuery('span#snapshot-destination-bucket-display').is(':visible')) {
 			destination_info['bucket'] 		= jQuery('span#snapshot-destination-bucket-display').html();
-		} else if (jQuery('select#snapshot-destination-bucket-list').is(':visible')) {
+		} else if (jQuery('.select-list-container').is(':visible')) {
 			destination_info['bucket'] 		= jQuery('select#snapshot-destination-bucket-list').val();
 		}
 		if (destination_info['bucket'] == null)
@@ -163,9 +162,9 @@ jQuery(document).ready( function($) {
 			dataType: 'json',
 	        success: function(reply_data) {
 				jQuery( "#snapshot-ajax-destination-bucket-error" ).removeClass('snapshot-loading');
-		
+
 				if (reply_data['errorStatus'] != undefined) {
-			
+
 					if (reply_data['errorStatus'] == false) {
 						jQuery( "#snapshot-ajax-destination-bucket-error" ).hide();
 
@@ -184,7 +183,7 @@ jQuery(document).ready( function($) {
 						}
 					}
 				}
-		
+
 //				jQuery('select#snapshot-destination-bucket-list').html(buckets_html);
 //				jQuery('span#snapshot-destination-bucket-display').hide();
 //				jQuery('select#snapshot-destination-bucket-list').show();

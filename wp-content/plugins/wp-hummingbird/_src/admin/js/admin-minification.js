@@ -32,6 +32,7 @@ import RowsCollection from './minification/RowsCollection';
             if ( this.$checkFilesButton.length ) {
                 this.$checkFilesButton.click( function( e ) {
                     e.preventDefault();
+					window.WDP.showOverlay("#check-files-modal", { class: 'wphb-modal small wphb-progress-modal no-close' } );
                     $(this).attr('disabled', true);
                     self.checkFiles( getLink( 'minification' ) );
                 });

@@ -98,7 +98,7 @@
 
         // toggle checkboxes
         jQuery('#minification-bulk-file').on('click', function() {
-            const checkBoxes = jQuery('input[class=wphb-minification-file-selector]');
+            var checkBoxes = jQuery('input[class=wphb-minification-file-selector]');
             checkBoxes.prop('checked', !checkBoxes.prop('checked'));
         });
     })

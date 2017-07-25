@@ -8,16 +8,16 @@
 			});
 
 			jQuery('.save-batch').on('click', function() {
-				const filesCollection = WPHB_Admin.minification.rowsCollection;
+				var filesCollection = WPHB_Admin.minification.rowsCollection;
 
-				const modal = jQuery( '#bulk-update-modal' );
+				var modal = jQuery( '#bulk-update-modal' );
 				// Get the selected batch status
-				let minify = modal.find( 'input.filter-minify' ).prop( 'checked' ),
+				var minify = modal.find( 'input.filter-minify' ).prop( 'checked' ),
 					combine = modal.find( 'input.filter-combine').prop('checked'),
 					footer = modal.find( 'input.filter-position-footer' ).prop( 'checked' ),
 					selectedFiles = filesCollection.getSelectedItems();
 
-				for ( let i in selectedFiles ) {
+				for ( var i in selectedFiles ) {
 					selectedFiles[i].change( 'minify', minify );
 					selectedFiles[i].change( 'combine', combine );
 					selectedFiles[i].change( 'footer', footer );

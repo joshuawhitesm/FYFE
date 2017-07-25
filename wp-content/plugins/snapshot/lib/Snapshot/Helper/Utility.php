@@ -2047,9 +2047,6 @@ if ( ! class_exists( 'Snapshot_Helper_Utility' ) ) {
 					'test' => version_compare(PHP_VERSION, '5.2') >= 0,
 					'value' => PHP_VERSION
 				),
-				'OpenBasedir' => array(
-					'test' => !ini_get('open_basedir'),
-				),
 				'MaxExecTime' => array(
 					'test' => 0 === (int)ini_get('max_execution_time') || (int)ini_get('max_execution_time') >= 150,
 					'value' => (int)ini_get('max_execution_time'),

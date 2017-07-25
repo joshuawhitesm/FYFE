@@ -8,7 +8,7 @@ import Fetcher from './utils/fetcher';
             this.email = settings.email;
             this.apiKey = settings.apiKey;
             this.$stepsContainer = $('#cloudflare-steps');
-            this.$infoBox = $('#cloudflare-info');
+            this.$infoBox = $( '#cloudflare-info' );
             this.$spinner = $( '.cloudflare-spinner' );
             this.$deactivateButton = $('#wphb-box-dashboard-cloudflare').find('.box-title .buttons');
 
@@ -76,7 +76,7 @@ import Fetcher from './utils/fetcher';
             });
 
             this.$stepsContainer.find( 'select' ).each( function() {
-                WDP.wpmuSelect( this );
+				window.WDP.wpmuSelect( this );
             });
 
             if ( 'final' === this.currentStep ) {
@@ -94,7 +94,7 @@ import Fetcher from './utils/fetcher';
         showInfoBox: function( message ) {
             this.$infoBox.addClass( 'wphb-notice' );
             this.$infoBox.addClass( 'wphb-notice-error' );
-            this.$infoBox.text( message );
+            this.$infoBox.html( message + '' );
         },
 
         showSpinner: function() {

@@ -20,9 +20,9 @@
 					<div class="minification-main-screen">
 						<?php $this->do_meta_boxes( 'main' ); ?>
 
-						<?php if ( $this->has_meta_boxes( 'main-2' ) ): ?>
+						<?php if ( $this->has_meta_boxes( 'main-2' ) ) : ?>
 							<div class="wphb-notice wphb-notice-box no-top-space">
-								<p><?php _e( 'Hummingbird will combine your files as best it can, however, depending on your settings, combining all your files might not be possible. What you see here is the best output Hummingbird can muster!', 'wphb' ); ?></p>
+								<p><?php esc_html_e( 'Hummingbird will combine your files as best it can, however, depending on your settings, combining all your files might not be possible. What you see here is the best output Hummingbird can muster!', 'wphb' ); ?></p>
 							</div>
 							<?php $this->do_meta_boxes( 'main-2' ); ?>
 						<?php endif; ?>
@@ -46,9 +46,9 @@ wphb_membership_modal();
 
 <script>
 	jQuery(document).ready( function() {
-		var module = WPHB_Admin.getModule( 'minification' );
-		<?php if ( isset( $_GET['run'] ) ): ?>
-		module.$checkFilesButton.trigger( 'click' );
+		var module = window.WPHB_Admin.getModule( 'minification' );
+		<?php if ( isset( $_GET['run'] ) ) : ?>
+			module.$checkFilesButton.trigger( 'click' );
 		<?php endif; ?>
 	});
 </script>

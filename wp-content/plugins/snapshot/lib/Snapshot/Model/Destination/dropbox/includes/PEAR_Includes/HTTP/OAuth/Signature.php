@@ -55,7 +55,7 @@ abstract class HTTP_OAuth_Signature
         include_once $file;
 
         if (class_exists($class) === false) {
-            throw new InvalidArgumentException('No such signature class');		 	  		   			   	 
+            throw new InvalidArgumentException('No such signature class');
         }
 
         $instance = new $class;

@@ -19,6 +19,21 @@
 /* ****************************************************************************
  * 1. EXTEND/OVERRIDE WPMUDEV DASHBOARD/WP STYLES
  */
+/* Overwrite for the default notifications */
+button.notice-dismiss {
+	position: absolute;
+	top: 0;
+	right: 1px;
+	border: none !important;
+	margin: 0 !important;
+	padding: 9px !important;
+	background: none !important;
+	color: #72777c !important;
+	cursor: pointer !important;
+}
+.wpmud #wpbody-content > .notice {
+	margin: 5px 20px 2px 5px;
+}
 /* Fix for overflowing tooltips start */
 .wpmud .list-table > tbody > tr > td {
 	z-index: 0;
@@ -93,8 +108,9 @@
 	line-height: inherit;
 }
 .wpmud #header {
+	position: relative;
 	margin-bottom: 0;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 .wpmud #header h1 {
 	color: #333333;
@@ -116,10 +132,11 @@
 }
 .wpmud #header .actions.status {
 	left: 200px;
-	margin-top: 36px;
+	margin-top: 1px;
 }
 .wpmud .wrap-wphb-uptime > #header .actions.status {
 	left: 120px;
+	margin-top: 1px !important;
 }
 .wpmud #header .actions.status [tooltip]:after {
 	margin-left: 27px;
@@ -133,12 +150,10 @@
 }
 .wpmud #header .actions {
 	position: absolute;
-	top: 0;
-	right: 0;
-	margin-top: 35px;
-	margin-right: 20px;
 	display: flex;
 	align-items: center;
+	top: 5px;
+	right: 0;
 }
 .wpmud #header .actions > * {
 	display: inline-block;
@@ -3336,9 +3351,10 @@ div.wphb-block-entry {
 	.wpmud #header .actions {
 		float: none;
 	}
-	.wpmud #header .actions:last-child {
+	.wpmud #header .actions:not(.status):last-child {
 		position: relative;
-		margin-top: 20px !important;
+		float: right;
+		margin: 0 0 20px !important;
 	}
 	.wpmud #header .actions:last-child > a {
 		margin-left: 0;
@@ -3654,6 +3670,22 @@ div.wphb-block-entry {
 		border-right-color: transparent;
 	}
 
+	/* Performance reports */
+	.wpmud .wrap-wphb-performance .recipient,
+	.wpmud .wrap-wphb-performance .recipient .name,
+	.wpmud .wrap-wphb-performance .add-recipient {
+		flex-flow: row wrap;
+	}
+	.wpmud .wrap-wphb-performance .add-recipient > button,
+	.wpmud .wrap-wphb-performance .add-recipient #wphb-first-name {
+		border-radius: 0 !important;
+		margin-bottom: 5px;
+		border: 1px solid #E6E6E6;
+	}
+	.wpmud .wrap-wphb-performance .add-recipient > button {
+		margin-top: 10px !important;
+	}
+
 }
 
 /* HELPER CLASSES */
@@ -3669,4 +3701,4 @@ div.wphb-block-entry {
 }
 
 
-/* 432097-1499089851-ai */
+/* 432097-1500968841-au */

@@ -86,7 +86,7 @@ class WP_Hummingbird_Module_Minify extends WP_Hummingbird_Module {
 		$group = WP_Hummingbird_Module_Minify_Group::get_instance_by_post_id( $post_id );
 
 		if ( is_a( $group, 'WP_Hummingbird_Module_Minify_Group'  ) && $group->file_id ) {
-			if ( $group->get_file_path() ) {
+			if ( $group->get_file_path() && file_exists( $group->get_file_path() ) ) {
 				wp_delete_file( $group->get_file_path() );
 			}
 			wp_cache_delete( 'wphb_minify_groups' );
@@ -252,8 +252,11 @@ class WP_Hummingbird_Module_Minify extends WP_Hummingbird_Module {
 			// If we aren't in footer, remove handles that need to go to footer
 			if ( ! self::is_in_footer() && isset ( $wp_dependencies->registered[ $handle ]->extra['group'] ) && $wp_dependencies->registered[ $handle ]->extra['group'] ) {
 				$this->to_footer[$type][] = $handle;
+				unset( $handles[ $key ] );
 			}
 		}
+
+		$handles = array_values( $handles );
 
 		$return_to_wp = array();
 
@@ -271,12 +274,6 @@ class WP_Hummingbird_Module_Minify extends WP_Hummingbird_Module {
 		array_map(array( $groups_list, 'add_group' ), $_groups );
 
 		unset( $_groups );
-
-		$this->attach_inline_attribute( $groups_list, $wp_dependencies );
-
-		if ( 'scripts' === $type ) {
-			$this->attach_scripts_localization( $groups_list, $wp_dependencies );
-		}
 
 
 		// Time to split the groups if we're not combining some of them
@@ -366,10 +363,14 @@ class WP_Hummingbird_Module_Minify extends WP_Hummingbird_Module {
 			}
 		}
 
+		if ( 'scripts' === $type ) {
+			$this->attach_scripts_localization( $groups_list, $wp_dependencies );
+		}
+		$this->attach_inline_attribute( $groups_list, $wp_dependencies );
+
 		// Parse dependencies, load files and mark groups as ready,process or only-handles
 		// Watch out! Groups must not be changed after this point
 		$groups_list->preprocess_groups();
-
 
 		foreach ( $groups_list->get_groups() as $group ) {
 			$group_status = $groups_list->get_group_status( $group->hash );
@@ -487,11 +488,16 @@ class WP_Hummingbird_Module_Minify extends WP_Hummingbird_Module {
 				$new_group = new WP_Hummingbird_Module_Minify_Group();
 				$new_group->set_type( $type );
 				foreach ( $registered_dependency->extra as $key => $value ) {
+					if ( 'data' === $key ) {
+						// We'll do this later as it can cause duplicated data in different groups
+						continue;
+					}
 					$new_group->add_extra( $key, $value );
 				}
 
 				// We'll treat this later
 				$new_group->delete_extra( 'after' );
+				$new_group->delete_extra( 'before' );
 
 				$new_group->set_args( $registered_dependency->args );
 
@@ -542,13 +548,18 @@ class WP_Hummingbird_Module_Minify extends WP_Hummingbird_Module {
 		$registered = $wp_dependencies->registered;
 		$extras = wp_list_pluck( $registered, 'extra' );
 		$after = wp_list_pluck( array_filter( $extras, array( $this, '_filter_after_after_attribute' ) ), 'after' );
+		$before = wp_list_pluck( array_filter( $extras, array( $this, '_filter_after_before_attribute' ) ), 'before' );
 
-		array_map( function( $group ) use ( $groups_list, $after ) {
+		array_map( function( $group ) use ( $groups_list, $after, $before ) {
 			/** @var WP_Hummingbird_Module_Minify_Group $group */
-			array_map( function( $handle ) use ( $after, $group ) {
+			array_map( function( $handle ) use ( $after, $group, $before ) {
 				if ( isset( $after[ $handle ] ) ) {
 					// Add!
 					$group->add_after( $after[ $handle ] );
+				}
+				if ( isset( $before[ $handle ] ) ) {
+					// Add!
+					$group->add_before( $before[ $handle ] );
 				}
 			}, $group->get_handles() );
 		}, $groups_list->get_groups() );
@@ -589,6 +600,18 @@ class WP_Hummingbird_Module_Minify extends WP_Hummingbird_Module {
 	public function _filter_after_after_attribute( $a ) {
 		if ( isset ( $a['after'] ) ) {
 			return $a['after'];
+		}
+		return false;
+	}
+
+	/**
+	 * Filter a list of dependencies returning their 'before' attribute inside 'extra' list
+	 *
+	 * @internal
+	 */
+	public function _filter_after_before_attribute( $a ) {
+		if ( isset ( $a['before'] ) ) {
+			return $a['before'];
 		}
 		return false;
 	}
@@ -777,6 +800,7 @@ class WP_Hummingbird_Module_Minify extends WP_Hummingbird_Module {
 		foreach ( $option_names as $name ) {
 			delete_option( $name );
 		}
+
 
 		WP_Hummingbird_Sources_Collector::clear_collection();
 

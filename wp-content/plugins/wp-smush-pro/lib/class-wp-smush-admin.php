@@ -427,9 +427,10 @@ if ( ! class_exists( 'WpSmushitAdmin' ) ) {
 				//Localize smushit_ids variable, if there are fix number of ids
 				$this->unsmushed_attachments = ! empty( $_REQUEST['ids'] ) ? array_map( 'intval', explode( ',', $_REQUEST['ids'] ) ) : array();
 
-				if( empty( $this->unsmushed_attachments ) ) {
+				if ( empty( $this->unsmushed_attachments ) ) {
 					//Get attachments if all the images are not smushed
 					$this->unsmushed_attachments = $this->remaining_count > 0 ? $wpsmush_db->get_unsmushed_attachments() : array();
+					$this->unsmushed_attachments = ! empty( $this->unsmushed_attachments ) && is_array( $this->unsmushed_attachments ) ? array_values( $this->unsmushed_attachments ) : $this->unsmushed_attachments;
 				}
 
 				//Array of all smushed, unsmushed and lossless ids
@@ -652,7 +653,6 @@ if ( ! class_exists( 'WpSmushitAdmin' ) ) {
 					if ( $should_resize = apply_filters( 'wp_smush_resize_media_image', true, $attachment_id ) ) {
 						$updated_meta  = $this->resize_image( $attachment_id, $original_meta );
 						$original_meta = ! empty( $updated_meta ) ? $updated_meta : $original_meta;
-						wp_update_attachment_metadata( $attachment_id, $original_meta );
 					}
 
 					global $wpsmush_pngjpg;
@@ -661,6 +661,7 @@ if ( ! class_exists( 'WpSmushitAdmin' ) ) {
 					$original_meta = $wpsmush_pngjpg->png_to_jpg( $attachment_id, $original_meta );
 
 					$smush = $WpSmush->resize_from_meta_data( $original_meta, $attachment_id );
+					wp_update_attachment_metadata( $attachment_id, $original_meta );
 				}
 
 				//Delete Transient
@@ -1593,9 +1594,9 @@ if ( ! class_exists( 'WpSmushitAdmin' ) ) {
 
 			}
 
+			$image_count = $super_smushed_count = $smushed_count = 0;
 			//Check if any of the smushed image needs to be resmushed
 			if ( ! empty( $attachments ) && is_array( $attachments ) ) {
-				$image_count = $super_smushed_count = $smushed_count = 0;
 				$stats       = array(
 					'size_before'        => 0,
 					'size_after'         => 0,
@@ -1750,11 +1751,14 @@ if ( ! class_exists( 'WpSmushitAdmin' ) ) {
 			//Append the directory smush stats
             $dir_smush_stats = get_option('dir_smush_stats');
 			if ( ! empty( $dir_smush_stats ) && is_array( $dir_smush_stats ) ) {
-				$dir_smush_stats      = $dir_smush_stats['dir_smush'];
-				$image_count          += $dir_smush_stats['optimised'];
+
+				if ( ! empty( $dir_smush_stats['dir_smush'] ) && ! empty( $dir_smush_stats['optimised'] ) ) {
+					$dir_smush_stats = $dir_smush_stats['dir_smush'];
+					$image_count += $dir_smush_stats['optimised'];
+				}
 
 				//Add directory smush stats if not empty
-				if ( ! empty( $dir_smush_stats ) && ! empty( $dir_smush_stats['orig_size'] ) ) {
+				if ( ! empty( $dir_smush_stats['image_size'] ) && ! empty( $dir_smush_stats['orig_size'] ) ) {
 					$stats['size_before'] += $dir_smush_stats['orig_size'];
 					$stats['size_after']  += $dir_smush_stats['image_size'];
 				}

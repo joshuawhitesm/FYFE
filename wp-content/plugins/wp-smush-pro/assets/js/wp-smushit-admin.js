@@ -196,7 +196,7 @@ jQuery(function ($) {
             this.$button.prop("disabled", false);
             //For Bulk process, Enable other buttons
             $('button.wp-smush-all').removeAttr('disabled');
-            $('button.wp-smush-scan').removeAttr('disabled');
+            $('button.wp-smush-scan, button.wp-smush-lossy-enable, button.wp-smush-resize-enable, input#wp-smush-save-settings').removeAttr('disabled');
         };
 
         this.show_loader = function () {
@@ -564,7 +564,7 @@ jQuery(function ($) {
         $('.wp-smush-notice.wp-smush-settings-updated').remove();
 
         //Disable Resmush and scan button
-        $('.wp-resmush.wp-smush-action, .wp-smush-scan, .wp-smush-button').attr('disabled', 'disabled');
+        $('.wp-resmush.wp-smush-action, .wp-smush-scan, .wp-smush-button, button.wp-smush-lossy-enable, button.wp-smush-resize-enable, input#wp-smush-save-settings').attr('disabled', 'disabled');
 
         //Check for ids, if there is none (Unsmushed or lossless), don't call smush function
         if (typeof wp_smushit_data == 'undefined' ||
@@ -1308,7 +1308,7 @@ jQuery(function ($) {
                 var pro_savings_percent = smush_pro_savings.find('.wp-smush-stats-percent');
                 var pro_savings_bytes = smush_pro_savings.find('.wp-smush-stats-human');
                 if (pro_savings_percent.length > 0 && 'undefined' != typeof (wp_smushit_data.pro_savings.percent) && wp_smushit_data.pro_savings.percent != '') {
-                    pro_savings_percent.html(_res.data.stats.pro_savings.percent);
+                    pro_savings_percent.html(wp_smushit_data.pro_savings.percent);
                 }
                 if (pro_savings_bytes.length > 0 && 'undefined' != typeof (wp_smushit_data.pro_savings.savings_bytes) && wp_smushit_data.pro_savings.savings_bytes != '') {
                     pro_savings_bytes.html(wp_smushit_data.pro_savings.savings_bytes);

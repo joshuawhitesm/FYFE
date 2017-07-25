@@ -4,14 +4,14 @@ $item = 0;
 
 if ( isset( $_REQUEST['snapshot-action'] ) ) {
 
-	if ( sanitize_text_field( $_REQUEST['snapshot-action'] ) == "edit" ) {
+	if ( sanitize_text_field( $_REQUEST['snapshot-action'] ) == 'edit' ) {
 		if ( isset( $_REQUEST['item'] ) ) {
 			$item_key = sanitize_text_field( $_REQUEST['item'] );
 			if ( isset( WPMUDEVSnapshot::instance()->config_data['destinations'][ $item_key ] ) ) {
 				$item = WPMUDEVSnapshot::instance()->config_data['destinations'][ $item_key ];
 			}
 		}
-	} else if ( sanitize_text_field( $_REQUEST['snapshot-action'] ) == "add" ) {
+	} elseif ( sanitize_text_field( $_REQUEST['snapshot-action'] ) == 'add' ) {
 		unset( $item );
 		$item = array();
 
@@ -22,8 +22,7 @@ if ( isset( $_REQUEST['snapshot-action'] ) ) {
 		if ( isset( $_REQUEST['type'] ) ) {
 			$item['type'] = sanitize_text_field( $_REQUEST['type'] );
 		}
-
-	} else if ( sanitize_text_field( $_REQUEST['snapshot-action'] ) == "update" ) {
+	} elseif ( sanitize_text_field( $_REQUEST['snapshot-action'] ) == 'update' ) {
 		if ( isset( $_POST['snapshot-destination'] ) ) {
 			$item = $_POST['snapshot-destination'];
 		}
@@ -31,13 +30,10 @@ if ( isset( $_REQUEST['snapshot-action'] ) ) {
 }
 
 /* Build the URL to submit the form to */
-$form_url = add_query_arg(
-	array(
-		'snapshot-action' => sanitize_text_field( $_GET['snapshot-action'] ),
-		'type' => urlencode( $item['type'] ),
-	),
-	WPMUDEVSnapshot::instance()->snapshot_get_pagehook_url('snapshots-newui-destinations')
-);
+$form_url = add_query_arg( array(
+	'snapshot-action' => sanitize_text_field( $_GET['snapshot-action'] ),
+	'type'            => urlencode( $item['type'] ),
+), WPMUDEVSnapshot::instance()->snapshot_get_pagehook_url( 'snapshots-newui-destinations' ) );
 
 if ( 'edit' === $_GET['snapshot-action'] || 'update' === $_GET['snapshot-action'] ) {
 	$form_url = add_query_arg( 'item', sanitize_text_field( $_GET['item'] ), $form_url );
@@ -50,42 +46,71 @@ if ( 'dropbox' === $item['type'] && isset( $_GET['dropbox-authenticated'] ) ) {
 ?>
 
 <section id="header">
-	<h1><?php esc_html_e( 'Destinations', SNAPSHOT_I18N_DOMAIN ); ?></h1>
+    <h1><?php esc_html_e( 'Destinations', SNAPSHOT_I18N_DOMAIN ); ?></h1>
 </section>
 
 <div id="container" class="snapshot-three wps-page-destinations">
 
-	<section id="wps-destinations-wizard" class="box">
+    <section id="wps-destinations-wizard" class="box">
 
-		<div class="box-title has-button">
+        <div class="box-title has-button">
 
-			<h3><?php _e( 'Destination Info', SNAPSHOT_I18N_DOMAIN ) ?></h3>
+            <h3><?php _e( 'Destination Info', SNAPSHOT_I18N_DOMAIN ); ?></h3>
 
-			<a class="button button-small button-outline button-gray" href="<?php echo WPMUDEVSnapshot::instance()->snapshot_get_pagehook_url( 'snapshots-newui-destinations' ); ?>"><?php _e( 'Back', SNAPSHOT_I18N_DOMAIN ) ?></a>
+            <a class="button button-small button-outline button-gray"
+               href="<?php echo WPMUDEVSnapshot::instance()->snapshot_get_pagehook_url( 'snapshots-newui-destinations' ); ?>"><?php _e( 'Back', SNAPSHOT_I18N_DOMAIN ); ?></a>
 
-		</div>
+        </div>
 
-		<div class="box-content">
+        <div class="box-content">
 
-			<div class="row">
+            <div class="row">
 
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-					<?php if ( $item ) : ?>
+					<?php
+					if ( $item ) :
 
-						<form action="<?php echo esc_url( $form_url ); ?>" method="post">
+						$type = 'local';
 
-							<?php if ( ( sanitize_text_field( $_GET['snapshot-action'] ) == "edit" ) || ( sanitize_text_field( $_GET['snapshot-action'] ) == "update" ) ) : ?>
+						if ( isset( $_REQUEST['snapshot-action'] ) && isset( $_REQUEST['type'] ) ) {
+							$type = sanitize_text_field( $_REQUEST['type'] );
+						}
 
-								<input type="hidden" name="snapshot-action" value="update"/>
+						if ( ! in_array( $type, array(
+							'aws',
+							'dropbox',
+							'google-drive',
+							'ftp',
+						) )
+						) {
+							$type = 'local';
+						}
 
-								<input type="hidden" name="item" value="<?php echo sanitize_text_field( $_GET['item'] ); ?>"/>
+						$target = 'target="_self"';
+						if ( $type == 'dropbox' ) {
+							if ( ! isset( $item['tokens']['access']['authorization_token'], $item['tokens']['access']['access_token'] ) || empty( $item['tokens']['access']['authorization_token'] ) ) {
+								$target = 'target="_blank"';
+							}
+						}
+						?>
+                        <form action="<?php echo esc_url( $form_url ); ?>" method="post" <?php echo $target; ?>>
+
+							<?php
+							$snapshot_action = sanitize_text_field( $_GET['snapshot-action'] );
+							if ( ( 'edit' == $snapshot_action ) || ( 'update' == $snapshot_action ) ) :
+								?>
+
+                                <input type="hidden" name="snapshot-action" value="update"/>
+
+                                <input type="hidden" name="item"
+                                       value="<?php echo sanitize_text_field( $_GET['item'] ); ?>"/>
 
 								<?php wp_nonce_field( 'snapshot-update-destination', 'snapshot-noonce-field' ); ?>
 
-							<?php elseif ( sanitize_text_field( $_GET['snapshot-action'] ) == "add" ) : ?>
+							<?php elseif ( 'add' == $snapshot_action ) : ?>
 
-								<input type="hidden" name="snapshot-action" value="add"/>
+                                <input type="hidden" name="snapshot-action" value="add"/>
 
 								<?php wp_nonce_field( 'snapshot-add-destination', 'snapshot-noonce-field' ); ?>
 
@@ -93,18 +118,8 @@ if ( 'dropbox' === $item['type'] && isset( $_GET['dropbox-authenticated'] ) ) {
 
 							<?php
 
-							$type = 'local';
-
-							if ( isset( $_REQUEST['snapshot-action'] ) && isset( $_REQUEST['type'] ) ) {
-								$type = sanitize_text_field( $_REQUEST['type'] );
-							}
-
-							if ( ! in_array( $type, array( 'aws', 'dropbox', 'google-drive', 'ftp' ) ) ) {
-								$type = 'local';
-							}
-
 							if ( 'local' === $type ) {
-								$item_object = new stdClass();
+								$item_object   = new stdClass();
 								$backup_folder = WPMUDEVSnapshot::instance()->config_data['config']['backupFolder'];
 								$backup_folder = isset( $backup_folder ) ? $backup_folder : 'snapshots';
 
@@ -112,84 +127,97 @@ if ( 'dropbox' === $item['type'] && isset( $_GET['dropbox-authenticated'] ) ) {
 
 							} else {
 								$item_object = Snapshot_Model_Destination::get_object_from_type( $type );
-								$item_object->init();
+								if( $item_object !== null ){
+									$item_object->init();
+								}
 							}
 
-							$this->render( "destinations/add/$type", false, array( 'item' => $item, 'item_object' => $item_object ), false, false, false );
+							if ( strpos( $type, 'dropbox' ) !== false && version_compare( phpversion(), '5.5.0', '<' ) ) {
+								$this->render( "destinations/add/dropbox-error", false, array(
+									'item'        => $item,
+								), false, false, false );
+							} else {
+								$this->render( "destinations/add/$type", false, array(
+									'item'        => $item,
+									'item_object' => $item_object,
+								), false, false, false );
+							}
 
 							?>
+							<?php if ( strpos( $type, 'dropbox' ) !== false && version_compare( phpversion(), '5.5.0', '<' ) ) : ?>
+								<div class="form-footer"></div>
+							<?php else : ?>
+                            <div class="form-footer">
 
-							<div class="form-footer">
+								<?php
+								if ( ( 'edit' == $snapshot_action || 'update' == $snapshot_action ) && 'local' !== $item['type'] ) :
+									?>
 
-								<?php if ( ( sanitize_text_field( $_GET['snapshot-action'] ) == "edit" || sanitize_text_field( $_GET['snapshot-action'] ) == "update" ) && $item['type'] !== 'local' ) : ?>
-
-									<div class="form-col"><a id="wps-destination-delete" class="button button-outline button-gray" href="#"><?php _e( 'Delete', SNAPSHOT_I18N_DOMAIN ); ?></a></div>
+                                    <div class="form-col"><a id="wps-destination-delete"
+                                                             class="button button-outline button-gray"
+                                                             href="#"><?php _e( 'Delete', SNAPSHOT_I18N_DOMAIN ); ?></a>
+                                    </div>
 
 									<?php
 									$popup_warning_data = array(
-										'popup_id' => "wps-destination-warning",
-										'popup_title' => __( 'Remove Destination', SNAPSHOT_I18N_DOMAIN ),
-										'popup_content' => sprintf(
-												__( "You are deleting the destination <strong>%s</strong>. This destination has %d archives in it, are you sure you wish to remove it? You will still be able to access any archives at the destinations using the %s interface.", SNAPSHOT_I18N_DOMAIN ),
-												$item['name'], Snapshot_Model_Destination::get_destination_item_count( sanitize_text_field( $_GET['item'] ) ),
-												Snapshot_Model_Destination::get_destination_nice_name( sanitize_text_field( $item['type'] ) )
-										),
+										'popup_id'           => 'wps-destination-warning',
+										'popup_title'        => __( 'Remove Destination', SNAPSHOT_I18N_DOMAIN ),
+										'popup_content'      => sprintf( __( "You are deleting the destination <strong>%s</strong>. This destination has %d archives in it, are you sure you wish to remove it? You will still be able to access any archives at the destinations using the %s interface.", SNAPSHOT_I18N_DOMAIN ), $item['name'], Snapshot_Model_Destination::get_destination_item_count( sanitize_text_field( $_GET['item'] ) ), Snapshot_Model_Destination::get_destination_nice_name( sanitize_text_field( $item['type'] ) ) ),
 										'popup_action_title' => __( 'Remove', SNAPSHOT_I18N_DOMAIN ),
-										'popup_action_url' => add_query_arg( array(
-											'snapshot-action' => 'delete',
-											'item' => $item_key,
+										'popup_action_url'   => add_query_arg( array(
+											'snapshot-action'       => 'delete',
+											'item'                  => $item_key,
 											'snapshot-noonce-field' => wp_create_nonce( 'snapshot-delete-destination' ),
 										), WPMUDEVSnapshot::instance()->snapshot_get_pagehook_url( 'snapshots-newui-destinations' ) ),
 										'popup_cancel_title' => __( 'Cancel', SNAPSHOT_I18N_DOMAIN ),
-										'popup_cancel_url' => '#',
+										'popup_cancel_url'   => '#',
 									);
 
-									$this->render( 'boxes/modals/popup-warning', false, $popup_warning_data, false, false ); ?>
+									$this->render( 'boxes/modals/popup-warning', false, $popup_warning_data, false, false );
+									?>
 
-									<?php elseif ( sanitize_text_field( $_GET['snapshot-action'] ) == "add" ) : ?>
+								<?php elseif ( "add" == $snapshot_action ) : ?>
 
-										<div class="form-col">
+                                    <div class="form-col">
 
-											<a class="button button-outline button-gray" href="<?php echo WPMUDEVSnapshot::instance()->snapshot_get_pagehook_url( 'snapshots-newui-destinations' ); ?>"><?php _e( 'Cancel', SNAPSHOT_I18N_DOMAIN ); ?></a>
+                                        <a class="button button-outline button-gray"
+                                           href="<?php echo WPMUDEVSnapshot::instance()->snapshot_get_pagehook_url( 'snapshots-newui-destinations' ); ?>"><?php _e( 'Cancel', SNAPSHOT_I18N_DOMAIN ); ?></a>
 
-										</div>
+                                    </div>
 
-									<?php endif; ?>
+								<?php endif; ?>
 
-								<div class="form-col<?php if ( 'local' === $type ) { echo ' form-col-right'; } ?>">
+                                <div class="form-col<?php if ( 'local' == $type ) {
+									echo ' form-col-right';
+								} ?>">
 
-									<?php if ( sanitize_text_field( $_GET['snapshot-action'] ) == "add" && $type == 'dropbox' ) {
+									<?php
+									if ( 'dropbox' == $type ) {
+										?>
+                                        <input class="button button-blue" type="submit"
+                                               data-get-code-text="<?php _e( 'Get authorization code', SNAPSHOT_I18N_DOMAIN ); ?>"
+                                               data-save-text="<?php _e( 'Save Destination', SNAPSHOT_I18N_DOMAIN ); ?>"
+                                               data-authenticate-text="<?php _e( 'Authenticate', SNAPSHOT_I18N_DOMAIN ); ?>"
+                                               value="<?php _e( 'Get authorization code', SNAPSHOT_I18N_DOMAIN ); ?>"/>
+									<?php } else { ?>
+                                        <input class="button button-blue" type="submit" value="<?php _e( 'Save Destination', SNAPSHOT_I18N_DOMAIN ); ?>"/>
+									<?php } ?>
 
-										if ( isset( $_GET['dropbox-authorize'], $_GET['dropbox-authenticated'] ) ) { ?>
+                                </div>
 
-											<input class="button button-blue" type="submit" value="<?php _e( 'Save Destination', SNAPSHOT_I18N_DOMAIN ); ?>"/>
+                            </div>
+							<?php endif; ?>
 
-										<?php } else { ?>
-
-											<input class="button button-blue" type="submit" value="<?php _e( 'Authenticate', SNAPSHOT_I18N_DOMAIN ); ?>"/>
-
-										<?php }
-
-									} else { ?>
-
-										<input class="button button-blue" type="submit" value="<?php _e( 'Save Destination', SNAPSHOT_I18N_DOMAIN ); ?>"/> <?php
-
-									} ?>
-
-								</div>
-
-							</div>
-
-						</form>
+                        </form>
 
 					<?php endif; ?>
 
-				</div>
+                </div>
 
-			</div>
+            </div>
 
-		</div>
+        </div>
 
-	</section>
+    </section>
 
 </div>

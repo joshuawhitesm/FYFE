@@ -11,6 +11,7 @@ function Fetcher() {
         data.action = action;
         let args = { data, method };
         args.url = fetchUrl;
+        let Promise = require('es6-promise').Promise;
         return new Promise( ( resolve, reject ) => {
             jQuery.ajax( args ).done( resolve ).fail( reject );
         })

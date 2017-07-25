@@ -628,7 +628,7 @@
 					else
 						table_checked = '';
 
-					jQuery('div#snapshot-tables-' + table_type + '-set ul#snapshot-table-list-' + table_type).append('<li><input id="snapshot-tables-' + table_name + '" ' + table_checked + ' class="snapshot-table-item" type="checkbox" name="snapshot-tables[' + table_type + '][' + table_name + ']" value="' + table_name + '"> <label for="snapshot-tables-">' + table_name + '</label></li>');
+					jQuery('div#snapshot-tables-' + table_type + '-set ul#snapshot-table-list-' + table_type).append('<li class="wps-input--item"><div class="wps-input--checkbox"><input id="snapshot-tables-' + table_name + '" ' + table_checked + ' class="snapshot-table-item" type="checkbox" name="snapshot-tables[' + table_type + '][' + table_name + ']" value="' + table_name + '"><label for="snapshot-tables-' + table_name + '"></label></div><label for="snapshot-tables-' + table_name + '">' + table_name + '</label></li>');
 				}
 
 				if (tables_count > 0) {

@@ -32,6 +32,7 @@ class WP_Hummingbird_Dashboard_Page extends WP_Hummingbird_Admin_Page {
 			exit;
 		}
 	}
+
 	public function render_header() {
 		$clear_cache_url = add_query_arg( 'wphb-clear-files', 'true' );
 		$clear_cache_url = wp_nonce_url( $clear_cache_url, 'wphb-clear-files' );
@@ -177,7 +178,10 @@ class WP_Hummingbird_Dashboard_Page extends WP_Hummingbird_Admin_Page {
 		/* Uptime */
 		$uptime_module = wphb_get_module( 'uptime' );
 		$is_active = $uptime_module->is_active();
-		$report = wphb_uptime_get_last_report( 'week' );
+		$report = '';
+		if ( $is_active ) {
+			$report = wphb_uptime_get_last_report( 'week' );
+		}
 
 		if ( ! wphb_is_member() ) {
 			$this->add_meta_box( 'dashboard/uptime/no-membership', __( 'Uptime Monitoring', 'wphb' ), null, array( $this, 'dashboard_uptime_module_metabox_header' ), null, 'box-dashboard-right', array( 'box_class' => 'dev-box content-box content-box-one-col-center' ) );
@@ -216,9 +220,12 @@ class WP_Hummingbird_Dashboard_Page extends WP_Hummingbird_Admin_Page {
 
 		$uptime_module = wphb_get_module( 'uptime' );
 		$uptime_active = $uptime_module->is_active();
-		$uptime_report = wphb_uptime_get_last_report( 'week' );
+		$uptime_report = '';
+		if ( $uptime_active ) {
+			$uptime_report = wphb_uptime_get_last_report( 'week' );
+		}
 		$site_date = '';
-		if ( wphb_is_member() && $uptime_report ) {
+		if ( wphb_is_member() && isset( $uptime_report->up_since ) ) {
 			$gmt_date = date( 'Y-m-d H:i:s', $uptime_report->up_since );
 			$site_date = get_date_from_gmt( $gmt_date, get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) );
         }
@@ -510,10 +517,15 @@ class WP_Hummingbird_Dashboard_Page extends WP_Hummingbird_Admin_Page {
 
 		$smush_data = array( 'human' => '', 'percent' => 0 );
 		$unsmushed_images = 0;
-		if ( is_a( $wpsmushit_admin, 'WpSmushitAdmin' ) ) {
+		if ( is_a( $wpsmushit_admin, 'WpSmushitAdmin' ) && method_exists( $wpsmushit_admin, 'global_stats' ) ) {
+			/** @var WpSmushitAdmin $wpsmushit_admin */
 			$smush_data = $wpsmushit_admin->global_stats();
+		}
+		if ( is_a ( $wpsmush_db, 'WpSmushDB' ) && method_exists( $wpsmush_db, 'get_unsmushed_attachments' )) {
+			/** @var WpSmushDB $wpsmush_db */
 			$unsmushed_images = count( $wpsmush_db->get_unsmushed_attachments() );
 		}
+
 		$this->view(
 			'dashboard/smush/meta-box',
 			array(

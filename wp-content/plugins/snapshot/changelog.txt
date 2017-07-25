@@ -5,13 +5,24 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+3.1.3
+----------------------------------------------------------------------
+- New: Snapshot now uses V2 of Dropbox API.
+- New: Dropbox authentication uses OAuth 2 instead of OAuth 1, fallback system has been created for old destinations.
+- Dropbox destination now requires PHP 5.5 or newer.
+- Fix: Remove open basedir from Snapshot system check.
+- Fix: Fatal error when restoring snapshot on PHP 7.0
+- Fix: Remove PHP notice when restoring a Snapshot.
+- Fix: AWS Destination not displaying AWS Secret Access Key value.
+- Fix: AWS Destination not saving/updating Storage type/File permissions and Directory values.
+
 3.1.2
 ----------------------------------------------------------------------
-- Restored: Snapshots can be created from and restored to a specific subsite on WordPress multisite
-- New: The Snapshot name is included in the generated archive filename, for easier identification
-- New: An error message is displayed if uploading a Snapshot to a remote destination fails
-- New: Snapshot filenames are displayed when viewing the Snapshot's information
-- New: Display a single Snapshot overview after editing a Snapshot, rather than overview of all Snapshots
+- New: Snapshots can once again be created from and restored to a specific subsite on WordPress multisite
+- New: The Snapshot name is now included in the generated archive filename, for easier identification
+- New: An error message is displayed when uploading a snapshot to a remote destination fails
+- New: Snapshot filenames are now displayed when viewing snapshot's information
+- New: After editing a snapshot will redirect to viewing the snapshot information, instead of viewing all snapshots
 
 - Fix: Minor UI enhancements and fixes
 - Fix: Proper JavaScript not being loaded on some pages in the Network Admin
@@ -423,4 +434,4 @@ http://premium.wpmudev.org/forums/topic/need-to-turn-off-zlib-compression-for-it
 - Initial stable release
 
 
-432097-1499089802-ai
+432097-1500968846-au

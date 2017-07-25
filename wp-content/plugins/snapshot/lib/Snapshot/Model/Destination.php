@@ -90,7 +90,13 @@ abstract class Snapshot_Model_Destination {
 
 			foreach ( $snapshot_destination_files as $file ) {
 				//echo "file=[". $file ."]<br />";
-				include( $file );
+				if ( strpos( $file, 'dropbox' ) !== false ) {
+					if ( version_compare( phpversion(), '5.5.0', '>=' ) ) {
+						include( $file );
+					}
+				} else {
+					include( $file );
+				}
 			}
 		}
 		do_action( 'snapshot_destinations_loaded' );

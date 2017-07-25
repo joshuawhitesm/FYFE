@@ -4,6 +4,24 @@ Tested up to: 4.7.5
 
 Change Log:
 
+= 1.5.4.1 ( 2017-07-17 ) =
+- Fix: Bug in Performance Report
+- Fix: Fatal error on activation on the free versioon
+- Fix: HTML tags in Cloudflare module
+
+= 1.5.4 ( 2017-07-13 ) =
+- Fix: Cron reports were stuck on a loop on some WordPress installations
+- Fix: Issue with reports and calculating UTC time
+- Fix: Minification was duplicating inline styles
+- Fix: IE incompatibility in magnification screen
+- Fix: Compatibility with Contact Form 7
+- Fix: Mobile menus not working on Performance and Minification pages
+- Enhance: Remove jQuery and jQuery migrate from minification process
+- Enhance: Minor style changes and updates
+- Enhance: Cron reports functionality
+- Enhance: Code optimization
+- Enhance: Admin area performance improvements
+
 = 1.5.3 ( 2017-06-21 ) =
 - Fix: Avada & Google Maps scripts incompatibility
 - Fix: Bulk update not working when selecting all items in minification screen
@@ -185,4 +203,4 @@ Enhance: Search by extension in minification page
 - First release
 
 
-432097-1499089851-ai
+432097-1500968841-au

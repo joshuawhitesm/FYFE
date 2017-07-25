@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Snapshot Pro
-Version: 3.1.2
+Version: 3.1.3
 Description: This plugin allows you to take quick on-demand backup snapshots of your working WordPress database. You can select from the default WordPress tables as well as custom plugin tables within the database structure. All snapshots are logged, and you can restore the snapshot as needed.
 Author: WPMU DEV
 Author URI: https://premium.wpmudev.org/
@@ -97,7 +97,7 @@ if ( ! class_exists( 'WPMUDEVSnapshot' ) ) {
 			$this->plugin_url = plugin_dir_url( __FILE__ );
 
 			$this->DEBUG = false;
-			$this->_settings['SNAPSHOT_VERSION'] = '3.1.2';
+			$this->_settings['SNAPSHOT_VERSION'] = '3.1.3-beta4';
 
 			if ( is_multisite() ) {
 				$this->_settings['SNAPSHOT_MENU_URL'] = network_admin_url() . 'admin.php?page=';
@@ -1983,12 +1983,12 @@ if ( ! class_exists( 'WPMUDEVSnapshot' ) ) {
 		function snapshot_settings_config_update() {
 			$CONFIG_CHANGED = false;
 
-			//echo "_REQUEST<pre>"; print_r($_REQUEST); echo "</pre>";
-			//die();
+			$model = new Snapshot_Model_Full_Backup;
+
 			if ( isset( $_REQUEST['files'] ) ) {
 
 				$files = intval( $_REQUEST['files'] );
-				if ( ( $files > 0 ) && ( $files !== $this->config_data['config']['backupUseFolder'] ) ) {
+				if ( ( $files > 0 ) && ( !isset( $this->config_data['config']['backupUseFolder'] ) || $files !== $this->config_data['config']['backupUseFolder'] ) ) {
 					$this->config_data['config']['backupUseFolder'] = $files;
 					$CONFIG_CHANGED = true;
 				}
@@ -2002,7 +2002,6 @@ if ( ! class_exists( 'WPMUDEVSnapshot' ) ) {
 					$CONFIG_CHANGED = true;
 				}
 
-				$model = new Snapshot_Model_Full_Backup;
 
 				$old_key = $model->get_config( 'secret-key', false );
 				$model->set_config( 'secret-key', $key );
@@ -2027,8 +2026,8 @@ if ( ! class_exists( 'WPMUDEVSnapshot' ) ) {
 				$model->set_config( 'secret-key', '' );
 			}
 
-			$backupFolderRequest = $_REQUEST['backupFolder'];
-			if ( $files == 1 ) {
+			$backupFolderRequest = isset( $_REQUEST['backupFolder'] ) ? $_REQUEST['backupFolder'] : 'snapshot';
+			if ( isset( $_REQUEST['files'] ) && $files == 1 ) {
 				$backupFolderRequest = 'snapshot';
 			}
 			if ( isset( $backupFolderRequest ) ) {
@@ -4480,7 +4479,7 @@ if ( ! class_exists( 'WPMUDEVSnapshot' ) ) {
 
 					$key = sanitize_text_field( $_REQUEST['secret-key'] );
 
-					if ( $key !== $this->config_data['config']['secret-key'] ) {
+					if ( !isset( $this->config_data['config']['secret-key'] ) || ( isset( $this->config_data['config']['secret-key'] ) && $key !== $this->config_data['config']['secret-key'] ) ) {
 						$this->config_data['config']['secret-key'] = $key;
 						$this->save_config();
 					}
@@ -6370,6 +6369,7 @@ if ( ! class_exists( 'WPMUDEVSnapshot' ) ) {
 				return;
 			}
 
+
 			if ( ! isset( $this->config_data['destinations'] ) ) {
 				$this->config_data['destinations'] = array();
 			}
@@ -6391,6 +6391,8 @@ if ( ! class_exists( 'WPMUDEVSnapshot' ) ) {
 			}
 
 			$this->save_config();
+
+
 
 			if ( empty( $location_redirect_url ) ) {
 				$location_redirect_url = add_query_arg(

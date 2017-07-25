@@ -54,8 +54,7 @@
 		</div>
 
 		<div class="form-col">
-			<input type="password" name="snapshot-destination[secretkey]" id="snapshot-destination-secretkey" class="<?php $this->input_error_class( 'secretkey' ); ?>
-			value="<?php if ( isset( $item['secretkey'] ) ) { echo sanitize_text_field( $item['secretkey'] ); } ?>" />
+			<input type="password" name="snapshot-destination[secretkey]" id="snapshot-destination-secretkey" class="<?php $this->input_error_class( 'secretkey' ); ?>" value="<?php if ( isset( $item['secretkey'] ) ) { echo sanitize_text_field( $item['secretkey'] ); } ?>" />
 			<?php $this->input_error_message( 'secretkey' ); ?>
 		</div>
 
@@ -133,7 +132,7 @@
 
 				<?php foreach ( $item_object->get_storage() as $_key => $_name ) : ?>
 
-					<option value="<?php echo esc_attr( $_key ); ?>" <?php selected( $item['storage'] ); ?>>
+					<option value="<?php echo esc_attr( $_key ); ?>" <?php if ( $item['storage'] == $_key ) { echo ' selected="selected" '; } ?>>
 						<?php echo esc_html( $_name ); ?> (<?php echo esc_attr( $_key ); ?>)
 					</option>
 
@@ -199,7 +198,7 @@
 
 			<?php $this->input_error_message( 'acl' ); ?>
 
-			<p><small><?php _e('Control who will have access to your backup file.', SNAPSHOT_I18N_DOMAIN); ?></small></p>s
+			<p><small><?php _e('Control who will have access to your backup files.', SNAPSHOT_I18N_DOMAIN); ?></small></p>
 		</div>
 
 	</div>
@@ -211,11 +210,12 @@
 		</div>
 
 		<div class="form-col">
-			<input type="text" name="snapshot-destination[directory]" id="snapshot-destination-directory" placeholder="i.e. static/files" />
+			<input type="text" name="snapshot-destination[directory]" id="snapshot-destination-directory" placeholder="i.e. static/files" value="<?php if ( isset( $item['directory'] ) ) { echo $item['directory']; } ?>"/>
 
 			<p><small><?php _e( "If directory is blank the snapshot file will be stored at the bucket root. If the directory is provided it will be created inside the bucket. This is a global setting and will be used by all snapshot configurations using this destination. You can also define a director used by a specific snapshot.", SNAPSHOT_I18N_DOMAIN ); ?></small></p>
 
-			<div class="button button-gray"><?php _e( "Test Connection", SNAPSHOT_I18N_DOMAIN ); ?></div>
+			<button id="snapshot-destination-test-connection" class="button button-gray"><?php _e( "Test Connection", SNAPSHOT_I18N_DOMAIN ); ?></button>
+			<div id="snapshot-ajax-destination-test-result" style="display:none"></div>
 		</div>
 
 	</div>

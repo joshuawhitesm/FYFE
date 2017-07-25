@@ -26,12 +26,13 @@ class WP_Hummingbird_API_Request_WPMUDEV extends WP_Hummingbird_API_Request {
 	}
 
 	public function get_api_url( $path = '' ) {
+		/** @var WP_Hummingbird_API_Service_Performance|WP_Hummingbird_API_Service_Uptime $service */
 		if ( defined( 'WPHB_TEST_API_URL' ) && WPHB_TEST_API_URL ) {
-			$url = WPHB_TEST_API_URL;
-		} else {
-			/** @var WP_Hummingbird_API_Service_Performance|WP_Hummingbird_API_Service_Uptime $service */
 			$service = $this->get_service();
-			$url = 'https://premium.wpmudev.org/api/' . $this->get_service()->get_name() . '/' . $service->get_version() . '/';
+			$url = WPHB_TEST_API_URL . $service->get_name() . '/' . $service->get_version() . '/';
+		} else {
+			$service = $this->get_service();
+			$url = 'https://premium.wpmudev.org/api/' . $service->get_name() . '/' . $service->get_version() . '/';
 		}
 
 		$url = trailingslashit( $url . $path );

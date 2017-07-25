@@ -40,6 +40,7 @@ import Fetcher from './utils/fetcher';
             if (this.$runTestButton.length) {
                 this.$runTestButton.click(function (e) {
                     e.preventDefault();
+					window.WDP.showOverlay("#run-performance-test-modal", { class: 'wphb-modal small wphb-progress-modal no-close' } );
                     $(this).attr('disabled', true);
                     self.performanceTest(self.strings.finishedTestURLsLink);
                 });

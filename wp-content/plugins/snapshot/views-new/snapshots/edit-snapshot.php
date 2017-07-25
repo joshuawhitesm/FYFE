@@ -677,7 +677,8 @@ $warning = $requirements_test['warning'];
 															name="snapshot-interval-offset[snapshot-daily][tm_hour]">
 														<?php
 
-														if ( ! isset( $item['interval-offset']['snapshot-daily']['tm_hour'] ) ) {
+														if ( ! isset( $item['interval-offset']['snapshot-daily'] ) || ! isset( $item['interval-offset']['snapshot-daily']['tm_hour'] ) ) {
+															$item['interval-offset'] = array();
 															$item['interval-offset']['snapshot-daily']['tm_hour'] = $localtime['tm_hour'];
 														}
 
