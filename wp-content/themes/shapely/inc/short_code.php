@@ -1397,12 +1397,17 @@ function our_sliderhome_func($atts,$args) {
     <div class="carousel-inner">
 	<?php
 	if ($query->have_posts()) {
+		$arr_project = array();
 		while ($query->have_posts()) {
 		$query->the_post();?>
+		<?php
+		$id = get_field('id_project');
+		$arr_project[]= array('id' => $id);
+		?>
 	  <div id="myCarousel<?php echo get_the_ID(); ?>" class="item item-fix1">
 	    <div class="img_slhome fl_r col-lg-20ths col-xs-12 no-padding glr-right color-white">
 			<?php the_post_thumbnail('shapely-full');?>
-			<div class="slhome_des col-xs-5"><a href="<?php the_field('link');?>"><?php the_field('description');?></a></div>
+			<div class="slhome_des col-xs-5"><a data-toggle="modal" data-target="#mymodal_<?php the_field('id_project');?>" ><?php the_field('description');?></a></div>
 		</div>
 		<div class="wpb_column vc_column_container col-lg-5ths item-center-fix2">
 			<div class="vc_column-inner no-padding center-fix-item text-left">
@@ -1476,7 +1481,132 @@ function our_sliderhome_func($atts,$args) {
 	</div>
 
   </div>
+   <?php
+	foreach($arr_project as $item){
+		$project_id = $item['id'];
+		$image_popup = get_field('image_popup', $project_id);
+		$popup_image = $image_popup['url'];
+	?>
+	
+  <div class="modal fade project-modal" id="mymodal_<?php echo $project_id;?>" role="dialog">
+    <div class="modal-dialog">
+			
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
 
+					</div>
+					<div class="modal-body">
+						<div class="modal_body_fix col-md-12 p_l_r_0">
+							<div class="col-md-6 p_l_r_0 p_relative">
+								<div class="project-img1">
+								<?php 
+								if($popup_image != ''){ ?>
+									<img src="<?php echo $popup_image;?>" />
+								<?php
+								}
+								else{ ?>
+									<a class = "style_image_thumbnail" href="#"><?php echo get_the_post_thumbnail($project_id);?></a>
+								<?php
+								}
+								?>
+								</div>
+								<div class="project_img1_2">
+								</div>
+							</div>
+							<div class="col-md-6  p_l_r_0 color-white p_relative">
+							<div class="modal-logo">
+								<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.png" class="logo" alt="FYFE">
+							</div>
+								<div class="p_l_t_30">
+
+									<div class="project-info1">
+										<div class="project-info1_ok">
+											<p><?php echo get_the_title($project_id);?></p>
+										</div>
+
+										<div class="btn-see list-cat-fix list-cat-fix2">
+										<?php
+										$terms = get_the_terms( $project_id, 'project_services' );
+                         
+										if ( $terms && ! is_wp_error( $terms ) ) : 
+										 
+											$draught_links = array();
+										 
+											foreach ( $terms as $term ) {?>
+												<a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a>
+											<?php }
+											?>
+										 
+											
+										<?php endif; ?></div>
+										<div class="post-excerpt-fix-popup hiden-xs"><?php echo get_post_field('post_content', $project_id); ?></div>
+
+									</div>
+
+									<div class="project-info1">
+										<div class="project_info1_ok11">
+											<p>RELATED PROJECTS</p>
+										</div>
+										<?php
+										$terms = get_the_terms( $project_id, 'project_services' );
+										// print_r( $terms );
+										foreach($terms as $term) {
+											$id2 = $term->term_id;
+											$args1 = array(
+											'post_type' => 'projects',
+											'posts_per_page' => 3,
+											'tax_query' => array(
+												array(
+													'taxonomy' => 'project_services',
+													'field' => 'id',
+													'terms' => $id2
+													)
+												)
+											);
+											$loop1 = new WP_Query( $args1 );
+										?>
+										
+										<div class="project_info1_ok1">
+											<?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
+												<span class="no-padding color-white project-item project-item--small">
+													<?php the_post_thumbnail();?>
+
+												  <div class="project-info">
+														<div class="btn-see list-cat-fix"></div>
+														<div class="title-post-fix">
+															<h5>
+																<button type="button" href="javascript:void(0);"class="btn btn-info btn-lg">
+																	<?php echo the_title(); ?>
+																</button>
+														</h5>
+														</div>
+												  </div>
+												</span>
+											<?php  endwhile;?>
+										</div>
+										<?php } ?>
+									</div>
+
+									<div class="project_info_bottom">
+										<div class="col-md-6 p_l_r_0 project_info_bottom1_6">
+											<div class="project_info1_a_share">
+												<p>SHARE</p>
+												<?php echo do_shortcode( "[simple-social-share]" ); ?>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			  </div>
+  </div>
+	<?php } ?>
   <style type="text/css">
   	.text_yellow{
   		color: #f1ac08;
