@@ -1210,6 +1210,14 @@ footer.bg-dark li {
     }
 }
 
+#project_our_ajax .project-img--square a img {
+    height: 13vw;
+}
+
+#project_our_ajax .project-img--square {
+    height: 13vw;
+}
+
 .image-bg h3, .image-bg h1 {
     color: #ffffff;
 }
@@ -3845,7 +3853,7 @@ blockquote:after {
 
 .sliderhome_75370 {
     position: absolute;
-    bottom: 90px;
+    bottom: 20px;
     left: 0;
     right: 0;
 }
@@ -4561,6 +4569,13 @@ p.text-right {
         position: static;
         width: 100%;
     }
+    #project_our_ajax .project-img--square a img {
+        height: 23vw;
+    }
+
+    #project_our_ajax .project-img--square {
+        height: 23vw;
+    }
 }
 
 ul.post-categories {
@@ -4575,7 +4590,7 @@ ul.post-categories {
     border-radius: 10px;
     color: #fff;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .btn-see {
@@ -4895,6 +4910,13 @@ h4.teams-title {
     .project-img img {
         height: 282px;
         width: 100%;
+    }
+    #project_our_ajax .project-img--square a img {
+        height: 30vw;
+    }
+
+    #project_our_ajax .project-img--square {
+        height: 30vw;
     }
 }
 
@@ -5631,7 +5653,7 @@ div#ajax_posts_f_project {
 
 @media screen and (max-width: 1300px) {
     div#project_our_ajax .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        height: 270px;
+        height: 13vw;
         overflow: hidden;
     }
 
@@ -5673,6 +5695,16 @@ div#ajax_posts_f_project {
 }
 
 @media screen and (max-width: 1200px) {
+    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .our-project-title {
+        height: auto !important;
+        max-height: 220px !important;
+    }
+
+    #category-post-content div.project-item > .project-info {
+        bottom: 0;
+        padding: 5px;
+    }
+
     .icon-see {
         margin: 0;
         float: left;
@@ -5726,6 +5758,10 @@ div#ajax_posts_f_project {
     div#sesion_6_home_fyfe_project {
         background-size: cover !important;
         background-position: center !important;
+    }
+
+    div#sesion_2_home_fyfe_project img {
+        width: 100% !important;
     }
 }
 
@@ -5794,6 +5830,9 @@ div#ajax_posts_f_project {
         margin-top: 20px;
         position: relative;
         bottom: 0;
+    }
+    #myCarousel1449  .img_slhome img {
+        height: 56vh;
     }
 
     .project_info1_ok11 p {
@@ -6146,8 +6185,11 @@ div#ajax_posts_f_project {
         min-height: 530px !important;
     }
 
-    #myCarousel1 .img_slhome img {
+    #myCarousel1 .img_slhome img ,#myCarousel2 .img_slhome img {
+        /*
         min-height: 300px !important;
+        */
+        max-height: 150px;
     }
 
     .teams_style_fix_4_7 {
@@ -6289,7 +6331,9 @@ div#ajax_posts_f_project {
         overflow: hidden;
     }
 }
-
+a{
+    font-weight: 600 !important;
+}
 @media screen and (max-width: 362px) {
     .project_info1_a_work a {
         text-transform: uppercase;
@@ -6297,6 +6341,19 @@ div#ajax_posts_f_project {
         text-align: right;
         text-decoration: underline;
         letter-spacing: 3px;
+    }
+    #project_our_ajax .project-img--square a img {
+        min-height: 205px;
+        height: 100%;
+    }
+
+    #project_our_ajax .project-img--square {
+        height: 100%;
+        min-height: 205px;
+    }
+    #myCarousel1 .img_slhome img, #myCarousel2 .img_slhome img {
+        min-height: 250px !important;
+        max-height: 100px;
     }
 
     #myCarousel2 .img_slhome img {
@@ -6324,6 +6381,22 @@ div#ajax_posts_f_project {
     .leftbt, .rightbt {
         top: 1em;
     }
+
+    #sesion_4_home_fyfe_project .expertise_p_t_h4 h4 {
+        margin: auto
+    }
+
+    #sesion_4_home_fyfe_project .height-fix {
+        padding: 10px 0;
+    }
+
+    #sesion_4_home_fyfe_project .height-fix_19_7 {
+        height: 180px;
+    }
+
+    #sesion_5_home_fyfe_project .center-fix-item h4 {
+        margin-bottom: 10px;
+    }
 }
 
 /* Important part */
@@ -6336,7 +6409,6 @@ div#ajax_posts_f_project {
         z-index: 1;
         right: 5%;
     }
-
 
 }
 
@@ -6546,7 +6618,7 @@ a.style_image_archive img {
 }
 
 .img_slhome img {
-    min-height: 400px;
+    height: 100vh;
 }
 
 .slhome_list {
@@ -6909,6 +6981,7 @@ a.style_image_archive img {
     .expertise_p_t_h4 h4 {
         padding-top: 0;
     }
+
     #primary .sliderhome_75370 img {
         width: 50%;
     }
