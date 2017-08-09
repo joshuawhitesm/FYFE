@@ -14,7 +14,7 @@
 </div><!-- #main -->
 <div class="ft-contact col-xs-12" id="contact_home_bottom">
 	<?php if(is_home() || is_front_page()){?>
-    <?php echo do_shortcode('[contact]'); 
+    <?php echo do_shortcode('[contact]');
 	} else {?>
 		<div class="contact-bottom-fix"><a href="http://fyfe-project.sunbeardigital.com/#contact_home_bottom">CONTACT FYFE</a></div>
 	<?php }
@@ -44,8 +44,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
 jQuery(document).ready( function($) {
-
-	
 	var $loading = $('#loadingDiv').hide();
 	$(document).ajaxStart(function () {
 		$loading.show();
@@ -59,7 +57,6 @@ jQuery(document).ready( function($) {
 	});
 	$('.click_top_scroll').on("click", function() {
 		$('html,body').animate({scrollTop: $("#sesion_2_home_fyfe_project ").offset().top - 80 },'slow');
-		// alert('go');
 	});
 });
 function cat_ajax_get(catID) {
@@ -78,8 +75,7 @@ function cat_ajax_get(catID) {
         }
     });
 }
-</script>
-<script>
+
 function location_ajax_get(postID) {
     jQuery("a.ajax").removeClass("current");
     jQuery("a.ajax").addClass("current"); //adds class current to the category menu item being displayed so you can style it with css
@@ -96,8 +92,7 @@ function location_ajax_get(postID) {
         }
     });
 }
-</script>
-<script>
+
 jQuery("#category-menu").on("click", ".init", function() {
     jQuery(this).closest("#category-menu").children('li:not(.init)').toggle();
 });
@@ -109,8 +104,7 @@ jQuery("#category-menu").on("click", "li:not(.init)", function() {
     jQuery("#category-menu").children('.init').html(jQuery(this).html());
     allOptions.toggle();
 });
-</script>
-<script>
+
 jQuery("#category-menu2").on("click", ".init2", function() {
     jQuery(this).closest("#category-menu2").children('li:not(.init2)').toggle();
 });
@@ -139,23 +133,23 @@ jQuery(".slhome_des").hover(function(){
     }, function(){
     jQuery(this).css("display", "none");
 });
-var jump=function(e)
-{
-   if (e){
+var jump = function(e) {
+    if (e){
+        var target = jQuery(this).attr("href");
+    } else {
+        var target = location.hash;
+    }
+
+    // Target must be longer than "#"
+    if (target.length > 1) {
        e.preventDefault();
-       var target = $(this).attr("href");
-   }else{
-       var target = location.hash;
-   }
 
-   jQuery('html,body').animate(
-   {
-       scrollTop: jQuery(target).offset().top - 80
-   },2000,function()
-   {
-       location.hash = target;
-   });
-
+       jQuery('html,body').animate({
+           scrollTop: jQuery(target).offset().top - 80
+       }, 2000, function() {
+           location.hash = target;
+       });
+    }
 }
 
 
