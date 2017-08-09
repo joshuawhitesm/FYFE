@@ -409,7 +409,7 @@ function project_shortcode($args, $content) {
 										),
 										'post__not_in' => array ($id),
 										);
-										
+
 										$loop1 = new WP_Query( $args1 );
 									?>
 										<div class="project_info1_ok1">
@@ -481,18 +481,25 @@ function teams_shortcode($args, $content) {
 			$loop = new WP_Query( $args );
 		?>
 		<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
-			<?php $terms  = get_the_terms( get_the_ID(), 'teams_cat', '', '' );  ?>
+			<!-- <?php $terms  = get_the_terms( get_the_ID(), 'teams_cat', '', '' );  ?> -->
 			<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 				<div class="teams-img">
 					<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
 				</div>
 				<div class="project-info">
-					<?php foreach($terms as $value ){?>
-					<!--<div class="btn-see btn_see_fix"><a><?php /*echo $value->name;*/?></a></div>-->
-					<?php } ?>
+	<!-- 				<?php foreach($terms as $value ){?>
+					<div class="btn-see btn_see_fix"><a><?php echo $value->name;?></a></div>
+					<?php } ?> -->
 					<div class="title-post-fix">
 						<h5>
 							<button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
+							<p>
+								<?php
+									// Will also be used later
+									$status = get_field('status');
+									echo $status;
+								?>
+							</p>
 						</h5>
 					</div>
 				</div>
@@ -530,7 +537,6 @@ function teams_shortcode($args, $content) {
 								</div>
 									<div class="p_l_t_30">
 										<?php
-											$status = get_field('status') ;
 											$location = get_field('location') ;
 											$email = get_field('email') ;
 											$phone = get_field('phone') ;
@@ -1335,7 +1341,7 @@ function sectors_news_shortcode($args, $content) {
 							<span class="style_c_d2"><?php /*$post_date = get_the_date( 'd/m/Y' ); echo $post_date; */?></span>
 						</div>-->
 						<div  class="col-ms-12 fl style_content_news_main">
-							
+
 							<?php  echo excerpt(50); ?>
 						</div>
 						<div  class="col-ms-12 fl style_news_read_more">
@@ -1487,10 +1493,10 @@ function our_sliderhome_func($atts,$args) {
 		$image_popup = get_field('image_popup', $project_id);
 		$popup_image = $image_popup['url'];
 	?>
-	
+
   <div class="modal fade project-modal" id="mymodal_<?php echo $project_id;?>" role="dialog">
     <div class="modal-dialog">
-			
+
 				<!-- Modal content-->
 				<div class="modal-content">
 					<div class="modal-header">
@@ -1501,7 +1507,7 @@ function our_sliderhome_func($atts,$args) {
 						<div class="modal_body_fix col-md-12 p_l_r_0">
 							<div class="col-md-6 p_l_r_0 p_relative">
 								<div class="project-img1">
-								<?php 
+								<?php
 								if($popup_image != ''){ ?>
 									<img src="<?php echo $popup_image;?>" />
 								<?php
@@ -1529,17 +1535,17 @@ function our_sliderhome_func($atts,$args) {
 										<div class="btn-see list-cat-fix list-cat-fix2">
 										<?php
 										$terms = get_the_terms( $project_id, 'project_services' );
-                         
-										if ( $terms && ! is_wp_error( $terms ) ) : 
-										 
+
+										if ( $terms && ! is_wp_error( $terms ) ) :
+
 											$draught_links = array();
-										 
+
 											foreach ( $terms as $term ) {?>
 												<a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a>
 											<?php }
 											?>
-										 
-											
+
+
 										<?php endif; ?></div>
 										<div class="post-excerpt-fix-popup hiden-xs"><?php echo get_post_field('post_content', $project_id); ?></div>
 
@@ -1567,7 +1573,7 @@ function our_sliderhome_func($atts,$args) {
 											);
 											$loop1 = new WP_Query( $args1 );
 										?>
-										
+
 										<div class="project_info1_ok1">
 											<?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
 												<span class="no-padding color-white project-item project-item--small">
