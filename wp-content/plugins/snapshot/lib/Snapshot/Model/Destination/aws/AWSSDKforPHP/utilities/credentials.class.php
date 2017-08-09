@@ -91,7 +91,7 @@ class CFCredentials
 			{
 				if (!isset($credential_sets[$default]))
 				{
-					throw new CFCredentials_Exception('The credential set, "' . $default . '", does not exist and cannot be used as the default credential set.');		 	  		   			   	 
+					throw new CFCredentials_Exception('The credential set, "' . $default . '", does not exist and cannot be used as the default credential set.');
 				}
 
 				$credential_sets[self::DEFAULT_KEY] = $credential_sets[$default];

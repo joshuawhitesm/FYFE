@@ -74,7 +74,7 @@ class WP_Hummingbird_Module_Minify_Groups_List {
 	 * @return bool
 	 */
 	public function add_group( $group ) {
-		if ( ! is_a( $group, 'WP_Hummingbird_Module_Minify_Group' ) ) {
+		if ( ! ( $group instanceof WP_Hummingbird_Module_Minify_Group ) ) {
 			return false;
 		}
 
@@ -316,7 +316,7 @@ class WP_Hummingbird_Module_Minify_Groups_List {
 
 					}
 					else {
-						$deps[ $search_group_hash ] = array_merge( $deps[ $search_group_hash ], array( $g->group_id ) );
+						$deps[ $search_group_hash ] = array_merge( $deps[ $search_group_hash ], array( $g->group_id ) );	 			   		  	 	 		 	 
 					}
 
 				}

@@ -206,7 +206,9 @@ class WP_Hummingbird_Module_Reporting_Cron extends WP_Hummingbird_Module {
 		$timezone = new DateTimeZone( $tz );
 		$time     = new DateTime( $time, $timezone );
 
-		return $time->getTimestamp();
+		// Had to switch because of PHP 5.2 compatibility issues.
+		//return $time->getTimestamp();
+		return $time->format( 'U' );
 
 	}
 

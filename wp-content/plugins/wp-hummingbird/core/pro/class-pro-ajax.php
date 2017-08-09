@@ -71,6 +71,7 @@ class WP_Hummingbird_Pro_AJAX {
 	 */
 	public function performance_add_recipient() {
 		check_ajax_referer( 'wphb-fetch', 'nonce' );
+
 		if ( ! current_user_can( wphb_get_admin_capability() ) ) {
 			return;
 		}
@@ -84,8 +85,8 @@ class WP_Hummingbird_Pro_AJAX {
 
 		$name = sanitize_text_field( $_POST['name'] );
 
-		$user      = get_user_by( 'email', $email );
-		if ( ! is_a( $user, 'WP_User' ) ) {
+		$user = get_user_by( 'email', $email );
+		if ( ! ( $user instanceof WP_User ) ) {
 			$data = array(
 				'avatar'  => wphb_get_avatar_url( get_avatar( 0, 30 ) ),
 				'name'    => $name,

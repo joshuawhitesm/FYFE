@@ -4,7 +4,23 @@ Tested up to: 4.7.5
 
 Change Log:
 
-= 1.5.4.1 ( 2017-07-17 ) =
+= 1.6.0 ( 2017-08-07 ) =
+- New: Gravatar caching
+- New: Caching module layout
+- New: Ability to defer scripts in minification
+- Enhance: Better detect GZIP and browser cache
+- Enhance: Do not minify files that are already minified by a theme or a plugin
+- Enhance: Better support for older PHP versions (5.2 and 5.3)
+- Enhance: Improve admin notice styles, make notices dismissable
+- Enhance: Improve dashboard layout
+- Enhance: Better connectivity with the Hub
+- Enhance: Better support for support for screen readers
+- Fix: Overlapping issues in dashboard
+- Fix: PHP notices on dashboard page and during activation/deactivation
+- Fix: Minification not working on some subsites in a network
+- Fix: Minification stuck at 10% on some installs
+
+= 1.5.5 ( 2017-07-17 ) =
 - Fix: Bug in Performance Report
 - Fix: Fatal error on activation on the free versioon
 - Fix: HTML tags in Cloudflare module
@@ -203,4 +219,4 @@ Enhance: Search by extension in minification page
 - First release
 
 
-432097-1500968841-au
+432097-1502315447-au
