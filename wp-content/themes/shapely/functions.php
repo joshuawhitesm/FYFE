@@ -330,7 +330,7 @@ add_action( 'wp_ajax_nopriv_load-filter', 'prefix_load_cat_posts' );
 add_action( 'wp_ajax_load-filter', 'prefix_load_cat_posts' );
 function prefix_load_cat_posts () {
     $cat_id = $_POST[ 'cat' ];
-        
+
 	$args = array(
 	'post_type' => 'projects',
 	'tax_query' => array(
@@ -389,10 +389,10 @@ function prefix_load_cat_posts () {
 						<div class="col-md-6  p_l_r_0 color-white p_relative">
 						<div class="modal-logo">
 							<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.png" class="logo" alt="FYFE">
-							
+
 						</div>
 							<div class="p_l_t_30">
-								
+
 								<div class="project-info1">
 									<div class="project-info1_ok">
 										<p><?php the_title();?></p>
@@ -400,17 +400,17 @@ function prefix_load_cat_posts () {
 									<div class="btn-see list-cat-fix list-cat-fix2 ">
 									<?php
 										$terms = get_the_terms( get_the_ID(), 'project_services' );
-                         
-										if ( $terms && ! is_wp_error( $terms ) ) : 
-										 
+
+										if ( $terms && ! is_wp_error( $terms ) ) :
+
 											$draught_links = array();
-										 
+
 											foreach ( $terms as $term ) {?>
 												<a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a>
 											<?php }
 											?>
-										 
-											
+
+
 										<?php endif; ?></div>
 									<div class="post-excerpt-fix-popup hiden-xs"><?php the_content();?></div>
 
@@ -444,7 +444,7 @@ function prefix_load_cat_posts () {
 										),
 										'post__not_in' => array ($id),
 										);
-										
+
 										$loop1 = new WP_Query( $args1 );
 									?>
 									<div class="project_info1_ok1">
@@ -493,12 +493,12 @@ function prefix_load_cat_posts () {
    echo $response;
    die(1);
    }
-   
+
 add_action( 'wp_ajax_nopriv_load_cat_teams', 'prefix_load_cat_teams' );
 add_action( 'wp_ajax_load_cat_teams', 'prefix_load_cat_teams' );
 function prefix_load_cat_teams () {
     $cat_id2 = $_POST[ 'teams_cat' ];
-        
+
 	$args = array(
 	'post_type' => 'teams',
 	'tax_query' => array(
@@ -510,7 +510,7 @@ function prefix_load_cat_teams () {
 	  )
 	);
    $the_query = new WP_Query( $args );
-	
+
     ob_start ();
 	if ( $the_query->have_posts() ) {
 	while ( $the_query->have_posts() ) {
@@ -535,7 +535,7 @@ function prefix_load_cat_teams () {
 					<!-- Modal content-->
 					<div class="modal-content">
 						<div class="modal-header">
-							
+
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
 						<div class="modal-body">
@@ -550,7 +550,7 @@ function prefix_load_cat_teams () {
 								<div class="col-md-6  p_l_r_0 color-white p_relative">
 								<div class="modal-logo">
 									<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.png" class="logo" alt="FYFE">
-									
+
 								</div>
 									<div class="p_l_t_30">
 										<?php
@@ -644,12 +644,12 @@ function prefix_load_cat_teams () {
    echo $response;
    die(1);
    }
-   
+
    add_action( 'wp_ajax_nopriv_load_location', 'prefix_load_location' );
 add_action( 'wp_ajax_load_location', 'prefix_load_location' );
 function prefix_load_location () {
     $cat_id2 = $_POST[ 'location_cat' ];
-        
+
 	$args = array(
 	'post_type' => 'teams',
 	'tax_query' => array(
@@ -661,7 +661,7 @@ function prefix_load_location () {
 	  )
 	);
    $the_query = new WP_Query( $args );
-	
+
     ob_start ();
 	if ( $the_query->have_posts() ) {
 	while ( $the_query->have_posts() ) {
@@ -686,7 +686,7 @@ function prefix_load_location () {
    }
 
 function location_ajax(){
-    
+
     $id_post_location = $_POST["id_post_location"];
 	$args = array('posts_per_page' => -1,
 				'post_type' => 'locations',
@@ -695,19 +695,19 @@ function location_ajax(){
 	$posts_array = get_posts( $args );
 	global $post;?>
 	<?php
-	
+
 	$arr= array() ;
 	$arr_location = array() ;
 	$html_location = "";
 	foreach ( $posts_array as $post ) : setup_postdata( $post ); ?>
 		<?php
-			
+
 			if( have_rows('location_information') ):
 			// loop through the rows of data
 			while ( have_rows('location_information') ) : the_row();
 				$maps_child = get_sub_field('maps_child');
 				if( !empty($maps_child) ){
-					$arr_location_ok = array();			
+					$arr_location_ok = array();
 					$arr_location_ok['address']= $maps_child['address'];
 					$arr_location_ok['lat'] = $maps_child['lat'];
 					$arr_location_ok['lng'] = $maps_child['lng'];
@@ -718,11 +718,11 @@ function location_ajax(){
 			else :
 						// no rows found
 			endif;
-			
-			
-			
+
+
+
 			$name_location = get_field( "name_location" );
-			
+
 			?>
 			<?php $html_location .= "<h2>". $name_location . "</h2>"; ?>
 			<?php
@@ -740,17 +740,17 @@ function location_ajax(){
 			endif;
 		?>
 	<?php
-	endforeach; 
+	endforeach;
 	// var_dump($arr_location);
-	?>		
+	?>
 	<?php
 	$arr['html']= $html_location;
 	$arr['arr']= $arr_location;
 	echo json_encode($arr);
-	
-	exit;  
+
+	exit;
 }
-add_action('wp_ajax_nopriv_location_ajax', 'location_ajax'); 
+add_action('wp_ajax_nopriv_location_ajax', 'location_ajax');
 add_action('wp_ajax_location_ajax', 'location_ajax');
 
 function load_more_ajax(){
@@ -765,21 +765,21 @@ function load_more_ajax(){
 				'paged'    => $paged,
 				);
 				$the_query = new WP_Query( $args );
-				
+
 				// var_dump($the_query->request);
-				
-				if ( $the_query->have_posts() ) { 
-					while ( $the_query->have_posts() ) { 
+
+				if ( $the_query->have_posts() ) {
+					while ( $the_query->have_posts() ) {
 					$the_query->the_post();
-					?>	
+					?>
 						<?php if($the_query->max_num_pages==$paged || $the_query->max_num_pages<$paged){?>
 							<style>
 								#read_more_news {
 									display: none;
 								}
 							</style>
-						<?php } 
-					$news_taxonomy = get_the_terms( get_the_ID(), 'category', '', '' );  
+						<?php }
+					$news_taxonomy = get_the_terms( get_the_ID(), 'category', '', '' );
 					// var_dump($news_taxonomy);
 					$news_taxonomy_link = get_term_link($news_taxonomy[0]->term_id, 'category' );
 					// var_dump($news_taxonomy_link);
@@ -802,7 +802,7 @@ function load_more_ajax(){
 									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 								</div>
 								<div  class="col-ms-12 fl style_c_d">
-									<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span> 
+									<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span>
 								</div>
 								<div  class="col-ms-12 fl style_content_news_main">
 									<?php  echo get_the_excerpt(); ?>
@@ -813,7 +813,7 @@ function load_more_ajax(){
 								</div>
 							</div>
 						</div>
-						<?php 
+						<?php
 						}
 						else{
 						?>
@@ -834,7 +834,7 @@ function load_more_ajax(){
 										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 									</div>
 									<div  class="col-ms-12 fl style_c_d">
-										<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span> 
+										<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span>
 									</div>
 									<div  class="col-ms-12 fl style_content_news_main">
 										<?php  echo get_the_excerpt(); ?>
@@ -852,7 +852,7 @@ function load_more_ajax(){
 								</div>
 							</div>
 						</div>
-								
+
 						<?php
 						}
 						$i++;
@@ -861,11 +861,11 @@ function load_more_ajax(){
 						<input type="hidden" class="ajax_posts_f_page" value="<?php echo (int)$paged+1;?>">
 						<input type="hidden" class="ajax_posts_f_i" value="<?php echo $i;?>">
 					</div>
-				<?php 
-				}	
-exit; 
+				<?php
+				}
+exit;
 }
-add_action('wp_ajax_nopriv_load_more_ajax', 'load_more_ajax'); 
+add_action('wp_ajax_nopriv_load_more_ajax', 'load_more_ajax');
 add_action('wp_ajax_load_more_ajax', 'load_more_ajax');
 
 
@@ -881,21 +881,21 @@ function load_more_sectors_ajax(){
 				'paged'    => $paged,
 				);
 				$the_query = new WP_Query( $args );
-				
+
 				// var_dump($the_query->request);
-				
-				if ( $the_query->have_posts() ) { 
-					while ( $the_query->have_posts() ) { 
+
+				if ( $the_query->have_posts() ) {
+					while ( $the_query->have_posts() ) {
 					$the_query->the_post();
-					?>	
+					?>
 						<?php if($the_query->max_num_pages==$paged || $the_query->max_num_pages<$paged){?>
 							<style>
 								#read_more_news {
 									display: none;
 								}
 							</style>
-						<?php } 
-					$news_taxonomy = get_the_terms( get_the_ID(), 'sectors_cat', '', '' );  
+						<?php }
+					$news_taxonomy = get_the_terms( get_the_ID(), 'sectors_cat', '', '' );
 					// var_dump($news_taxonomy);
 					$news_taxonomy_link = get_term_link($news_taxonomy[0]->term_id, 'sectors_cat' );
 					// var_dump($news_taxonomy_link);
@@ -918,7 +918,7 @@ function load_more_sectors_ajax(){
 									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 								</div>
 								<div  class="col-ms-12 fl style_c_d">
-									<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span> 
+									<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span>
 								</div>
 								<div  class="col-ms-12 fl style_content_news_main">
 									<?php  echo get_the_excerpt(); ?>
@@ -929,7 +929,7 @@ function load_more_sectors_ajax(){
 								</div>
 							</div>
 						</div>
-						<?php 
+						<?php
 						}
 						else{
 						?>
@@ -950,7 +950,7 @@ function load_more_sectors_ajax(){
 										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 									</div>
 									<div  class="col-ms-12 fl style_c_d">
-										<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span> 
+										<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span>
 									</div>
 									<div  class="col-ms-12 fl style_content_news_main">
 										<?php  echo get_the_excerpt(); ?>
@@ -968,7 +968,7 @@ function load_more_sectors_ajax(){
 								</div>
 							</div>
 						</div>
-								
+
 						<?php
 						}
 						$i++;
@@ -977,17 +977,17 @@ function load_more_sectors_ajax(){
 						<input type="hidden" class="ajax_posts_f_page" value="<?php echo (int)$paged+1;?>">
 						<input type="hidden" class="ajax_posts_f_i" value="<?php echo $i;?>">
 					</div>
-				<?php 
-				}	
-exit; 
+				<?php
+				}
+exit;
 }
-add_action('wp_ajax_nopriv_load_more_sectors_ajax', 'load_more_sectors_ajax'); 
+add_action('wp_ajax_nopriv_load_more_sectors_ajax', 'load_more_sectors_ajax');
 add_action('wp_ajax_load_more_sectors_ajax', 'load_more_sectors_ajax');
 
 function project_our_ajax(){
 	$name_sectors = $_POST["name_sectors"];
 	$name_services = $_POST["name_services"];
-	
+
 	if($name_sectors =="all" && $name_services !="all"){
 		$args = array(
 		'posts_per_page'   => '100',
@@ -1029,7 +1029,7 @@ function project_our_ajax(){
 		'post_status'      => 'publish',
 		);
 	}
-	else{	
+	else{
 		$args = array(
 		'posts_per_page'   => '100',
 		'orderby'          => 'date',
@@ -1050,7 +1050,7 @@ function project_our_ajax(){
 			),
 		);
 	}
-	$loop = new WP_Query( $args );	
+	$loop = new WP_Query( $args );
 	 if ( $loop->have_posts() ) : while ( $loop->have_posts() ) : $loop->the_post(); ?>
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 			<div  class="pproject-img project-img--square 2">
@@ -1062,7 +1062,7 @@ function project_our_ajax(){
 			</h5></div>
 			</div>
 		</div>
-		
+
 		<div class="<?php echo get_the_ID();?> modal fade project-modal" role="dialog">
 		  <div class="modal-dialog">
 
@@ -1070,7 +1070,7 @@ function project_our_ajax(){
 			<div class="modal-content">
 				<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-					
+
 				</div>
 				<div class="modal-body">
 					<div class="modal_body_fix col-md-12 p_l_r_0">
@@ -1103,17 +1103,17 @@ function project_our_ajax(){
 									<div class="btn-see list-cat-fix list-cat-fix2 ">
 									<?php
 										$terms = get_the_terms( get_the_ID(), 'project_services' );
-                         
-										if ( $terms && ! is_wp_error( $terms ) ) : 
-										 
+
+										if ( $terms && ! is_wp_error( $terms ) ) :
+
 											$draught_links = array();
-										 
+
 											foreach ( $terms as $term ) {?>
 												<a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a>
 											<?php }
 											?>
-										 
-											
+
+
 										<?php endif; ?>
 										</div>
 									<div class="post-excerpt-fix-popup hiden-xs"><?php the_content();?></div>
@@ -1141,7 +1141,7 @@ function project_our_ajax(){
 										),
 										'post__not_in' => array ($id),
 										);
-										
+
 										$loop1 = new WP_Query( $args1 );
 									?>
 									<div class="project_info1_ok1">
@@ -1181,7 +1181,7 @@ function project_our_ajax(){
 
 		  </div>
 		</div>
-	<?php 
+	<?php
 	endwhile;?>
 	<?php else : ?>
 	<p class="no_project">No Project Found!</p>
@@ -1189,23 +1189,23 @@ function project_our_ajax(){
 	<div id="ajax_posts_f_project" class="row">
 		<input type="hidden" class="ajax_posts_f_page_project" value="2">
 	</div>
-<?php 				
-exit; 
+<?php
+exit;
 }
-add_action('wp_ajax_nopriv_project_our_ajax', 'project_our_ajax'); 
+add_action('wp_ajax_nopriv_project_our_ajax', 'project_our_ajax');
 add_action('wp_ajax_project_our_ajax', 'project_our_ajax');
 
 
 add_shortcode( 'our_people', 'our_people_shortcode' );
 function our_people_shortcode($args, $content) {
-	
+
 	ob_start();
 	?>
-	
+
 	<div id="category-post-content" class="col-lg-20ths_fix col-xs-12 no-padding">
 	<div class="m_st_20_bul_p">
 	<div id="project_our_ajax">
-	<?php 
+	<?php
 	if ( get_query_var('paged') ) {
 		$paged = get_query_var('paged');
 	} elseif ( get_query_var('page') ) {
@@ -1216,7 +1216,7 @@ function our_people_shortcode($args, $content) {
 	$atts = shortcode_atts( array(
 		'number_posts' => 1000,
 		'post_type' => 'teams',
-		), $atts, 'feature' );		
+		), $atts, 'feature' );
 	$args = array(
 	'posts_per_page'   => $atts['number_posts'],
 	'orderby'          => 'date',
@@ -1225,7 +1225,7 @@ function our_people_shortcode($args, $content) {
 	'post_status'      => 'publish',
 	'paged'    => $paged,
 	);
-	$loop = new WP_Query( $args );	
+	$loop = new WP_Query( $args );
 	?>
 	<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;
 		?>
@@ -1245,13 +1245,13 @@ function our_people_shortcode($args, $content) {
 					</div>
 				</div>
 			</div>
-		
+
 			<div class="<?php echo get_the_ID();?> modal fade team-modal" role="dialog">
 			    <div class="modal-dialog">
 					<!-- Modal content-->
 					<div class="modal-content">
 						<div class="modal-header">
-							
+
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
 						<div class="modal-body">
@@ -1261,13 +1261,13 @@ function our_people_shortcode($args, $content) {
 									<?php $image_popup = get_field('image_popup') ;
 									if($image_popup !=''){ ?>
 										<img src="<?php echo $image_popup['url'];?>" />
-									<?php 
+									<?php
 									}
 									else{ ?>
 										<a class = "style_image_thumbnail" href=""><?php the_post_thumbnail();?></a>
-									<?php	
+									<?php
 									}
-									?>	
+									?>
 									</div>
 									<div class="project_img1_2">
 									</div>
@@ -1275,7 +1275,7 @@ function our_people_shortcode($args, $content) {
 								<div class="col-md-6  p_l_r_0 color-white p_relative">
 								<div class="modal-logo">
 									<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.png" class="logo" alt="FYFE">
-									
+
 								</div>
 									<div class="p_l_t_30">
 										<?php
@@ -1373,17 +1373,17 @@ function our_people_shortcode($args, $content) {
 				name_services : name_services,
 				name_sectors : name_sectors,
 				},'html')
-				.success(function(posts1345) {				
-				$("#project_our_ajax").append(posts1345);			
+				.success(function(posts1345) {
+				$("#project_our_ajax").append(posts1345);
 				});
-			});	
-			});			
+			});
+			});
 	</script>
 	</div>
-	
-	
+
+
 	</div>
-	
+
 <?php wp_reset_query(); ?>
 <?php
 	$out = ob_get_contents();
@@ -1400,7 +1400,7 @@ function our_projects_shortcode($args, $content) {
 
 	ob_start();
 	?>
-	
+
 	<div id="category-post-content" class="col-lg-20ths_fix col-xs-12 no-padding">
 	<div class="m_st_20_bul_p">
 	<div class="col-md-12 p_relative  style_project_our_top">
@@ -1424,8 +1424,8 @@ function our_projects_shortcode($args, $content) {
 								$(".name_sectors_hidden").val('<?php echo $value->term_id;?>');
 								$(".name_sectors h6").removeClass("current_cat");
 								$("#project_sectors_<?php echo $value->term_id;?>").addClass("current_cat");
-							});	
-						});			
+							});
+						});
 					</script>
 				<?php }
 				?>
@@ -1447,14 +1447,14 @@ function our_projects_shortcode($args, $content) {
 								$(".name_services_hidden").val('<?php echo $value->term_id;?>');
 								$(".name_services h6").removeClass("current_cat");
 								$("#project_services_<?php echo $value->term_id;?>").addClass("current_cat");
-							});	
-						});			
+							});
+						});
 					</script>
 				<?php }
 				?>
 				</div>
 			</div>
-			
+
 			<input type="hidden" name="name_sectors_hidden" class="name_sectors_hidden" value="all">
 			<input type="hidden" name="name_services_hidden" class="name_services_hidden" value="all">
 			<script type="text/javascript">
@@ -1472,11 +1472,11 @@ function our_projects_shortcode($args, $content) {
 						},'html')
 						.success(function(posts1345) {
 						$("#project_our_ajax").html("");
-						$("#project_our_ajax").append(posts1345);			
-					
-						});	
-				});	
-				
+						$("#project_our_ajax").append(posts1345);
+
+						});
+				});
+
 				$(".name_sectors h6").on("click", function() {
 					var name_services = $('.name_services_hidden').val();
 					var name_sectors = $('.name_sectors_hidden').val();
@@ -1489,10 +1489,10 @@ function our_projects_shortcode($args, $content) {
 						},'html')
 						.success(function(posts1345) {
 						$("#project_our_ajax").html("");
-						$("#project_our_ajax").append(posts1345);			
-					
-						});	
-				});	
+						$("#project_our_ajax").append(posts1345);
+
+						});
+				});
 				$(".style_project_our_top1_all").on("click", function() {
 					var name_services = 'all';
 					var name_sectors = 'all';
@@ -1509,11 +1509,11 @@ function our_projects_shortcode($args, $content) {
 						},'html')
 						.success(function(posts1345) {
 						$("#project_our_ajax").html("");
-						$("#project_our_ajax").append(posts1345);			
-					
-						});	
-				});	
-				});		
+						$("#project_our_ajax").append(posts1345);
+
+						});
+				});
+				});
 			</script>
 		</div>
 	</div>
@@ -1521,7 +1521,7 @@ function our_projects_shortcode($args, $content) {
 		<img src="/wp-content/uploads/2017/07/giphy.gif" alt="loading">
 	</div>
 	<div id="project_our_ajax">
-	<?php 
+	<?php
 	if ( get_query_var('paged') ) {
 		$paged = get_query_var('paged');
 	} elseif ( get_query_var('page') ) {
@@ -1532,7 +1532,7 @@ function our_projects_shortcode($args, $content) {
 	$atts = shortcode_atts( array(
 		'number_posts' => 100,
 		'post_type' => 'projects',
-		), $atts, 'feature' );		
+		), $atts, 'feature' );
 	$args = array(
 	'posts_per_page'   => $atts['number_posts'],
 	'orderby'          => 'date',
@@ -1541,25 +1541,25 @@ function our_projects_shortcode($args, $content) {
 	'post_status'      => 'publish',
 	'paged'    => $paged,
 	);
-	$loop = new WP_Query( $args );	
+	$loop = new WP_Query( $args );
 	?>
 	<?php if ( $loop->have_posts() ) : while ( $loop->have_posts() ) : $loop->the_post(); ?>
-		<?php $terms  = get_the_terms( get_the_ID(), 'project_cat', '', '' );  
+		<?php $terms  = get_the_terms( get_the_ID(), 'project_cat', '', '' );
 		?>
-		
+
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 			<div  class="project-img project-img--square 3">
 			<a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
 			</div>
 			<div class="project-info">
-				<?php foreach($terms as $value ){?>
+				<!-- <?php foreach($terms as $value ){?> -->
 					<!--<div class="btn-see btn_see_fix"><a><?php echo $value->name;?></a></div>-->
-				<?php } ?>
+				<!-- <?php } ?> -->
 				<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
 			</h5></div>
 			</div>
 		</div>
-		
+
 		<div class="<?php echo get_the_ID();?> modal fade project-modal" role="dialog">
 		  <div class="modal-dialog">
 
@@ -1567,7 +1567,7 @@ function our_projects_shortcode($args, $content) {
 			<div class="modal-content">
 				<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-					
+
 				</div>
 				<div class="modal-body">
 					<div class="modal_body_fix col-md-12 p_l_r_0">
@@ -1600,17 +1600,17 @@ function our_projects_shortcode($args, $content) {
 									<div class="btn-see list-cat-fix list-cat-fix2 ">
 									<?php
 										$terms = get_the_terms( get_the_ID(), 'project_services' );
-                         
-										if ( $terms && ! is_wp_error( $terms ) ) : 
-										 
+
+										if ( $terms && ! is_wp_error( $terms ) ) :
+
 											$draught_links = array();
-										 
+
 											foreach ( $terms as $term ) {?>
 												<a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a>
 											<?php }
 											?>
-										 
-											
+
+
 										<?php endif; ?>
 										</div>
 									<div class="post-excerpt-fix-popup hiden-xs"><?php the_content();?></div>
@@ -1638,7 +1638,7 @@ function our_projects_shortcode($args, $content) {
 										),
 										'post__not_in' => array ($id),
 										);
-										
+
 										$loop1 = new WP_Query( $args1 );
 									?>
 									<div class="project_info1_ok1">
@@ -1686,7 +1686,7 @@ function our_projects_shortcode($args, $content) {
 	<?php  else : ?>
 		<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
 	<?php endif; ?>
-		 
+
 	</div>
 	<div  class="col-ms-12 fl style_news_read_more t_c style_project_read_more">
 		<!--<a id="read_more_project" href="javascript:void(0);">SEE MORE</a>-->
@@ -1705,17 +1705,17 @@ function our_projects_shortcode($args, $content) {
 				name_services : name_services,
 				name_sectors : name_sectors,
 				},'html')
-				.success(function(posts1345) {				
-				$("#project_our_ajax").append(posts1345);			
+				.success(function(posts1345) {
+				$("#project_our_ajax").append(posts1345);
 				});
-			});	
-			});			
+			});
+			});
 	</script>
 	</div>
-	
-	
+
+
 	</div>
-	
+
 <?php wp_reset_query(); ?>
 <?php
 	$out = ob_get_contents();
@@ -1775,7 +1775,7 @@ function see_more_project_our_ajax(){
 		'paged'    => $paged,
 		);
 	}
-	else{	
+	else{
 		$args = array(
 		'posts_per_page'   => '100',
 		'orderby'          => 'date',
@@ -1816,7 +1816,7 @@ function see_more_project_our_ajax(){
 					display: none;
 				}
 			</style>
-			<?php 
+			<?php
 		}
 	}
 	else{
@@ -1826,7 +1826,7 @@ function see_more_project_our_ajax(){
 					display: none;
 				}
 			</style>
-	<?php 
+	<?php
 	}
 	}
 	while ( $loop->have_posts() ) : $loop->the_post(); global $product;
@@ -1842,7 +1842,7 @@ function see_more_project_our_ajax(){
 			</h5></div>
 			</div>
 		</div>
-		
+
 		<div class="<?php echo get_the_ID();?> modal fade project-modal" role="dialog">
 		  <div class="modal-dialog">
 
@@ -1850,7 +1850,7 @@ function see_more_project_our_ajax(){
 			<div class="modal-content">
 				<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-					
+
 				</div>
 				<div class="modal-body">
 					<div class="modal_body_fix col-md-12 p_l_r_0">
@@ -1883,17 +1883,17 @@ function see_more_project_our_ajax(){
 									<div class="btn-see list-cat-fix list-cat-fix2 ">
 									<?php
 										$terms = get_the_terms( get_the_ID(), 'project_services' );
-                         
-										if ( $terms && ! is_wp_error( $terms ) ) : 
-										 
+
+										if ( $terms && ! is_wp_error( $terms ) ) :
+
 											$draught_links = array();
-										 
+
 											foreach ( $terms as $term ) {?>
 												<a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php  echo $term->name;?></a>
 											<?php }
 											?>
-										 
-											
+
+
 										<?php endif; ?></div>
 									<div class="post-excerpt-fix-popup hiden-xs"><?php the_content();?></div>
 
@@ -1920,7 +1920,7 @@ function see_more_project_our_ajax(){
 										),
 										'post__not_in' => array ($id),
 										);
-										
+
 										$loop1 = new WP_Query( $args1 );
 									?>
 									<div class="project_info1_ok1">
@@ -1960,15 +1960,15 @@ function see_more_project_our_ajax(){
 
 		  </div>
 		</div>
-	<?php 
+	<?php
 	endwhile;?>
 	<div id="ajax_posts_f_project" class="row">
 		<input type="hidden" class="ajax_posts_f_page_project" value="<?php echo (int)$paged+1;?>">
 	</div>
-	<?php			
-exit; 
+	<?php
+exit;
 }
-add_action('wp_ajax_nopriv_see_more_project_our_ajax', 'see_more_project_our_ajax'); 
+add_action('wp_ajax_nopriv_see_more_project_our_ajax', 'see_more_project_our_ajax');
 add_action('wp_ajax_see_more_project_our_ajax', 'see_more_project_our_ajax');
 
 function load_more_services_ajax(){
@@ -1983,21 +1983,21 @@ function load_more_services_ajax(){
 				'paged'    => $paged,
 				);
 				$the_query = new WP_Query( $args );
-				
+
 				// var_dump($the_query->request);
-				
-				if ( $the_query->have_posts() ) { 
-					while ( $the_query->have_posts() ) { 
+
+				if ( $the_query->have_posts() ) {
+					while ( $the_query->have_posts() ) {
 					$the_query->the_post();
-					?>	
+					?>
 						<?php if($the_query->max_num_pages==$paged || $the_query->max_num_pages<$paged){?>
 							<style>
 								#read_more_services {
 									display: none;
 								}
 							</style>
-						<?php } 
-					$news_taxonomy = get_the_terms( get_the_ID(), 'category', '', '' );  
+						<?php }
+					$news_taxonomy = get_the_terms( get_the_ID(), 'category', '', '' );
 					// var_dump($news_taxonomy);
 					$news_taxonomy_link = get_term_link($news_taxonomy[0]->term_id, 'category' );
 					// var_dump($news_taxonomy_link);
@@ -2020,7 +2020,7 @@ function load_more_services_ajax(){
 									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 								</div>
 								<div  class="col-ms-12 fl style_c_d">
-									<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span> 
+									<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span>
 								</div>
 								<div  class="col-ms-12 fl style_content_news_main">
 									<?php  echo get_the_excerpt(); ?>
@@ -2031,7 +2031,7 @@ function load_more_services_ajax(){
 								</div>
 							</div>
 						</div>
-						<?php 
+						<?php
 						}
 						else{
 						?>
@@ -2052,7 +2052,7 @@ function load_more_services_ajax(){
 										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 									</div>
 									<div  class="col-ms-12 fl style_c_d">
-										<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span> 
+										<span class="style_c_d2"><?php $post_date = get_the_date( 'd/m/Y' ); echo $post_date; ?></span>
 									</div>
 									<div  class="col-ms-12 fl style_content_news_main">
 										<?php  echo get_the_excerpt(); ?>
@@ -2070,7 +2070,7 @@ function load_more_services_ajax(){
 								</div>
 							</div>
 						</div>
-								
+
 						<?php
 						}
 						$i++;
@@ -2079,11 +2079,11 @@ function load_more_services_ajax(){
 						<input type="hidden" class="ajax_posts_f_page_se" value="<?php echo (int)$paged+1;?>">
 						<input type="hidden" class="ajax_posts_f_se_i" value="<?php echo $i;?>">
 					</div>
-				<?php 
-				}	
-exit; 
+				<?php
+				}
+exit;
 }
-add_action('wp_ajax_nopriv_load_more_services_ajax', 'load_more_services_ajax'); 
+add_action('wp_ajax_nopriv_load_more_services_ajax', 'load_more_services_ajax');
 add_action('wp_ajax_load_more_services_ajax', 'load_more_services_ajax');
 
 function my_custom_taxonomy_columns( $columns )
@@ -2114,7 +2114,7 @@ function custom_book_column( $column, $post_id ) {
     switch ( $column ) {
 
         case 'slug' :
-           $post = get_post($post_id); 
+           $post = get_post($post_id);
 			echo $slug = $post->post_name;
             break;
 
@@ -2127,7 +2127,7 @@ function excerpt($limit) {
     $excerpt = implode(" ",$excerpt).'...';
   } else {
     $excerpt = implode(" ",$excerpt);
-  }	
+  }
   $excerpt = preg_replace('`[[^]]*]`','',$excerpt);
   return $excerpt;
 }
