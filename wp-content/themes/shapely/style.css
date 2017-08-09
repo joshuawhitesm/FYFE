@@ -1153,10 +1153,6 @@ blockquote {
         font-size: 16px;
         line-height: 32px;
     }
-
-    .project-img--square {
-        height: 33.3vh;
-    }
 }
 
 th, td {
@@ -1216,14 +1212,6 @@ footer.bg-dark li {
     section {
         padding: 80px 0;
     }
-}
-
-#project_our_ajax .project-img--square a img {
-    height: 13vw;
-}
-
-#project_our_ajax .project-img--square {
-    height: 13vw;
 }
 
 .image-bg h3, .image-bg h1 {
@@ -4709,16 +4697,6 @@ a.icon-see {
     transition: opacity 0.6s linear;
 }
 
-.project-img img {
-    /* max-height:285px; */
-    width: 100%;
-}
-
-.project-img {
-
-    overflow: hidden;
-}
-
 .bg-title-fix {
     padding: 50px;
     background: #464646;
@@ -4760,10 +4738,6 @@ a.icon-see {
 .project-item--small img {
     width: 200px;
     height: 200px;
-}
-
-.project-item .project-img--square {
-    width: auto;
 }
 
 div.project-item > .project-info {
@@ -4894,13 +4868,6 @@ h4.teams-title {
     background-color: #f1ac08;
 }
 
-
-@media screen and (max-width: 480px) {
-    .project-img img {
-        height: 180px;
-        width: 100%;
-    }
-}
 
 textarea.wpcf7-form-control.wpcf7-textarea {
     max-height: 100px;
@@ -5633,14 +5600,9 @@ div#past-project-1304 {
     display: none;
 }
 
-.col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .project-img--square {
+.col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
     width: 20%;
     max-height: 73vh;
-}
-
-#project_our_ajax .project-img--square,
-#project_our_ajax .project-img--square a img {
-    height: 100% !important;
 }
 
 /*============= RESPONSIVE =============*/
@@ -5686,12 +5648,6 @@ div#past-project-1304 {
 .col-md-3.col-xs-6.no-padding.color-white.project-item {
     height: 270px;
     overflow: hidden;
-}
-
-.project-img img {
-    max-height: 285px;
-    width: 100%;
-    height: 270px;
 }
 
 div#sesion_2_home_fyfe_project .col-lg-20ths.col-xs-12.no-padding.glr-right.color-white {
@@ -5988,11 +5944,6 @@ div#sesion_2_home_fyfe_project {
         text-align: center;
     }
 
-    .project-img img {
-        width: 100%;
-        height: auto;
-    }
-
     div#colum_2_session_6_home_fyfe_project {
         width: 100%;
     }
@@ -6205,19 +6156,9 @@ div#sesion_2_home_fyfe_project {
         width: 100%;
         overflow: hidden;
     }
-
-    .project-img img {
-        width: 100%;
-        height: auto;
-        max-height: inherit;
-    }
 }
 
 @media screen and (max-width: 600px) {
-    #project_our_ajax .project-img--square {
-        height: 100% !important;
-    }
-
     .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
         height: 40vh !important;
     }
@@ -6323,12 +6264,6 @@ div#sesion_2_home_fyfe_project {
         overflow: hidden;
     }
 
-    .project-img img {
-        width: 100%;
-        height: auto;
-        max-height: none;
-    }
-
     div#map {
         height: 400px !important;
     }
@@ -6432,18 +6367,8 @@ a {
         letter-spacing: 3px;
     }
 
-    #project_our_ajax .project-img--square a img {
-        min-height: 205px;
-        height: 100%;
-    }
-
     .vc_row.vc_row-o-content-middle:not(.vc_row-o-equal-height) .item-center-fix {
         max-height: 120px;
-    }
-
-    #project_our_ajax .project-img--square {
-        height: 100%;
-        min-height: 205px;
     }
 
     #myCarousel1 .img_slhome img, #myCarousel2 .img_slhome img {
@@ -6821,17 +6746,6 @@ a.style_image_archive img {
     height: 100vh;
 }
 
-.project-img--square {
-    width: 20vw;
-    height: 20vw;
-    overflow: hidden;
-}
-
-.project-img--square a img {
-    width: 20vw;
-    height: 20vw;
-}
-
 .title-post-fix h5 button {
     white-space: normal;
     line-height: normal;
@@ -6996,11 +6910,6 @@ a.style_image_archive img {
 
 /*===================================== fixx css 06_07_2017================================================*/
 @media all and (max-width: 1300px) {
-    .project-item .project-img--square,
-    .project-item .project-img--square a img {
-        height: 100%;
-    }
-
     .col-lg-5ths.col-xs-6.no-padding.color-white.project-item,
     .our-project-title {
     }
@@ -7013,7 +6922,7 @@ a.style_image_archive img {
         display: none !important;
     }
 
-    .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .project-img--square {
+    .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
         max-height: 33.5vh;
     }
 
@@ -7028,20 +6937,9 @@ a.style_image_archive img {
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 980px) {
-    .project-img--square {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
     div#sesion_2_home_fyfe_project {
         height: auto;
         overflow: hidden;
-    }
-
-    .project-img--square a img {
-        width: 100%;
-        height: 100%;
     }
 
     #myCarousel1 .carousel-inner {
@@ -7148,14 +7046,6 @@ a.style_image_archive img {
         width: 100%;
     }
 
-    #project_our_ajax .project-img--square a img {
-        height: 23vw;
-    }
-
-    #project_our_ajax .project-img--square {
-        height: 23vw;
-    }
-
     #myCarousel1 .img_slhome img, #myCarousel2 .img_slhome img {
         min-height: 520px !important;
     }
@@ -7214,17 +7104,6 @@ a.style_image_archive img {
 }
 
 @media screen and (max-width: 980px) {
-    .project-img--square {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .project-img--square a img {
-        width: 100%;
-        height: 100%;
-    }
-
     .img_slhome img {
         min-height: 450px;
     }
@@ -7257,11 +7136,6 @@ a.style_image_archive img {
         display: none;
     }
 
-    .project-img img {
-        height: 282px;
-        width: 100%;
-    }
-
     .our-project-title.before {
         display: block !important;
         width: 50% !important;
@@ -7272,13 +7146,6 @@ a.style_image_archive img {
         min-height: 400px !important;
     }
 
-    #project_our_ajax .project-img--square a img {
-        height: 30vw;
-    }
-
-    #project_our_ajax .project-img--square {
-        height: 30vw;
-    }
     #teams-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item{
         height: 25vh !important;
     }
@@ -7357,15 +7224,6 @@ ul {
 .team-modal .project-info1_ok p {
     font-size: 22px;
 }
-
-@media all and (min-width: 1300px) {
-    .project-img--square {
-        /*
-        height: 74vh;
-        */
-    }
-}
-
 
 @media all and (max-width: 1200px) {
     .our-project-title {
@@ -7589,4 +7447,14 @@ footer {
 
 .img-post-fix img {
     width: 100%;
+}
+
+.project-img--square {
+    height: 34vh;
+    overflow: hidden;
+}
+
+.project-img--square img {
+    /*min-width: 20vh;*/
+    min-height: 34vh;
 }
