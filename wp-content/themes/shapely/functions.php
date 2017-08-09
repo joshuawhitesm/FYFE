@@ -92,6 +92,7 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 		add_image_size( 'shapely-full', 1110, 530, true );
 		add_image_size( 'shapely-featured', 730, 350, true );
 		add_image_size( 'shapely-grid', 350, 300, true );
+		add_image_size( 'people-thumb', 450, 450, true );
 
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		// Welcome screen
@@ -348,7 +349,7 @@ function prefix_load_cat_posts () {
 		$the_query->the_post();?>
 		<?php $terms  = get_the_terms( get_the_ID(), 'project_cat', '', '' );  ?>
 		<div class="col-md-3 col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-			<div  class="project-img project-img--square">
+			<div  class="project-img project-img--square 1">
 			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
 			</div>
 			<div class="project-info">
@@ -516,8 +517,8 @@ function prefix_load_cat_teams () {
 		$the_query->the_post();?>
 		<?php $terms  = get_the_terms( get_the_ID(), 'teams_cat', '', '' );  ?>
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-			<div class="teams-img">
-			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+			<div class="teams-img 1">
+			<a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
 			</div>
 			<div class="project-info">
 				<?php foreach($terms as $value ){?>
@@ -666,7 +667,7 @@ function prefix_load_location () {
 	while ( $the_query->have_posts() ) {
 		$the_query->the_post();?>
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item">
-		<div class="teams-img">
+		<div class="teams-img 2">
 		<a href="<?php the_permalink();?>"><?php the_post_thumbnail();?></a>
 		</div>
 	</div>
@@ -1052,7 +1053,7 @@ function project_our_ajax(){
 	$loop = new WP_Query( $args );	
 	 if ( $loop->have_posts() ) : while ( $loop->have_posts() ) : $loop->the_post(); ?>
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-			<div  class="pproject-img project-img--square">
+			<div  class="pproject-img project-img--square 2">
 			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
 			</div>
 			<div class="project-info">
@@ -1230,8 +1231,8 @@ function our_people_shortcode($args, $content) {
 		?>
 		<?php $terms  = get_the_terms( get_the_ID(), 'teams_cat', '', '' );  ?>
 			<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-				<div class="teams-img">
-					<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+				<div class="teams-img 3">
+					<a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
 				</div>
 				<div class="project-info">
 					<?php /*foreach($terms as $value ){*/?><!--
@@ -1315,7 +1316,7 @@ function our_people_shortcode($args, $content) {
 											));
 										?>
 
-										<div class="past-project">
+										<div class="past-project" id="past-project-<?php the_ID(); ?>">
 											<h5>PAST PROJECTS</h5>
 
 											<?php while($past_projects->have_posts()) : $past_projects->the_post(); global $product1; ?>
@@ -1547,8 +1548,8 @@ function our_projects_shortcode($args, $content) {
 		?>
 		
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-			<div  class="project-img project-img--square">
-			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+			<div  class="project-img project-img--square 3">
+			<a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
 			</div>
 			<div class="project-info">
 				<?php foreach($terms as $value ){?>
@@ -1831,7 +1832,7 @@ function see_more_project_our_ajax(){
 	while ( $loop->have_posts() ) : $loop->the_post(); global $product;
 		?>
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-			<div  class="project-img project-img--square">
+			<div  class="project-img project-img--square 4">
 
 			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
 			</div>

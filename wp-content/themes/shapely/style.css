@@ -475,6 +475,8 @@ a:hover, a:active {
     padding-left: 0;
 }
 
+
+
 .main-navigation li {
     float: left;
     position: relative;
@@ -4559,6 +4561,16 @@ p.text-right {
 }
 
 @media screen and (max-width: 992px) {
+    .page.page-id-1052 div#category-post-content .m_st_20_bul_p .col-md-12.p_relative.style_project_our_top {
+        width: 100%;
+        max-width: 681px;
+        margin: 0 auto;
+    }
+
+    .page.page-id-1052 div#category-post-content .m_st_20_bul_p {
+        padding: 0;
+    }
+
     .info-fix {
         top: auto;
         bottom: 10px;
@@ -4569,6 +4581,7 @@ p.text-right {
         position: static;
         width: 100%;
     }
+
     #project_our_ajax .project-img--square a img {
         height: 23vw;
     }
@@ -4877,7 +4890,7 @@ a.icon-see:hover {
 
 .teams-img img {
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     overflow: hidden;
 }
 
@@ -4911,6 +4924,7 @@ h4.teams-title {
         height: 282px;
         width: 100%;
     }
+
     #project_our_ajax .project-img--square a img {
         height: 30vw;
     }
@@ -5651,25 +5665,44 @@ div#ajax_posts_f_project {
     position: absolute;
 }
 
+div#past-project-1369,
+div#past-project-1397,
+div#past-project-1395,
+div#past-project-1304 {
+    display: none;
+}
+
+.col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
+    width: 20% !important;
+}
+
+#project_our_ajax .project-img--square,
+#project_our_ajax .project-img--square a img {
+    height: 100% !important;
+}
+
+/*============= RESPONSIVE =============*/
+
+@media screen and (max-width: 1351px) {
+    .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
+
+    }
+}
+
 @media screen and (max-width: 1300px) {
     div#project_our_ajax .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        height: 13vw;
+
         overflow: hidden;
     }
 
     .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        height: 445px;
+        /*height: 445px;*/
         overflow: hidden;
     }
 
     .col-md-3.col-xs-6.no-padding.color-white.project-item {
         height: 270px;
         overflow: hidden;
-    }
-
-    .teams-img img {
-        max-height: 470px;
-        height: 470px;
     }
 
     .project-img img {
@@ -5695,9 +5728,17 @@ div#ajax_posts_f_project {
 }
 
 @media screen and (max-width: 1200px) {
+    .page.page-id-1410 div#category-post-content .m_st_20_bul_p {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+
     #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .our-project-title {
-        height: auto !important;
-        max-height: 220px !important;
+        /*height: auto !important;*/
+        /* max-height: 220px !important; */
+        /* width: 25% !important;*/
+
     }
 
     #category-post-content div.project-item > .project-info {
@@ -5735,7 +5776,7 @@ div#ajax_posts_f_project {
     }
 
     .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        height: 445px;
+        /*height: 445px;*/
         width: 25%;
         overflow: hidden;
     }
@@ -5766,6 +5807,10 @@ div#ajax_posts_f_project {
 }
 
 @media screen and (max-width: 1050px) {
+    .modal_body_fix .col-md-6.p_l_r_0.color-white.p_relative {
+        overflow: inherit !important;
+    }
+
     .project_info1_a_title a {
         font-size: 12px;
         padding: 10px 0 0 0;
@@ -5826,12 +5871,17 @@ div#ajax_posts_f_project {
 }
 
 @media screen and (max-width: 991px) {
+    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .our-project-title {
+        width: 33.333% !important;
+    }
+
     .project_info_bottom .project_info_bottom1_6 {
         margin-top: 20px;
         position: relative;
         bottom: 0;
     }
-    #myCarousel1449  .img_slhome img {
+
+    #myCarousel1449 .img_slhome img {
         height: 56vh;
     }
 
@@ -5894,7 +5944,7 @@ div#ajax_posts_f_project {
     }
 
     div#project_our_ajax .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        height: 270px;
+        /*height: 270px;*/
         width: 50%;
         overflow: hidden;
     }
@@ -6065,6 +6115,10 @@ div#ajax_posts_f_project {
 }
 
 @media screen and (max-width: 768px) {
+    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .our-project-title {
+        width: 50% !important;
+    }
+
     .project_info1_a_work {
         text-align: right;
         padding-right: 0;
@@ -6158,7 +6212,7 @@ div#ajax_posts_f_project {
 
 @media screen and (max-width: 750px) {
     div#project_our_ajax .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        height: 270px;
+        height: auto;
         width: 100%;
         overflow: hidden;
     }
@@ -6171,6 +6225,18 @@ div#ajax_posts_f_project {
 }
 
 @media screen and (max-width: 600px) {
+    #project_our_ajax .project-img--square {
+        height: 100% !important;
+    }
+
+    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
+        width: 50% !important;
+    }
+
+    .our-project-title {
+        width: 100% !important;
+    }
+
     .project-img {
         height: auto;
         overflow: hidden;
@@ -6185,15 +6251,28 @@ div#ajax_posts_f_project {
         min-height: 530px !important;
     }
 
-    #myCarousel1 .img_slhome img ,#myCarousel2 .img_slhome img {
-        /*
+    #myCarousel1 .img_slhome img, #myCarousel2 .img_slhome img {
         min-height: 300px !important;
-        */
         max-height: 150px;
     }
-
+    #sesion_3_home_fyfe_project, #sesion_6_home_fyfe_project{
+        padding: 30px !important;
+    }
     .teams_style_fix_4_7 {
         padding-bottom: 0;
+    }
+    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
+        width: 100% !important;
+        height: 30vh;
+    }
+
+    #sesion_7_home_fyfe_project .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .our-project-title {
+        width: 100% !important;
+        height: 55vh;
+    }
+
+    #sesion_4_home_fyfe_project .height-fix_19_7 {
+        height: 200px;
     }
 
     #myCarousel1 .leftbt, #3myCarousel1 .rightbt {
@@ -6309,6 +6388,10 @@ div#ajax_posts_f_project {
 }
 
 @media screen and (max-width: 440px) {
+    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
+        width: 100% !important;
+    }
+
     .project-img1 {
         height: 300px;
         position: relative;
@@ -6331,9 +6414,11 @@ div#ajax_posts_f_project {
         overflow: hidden;
     }
 }
-a{
+
+a {
     font-weight: 600 !important;
 }
+
 @media screen and (max-width: 362px) {
     .project_info1_a_work a {
         text-transform: uppercase;
@@ -6342,15 +6427,21 @@ a{
         text-decoration: underline;
         letter-spacing: 3px;
     }
+
     #project_our_ajax .project-img--square a img {
         min-height: 205px;
         height: 100%;
+    }
+
+    .vc_row.vc_row-o-content-middle:not(.vc_row-o-equal-height) .item-center-fix {
+        max-height: 120px;
     }
 
     #project_our_ajax .project-img--square {
         height: 100%;
         min-height: 205px;
     }
+
     #myCarousel1 .img_slhome img, #myCarousel2 .img_slhome img {
         min-height: 250px !important;
         max-height: 100px;
@@ -6396,6 +6487,31 @@ a{
 
     #sesion_5_home_fyfe_project .center-fix-item h4 {
         margin-bottom: 10px;
+    }
+
+    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
+        width: 100% !important;
+        height: 35vh;
+    }
+
+    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item img {
+        height: 35vh;
+    }
+
+    #sesion_7_home_fyfe_project .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .our-project-title {
+        width: 100% !important;
+        height: 33vh;
+    }
+
+    #sesion_7_home_fyfe_project .project-info {
+    padding:10px;
+    }
+    #sesion_7_home_fyfe_project .project-info h5{
+        line-height: 1;
+    }
+
+    #sesion_4_home_fyfe_project .height-fix_19_7 {
+        height: 200px;
     }
 }
 
@@ -6618,7 +6734,7 @@ a.style_image_archive img {
 }
 
 .img_slhome img {
-    height: 100vh;
+    height: 105vh;
 }
 
 .slhome_list {
@@ -6959,7 +7075,7 @@ a.style_image_archive img {
     }
 
     .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        height: 405px;
+        /*height: 405px;*/
     }
 }
 
@@ -6985,6 +7101,7 @@ a.style_image_archive img {
     #primary .sliderhome_75370 img {
         width: 50%;
     }
+
     .hsu-slider-styling {
         left: 0;
     }

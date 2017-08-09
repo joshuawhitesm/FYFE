@@ -298,8 +298,8 @@ function project_shortcode($args, $content) {
 
 			<?php if($count==4){?>
 				<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-				<div  class="project-img project-img--square">
-				<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+				<div  class="project-img project-img--square 3">
+				<a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
 				</div>
 				<div class="project-info">
 					<?php foreach($terms as $value ){?>
@@ -319,8 +319,8 @@ function project_shortcode($args, $content) {
 			</div>
 			<?php } else{ ?>
 			<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-				<div  class="project-img project-img--square">
-				<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+				<div  class="project-img project-img--square 2">
+				<a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
 				</div>
 				<div class="project-info">
 					<?php foreach($terms as $value ){?>
@@ -483,8 +483,8 @@ function teams_shortcode($args, $content) {
 		<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
 			<!-- <?php $terms  = get_the_terms( get_the_ID(), 'teams_cat', '', '' );  ?> -->
 			<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-				<div class="teams-img">
-					<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+				<div class="teams-img 4">
+					<a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
 				</div>
 				<div class="project-info">
 	<!-- 				<?php foreach($terms as $value ){?>
@@ -573,7 +573,7 @@ function teams_shortcode($args, $content) {
 											));
 										?>
 
-										<div class="past-project">
+										<div class="past-project" id="past-project-<?php the_ID(); ?>">
 											<h5>PAST PROJECTS</h5>
 
 											<?php while($past_projects->have_posts()) : $past_projects->the_post(); global $product1; ?>

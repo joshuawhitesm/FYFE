@@ -3,7 +3,7 @@
 Template Name: Full Width
 Template Post Type: post, page
 */
-get_header(); ?>
+get_header();  ?>
 
 <?php $layout_class = shapely_get_layout_class(); ?>
 	<div class="row">
