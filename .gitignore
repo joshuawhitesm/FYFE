@@ -14,3 +14,5 @@ wp-content/themes/shapely/style.css_2017_07_10
 wp-content/backupwordpress-*
 wp-content/updraft/
 wp-content/wflogs/
+wp-content/plugins/aceide/backups
+.DS_Store
