@@ -92,7 +92,9 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 		add_image_size( 'shapely-full', 1110, 530, true );
 		add_image_size( 'shapely-featured', 730, 350, true );
 		add_image_size( 'shapely-grid', 350, 300, true );
+		add_image_size( 'people-vertical', 400, 599, true );
 		add_image_size( 'people-thumb', 450, 450, true );
+		
 
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		// Welcome screen
@@ -1235,7 +1237,7 @@ function our_people_shortcode($args, $content) {
 		?>
 			<div class="col-lg-5ths col-xs-6 no-padding color-white project-item project-item--people" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 				<div class="teams-img 3">
-					<a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
+					<a href="javascript:void(0);"><?php the_post_thumbnail('people-vertical');?></a>
 				</div>
 				<div class="project-info">
 					<?php /*foreach($terms as $value ){*/?><!--
@@ -1555,8 +1557,8 @@ function our_projects_shortcode($args, $content) {
 		?>
 
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-				<div class="project-img project-img--square" style="background: url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'people-thumb');?>) no-repeat center center; background-size: cover;">
-					<a href="javascript:void(0);"></a>
+				<div class="project-img project-img--square">
+					<a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
 				</div>
 			<div class="project-info">
 				<!-- <?php foreach($terms as $value ){?> -->

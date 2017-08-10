@@ -1,3 +1,4 @@
+
 <?php
 /*================ expertise short code=================*/
 function product_shortcode($args, $content) {
@@ -298,8 +299,8 @@ function project_shortcode($args, $content) {
 
 			<?php if($count==4){?>
 				<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-				<div class="project-img project-img--square" style="background: url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'people-thumb');?>) no-repeat center center; background-size: cover;">
-					<a href="javascript:void(0);"></a>
+				<div class="project-img project-img--square" >
+					<a href="javascript:void(0);"><img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'people-thumb');?>" alt="" ></a>
 				</div>
 				<div class="project-info">
 					<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
@@ -316,8 +317,8 @@ function project_shortcode($args, $content) {
 			</div>
 			<?php } else{ ?>
 			<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-				<div class="project-img project-img--square" style="background: url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'people-thumb');?>) no-repeat center center; background-size: cover;">
-					<a href="javascript:void(0);"></a>
+				<div class="project-img project-img--square" >
+					<a href="javascript:void(0);"><img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'people-thumb');?>" alt="" ></a>
 				</div>
 				<div class="project-info">
 					<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
@@ -478,7 +479,7 @@ function teams_shortcode($args, $content) {
 			<!-- <?php $terms  = get_the_terms( get_the_ID(), 'teams_cat', '', '' );  ?> -->
 			<div class="col-lg-5ths col-xs-6 no-padding color-white project-item project-item--people" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 				<div class="teams-img 4">
-					<a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
+					<a href="javascript:void(0);"><?php the_post_thumbnail('people-vertical');?></a>
 				</div>
 				<div class="project-info">
 	<!-- 				<?php foreach($terms as $value ){?>
@@ -1266,7 +1267,7 @@ function sectors_news_shortcode($args, $content) {
 	// var_dump($posts_array1->request);
 	// echo "<pre>";
 	// var_dump($posts_array);
-	global $post;?>
+	global $post; ?>
 	<div class="m_st_20_bul_p">
 		<div id="news_load">
 		<?php
@@ -1370,6 +1371,141 @@ function sectors_news_shortcode($args, $content) {
 	$myvariable = ob_get_clean();
 	return $myvariable;
 }
+
+
+// Services Shortcode
+
+add_shortcode( 'expertise_section', 'expertise_section_shortcode' );
+function expertise_section_shortcode($args, $content) {
+	if ( get_query_var('paged') ) {
+		$paged = get_query_var('paged');
+	} elseif ( get_query_var('page') ) {
+		$paged = get_query_var('page');
+	} else {
+		$paged = 1;
+	}
+	ob_start();
+	$atts = shortcode_atts( array(
+		'number_posts' => -1,
+		'post_type' => 'expertise',
+		), $atts, 'sectors_news' );
+	$args1 = array(
+	'posts_per_page' 	   => '-1',
+	'orderby'          => 'title',
+	'order'            => 'ASC',
+	'post_type'        => $atts['post_type'],
+	'post_status'      => 'publish',
+	'paged'    => $paged,
+	);
+	// var_dump($atts['post_type']);
+	$posts_array1 = new WP_Query( $args1 );
+	// var_dump($posts_array1->request);
+	// echo "<pre>";
+	// var_dump($posts_array);
+	global $post; ?>
+	<div class="m_st_20_bul_p">
+		<div id="news_load">
+		<?php
+		$i=0;
+		if ( $posts_array1->have_posts() ) {
+		while ( $posts_array1->have_posts() ) {
+		$posts_array1->the_post();
+		
+		
+		// /$news_taxonomy = get_the_terms( get_the_ID(), 'sectors_cat', '', '' );
+		// var_dump($news_taxonomy);
+		// /$news_taxonomy_link = get_term_link($news_taxonomy[0]->term_id, 'sectors_cat' );
+		// var_dump($news_taxonomy_link);
+		$post_slug = get_post_field( 'post_name', get_post() );
+		if($i%2==0){
+		?>
+		
+			<div class="col-md-12 no-padding " id="<?php echo $post_slug; ?>">
+				<div class="col-md-6 no-padding">
+					<div  class=" fl style_content_get_news">
+						<div  class="col-ms-12 fl style_image_news">
+							<?php the_post_thumbnail();?>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 no-padding">
+					<div  class=" fl style_content_news">
+
+						<div  class="col-ms-12 fl style_title_news">
+								<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+						</div>
+						
+						<div  class="col-ms-12 fl style_content_news_main">
+							<?php  echo excerpt(50); ?>
+						</div>
+
+						<div  class="col-ms-12 fl style_news_read_more">
+							<a  href="<?php the_permalink(); ?>">READ MORE</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php
+		}
+		else{
+		?>
+			<div class="col-md-12 no-padding" id="<?php echo $post_slug; ?>">
+				<div class="col-md-6 no-padding d_n style_content_get_news_display1">
+					<div  class=" fl style_content_get_news">
+						<div  class="col-ms-12 fl style_image_news">
+							<?php the_post_thumbnail();?>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 no-padding">
+					<div  class=" fl style_content_news">
+						<!--<div class="btn-see style_content_news_a">
+							<a href="<?php /*echo $news_taxonomy_link;*/?>"> <?php /*echo $news_taxonomy[0]->name;  */?></a>
+						</div>-->
+						<div  class="col-ms-12 fl style_title_news">
+							<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+						</div>
+						<!--<div  class="col-ms-12 fl style_c_d">
+							<span class="style_c_d2"><?php /*$post_date = get_the_date( 'd/m/Y' ); echo $post_date; */?></span>
+						</div>-->
+						<div  class="col-ms-12 fl style_content_news_main">
+
+							<?php  echo excerpt(50); ?>
+						</div>
+						<div  class="col-ms-12 fl style_news_read_more">
+							<a href="<?php the_permalink(); ?>">READ MORE</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 no-padding style_content_get_news_display2">
+					<div  class=" fl style_content_get_news">
+						<div  class="col-ms-12 fl style_image_news">
+							<?php the_post_thumbnail();?>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<?php
+		}
+		$i++;
+		}
+		}
+		wp_reset_postdata();
+		?>
+
+		<div id="ajax_posts_f" class="row">
+			<input type="hidden" class="ajax_posts_f_page" value="2">
+			<input type="hidden" class="ajax_posts_f_i" value="<?php echo $i;?>">
+		</div>
+		</div>
+	</div>
+	<?php
+	$myvariable = ob_get_clean();
+	return $myvariable;
+}
+
+// END Services Shortcode
 
 //Short Code Slider Home
 add_shortcode( 'our_sliderhome', 'our_sliderhome_func' );
@@ -1630,4 +1766,3 @@ function our_sliderhome_func($atts,$args) {
 $myvariable = ob_get_clean();
 	return $myvariable;
 }
-

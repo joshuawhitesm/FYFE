@@ -1,3 +1,5 @@
+
+
 /*
 Theme Name: Shapely
 Theme URI: https://colorlib.com/wp/themes/shapely
@@ -144,11 +146,7 @@ button, input, optgroup, select, textarea {
     margin: 0;
 }
 
-.col-md-6.p_l_r_0.color-white.p_relative {
-    height: 100vh;
-    overflow-y: scroll !important;
-    overflow-x: hidden !important;
-}
+
 
 button {
     overflow: visible;
@@ -4601,7 +4599,7 @@ a.see-more {
     margin: 0 auto;
     text-align: center;
     color: #464646;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .text-left h4 {
@@ -4728,7 +4726,6 @@ a.icon-see {
 .teams-img {
     height: 100%;
     overflow: hidden;
-    max-height: 400px;
 }
 
 .project-item {
@@ -4859,7 +4856,6 @@ a.icon-see:hover {
 ul#category-menu2 {
     text-align: center;
 }
-
 h4.teams-title {
     margin-bottom: 35px;
 }
@@ -4867,7 +4863,6 @@ h4.teams-title {
 .bg-yellow {
     background-color: #f1ac08;
 }
-
 
 textarea.wpcf7-form-control.wpcf7-textarea {
     max-height: 100px;
@@ -5383,15 +5378,7 @@ div#location-content {
     position: relative;
 }
 
-.project_img1_2 {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    box-shadow: -20px 0 84px 71px #acacac;
-    background: #acacac;
-    width: 9px;
-}
+
 
 .p_relative ul#category-menu {
     position: relative;
@@ -5602,11 +5589,11 @@ div#past-project-1304 {
 
 .project-item {
     width: 20%;
-    height: 20vw;
+    /*height: 20vw;*/
 }
 
 .project-item .project-img--square {
-    height: 20vw;
+   /* height: 20vw;*/
 }
 
 .project-item--people {
@@ -5625,7 +5612,6 @@ div#past-project-1304 {
 
 }
 
-}
 @media screen and (max-width: 1300px) {
     div#project_our_ajax .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
 
@@ -5735,9 +5721,7 @@ div#sesion_2_home_fyfe_project {
         width: 100% !important;
     }
 
-    #sesion_1_home_fyfe_project {
-        min-height: 45vh;
-    }
+
 
     #sesion_1_home_fyfe_project,
     #sesion_2_home_fyfe_project {
@@ -5884,7 +5868,7 @@ div#sesion_2_home_fyfe_project {
     }
 
     div#project_our_ajax .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        height: 270px;
+        /*height: 270px;*/
         width: 50%;
         overflow: hidden;
     }
@@ -6052,7 +6036,6 @@ div#sesion_2_home_fyfe_project {
 @media screen and (max-width: 768px) {
     #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .our-project-title {
         width: 50% !important;
-        height: 33.3vh !important;
     }
 
     .project_info1_a_work {
@@ -6148,16 +6131,13 @@ div#sesion_2_home_fyfe_project {
 
 @media screen and (max-width: 750px) {
     div#project_our_ajax .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        height: 31vh;
         width: 100%;
         overflow: hidden;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        height: 40vh !important;
-    }
+
 
     #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
         width: 50% !important;
@@ -6195,13 +6175,11 @@ div#sesion_2_home_fyfe_project {
     }
 
     #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        width: 100% !important;
-        height: 30vh;
+        width: 50% !important;
     }
 
     #sesion_7_home_fyfe_project .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .our-project-title {
         width: 100% !important;
-        height: 55vh;
     }
 
     #sesion_4_home_fyfe_project .height-fix_19_7 {
@@ -6225,12 +6203,11 @@ div#sesion_2_home_fyfe_project {
         overflow: hidden;
     }
 
-    #teams-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item{
-        min-height: 52vh !important;
-    }
+
     #myCarousel1 .img_slhome img, #myCarousel2 .img_slhome img {
         min-height: 300px !important;
     }
+
     .col-md-6.no-padding.name_sectors {
         width: 100%;
         float: left;
@@ -6345,9 +6322,7 @@ div#sesion_2_home_fyfe_project {
         max-height: inherit;
         overflow: hidden;
     }
-    #teams-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        min-height: 39vh !important;
-    }
+
 }
 
 a {
@@ -6410,22 +6385,20 @@ a {
         height: 180px;
     }
 
-    #sesion_5_home_fyfe_project .center-fix-item h4 {
-        margin-bottom: 10px;
+    #sesion_5_home_fyfe_project .center-fix-item h4 ,
+    #sesion_7_home_fyfe_project .center-fix-item h4 {
+        margin-bottom: 10px !important;
     }
 
     #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
         width: 100% !important;
-        height: 35vh;
+        
     }
 
-    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item img {
-        height: 35vh;
-    }
 
     #sesion_7_home_fyfe_project .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .our-project-title {
         width: 100% !important;
-        height: 33vh;
+
     }
 
     #sesion_7_home_fyfe_project .project-info {
@@ -6659,9 +6632,6 @@ a.style_image_archive img {
     margin-bottom: 13px;
 }
 
-.img_slhome img {
-    height: 105vh;
-}
 
 .slhome_list {
     float: right;
@@ -6738,9 +6708,6 @@ a.style_image_archive img {
     color: #f1ac08 !important;
 }
 
-.project-img1 img {
-    height: 100vh;
-}
 
 .title-post-fix h5 button {
     white-space: normal;
@@ -6857,9 +6824,6 @@ a.style_image_archive img {
     cursor: default;
 }
 
-.modal-content .project-img1 img {
-    height: 100vh;
-}
 
 .project-img1 a.style_image_thumbnail img {
     width: 100%;
@@ -6906,9 +6870,6 @@ a.style_image_archive img {
 
 /*===================================== fixx css 06_07_2017================================================*/
 @media all and (max-width: 1300px) {
-    .col-lg-5ths.col-xs-6.no-padding.color-white.project-item,
-    .our-project-title {
-    }
 
     .our-project-title.before {
         display: block !important;
@@ -6918,18 +6879,8 @@ a.style_image_archive img {
         display: none !important;
     }
 
-    .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        max-height: 33.5vh;
-    }
 
-    #teams-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        height: 30vh !important;
 
-    }
-
-    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        height: 34vh !important;
-    }
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 980px) {
@@ -6988,7 +6939,7 @@ a.style_image_archive img {
     }
 
     #myCarousel1 .img_slhome img, #myCarousel2 .img_slhome img {
-        min-height: 550px !important;
+        min-height: 580px !important;
         max-height: 150px;
     }
 
@@ -7010,9 +6961,6 @@ a.style_image_archive img {
         width: 100%;
     }
 
-    .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        height: 405px;
-    }
 }
 
 @media screen and (max-width: 992px) {
@@ -7027,7 +6975,7 @@ a.style_image_archive img {
     }
 
     .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        height: 41vh !important;
+
         width: 33.33% !important;
     }
 
@@ -7046,9 +6994,6 @@ a.style_image_archive img {
         min-height: 520px !important;
     }
 
-    #sesion_5_home_fyfe_project .center-fix-item {
-        min-height: 25.9vh;
-    }
 
     .slhome_list.slhome_list_sector1.slhome_list_sectors1.sectors1.col-lg-5ths {
         padding: 0 !important;
@@ -7135,16 +7080,12 @@ a.style_image_archive img {
     .our-project-title.before {
         display: block !important;
         width: 50% !important;
-        min-height: 33.5vh;
     }
 
     #myCarousel1 .img_slhome img, #myCarousel2 .img_slhome img {
         min-height: 400px !important;
     }
 
-    #teams-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item{
-        height: 25vh !important;
-    }
 }
 
 /* MT CSS 07/06/2017 */
@@ -7445,14 +7386,6 @@ footer {
     width: 100%;
 }
 
-.project-img--square {
-    height: 34vh;
-    overflow: hidden;
-}
-
-.project-img--square img {
-    min-height: 34vh;
-}
 
 @media only screen and (max-device-width: 768px) {
     .project-img--square {
@@ -7463,4 +7396,23 @@ footer {
         max-height: 100vw !important;
         height: 100vw !important;
     }
+}
+
+@media only screen and (max-width: 480px) {
+  .project-info {
+      opacity: 1;
+  }
+
+  div#project_our_ajax {
+          padding: 0;
+  }
+
+  .project-info h5 button {
+      line-height: 1.5em;
+  }
+}
+
+.centering-background {
+  background-position: center center;
+  background-repeat: no-repeat;
 }
