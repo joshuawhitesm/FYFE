@@ -5602,7 +5602,11 @@ div#past-project-1304 {
 
 .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
     width: 20%;
-    max-height: 73vh;
+    height: 20vw;
+}
+
+.col-lg-5ths.col-xs-6.no-padding.color-white.project-item .project-img--square {
+    height: 20vw;
 }
 
 /*============= RESPONSIVE =============*/

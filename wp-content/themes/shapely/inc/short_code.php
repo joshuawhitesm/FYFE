@@ -298,18 +298,15 @@ function project_shortcode($args, $content) {
 
 			<?php if($count==4){?>
 				<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-				<div  class="project-img project-img--square 3">
-				<a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
+				<div class="project-img project-img--square" style="background: url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'people-thumb');?>) no-repeat center center; background-size: cover;">
+					<a href="javascript:void(0);"></a>
 				</div>
 				<div class="project-info">
-					<?php foreach($terms as $value ){?>
-						<!--<div class="btn-see btn_see_fix"><a><?php echo $value->name;?></a></div>-->
-					<?php } ?>
 					<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
 					</h5></div>
 				</div>
 			</div>
-				<div class="wpb_column vc_column_container text-center item-center-fix col-lg-5ths pull-right our-project-title after project-img project-img--square">
+				<div class="wpb_column vc_column_container text-center item-center-fix col-lg-5ths pull-right our-project-title after project-img project-img--square" style="height: 20vw;">
 				<div class="vc_column-inner no-padding center-fix-item p_relative">
 					<h4><a href="/?page_id=1052"><?php echo $title;?></a></h4>
 					<div class="btn-see">
@@ -319,13 +316,10 @@ function project_shortcode($args, $content) {
 			</div>
 			<?php } else{ ?>
 			<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-				<div  class="project-img project-img--square 2">
-				<a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
+				<div class="project-img project-img--square" style="background: url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'people-thumb');?>) no-repeat center center; background-size: cover;">
+					<a href="javascript:void(0);"></a>
 				</div>
 				<div class="project-info">
-					<?php foreach($terms as $value ){?>
-						<!--<div class="btn-see btn_see_fix"><a><?php echo $value->name;?></a></div>-->
-					<?php } ?>
 					<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
 					</h5></div>
 				</div>
