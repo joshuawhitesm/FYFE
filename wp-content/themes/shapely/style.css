@@ -5600,12 +5600,12 @@ div#past-project-1304 {
     display: none;
 }
 
-.col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
+.project-item {
     width: 20%;
     height: 20vw;
 }
 
-.col-lg-5ths.col-xs-6.no-padding.color-white.project-item .project-img--square {
+.project-item .project-img--square {
     height: 20vw;
 }
 
@@ -5615,19 +5615,7 @@ div#past-project-1304 {
 
 /*============= RESPONSIVE =============*/
 
-@media screen and (max-width: 1351px) {
-    .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-
-    }
-}
-
 @media screen and (max-width: 1300px) {
-    .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        /*
-        height: 68vh !important; ;
-        */
-    }
-
     #myCarousel1 .img_slhome img, #myCarousel2 .img_slhome img {
         min-height: 775px !important;
         max-height: 100px;
