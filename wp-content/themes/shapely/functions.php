@@ -1229,7 +1229,10 @@ function our_people_shortcode($args, $content) {
 	?>
 	<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;
 		?>
-		<?php $terms  = get_the_terms( get_the_ID(), 'teams_cat', '', '' );  ?>
+		<?php
+			$terms  = get_the_terms( get_the_ID(), 'teams_cat', '', '' );
+			$status = get_field('status') ;
+		?>
 			<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 				<div class="teams-img 3">
 					<a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
@@ -1240,7 +1243,11 @@ function our_people_shortcode($args, $content) {
 					--><?php /*} */?>
 					<div class="title-post-fix">
 						<h5>
-							<button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
+							<button type="button" class="btn btn-info btn-lg">
+								<?php the_title();?>
+								<br />
+								<?php echo $status;?>
+							</button>
 						</h5>
 					</div>
 				</div>
@@ -1279,7 +1286,6 @@ function our_people_shortcode($args, $content) {
 								</div>
 									<div class="p_l_t_30">
 										<?php
-											$status = get_field('status') ;
 											$location = get_field('location') ;
 											$email = get_field('email') ;
 											$phone = get_field('phone') ;
@@ -1459,60 +1465,61 @@ function our_projects_shortcode($args, $content) {
 			<input type="hidden" name="name_services_hidden" class="name_services_hidden" value="all">
 			<script type="text/javascript">
 				jQuery(document).ready( function($) {
-				var ajaxUrl1 = "<?php echo admin_url('admin-ajax.php')?>";
-				$(".name_services h6").on("click", function() {
-					var name_services = $('.name_services_hidden').val();
-					var name_sectors = $('.name_sectors_hidden').val();
-					// console.log(name_services);
-					// console.log(name_sectors);
-					$.post(ajaxUrl1, {
-						action: "project_our_ajax",
-						name_services : name_services,
-						name_sectors : name_sectors,
-						},'html')
-						.success(function(posts1345) {
-						$("#project_our_ajax").html("");
-						$("#project_our_ajax").append(posts1345);
+					var ajaxUrl1 = "<?php echo admin_url('admin-ajax.php')?>";
+					var loadData = function() {
+					}
 
+					$(".name_services h6").on("click", function() {
+						var name_services = $('.name_services_hidden').val();
+						var name_sectors = $('.name_sectors_hidden').val();
+						console.log(name_services);
+						console.log(name_sectors);
+						$.post(ajaxUrl1, {
+							action: "project_our_ajax",
+							name_services : name_services,
+							name_sectors : name_sectors,
+						},'html').success(function(posts1345) {
+							$("#project_our_ajax").html("");
+							$("#project_our_ajax").append(posts1345);
 						});
-				});
+					});
 
-				$(".name_sectors h6").on("click", function() {
-					var name_services = $('.name_services_hidden').val();
-					var name_sectors = $('.name_sectors_hidden').val();
-					// console.log(name_services);
-					// console.log(name_sectors);
-					$.post(ajaxUrl1, {
-						action: "project_our_ajax",
-						name_services : name_services,
-						name_sectors : name_sectors,
-						},'html')
-						.success(function(posts1345) {
-						$("#project_our_ajax").html("");
-						$("#project_our_ajax").append(posts1345);
+					$(".name_sectors h6").on("click", function() {
+						var name_services = $('.name_services_hidden').val();
+						var name_sectors = $('.name_sectors_hidden').val();
+						console.log(name_services);
+						console.log(name_sectors);
+						$.post(ajaxUrl1, {
+							action: "project_our_ajax",
+							name_services : name_services,
+							name_sectors : name_sectors,
+							},'html')
+							.success(function(posts1345) {
+							$("#project_our_ajax").html("");
+							$("#project_our_ajax").append(posts1345);
 
-						});
-				});
-				$(".style_project_our_top1_all").on("click", function() {
-					var name_services = 'all';
-					var name_sectors = 'all';
-					$('.name_services_hidden').val('all');
-					$('.name_sectors_hidden').val('all');
-					$(".name_sectors h6").removeClass("current_cat");
-					$(".name_services h6").removeClass("current_cat");
-					// console.log(name_services);
-					// console.log(name_sectors);
-					$.post(ajaxUrl1, {
-						action: "project_our_ajax",
-						name_services : name_services,
-						name_sectors : name_sectors,
-						},'html')
-						.success(function(posts1345) {
-						$("#project_our_ajax").html("");
-						$("#project_our_ajax").append(posts1345);
+							});
+					});
+					$(".style_project_our_top1_all").on("click", function() {
+						var name_services = 'all';
+						var name_sectors = 'all';
+						$('.name_services_hidden').val('all');
+						$('.name_sectors_hidden').val('all');
+						$(".name_sectors h6").removeClass("current_cat");
+						$(".name_services h6").removeClass("current_cat");
+						// console.log(name_services);
+						// console.log(name_sectors);
+						$.post(ajaxUrl1, {
+							action: "project_our_ajax",
+							name_services : name_services,
+							name_sectors : name_sectors,
+							},'html')
+							.success(function(posts1345) {
+							$("#project_our_ajax").html("");
+							$("#project_our_ajax").append(posts1345);
 
-						});
-				});
+							});
+					});
 				});
 			</script>
 		</div>
