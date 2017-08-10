@@ -476,7 +476,7 @@ function teams_shortcode($args, $content) {
 		?>
 		<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>
 			<!-- <?php $terms  = get_the_terms( get_the_ID(), 'teams_cat', '', '' );  ?> -->
-			<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>" style="height: auto;">
+			<div class="col-lg-5ths col-xs-6 no-padding color-white project-item project-item--people" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 				<div class="teams-img 4">
 					<a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
 				</div>

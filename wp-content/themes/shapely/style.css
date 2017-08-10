@@ -5609,6 +5609,10 @@ div#past-project-1304 {
     height: 20vw;
 }
 
+.project-item--people {
+    height: auto;
+}
+
 /*============= RESPONSIVE =============*/
 
 @media screen and (max-width: 1351px) {
