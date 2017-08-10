@@ -1,5 +1,4 @@
 
-
 /*
 Theme Name: Shapely
 Theme URI: https://colorlib.com/wp/themes/shapely
@@ -7409,6 +7408,11 @@ footer {
   background-repeat: no-repeat;
 }
 
+@media only screen and (max-width: 768px) {
+  .xs-square-image {
+    height: 100vw;
+  }
+}
 @media only screen and (max-width: 768px) {
   .xs-square-image {
     height: 100vw;
