@@ -7455,6 +7455,16 @@ footer {
 }
 
 .project-img--square img {
-    /*min-width: 20vh;*/
     min-height: 34vh;
+}
+
+@media only screen and (max-device-width: 768px) {
+    .project-img--square {
+        height: 100vw !important;
+    }
+
+    div#project_our_ajax .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
+        max-height: 100vw !important;
+        height: 100vw !important;
+    }
 }

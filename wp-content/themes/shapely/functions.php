@@ -1548,9 +1548,9 @@ function our_projects_shortcode($args, $content) {
 		?>
 
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-			<div  class="project-img project-img--square 3">
-			<a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
-			</div>
+				<div class="project-img project-img--square" style="background: url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'people-thumb');?>) no-repeat center center; background-size: cover;">
+					<a href="javascript:void(0);"></a>
+				</div>
 			<div class="project-info">
 				<!-- <?php foreach($terms as $value ){?> -->
 					<!--<div class="btn-see btn_see_fix"><a><?php echo $value->name;?></a></div>-->
