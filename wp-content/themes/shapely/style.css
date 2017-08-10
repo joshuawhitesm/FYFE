@@ -5587,11 +5587,6 @@ div#past-project-1304 {
     display: none;
 }
 
-.project-item {
-    width: 20%;
-    /*height: 20vw;*/
-}
-
 .project-item .project-img--square {
    /* height: 20vw;*/
 }
@@ -6750,11 +6745,6 @@ a.style_image_archive img {
 .modal_fix_4_7 {
     width: 60%;
     margin: 0 auto;
-}
-
-.no-padding {
-    padding-left: 0;
-    padding-right: 0;
 }
 
 .style_home_fyfe_contact_form label {

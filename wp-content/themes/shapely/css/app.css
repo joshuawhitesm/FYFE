@@ -1,0 +1,17 @@
+/*.infinite-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}*/
+
+.project {
+  width: 20%;
+/*  float: none;
+  display: inline-block;
+*/}
+
+@media only screen and (max-device-width: 768px) {
+/*  .project {
+    width: 20%;
+  }
+*/}

@@ -569,7 +569,7 @@ function teams_shortcode($args, $content) {
 										?>
 
 										<div class="past-project" id="past-project-<?php the_ID(); ?>">
-											<h5>PAST PROJECTS</h5>
+											<h5>PAST PROJECTSxxx</h5>
 
 											<?php while($past_projects->have_posts()) : $past_projects->the_post(); global $product1; ?>
 												<span class="no-padding color-white project-item project-item--small" data-toggle="modal" data-target=".1628">
@@ -1410,8 +1410,8 @@ function expertise_section_shortcode($args, $content) {
 		if ( $posts_array1->have_posts() ) {
 		while ( $posts_array1->have_posts() ) {
 		$posts_array1->the_post();
-		
-		
+
+
 		// /$news_taxonomy = get_the_terms( get_the_ID(), 'sectors_cat', '', '' );
 		// var_dump($news_taxonomy);
 		// /$news_taxonomy_link = get_term_link($news_taxonomy[0]->term_id, 'sectors_cat' );
@@ -1419,7 +1419,7 @@ function expertise_section_shortcode($args, $content) {
 		$post_slug = get_post_field( 'post_name', get_post() );
 		if($i%2==0){
 		?>
-		
+
 			<div class="col-md-12 no-padding " id="<?php echo $post_slug; ?>">
 				<div class="col-md-6 no-padding">
 					<div  class=" fl style_content_get_news">
@@ -1434,7 +1434,7 @@ function expertise_section_shortcode($args, $content) {
 						<div  class="col-ms-12 fl style_title_news">
 								<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 						</div>
-						
+
 						<div  class="col-ms-12 fl style_content_news_main">
 							<?php  echo excerpt(50); ?>
 						</div>
