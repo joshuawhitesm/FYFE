@@ -1331,35 +1331,24 @@ function our_people_shortcode($args, $content) {
 											<ul>
 												
 												<?php // Start Loop
-														if( have_rows('past_projects') ):
-														while ( have_rows('past_projects') ) : the_row();
+												global $post;
+												
+														if( have_rows('past_projects',$post->ID) ):
+														while ( have_rows('past_projects',$post->ID) ) : the_row();
 
-											
-											$post_object = get_field('post_object');
+													$post_object = get_sub_field('project');
 													if( $post_object ): 
-													// override $post
-													$post = $post_object;
-													setup_postdata( $post ); 
 												?>
 
-
 												<li data-toggle="modal" data-target=".1628">
-													<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('medium');?></a>
-
+												  <a href="<?php echo get_permalink($post_object->ID); ?>"><?php echo get_the_post_thumbnail($post_object->ID, 'shapely-grid');?></a>
 												  <div class="project-info">
-																												
-														<div class="title-post-fix">
-															<h5>
-																<a href="<?php the_permalink(); ?>">
-																	<?php the_title(); ?>
-																</a>
-													  	</h5>
-														</div>
-														
+														<h5><a href="<?php echo get_permalink($post_object->ID); ?>"><?php echo get_the_title($post_object->ID); ?></a></h5>
 												  </div>
 												</li>
 												
-												    <?php wp_reset_postdata();  ?>
+												    <?php // wp_reset_postdata();  
+													?>
 													<?php endif; ?>
 											
 														<?php endwhile; else :
