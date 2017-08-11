@@ -1,4 +1,4 @@
-<?
+<?php
 function our_people_shortcode($args, $content) {
 
   ob_start();
@@ -51,3 +51,4 @@ function our_people_shortcode($args, $content) {
   ob_end_clean();
   return $out;
 }
+?>
