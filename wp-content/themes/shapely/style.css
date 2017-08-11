@@ -7413,7 +7413,11 @@ footer {
     height: 100vw;
   }
 }
-@media only screen and (max-width: 768px) {
+
+/* 2px smaller than orignal size for footer text */
+.widget.widget_nav_menu .menu#menu-footer-2 > li a
+    font-size: 10px;
+}@media only screen and (max-width: 768px) {
   .xs-square-image {
     height: 100vw;
   }
