@@ -1323,34 +1323,53 @@ function our_people_shortcode($args, $content) {
 											</div>
 										</div>
 
-										<?php
-											$past_projects = new WP_Query(array(
-											  'post_type' => 'projects',
-											  'posts_per_page' =>3,
-											  'post__not_in'=> array(get_the_ID())
-											));
-										?>
 
 										<div class="past-project" id="past-project-<?php the_ID(); ?>">
+											
 											<h5>PAST PROJECTS</h5>
 
-											<?php while($past_projects->have_posts()) : $past_projects->the_post(); global $product1; ?>
-												<span class="no-padding color-white project-item project-item--small" data-toggle="modal" data-target=".1628">
-													<?php the_post_thumbnail();?>
+											<ul>
+												
+												<?php // Start Loop
+														if( have_rows('past_projects') ):
+														while ( have_rows('past_projects') ) : the_row();
+
+											
+											$post_object = get_field('post_object');
+													if( $post_object ): 
+													// override $post
+													$post = $post_object;
+													setup_postdata( $post ); 
+												?>
+
+
+												<li data-toggle="modal" data-target=".1628">
+													<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('medium');?></a>
 
 												  <div class="project-info">
-														<div class="btn-see list-cat-fix"></div>
+																												
 														<div class="title-post-fix">
 															<h5>
-																<button type="button" class="btn btn-info btn-lg">
-																	<?php echo the_title(); ?>
-																</button>
+																<a href="<?php the_permalink(); ?>">
+																	<?php the_title(); ?>
+																</a>
 													  	</h5>
 														</div>
+														
 												  </div>
-												</span>
-											<?php endwhile; ?>
-										</div>
+												</li>
+												
+												    <?php wp_reset_postdata();  ?>
+													<?php endif; ?>
+											
+														<?php endwhile; else :
+															// no rows found
+															endif;
+														?>
+											</ul>
+											
+										</div> <!-- .past-project -->
+										
 
 										<div class="project_info_bottom">
 											<div class="col-md-6 p_l_r_0">
