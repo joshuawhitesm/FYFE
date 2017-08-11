@@ -104,7 +104,7 @@ function our_projects_shortcode($args, $content) {
 
     <?php wp_reset_query(); ?>
 
-    <a id="read_more_project" class="infinite-more-link" href="<?php echo add_query_arg('page', intval($paged) + 1, get_permalink()); ?>">SEE MORE</a>
+    <a id="read_more_project" class="hidden infinite-more-link" href="<?php echo add_query_arg('page', intval($paged) + 1, get_permalink()); ?>">SEE MORE</a>
   </div>
 </div>
 
