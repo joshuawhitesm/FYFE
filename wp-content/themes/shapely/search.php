@@ -36,7 +36,6 @@ $layout_class = shapely_get_layout_class(); ?>
 						 * called content-search.php and that will be used instead.
 						 */
 						get_template_part( 'template-parts/content', 'search' );
-
 					endwhile;
 
 					shapely_pagination();
