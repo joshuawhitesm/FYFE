@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-  var ajaxUrl = $("[name=admin-ajax]").data("url")
+  var ajaxUrl = $("[data-name=admin-ajax]").data("url")
   $(".name_services h6").on("click", function() {
     var name_services = $(".name_services_hidden").val();
     var name_sectors = $(".name_sectors_hidden").val();
@@ -11,15 +11,18 @@ jQuery(document).ready(function($) {
         name_sectors: name_sectors
       },
       "html"
-    ).success(function(posts1345) {
+    ).success(function(html) {
       $("#project_our_ajax").html("");
-      $("#project_our_ajax").append(posts1345);
+      $("#project_our_ajax").append(html);
     });
   });
 
   $(".name_sectors h6").on("click", function() {
     var name_services = $(".name_services_hidden").val();
     var name_sectors = $(".name_sectors_hidden").val();
+    console.log(ajaxUrl)
+    console.log(name_services)
+    console.log(name_sectors)
     $.post(
       ajaxUrl,
       {
@@ -28,9 +31,9 @@ jQuery(document).ready(function($) {
         name_sectors: name_sectors
       },
       "html"
-    ).success(function(posts1345) {
+    ).success(function(html) {
       $("#project_our_ajax").html("");
-      $("#project_our_ajax").append(posts1345);
+      $("#project_our_ajax").append(html);
     });
   });
 
@@ -49,9 +52,9 @@ jQuery(document).ready(function($) {
         name_sectors: name_sectors
       },
       "html"
-    ).success(function(posts1345) {
+    ).success(function(html) {
       $("#project_our_ajax").html("");
-      $("#project_our_ajax").append(posts1345);
+      $("#project_our_ajax").append(html);
     });
   });
 
