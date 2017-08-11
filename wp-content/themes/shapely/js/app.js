@@ -134,7 +134,6 @@ jQuery(document).ready(function($) {
     });
   });
 
-  // $("#read_more_project").on("click", loadMoreProjects);
   if ($(".infinite-container").length > 0) {
     var infinite = new Waypoint.Infinite({
       element: $(".infinite-container")[0]
@@ -148,14 +147,6 @@ jQuery(document).ready(function($) {
     });
   }
 
-  // $("#project_our_ajax").jscroll({
-  //   debug: true,
-  //   loadingFunction: loadMoreProjects,
-  //   padding: 20,
-  //   nextSelector: "a.jscroll-next:last",
-  //   contentSelector: ".project"
-  // });
-
   var $loading = $("#loadingDiv").hide();
   $(document)
     .ajaxStart(function() {
@@ -164,12 +155,14 @@ jQuery(document).ready(function($) {
     .ajaxStop(function() {
       $loading.hide();
     });
+
   $(".sliderhome_75370").on("click", function() {
     $("html,body").animate(
       { scrollTop: $("#contact_home_bottom").offset().top - 80 },
       "slow"
     );
   });
+
   $(".click_top_scroll").on("click", function() {
     $("html,body").animate(
       { scrollTop: $("#sesion_2_home_fyfe_project ").offset().top - 80 },

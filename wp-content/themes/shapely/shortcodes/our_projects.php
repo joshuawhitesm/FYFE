@@ -63,10 +63,6 @@ function our_projects_shortcode($args, $content) {
       </div>
     </div>
 
-    <div id="loadingDiv" class="row t_c loadingDiv" >
-      <img src="/wp-content/uploads/2017/07/giphy.gif" alt="loading">
-    </div>
-
     <div id="project_our_ajax" class="infinite-container">
       <?php
       if ( get_query_var('paged') ) {
@@ -104,7 +100,11 @@ function our_projects_shortcode($args, $content) {
 
     <?php wp_reset_query(); ?>
 
-    <a id="read_more_project" class="hidden infinite-more-link" href="<?php echo add_query_arg('page', intval($paged) + 1, get_permalink()); ?>">SEE MORE</a>
+    <div id="loadingDiv" class="row t_c loadingDiv hidden" >
+      <img src="/wp-content/uploads/2017/07/giphy.gif" alt="loading">
+    </div>
+
+    <a class="hidden infinite-more-link" href="<?php echo add_query_arg('page', intval($paged) + 1, get_permalink()); ?>">SEE MORE</a>
   </div>
 </div>
 
