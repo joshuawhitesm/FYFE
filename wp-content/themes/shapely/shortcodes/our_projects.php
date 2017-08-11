@@ -73,7 +73,7 @@ function our_projects_shortcode($args, $content) {
         $paged = 1;
       }
       $atts = shortcode_atts( array(
-        'number_posts' => 20,
+        'number_posts' => 30,
         'post_type' => 'projects',
         ), $atts, 'feature' );
 
