@@ -23,7 +23,7 @@ $left_side   = get_theme_mod( 'post_author_left_side', false );
 		else{
 			$category = get_the_category();
 		}
-		
+
 		// var_dump($category);
 		if ( has_post_thumbnail() ) {
 			$layout = shapely_get_layout_class();
@@ -49,17 +49,20 @@ $left_side   = get_theme_mod( 'post_author_left_side', false );
 			'noscript' => array()
 		);
 		?>
+		<a href="<?php echo esc_url( get_the_permalink() ); ?>">
+			<?php echo wp_kses( $image, $allowed_tags ); ?>
+		</a>
 
-		
 		<?php } ?>
 	</header><!-- .entry-header -->
+
 	<div class="entry-content">
 		<h2 class="post-title">
 			<a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo wp_trim_words( get_the_title(), 9 ); ?></a>
 		</h2>
 		<div class="col-md-12 no-padding">
 		<div class="entry-meta col-md-3 no-padding">
-			<?php 
+			<?php
 			shapely_posted_on_no_cat(); ?><!-- post-meta -->
 		</div>
 		<?php if ( isset( $category[0] ) ): ?>
