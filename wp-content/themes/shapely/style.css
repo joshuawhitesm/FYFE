@@ -6392,7 +6392,7 @@ a {
 
     #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
         width: 100% !important;
-        
+
     }
 
 
@@ -7415,4 +7415,15 @@ footer {
 .centering-background {
   background-position: center center;
   background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 768px) {
+  .xs-square-image {
+    height: 100vw;
+  }
+}
+
+/* 2px smaller than orignal size for footer text */
+.widget.widget_nav_menu .menu#menu-footer-2 > li a
+    font-size: 10px;
 }
