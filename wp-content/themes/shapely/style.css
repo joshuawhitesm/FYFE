@@ -974,6 +974,9 @@ hr {
     .align-children {
         display: block !important;
     }
+    .past-project li .project-info {
+    opacity: 1;
+}
 }
 
 .align-transform {
@@ -4572,10 +4575,6 @@ ul.post-categories {
     margin-bottom: 20px;
 }
 
-.title-post-fix {
-    padding-bottom: 15px;
-    max-width: 270px;
-}
 
 .post-excerpt-fix-popup p {
     max-width: 90%;
@@ -4736,24 +4735,7 @@ a.icon-see {
     height: 200px;
 }
 
-div.project-item > .project-info {
-    bottom: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.3);
-}
 
-#project_our_ajax div.project-item > .project-info {
-    padding: 0;
-}
-
-#project_our_ajax .title-post-fix {
-    margin: auto;
-    padding: 0;
-}
-
-#project_our_ajax .title-post-fix button {
-    text-align: center;
-}
 
 .project-item:hover .project-info {
     opacity: 1;
@@ -5579,13 +5561,6 @@ div#ajax_posts_f_project {
     position: absolute;
 }
 
-div#past-project-1369,
-div#past-project-1397,
-div#past-project-1395,
-div#past-project-1304 {
-    display: none;
-}
-
 .project-item .project-img--square {
    /* height: 20vw;*/
 }
@@ -5593,6 +5568,88 @@ div#past-project-1304 {
 .project-item--people {
     height: auto;
 }
+
+.past-project li {
+    float: left;
+    width: 33%;
+    position: relative;
+}
+
+.past-project ul {
+    padding: 0;
+    list-style: none;
+}
+
+div.project-info {padding: 10px 13px;bottom: 0;background: rgba(0, 0, 0, 0.54);letter-spacing: 0.03em;
+transition: all 200ms ease-in;
+-webkit-transition: all 200ms ease-in;
+-moz-transition: all 200ms ease-in;
+-o-transition: all 200ms ease-in;
+width: 100%;}
+
+li:hover div.project-info {
+    opacity: 1;
+    bottom: 0;
+}
+
+.past-project li h5 {
+    font-size: 14px;
+    line-height: 1.3em;
+    padding: 0;
+}
+
+.past-project li h5 a {
+    color: #fff !important;
+}
+
+.project-img1 {
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.project_img1_2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    box-shadow: -20px 0 64px 61px #acacac;
+    background: #acacac;
+    width: 9px;
+}
+
+.project-item button.btn.btn-info.btn-lg {
+    height: auto;
+    line-height: 1.6em;
+    display: block;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+#services .wpb_text_column {
+    padding: 90px !important;
+}
+
+#services h2 {
+    font-size: 24px;
+}
+
+#services p {color: #000;line-height: 1.9em;margin: 0 0 20px;}
+
+
+#services .vc_column-inner {
+    padding: 0 !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#environment-mobile, #surveying-mobile {
+    display: none;
+}
+
+
 
 /*============= RESPONSIVE =============*/
 
@@ -5616,9 +5673,7 @@ div#past-project-1304 {
         overflow: hidden;
     }
 
-    #sesion_7_home_fyfe_project .col-lg-5ths.col-xs-6.no-padding.color-white.project-item { {
-    max-height: 237px;
-}
+
 }
 
 .col-md-3.col-xs-6.no-padding.color-white.project-item {
@@ -5651,10 +5706,6 @@ div#sesion_2_home_fyfe_project {
 
     }
 
-    #category-post-content div.project-item > .project-info {
-        bottom: 0;
-        padding: 5px;
-    }
 
     .icon-see {
         margin: 0;
@@ -5685,8 +5736,7 @@ div#sesion_2_home_fyfe_project {
         padding: 0 20px;
     }
 
-    .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
-        /*height: 445px;*/
+    .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, {
         width: 25%;
         overflow: hidden;
     }
@@ -5770,11 +5820,6 @@ div#sesion_2_home_fyfe_project {
         position: absolute;
     }
 
-    .project-img1 {
-        height: 500px;
-        position: relative;
-        overflow: hidden;
-    }
 
     .modal-content {
         box-shadow: none;
@@ -5789,7 +5834,40 @@ div#sesion_2_home_fyfe_project {
 }
 
 @media screen and (max-width: 991px) {
-    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .our-project-title {
+
+
+#services .wpb_wrapper > .vc_row .vc_col-has-fill > .vc_column-inner {
+    height: 60vh;
+}
+
+#services .wpb_wrapper > .vc_row .vc_column_container {
+    width: 100%;
+    padding: 10px 0 !important;
+}
+
+#services .wpb_text_column {
+    padding: 0 !important;
+}
+
+#services > div > div > .wpb_wrapper {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+#environment, #surveying-and-gis-spatial-data {
+    display: none;
+}
+
+#environment-mobile, #surveying-mobile {
+    display: block;
+}
+
+#services .wpb_wrapper > .vc_row {
+    clear: both;
+}
+
+
+    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .our-project-title, .project-item {
         width: 33.333% !important;
     }
 
@@ -5828,7 +5906,6 @@ div#sesion_2_home_fyfe_project {
         position: relative;
         width: 100%;
         float: left;
-        padding: 40px 0;
     }
 
     .style_project_our_top1_name h5 {
@@ -6028,7 +6105,15 @@ div#sesion_2_home_fyfe_project {
 }
 
 @media screen and (max-width: 768px) {
-    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .our-project-title {
+    
+    .past-project li {
+    float: none;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto 20px;
+}
+    
+    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .our-project-title, .project-item {
         width: 50% !important;
     }
 
@@ -6131,6 +6216,7 @@ div#sesion_2_home_fyfe_project {
 }
 
 @media screen and (max-width: 600px) {
+
 
 
     #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
@@ -6291,15 +6377,10 @@ div#sesion_2_home_fyfe_project {
 }
 
 @media screen and (max-width: 440px) {
-    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
+    #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .project-item {
         width: 100% !important;
     }
 
-    .project-img1 {
-        height: 300px;
-        position: relative;
-        overflow: hidden;
-    }
 
     .project_info1_ok1 .col-md-3 {
         width: 100%;
@@ -6703,10 +6784,6 @@ a.style_image_archive img {
 }
 
 
-.title-post-fix h5 button {
-    white-space: normal;
-    line-height: normal;
-}
 
 .slhome_list li.current {
     /*color: #f1ac08;*/
@@ -6920,6 +6997,9 @@ a.style_image_archive img {
 }
 
 @media screen and (max-width: 1200px) {
+    .project-item {
+    width: 25%;
+}
     .sliderhome_75370 {
         position: relative;
         bottom: 0;
@@ -7401,6 +7481,11 @@ footer {
   .project-info h5 button {
       line-height: 1.5em;
   }
+  
+  #services .wpb_wrapper > .vc_row .vc_col-has-fill > .vc_column-inner {
+    height: 60vh;
+}
+
 }
 
 .centering-background {

@@ -8,20 +8,19 @@
       <div class="modal-body">
         <div class="modal_body_fix col-md-12 p_l_r_0">
           <div class="col-md-6 p_l_r_0 p_relative">
-            <div class="project-img1">
-            <?php $image_popup = get_field('image_popup') ;
+          
+          <?php $image_popup = get_field('image_popup') ;
             if($image_popup !=''){ ?>
-              <img src="<?php echo $image_popup['url'];?>" />
+              
+              <div class="project-img1" style="background-image: url(<?php echo $image_popup['url'];?>);"></div>
             <?php
             }
             else{ ?>
-              <a class = "style_image_thumbnail" href=""><?php the_post_thumbnail();?></a>
+              <div class="project-img1" style="background-image: url(<?php the_post_thumbnail_url();?>);"></div>
             <?php
             }
             ?>
-            </div>
-            <div class="project_img1_2">
-            </div>
+            <div class="project_img1_2"></div>
           </div>
           <div class="col-md-6  p_l_r_0 color-white p_relative">
           <div class="modal-logo">
@@ -59,16 +58,21 @@
               </div>
 
 
-              <div class="past-project" id="past-project-<?php the_ID(); ?>">
+              <div class="past-project xx" id="past-project-<?php the_ID(); ?>">
 
-                <h5>PAST PROJECTS</h5>
-
-                <ul>
+                
 
                   <?php // Start Loop
                   global $post;
 
                       if( have_rows('past_projects',$post->ID) ):
+                ?>
+                
+                <h5>PAST PROJECTS</h5>
+
+                <ul class="clearfix">
+                                
+                <?php
                       while ( have_rows('past_projects',$post->ID) ) : the_row();
 
                     $post_object = get_sub_field('project');
@@ -86,11 +90,16 @@
                     ?>
                     <?php endif; ?>
 
-                      <?php endwhile; else :
+                      <?php endwhile;  ?>
+                      
+                      </ul>
+                      
+                      <?php
+                      else :
                         // no rows found
                         endif;
                       ?>
-                </ul>
+                
 
               </div> <!-- .past-project -->
 

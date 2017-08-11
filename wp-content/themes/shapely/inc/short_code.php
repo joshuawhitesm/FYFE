@@ -338,18 +338,20 @@ function project_shortcode($args, $content) {
 					<div class="modal-body">
 						<div class="modal_body_fix col-md-12 p_l_r_0">
 							<div class="col-md-6 p_l_r_0 p_relative">
-								<div class="project-img1">
-								<?php $image_popup = get_field('image_popup') ;
-								if($image_popup !=''){ ?>
-									<img src="<?php echo $image_popup['url'];?>" />
-								<?php
-								}
-								else{ ?>
-									<a class = "style_image_thumbnail" href="#"><?php the_post_thumbnail();?></a>
-								<?php
-								}
-								?>
-								</div>
+							
+							
+          <?php $image_popup = get_field('image_popup') ;
+            if($image_popup !=''){ ?>
+              
+              <div class="project-img1" style="background-image: url(<?php echo $image_popup['url'];?>);"></div>
+            <?php
+            }
+            else{ ?>
+              <div class="project-img1" style="background-image: url(<?php the_post_thumbnail_url();?>);"></div>
+            <?php
+            }
+            ?>
+							
 								<div class="project_img1_2">
 								</div>
 							</div>
@@ -511,18 +513,20 @@ function teams_shortcode($args, $content) {
 							<div class="modal_body_fix col-md-12 p_l_r_0">
 
 								<div class="col-md-6 p_l_r_0 p_relative">
-									<div class="project-img1">
-									<?php $image_popup = get_field('image_popup') ;
-									if($image_popup !=''){ ?>
-										<img src="<?php echo $image_popup['url'];?>" />
-									<?php
-									}
-									else{ ?>
-										<a class = "style_image_thumbnail" href="#"><?php the_post_thumbnail();?></a>
-									<?php
-									}
-									?>
-									</div>
+								
+								
+          <?php $image_popup = get_field('image_popup') ;
+            if($image_popup !=''){ ?>
+              
+              <div class="project-img1" style="background-image: url(<?php echo $image_popup['url'];?>);"></div>
+            <?php
+            }
+            else{ ?>
+              <div class="project-img1" style="background-image: url(<?php the_post_thumbnail_url();?>);"></div>
+            <?php
+            }
+            ?>
+									
 									<div class="project_img1_2">
 									</div>
 								</div>
@@ -560,33 +564,49 @@ function teams_shortcode($args, $content) {
 											</div>
 										</div>
 
-										<?php
-											$past_projects = new WP_Query(array(
-											  'post_type' => 'projects',
-											  'posts_per_page' =>3,
-											  'post__not_in'=> array(get_the_ID())
-											));
-										?>
 
 										<div class="past-project" id="past-project-<?php the_ID(); ?>">
-											<h5>PAST PROJECTS</h5>
+										
+										
 
-											<?php while($past_projects->have_posts()) : $past_projects->the_post(); global $product1; ?>
-												<span class="no-padding color-white project-item project-item--small" data-toggle="modal" data-target=".1628">
-													<?php the_post_thumbnail();?>
+                  <?php // Start Loop
+                  global $post;
 
-												  <div class="project-info">
-														<div class="btn-see list-cat-fix"></div>
-														<div class="title-post-fix">
-															<h5>
-																<button type="button" class="btn btn-info btn-lg">
-																	<?php echo the_title(); ?>
-																</button>
-													  	</h5>
-														</div>
-												  </div>
-												</span>
-											<?php endwhile; ?>
+                      if( have_rows('past_projects',$post->ID) ):
+                ?>
+                
+                <h5>PAST PROJECTS</h5>
+
+                <ul class="clearfix">
+                                
+                <?php
+                      while ( have_rows('past_projects',$post->ID) ) : the_row();
+
+                    $post_object = get_sub_field('project');
+                    if( $post_object ):
+                  ?>
+
+                  <li data-toggle="modal" data-target=".1628">
+                    <a href="<?php echo get_permalink($post_object->ID); ?>"><?php echo get_the_post_thumbnail($post_object->ID, 'shapely-grid');?></a>
+                    <div class="project-info">
+                      <h5><a href="<?php echo get_permalink($post_object->ID); ?>"><?php echo get_the_title($post_object->ID); ?></a></h5>
+                    </div>
+                  </li>
+
+                      <?php // wp_reset_postdata();
+                    ?>
+                    <?php endif; ?>
+
+                      <?php endwhile;  ?>
+                      
+                      </ul>
+                      
+                      <?php
+                      else :
+                        // no rows found
+                        endif;
+                      ?>
+                      
 										</div>
 
 										<div class="project_info_bottom">
@@ -1636,17 +1656,21 @@ function our_sliderhome_func($atts,$args) {
 					<div class="modal-body">
 						<div class="modal_body_fix col-md-12 p_l_r_0">
 							<div class="col-md-6 p_l_r_0 p_relative">
-								<div class="project-img1">
-								<?php
-								if($popup_image != ''){ ?>
-									<img src="<?php echo $popup_image;?>" />
-								<?php
-								}
-								else{ ?>
-									<a class = "style_image_thumbnail" href="#"><?php echo get_the_post_thumbnail($project_id);?></a>
-								<?php
-								}
-								?>
+								<div class="project-img1 3">
+								
+								
+          <?php $image_popup = get_field('image_popup') ;
+            if($image_popup !=''){ ?>
+              
+              <div class="project-img1" style="background-image: url(<?php echo $image_popup['url'];?>);"></div>
+            <?php
+            }
+            else{ ?>
+              <div class="project-img1" style="background-image: url(<?php the_post_thumbnail_url();?>);"></div>
+            <?php
+            }
+            ?>
+								
 								</div>
 								<div class="project_img1_2">
 								</div>

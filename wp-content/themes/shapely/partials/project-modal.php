@@ -8,18 +8,20 @@
       <div class="modal-body">
         <div class="modal_body_fix col-md-12 p_l_r_0">
           <div class="col-md-6 p_l_r_0 p_relative">
-            <div class="project-img1">
-              <?php $image_popup = get_field('image_popup') ;
-              if($image_popup !=''){ ?>
-                <img src="<?php echo $image_popup['url'];?>" />
-              <?php
-              }
-              else{ ?>
-                <a class = "style_image_thumbnail" href=""><?php the_post_thumbnail();?></a>
-              <?php
-              }
-              ?>
-            </div>
+            
+            
+          <?php $image_popup = get_field('image_popup') ;
+            if($image_popup !=''){ ?>
+              
+              <div class="project-img1" style="background-image: url(<?php echo $image_popup['url'];?>);"></div>
+            <?php
+            }
+            else{ ?>
+              <div class="project-img1" style="background-image: url(<?php the_post_thumbnail_url();?>);"></div>
+            <?php
+            }
+            ?>
+            
             <div class="project_img1_2"></div>
           </div>
 

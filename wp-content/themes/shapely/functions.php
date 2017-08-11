@@ -380,7 +380,7 @@ function prefix_load_cat_posts () {
 				<div class="modal-body">
 					<div class="modal_body_fix col-md-12 p_l_r_0">
 						<div class="col-md-6 p_l_r_0 p_relative">
-							<div class="project-img1">
+							<div class="project-img1 3">
 							<?php $image_popup = get_field('image_popup') ;
 							if($image_popup !=''){ ?>
 								<img src="<?php echo $image_popup['url'];?>" />
@@ -550,7 +550,7 @@ function prefix_load_cat_teams () {
 						<div class="modal-body">
 							<div class="modal_body_fix col-md-12 p_l_r_0">
 								<div class="col-md-6 p_l_r_0 p_relative">
-									<div class="project-img1">
+									<div class="project-img1 1">
 										<?php the_post_thumbnail();?>
 									</div>
 									<div class="project_img1_2">
@@ -1084,7 +1084,7 @@ function project_our_ajax(){
 				<div class="modal-body">
 					<div class="modal_body_fix col-md-12 p_l_r_0">
 						<div class="col-md-6 p_l_r_0 p_relative">
-							<div class="project-img1">
+							<div class="project-img1 2">
 							<?php $image_popup = get_field('image_popup') ;
 							if($image_popup !=''){ ?>
 								<img src="<?php echo $image_popup['url'];?>" />
