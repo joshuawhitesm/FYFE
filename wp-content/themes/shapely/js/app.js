@@ -76,16 +76,18 @@ jQuery(document).ready(function($) {
   };
 
   // $("#read_more_project").on("click", loadMoreProjects);
-  var infinite = new Waypoint.Infinite({
-    element: $(".infinite-container")[0]
-  });
+  if ($(".infinite-container").length > 0) {
+    var infinite = new Waypoint.Infinite({
+      element: $(".infinite-container")[0]
+    });
 
-  var waypoint = new Waypoint({
-    element: $(".infinite-container")[0],
-    handler: function(direction) {
-      console.log('Scrolled to waypoint!')
-    }
-  })
+    var waypoint = new Waypoint({
+      element: $(".infinite-container")[0],
+      handler: function(direction) {
+        console.log('Scrolled to waypoint!')
+      }
+    })
+  }
 
   // $("#project_our_ajax").jscroll({
   //   debug: true,

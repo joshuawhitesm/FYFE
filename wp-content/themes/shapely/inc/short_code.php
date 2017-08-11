@@ -569,7 +569,7 @@ function teams_shortcode($args, $content) {
 										?>
 
 										<div class="past-project" id="past-project-<?php the_ID(); ?>">
-											<h5>PAST PROJECTSxxx</h5>
+											<h5>PAST PROJECTS</h5>
 
 											<?php while($past_projects->have_posts()) : $past_projects->the_post(); global $product1; ?>
 												<span class="no-padding color-white project-item project-item--small" data-toggle="modal" data-target=".1628">
