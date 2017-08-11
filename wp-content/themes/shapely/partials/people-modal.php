@@ -1,3 +1,28 @@
+<?php
+$terms  = get_the_terms( get_the_ID(), 'teams_cat', '', '' );
+$status = get_field('status') ;
+?>
+
+<div class="col-lg-5ths col-xs-6 no-padding color-white project-item project-item--people" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
+  <div class="teams-img 3">
+    <a href="javascript:void(0);"><?php the_post_thumbnail('people-vertical');?></a>
+  </div>
+  <div class="project-info">
+    <?php /*foreach($terms as $value ){*/?><!--
+    <div class="btn-see btn_see_fix"><a><?php /*echo $value->name;*/?></a></div>
+    --><?php /*} */?>
+    <div class="title-post-fix">
+      <h5>
+        <button type="button" class="btn btn-info btn-lg">
+          <?php the_title();?>
+          <br />
+          <?php echo $status;?>
+        </button>
+      </h5>
+    </div>
+  </div>
+</div>
+
 <div class="<?php echo get_the_ID();?> modal fade team-modal" role="dialog">
     <div class="modal-dialog">
     <!-- Modal content-->
@@ -59,34 +84,42 @@
                 </div>
               </div>
 
-              <?php
-                $past_projects = new WP_Query(array(
-                  'post_type' => 'projects',
-                  'posts_per_page' =>3,
-                  'post__not_in'=> array(get_the_ID())
-                ));
-              ?>
 
               <div class="past-project" id="past-project-<?php the_ID(); ?>">
+
                 <h5>PAST PROJECTS</h5>
 
-                <?php while($past_projects->have_posts()) : $past_projects->the_post(); global $product1; ?>
-                  <span class="no-padding color-white project-item project-item--small" data-toggle="modal" data-target=".1628">
-                    <?php the_post_thumbnail();?>
+                <ul>
 
+                  <?php // Start Loop
+                  global $post;
+
+                      if( have_rows('past_projects',$post->ID) ):
+                      while ( have_rows('past_projects',$post->ID) ) : the_row();
+
+                    $post_object = get_sub_field('project');
+                    if( $post_object ):
+                  ?>
+
+                  <li data-toggle="modal" data-target=".1628">
+                    <a href="<?php echo get_permalink($post_object->ID); ?>"><?php echo get_the_post_thumbnail($post_object->ID, 'shapely-grid');?></a>
                     <div class="project-info">
-                      <div class="btn-see list-cat-fix"></div>
-                      <div class="title-post-fix">
-                        <h5>
-                          <button type="button" class="btn btn-info btn-lg">
-                            <?php echo the_title(); ?>
-                          </button>
-                        </h5>
-                      </div>
+                      <h5><a href="<?php echo get_permalink($post_object->ID); ?>"><?php echo get_the_title($post_object->ID); ?></a></h5>
                     </div>
-                  </span>
-                <?php endwhile; ?>
-              </div>
+                  </li>
+
+                      <?php // wp_reset_postdata();
+                    ?>
+                    <?php endif; ?>
+
+                      <?php endwhile; else :
+                        // no rows found
+                        endif;
+                      ?>
+                </ul>
+
+              </div> <!-- .past-project -->
+
 
               <div class="project_info_bottom">
                 <div class="col-md-6 p_l_r_0">
