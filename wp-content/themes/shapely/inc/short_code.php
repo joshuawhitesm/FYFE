@@ -1,47 +1,7 @@
-
 <?php
 /*================ expertise short code=================*/
-function product_shortcode($args, $content) {
-	$title = $args['title'] ;
-	$des = $args['des'] ;
-	ob_start();
-	$args = array( 'post_type' => 'expertise', 'posts_per_page' => 14, /*'orderby'=> 'title', */'order' => 'ASC' );
-	$loop = new WP_Query( $args );?>
-	<div class="wpb_column vc_column_container col-lg-5ths text-center item-center-fix height-fix-tn">
-		<div class="vc_column-inner no-padding center-fix-item expertise_p_t_h4">
-			<h4><a href="/?page_id=1101"><?php echo $title;?></a></h4>
-			<p><?php echo $des;?></p>
-		</div>
-	</div>
-
-	<div class="our-service-posts">
-		<?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;
-		$animated_icons = get_field('animated_icons');
-		// var_dump($animated_icons['url']);
-		?>
-		<div class="col-lg-5ths col-md-3 col-sm-4 col-xs-6 no-padding text-center height-fix height-fix_19_7">
-			<a href="<?php the_field('link'); ?>">
-				<div class='img-hover-fix img-hover-fix_1'><?php the_post_thumbnail();?></div>
-				<div class='img-hover-fix d_n img-hover-fix_2'>
-					<?php if($animated_icons['url']!=''){?>
-						<img src="<?php echo $animated_icons['url']; ?>">
-					<?php }
-					else {
-						the_post_thumbnail();
-					}?>
-				</div>
-				<div class="title-hover"><h3><?php the_title();?></h3></div>
-			</a>
-		</div>
-		<?php  endwhile;?>
-	</div>
-<?php wp_reset_query(); ?>
-<?php
-	$out = ob_get_contents();
-	ob_end_clean();
-	return $out;
-}
-add_shortcode( 'expertise', 'product_shortcode' );
+get_template_part("partials/expertise-shortcode");
+add_shortcode( 'expertise', 'expertise_shortcode' );
 
 /*================post short code=================*/
 function post_shortcode($args, $content) {
@@ -307,12 +267,12 @@ function project_shortcode($args, $content) {
 					</h5></div>
 				</div>
 			</div>
-			
+
 			<div class="wpb_column vc_column_container text-center item-center-fix col-lg-5ths pull-right our-project-title after project-img project-img--square hh2" style="padding: 0;margin: 0;display: block;">
 				<div class="project-img project-img--square hh3" >
     				<img src="http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/08/white-bg.jpg" alt="">
 				</div>
-				
+
 				<div class="vc_column-inner no-padding project-d-title">
 					<h4><a href="/?page_id=1052"><?php echo $title;?></a></h4>
 					<div class="btn-see">
@@ -320,7 +280,7 @@ function project_shortcode($args, $content) {
 					</div>
 				</div>
 			</div>
-			
+
 			<?php } else{ ?>
 			<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 				<div class="project-img project-img--square hh3" >
@@ -344,11 +304,11 @@ function project_shortcode($args, $content) {
 					<div class="modal-body">
 						<div class="modal_body_fix col-md-12 p_l_r_0">
 							<div class="col-md-6 p_l_r_0 p_relative">
-							
-							
+
+
           <?php $image_popup = get_field('image_popup') ;
             if($image_popup !=''){ ?>
-              
+
               <div class="project-img1" style="background-image: url(<?php echo $image_popup['url'];?>);"></div>
             <?php
             }
@@ -357,7 +317,7 @@ function project_shortcode($args, $content) {
             <?php
             }
             ?>
-							
+
 								<div class="project_img1_2">
 								</div>
 							</div>
@@ -519,11 +479,11 @@ function teams_shortcode($args, $content) {
 							<div class="modal_body_fix col-md-12 p_l_r_0">
 
 								<div class="col-md-6 p_l_r_0 p_relative">
-								
-								
+
+
           <?php $image_popup = get_field('image_popup') ;
             if($image_popup !=''){ ?>
-              
+
               <div class="project-img1" style="background-image: url(<?php echo $image_popup['url'];?>);"></div>
             <?php
             }
@@ -532,7 +492,7 @@ function teams_shortcode($args, $content) {
             <?php
             }
             ?>
-									
+
 									<div class="project_img1_2">
 									</div>
 								</div>
@@ -572,19 +532,19 @@ function teams_shortcode($args, $content) {
 
 
 										<div class="past-project" id="past-project-<?php the_ID(); ?>">
-										
-										
+
+
 
                   <?php // Start Loop
                   global $post;
 
                       if( have_rows('past_projects',$post->ID) ):
                 ?>
-                
+
                 <h5>PAST PROJECTS</h5>
 
                 <ul class="clearfix">
-                                
+
                 <?php
                       while ( have_rows('past_projects',$post->ID) ) : the_row();
 
@@ -604,15 +564,15 @@ function teams_shortcode($args, $content) {
                     <?php endif; ?>
 
                       <?php endwhile;  ?>
-                      
+
                       </ul>
-                      
+
                       <?php
                       else :
                         // no rows found
                         endif;
                       ?>
-                      
+
 										</div>
 
 										<div class="project_info_bottom">
@@ -1170,7 +1130,7 @@ function news_shortcode($args, $content) {
 		<script type="text/javascript">
 			jQuery(document).ready( function($) {
 			var ajaxUrl1 = "<?php echo admin_url('admin-ajax.php')?>";
-			
+
 			$("#read_more_news").on("click", function() {
 			var paged = $('.ajax_posts_f_page').last().val();
 			var post_type = '<?php echo $atts['post_type']?>';
@@ -1183,7 +1143,7 @@ function news_shortcode($args, $content) {
 				i : i,
 				},'html')
 				.success(function(posts1345) {
-				    
+
 				$("#news_load").append(posts1345);
 				});
 			});
@@ -1654,7 +1614,7 @@ function our_sliderhome_func($atts,$args) {
 		$popup_image = $image_popup['url'];
 	?>
 
-  <div class="modal fade project-modal" id="mymodal_<?php echo $project_id;?>" role="dialog">
+  <div class="modal fade project-modal 111" id="mymodal_<?php echo $project_id;?>" role="dialog">
     <div class="modal-dialog">
 
 				<!-- Modal content-->
@@ -1667,11 +1627,11 @@ function our_sliderhome_func($atts,$args) {
 						<div class="modal_body_fix col-md-12 p_l_r_0">
 							<div class="col-md-6 p_l_r_0 p_relative">
 								<div class="project-img1 3">
-								
-								
+
+
           <?php $image_popup = get_field('image_popup') ;
             if($image_popup !=''){ ?>
-              
+
               <div class="project-img1" style="background-image: url(<?php echo $image_popup['url'];?>);"></div>
             <?php
             }
@@ -1680,7 +1640,7 @@ function our_sliderhome_func($atts,$args) {
             <?php
             }
             ?>
-								
+
 								</div>
 								<div class="project_img1_2">
 								</div>

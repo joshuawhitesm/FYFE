@@ -6110,14 +6110,14 @@ div#sesion_2_home_fyfe_project {
 }
 
 @media screen and (max-width: 768px) {
-    
+
     .past-project li {
     float: none;
     width: 100%;
     max-width: 350px;
     margin: 0 auto 20px;
 }
-    
+
     #category-post-content .col-lg-5ths.col-xs-6.no-padding.color-white.project-item, .our-project-title, .project-item {
         width: 50% !important;
     }
@@ -7463,7 +7463,7 @@ footer {
 }
 
 .project-item {
-    display: inline-block;  
+    display: inline-block;
 }
 a.project-info-btn:hover {
     color: #fff;
@@ -7499,7 +7499,7 @@ a.project-info-btn:hover {
   .project-info h5 button {
       line-height: 1.5em;
   }
-  
+
   #services .wpb_wrapper > .vc_row .vc_col-has-fill > .vc_column-inner {
     height: 60vh;
 }
@@ -7529,7 +7529,7 @@ a.project-info-btn:hover {
 
 @media screen and (max-width:1800px){
  div#sesion_2_home_fyfe_project .carousel-indicators li {
-    line-height: 1.5;   
+    line-height: 1.5;
 }
 }
 
