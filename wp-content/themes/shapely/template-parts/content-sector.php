@@ -75,10 +75,27 @@ $left_side   = get_theme_mod( 'post_author_left_side', false );
 			</div>
 		<?php else: ?>
 			<div class="col-md-12 no-padding shapely-content1 img-100 <?php echo $dropcaps ? 'dropcaps-content11' : ''; ?>">
+        
+        <?php $image = get_field('page_banner');
+					$size = 'full'; // (thumbnail, medium, large, full or custom size)
+
+					if( $image ) {
+            ?>
+						<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+           <?php
+          }
+       		else {
+        		the_post_thumbnail();
+           
+        }
+       		 ?>
+		
 				<?php
-				the_post_thumbnail();
+        
+				/* the_post_thumbnail();*/
 
 				?>
+    
 			</div>
 			<div class="col-md-12 no-padding shapely-content1 pd--t-20 <?php echo $dropcaps ? 'dropcaps-content11' : ''; ?>">
 			<h2><?php the_title();?></h2>

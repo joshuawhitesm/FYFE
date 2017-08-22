@@ -465,9 +465,7 @@ function prefix_load_cat_posts () {
 													<div class="btn-see list-cat-fix"></div>
 													<div class="title-post-fix">
 														<h5>
-															<button type="button" href="javascript:void(0);"class="btn btn-info btn-lg">
-																<?php echo the_title(); ?>
-															</button>
+															<a href="<?php echo get_permalink(); ?>" class="project-info-btn"><?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?></a>
 													</h5>
 													</div>
 											  </div>
@@ -550,11 +548,16 @@ function prefix_load_cat_teams () {
 						<div class="modal-body">
 							<div class="modal_body_fix col-md-12 p_l_r_0">
 								<div class="col-md-6 p_l_r_0 p_relative">
-									<div class="project-img1 1">
-										<?php the_post_thumbnail();?>
-									</div>
-									<div class="project_img1_2">
-									</div>
+									<?php 
+									if($image_popup !=''){ ?>
+                                         <div class="project-img1" style="background-image: url(<?php echo $image_popup['url'];?>);"></div>
+                                    <?php
+                                    }
+                                    else{ ?>
+                                      <div class="project-img1" style="background-image: url(<?php the_post_thumbnail_url();?>);"></div>
+                                    <?php
+                                    }
+                                    ?>
 								</div>
 								<div class="col-md-6  p_l_r_0 color-white p_relative">
 								<div class="modal-logo">
@@ -765,8 +768,9 @@ add_action('wp_ajax_location_ajax', 'location_ajax');
 function load_more_ajax(){
 		$paged = $_POST["paged"];
 		$i = $_POST["i"];
+	
 				$args = array(
-				'posts_per_page'   => 3,
+				'posts_per_page'   => 2,
 				'orderby'          => 'post_date',
 				'order'            => 'DESC',
 				'post_type'        => 'post',
@@ -778,6 +782,7 @@ function load_more_ajax(){
 				// var_dump($the_query->request);
 
 				if ( $the_query->have_posts() ) {
+
 					while ( $the_query->have_posts() ) {
 					$the_query->the_post();
 					?>
@@ -1015,7 +1020,7 @@ function project_our_ajax(){
 	}
 	else if($name_services =="all" && $name_sectors !="all"){
 		$args = array(
-		'posts_per_page'   => '100',
+		'posts_per_page'   => '1000',
 		'orderby'          => 'date',
 		'order'            => 'DESC',
 		'post_type'        => 'projects',
@@ -1031,7 +1036,7 @@ function project_our_ajax(){
 	}
 	else if($name_services =="all" && $name_sectors =="all"){
 		$args = array(
-		'posts_per_page'   => '100',
+		'posts_per_page'   => '1000',
 		'orderby'          => 'date',
 		'order'            => 'DESC',
 		'post_type'        => 'projects',
@@ -1040,7 +1045,7 @@ function project_our_ajax(){
 	}
 	else{
 		$args = array(
-		'posts_per_page'   => '100',
+		'posts_per_page'   => '1000',
 		'orderby'          => 'date',
 		'order'            => 'DESC',
 		'post_type'        => 'projects',
@@ -1063,11 +1068,20 @@ function project_our_ajax(){
 	 if ( $loop->have_posts() ) : while ( $loop->have_posts() ) : $loop->the_post(); ?>
 		<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 			<div  class="pproject-img project-img--square 2">
-			<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>
+			<!--<a href="javascript:void(0);"><?php the_post_thumbnail();?></a>-->
+			
+			<?php if ( has_post_thumbnail($post->ID) ) { ?>
+			    <a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
+        	        <?php
+                   }
+                else {
+    			    echo '<img src="http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/08/dummy-thumbnail.jpg" />';
+				}
+				?> 
 			</div>
 			<div class="project-info">
 				<div class="btn-see list-cat-fix"><?php the_terms( get_the_ID(), 'project_cat', '', '' );  ?></div>
-				<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
+				<div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php echo mb_strimwidth(get_the_title(), 0, 40, '...'); ?></button>
 			</h5></div>
 			</div>
 		</div>
@@ -1084,20 +1098,19 @@ function project_our_ajax(){
 				<div class="modal-body">
 					<div class="modal_body_fix col-md-12 p_l_r_0">
 						<div class="col-md-6 p_l_r_0 p_relative">
-							<div class="project-img1 2">
+							
 							<?php $image_popup = get_field('image_popup') ;
-							if($image_popup !=''){ ?>
-								<img src="<?php echo $image_popup['url'];?>" />
-							<?php
-							}
-							else{ ?>
-								<a class = "style_image_thumbnail" href=""><?php the_post_thumbnail();?></a>
-							<?php
-							}
-							?>
-							</div>
-							<div class="project_img1_2">
-							</div>
+								 
+									if($image_popup !=''){ ?>
+                                         <div class="project-img1" style="background-image: url(<?php echo $image_popup['url'];?>);"></div>
+                                    <?php
+                                    }
+                                    else{ ?>
+                                      <div class="project-img1" style="background-image: url(<?php the_post_thumbnail_url();?>);"></div>
+                                    <?php
+                                    }
+                                    ?>
+							
 						</div>
 						<div class="col-md-6  p_l_r_0 color-white p_relative">
 						<div class="modal-logo">
@@ -1156,15 +1169,23 @@ function project_our_ajax(){
 									<div class="project_info1_ok1">
 										<?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
 											<span class="no-padding color-white project-item project-item--small">
-												<?php the_post_thumbnail();?>
+												<?php if ( has_post_thumbnail( $id ) ) {
+                                                    the_post_thumbnail();
+                                                }
+                                                else {
+                                                    echo '<img src="http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/08/recommended-product-dummy.jpg" alt=""/>';
+                                                }
+                     
+                                                  ?>
 
 											  <div class="project-info">
 													<div class="btn-see list-cat-fix"></div>
 													<div class="title-post-fix">
 														<h5>
-															<button type="button" href="javascript:void(0);"class="btn btn-info btn-lg">
-																<?php echo the_title(); ?>
-															</button>
+															<!--<button type="button" href="javascript:void(0);"class="btn btn-info btn-lg">
+																<?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?>
+															</button>-->
+															  <a href="#" class="project-info-btn"  data-toggle="modal" data-toggle="modal" data-target=".<?php echo get_the_ID();?>" data-dismiss="modal""><?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?></a>
 													</h5>
 													</div>
 											  </div>

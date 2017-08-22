@@ -46,7 +46,7 @@ get_header(); ?>
 <li><a href="#" class="shapely-owl-next fa fa-angle-right"></a></li>
 </ul>
 </div>
-<div class="owlCarousel owl-carousel owl-theme owl-loaded owl-drag" data-slider-id="1673" id="owlCarousel-1673" data-slider-items="3" data-slider-speed="400" data-slider-auto-play="1" data-slider-navigation="false">
+<div class="owlCarousel owl-carousel owl-theme owl-loaded owl-drag owl-carousel-2" data-slider-id="1673" id="owlCarousel-1673" data-slider-items="3" data-slider-speed="400" data-slider-auto-play="1" data-slider-navigation="false" >
 <?php
 $arr_project = array();
 while ( $the_query->have_posts() ) :
@@ -95,18 +95,17 @@ wp_reset_postdata();
 					<div class="modal-body">
 						<div class="modal_body_fix col-md-12 p_l_r_0">
 							<div class="col-md-6 p_l_r_0 p_relative">
-								<div class="project-img1">
-								<?php 
-								if($popup_image !=''){ ?>
-									<img src="<?php $popup_image;?>" />
-								<?php
-								}
-								else{ ?>
-									<a class = "style_image_thumbnail" href="#"><?php get_the_post_thumbnail($project_id);?></a>
-								<?php
-								}
-								?>
-								</div>
+								  <?php 
+								  if($image_popup !=''){ ?>
+              
+                                  <div class="project-img1" style="background-image: url(<?php echo $image_popup['url'];?>);"></div>
+                                    <?php
+                                    }
+                                    else{ ?>
+                                      <div class="project-img1" style="background-image: url(<?php the_post_thumbnail_url();?>);"></div>
+                                    <?php
+                                    }
+                                    ?>
 								<div class="project_img1_2">
 								</div>
 							</div>
@@ -191,5 +190,7 @@ wp_reset_postdata();
 			</div><!--/.mt-related-posts-->
 			</div><!--/.mt-related-posts-->
 	</div>
+
+	
 <?php
 get_footer();

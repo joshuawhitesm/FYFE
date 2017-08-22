@@ -4393,7 +4393,7 @@ p.text-right {
 }
 
 .icon-fix a {
-    padding-top: 8px;
+    padding-top: 9px;
     background: #f1ac08;
     width: 32px;
     height: 32px;
@@ -5455,7 +5455,7 @@ span.style_c_d2 {
 }
 
 .style_news_read_more.t_c {
-    /*padding: 100px 0 100px 0;*/
+    padding: 100px 0 100px 0;
 }
 
 .style_content_feature {
@@ -5649,6 +5649,11 @@ li:hover div.project-info {
     display: none;
 }
 
+.project-d-title {
+    position: absolute;
+    left: 0;
+    top: 40%;
+}
 
 
 /*============= RESPONSIVE =============*/
@@ -5919,7 +5924,7 @@ div#sesion_2_home_fyfe_project {
     .col-md-5.p_relative.no-padding.style_project_our_top1_name {
         margin-top: 40px;
         width: 100%;
-        float: left;
+        /*float: left;*/
     }
 
     .col-md-5.p_relative.no-padding.style_project_our_top1_name_m {
@@ -6615,7 +6620,7 @@ h3#reply-title {
 }
 
 .col-md-12.no-padding.shapely-content1.dropcaps-content11 p {
-    margin-bottom: 0 !important;
+   /* margin-bottom: 0 !important; */
 }
 
 .img-100 {
@@ -7457,10 +7462,23 @@ footer {
     width: 100%;
 }
 
+.project-item {
+    display: inline-block;  
+}
+a.project-info-btn:hover {
+    color: #fff;
+}
+.project-modal .list-cat-fix2 a {
+    display: inline-block!important;
+    padding: 0px 13px;
+    margin-bottom: 5px;
+}
+
+
 
 @media only screen and (max-device-width: 768px) {
     .project-img--square {
-        height: 100vw !important;
+        /*height: 100vw !important;*/
     }
 
     div#project_our_ajax .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
@@ -7500,10 +7518,19 @@ footer {
 }
 
 /* 2px smaller than orignal size for footer text */
-.widget.widget_nav_menu .menu#menu-footer-2 > li a
+.widget.widget_nav_menu .menu#menu-footer-2 > li a {
     font-size: 10px;
-}@media only screen and (max-width: 768px) {
+}
+@media only screen and (max-width: 768px) {
   .xs-square-image {
     height: 100vw;
   }
 }
+
+@media screen and (max-width:1800px){
+ div#sesion_2_home_fyfe_project .carousel-indicators li {
+    line-height: 1.5;   
+}
+}
+
+

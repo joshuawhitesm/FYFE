@@ -73,7 +73,9 @@ while ( $the_query->have_posts() ) :
 	$arr_project[]= array('id' => $id, 'popup_image' => $popup_image, 'post_image' => $post_image);
 	?>
    <div class="item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-		<a href="javascript:void(0);"><?php the_post_thumbnail('shapely-grid' );?></a>
+		<a href="javascript:void(0);">
+		    <?php the_post_thumbnail('shapely-grid' );?> 
+		</a>
 		<div class="shapely-related-post-title">
 		<a href="javascript:void(0);"><?php wp_trim_words( get_the_title(), 5 ); ?></a>
 		</div>
@@ -108,18 +110,17 @@ wp_reset_postdata();
 					<div class="modal-body">
 						<div class="modal_body_fix col-md-12 p_l_r_0">
 							<div class="col-md-6 p_l_r_0 p_relative">
-								<div class="project-img1">
-								<?php 
-								if($popup_image2 != ''){ ?>
-									<img src="<?php echo $popup_image2;?>" />
-								<?php
-								}
-								else{ ?>
-									<a class = "style_image_thumbnail" href="#"><?php echo $post_image2?></a>
-								<?php
-								}
-								?>
-								</div>
+								  <?php 
+								  if($image_popup !=''){ ?>
+              
+                                  <div class="project-img1" style="background-image: url(<?php echo $image_popup['url'];?>);"></div>
+                                    <?php
+                                    }
+                                    else{ ?>
+                                      <div class="project-img1" style="background-image: url(<?php the_post_thumbnail_url();?>);"></div>
+                                    <?php
+                                    }
+                                    ?>
 								<div class="project_img1_2">
 								</div>
 							</div>

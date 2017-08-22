@@ -10,7 +10,7 @@ function our_projects_shortcode($args, $content) {
     <div class="col-md-12 p_relative  style_project_our_top">
       <div class="col-md-8 p_relative  style_project_our_top1">
         <div class="col-md-3 p_relative no-padding">
-          <h6 class="style_project_our_top1_all">All</h6>
+          <h6 class="style_project_our_top1_all all-project">All</h6>
         </div>
 
         <div class="col-md-5 p_relative no-padding style_project_our_top1_name">
@@ -29,8 +29,10 @@ function our_projects_shortcode($args, $content) {
                     $(".name_sectors h6").removeClass("current_cat");
                     $("#project_sectors_<?php echo $value->term_id;?>").addClass("current_cat");
                   });
+                  
                 });
               </script>
+             
             <?php } ?>
           </div>
         </div>
@@ -51,6 +53,7 @@ function our_projects_shortcode($args, $content) {
                     $(".name_services_hidden").val('<?php echo $value->term_id;?>');
                     $(".name_services h6").removeClass("current_cat");
                     $("#project_services_<?php echo $value->term_id;?>").addClass("current_cat");
+                    
                   });
                 });
               </script>
@@ -73,7 +76,7 @@ function our_projects_shortcode($args, $content) {
         $paged = 1;
       }
       $atts = shortcode_atts( array(
-        'number_posts' => 30,
+        'number_posts' => 1000000,
         'post_type' => 'projects',
         ), $atts, 'feature' );
 
@@ -102,6 +105,9 @@ function our_projects_shortcode($args, $content) {
 
     <div id="loadingDiv" class="row t_c loadingDiv hidden" >
       <img src="/wp-content/uploads/2017/07/giphy.gif" alt="loading">
+    </div>
+    <div class="loading-animation">
+        <img src="/wp-content/uploads/2017/07/giphy.gif" alt="loading">
     </div>
 
     <a class="hidden infinite-more-link" href="<?php echo add_query_arg('page', intval($paged) + 1, get_permalink()); ?>">SEE MORE</a>

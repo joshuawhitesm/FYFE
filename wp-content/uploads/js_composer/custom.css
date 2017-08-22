@@ -1,0 +1,148 @@
+.title-post-fix h5 button.btn.btn-info.btn-lg {
+    font-size: 16px;
+}
+.title-post-fix h5 p {
+    font-size: 13px;
+    line-height: 1;
+}
+
+div.project-info {
+    padding: 4px 13px 6px;
+}
+
+.sliderhome_75370 {
+    position: absolute;
+    top: 221px;
+    left: 0;
+    right: 0;
+    bottom: inherit;
+}
+
+.project-img1.2 img {
+    height:100%;
+}
+.loading-animation {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.58);
+    text-align: center;
+    padding: 10% 0;
+}
+
+
+@media screen and (max-width: 991px){
+    
+   div#category-post-content .m_st_20_bul_p {
+    padding: 0;
+} 
+}
+@media screen and (max-width: 980px){
+.sliderhome_75370 {
+    position: inherit;
+    top: inherit;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.sliderhome_75370 img {
+    margin-top: 25px;
+}
+ul.icon-fix {
+    padding-left: 42px;
+}
+div#sesion_2_home_fyfe_project {
+    height: auto;
+    margin-bottom: 20px;
+}
+}
+
+
+@media screen and (max-width:1200px){
+    .slhome_list.slhome_list_sector1.slhome_list_sectors1.sectors1.col-lg-5ths {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+}
+
+
+@media screen and (min-width:980px){
+    div#sesion_1_home_fyfe_project {
+    max-height: 515px;
+    min-height: auto!important;
+}
+    div#sesion_1_home_fyfe_project .carousel-inner {
+    max-height: 515px;
+}
+}
+
+@media screen and (min-width:1200px){
+    div#sesion_1_home_fyfe_project {
+    max-height: 515px;
+    min-height: auto!important;
+}
+    div#sesion_1_home_fyfe_project .carousel-inner {
+    max-height: 515px;
+}
+}
+
+
+
+
+
+@media screen and (min-width:1024px){
+ .services-height {
+    min-height: 520px;
+} 
+}
+@media screen and (max-width:1024px){
+.project_info1_ok1 > span    {
+    max-width: 200px;
+}
+}
+
+
+@media screen and (max-width:990px){
+.module.widget-handle.search-widget-handle.left {
+    max-width: 335px;
+    margin: 0 auto;
+}
+.search {
+    text-align: center;
+}
+#site-navigation .module.left .function {
+    padding-left: 20px!important;
+}
+.p_relative {
+    clear: both;
+}
+}
+
+@media screen and (max-width:767px){
+ .project-info {
+    opacity: 1;
+}
+.widget.widget_nav_menu > div ul#menu-footer-2 li {
+    text-align: center;
+}
+ul.icon-fix li {
+    float: none;
+    display: inline-block;
+    width: auto;
+    vertical-align: top;
+}
+ul.icon-fix {
+    text-align: center;
+}
+img.footer-widget-logo {
+    margin: 0 auto;
+    display: block;
+}
+ul.icon-fix {
+    padding-left: 15px;
+}
+p.text-right.text-footer-fix {
+    text-align: center;
+}
+}

@@ -277,6 +277,7 @@
 					autoplay       : sliderAutoPlay,
 					dots           : false,
 					autoplayTimeout: sliderSpeed * 10,
+					loop           : true,
 					responsive     : {
 						0  : {
 							items: 1
@@ -291,6 +292,9 @@
 
 		// added by Michael
 		$('a[href$="pdf"]').attr('target', '_blank');
+		
+
+		
 	});
 
 	jQuery(window).load(function ($) {

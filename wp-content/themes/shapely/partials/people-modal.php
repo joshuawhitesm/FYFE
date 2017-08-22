@@ -76,7 +76,13 @@
                       while ( have_rows('past_projects',$post->ID) ) : the_row();
 
                     $post_object = get_sub_field('project');
+                   
+	
+	
+	               
                     if( $post_object ):
+                  $arr_project[]= array('id' => $post_object->ID);
+                  
                   ?>
 
                   <li data-toggle="modal" data-target=".1628">
@@ -88,6 +94,11 @@
 
                       <?php // wp_reset_postdata();
                     ?>
+                    
+                    
+
+                    
+                    
                     <?php endif; ?>
 
                       <?php endwhile;  ?>
@@ -102,6 +113,15 @@
                 
 
               </div> <!-- .past-project -->
+
+
+
+
+
+          
+
+
+
 
 
               <div class="project_info_bottom">
@@ -119,3 +139,21 @@
     </div>
   </div>
 </div>
+ <!-- Moda Code -->
+            <?php /*
+			foreach($arr_project as $item){
+		$project_id = $item['id'];
+        $image_popup="";
+
+    $query2 = new WP_Query('post_type' => 'projects', 'post_id' => $project_id );
+
+    if ( $query2->have_posts() ) : while ( $query2->have_posts() ) : $query2->the_post(); ?>
+                    
+          <?php echo $project_id; ?>
+                  <?php  endif; ?>
+              <?php endwhile; ?>
+           <?php } 
+wp_reset_postdata();*/
+	?>         
+                    
+                    <!-- End of Modal -->

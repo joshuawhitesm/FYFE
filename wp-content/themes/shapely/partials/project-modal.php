@@ -1,3 +1,4 @@
+
 <div class="<?php echo get_the_ID();?> modal fade project-modal" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -80,18 +81,28 @@
                 <div class="project_info1_ok1">
                   <?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
                     <span class="no-padding color-white project-item project-item--small">
-                      <?php the_post_thumbnail();?>
+                      <?php if ( has_post_thumbnail( $post->ID ) ) {
+                            the_post_thumbnail();
+                        }
+                            else {
+                                echo '<img src="http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/08/recommended-product-dummy.jpg" alt=""/>';
+                                }
+                     
+                      ?>
 
                       <div class="project-info">
                         <div class="btn-see list-cat-fix"></div>
                         <div class="title-post-fix">
                           <h5>
-                            <button type="button" href="javascript:void(0);"class="btn btn-info btn-lg">
+                            <!--<button type="button" href="javascript:void(0);"class="btn btn-info btn-lg">
                               <?php echo the_title(); ?>
-                            </button>
+                            </button>-->
+                             <a href="#" class="project-info-btn"  data-toggle="modal" data-toggle="modal" data-target=".<?php echo get_the_ID();?>" data-dismiss="modal""><?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?></a>
+                             
                         </h5>
                         </div>
                       </div>
+                 
                     </span>
                   <?php endwhile;?>
                 </div>

@@ -1,19 +1,24 @@
-<div class="project infinite-item col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
+<div class="xx project infinite-item col-xs-6 no-padding color-white project-item modal-<?php echo get_the_ID();?>" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
   
-    <div class="project-img project-img--square">
-      <a href="javascript:void(0);"><?php the_post_thumbnail('people-thumb');?></a>
+    <div class="project-img project-img--square 11">
+        <?php if ( has_post_thumbnail($post->ID) ) {
+        	 the_post_thumbnail('people-thumb');
+       }
+        else {
+    			echo '<img src="http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/08/dummy-thumbnail.jpg" />';
+				}
+				?> 
+				
     </div>
 
-    <div class="project-info">
-      <!-- <?php $terms  = get_the_terms( get_the_ID(), 'project_cat', '', '' ); ?> -->
-      <!-- <?php foreach($terms as $value ){?> -->
-        <!--<div class="btn-see btn_see_fix"><a><?php echo $value->name;?></a></div>-->
-      <!-- <?php } ?> -->
-      <div class="title-post-fix">
-        <h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button></h5>
+
+    <div class="project-info"> 
+     
+   
+    <div class="title-post-fix">
+        <h5><button type="button" class="btn btn-info btn-lg"><?php echo mb_strimwidth(get_the_title(), 0, 40, '...'); ?></button></h5>
       </div>
     </div>
 
-
-  <?php get_template_part("partials/project", "modal") ?>
 </div>
+        <?php get_template_part("partials/project", "modal"); ?>

@@ -12,6 +12,7 @@ jQuery(document).ready(function($) {
       success: function(response) {
         $("#category-post-content").html(response);
         $("#loading-animation").hide();
+        
         return false;
       }
     });
@@ -21,6 +22,7 @@ jQuery(document).ready(function($) {
     $("a.ajax").removeClass("current");
     $("a.ajax").addClass("current"); //adds class current to the category menu item being displayed so you can style it with css
     $("#loading-animation").show();
+  
     $.ajax({
       type: "POST",
       url: ajaxUrl,
@@ -28,6 +30,7 @@ jQuery(document).ready(function($) {
       success: function(response) {
         $("#location-content").html(response);
         $("#loading-animation").hide();
+    
         return false;
       }
     });
@@ -77,6 +80,7 @@ jQuery(document).ready(function($) {
   }
 
   $(".name_services h6").on("click", function() {
+      $(".loading-animation").show();
     var name_services = $(".name_services_hidden").val();
     var name_sectors = $(".name_sectors_hidden").val();
     $.post(
@@ -90,10 +94,12 @@ jQuery(document).ready(function($) {
     ).success(function(html) {
       $("#project_our_ajax").html("");
       $("#project_our_ajax").append(html);
+      $(".loading-animation").hide();
     });
   });
 
   $(".name_sectors h6").on("click", function() {
+      $(".loading-animation").show();
     var name_services = $(".name_services_hidden").val();
     var name_sectors = $(".name_sectors_hidden").val();
     console.log(ajaxUrl);
@@ -110,16 +116,20 @@ jQuery(document).ready(function($) {
     ).success(function(html) {
       $("#project_our_ajax").html("");
       $("#project_our_ajax").append(html);
+      $(".loading-animation").hide();
     });
   });
 
   $(".style_project_our_top1_all").on("click", function() {
     var name_services = "all";
     var name_sectors = "all";
+    $(".loading-animation").show();
     $(".name_services_hidden").val("all");
     $(".name_sectors_hidden").val("all");
     $(".name_sectors h6").removeClass("current_cat");
     $(".name_services h6").removeClass("current_cat");
+    $('.name_sectors-item').hide(1000);
+    $('.name_services-fix').hide(1000);
     $.post(
       ajaxUrl,
       {
@@ -131,6 +141,7 @@ jQuery(document).ready(function($) {
     ).success(function(html) {
       $("#project_our_ajax").html("");
       $("#project_our_ajax").append(html);
+      $(".loading-animation").hide();
     });
   });
 

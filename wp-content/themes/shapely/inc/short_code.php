@@ -299,7 +299,7 @@ function project_shortcode($args, $content) {
 
 			<?php if($count==4){?>
 				<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-				<div class="project-img project-img--square" >
+				<div class="project-img project-img--square hh1" >
 					<a href="javascript:void(0);"><img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'people-thumb');?>" alt="" ></a>
 				</div>
 				<div class="project-info">
@@ -307,17 +307,23 @@ function project_shortcode($args, $content) {
 					</h5></div>
 				</div>
 			</div>
-				<div class="wpb_column vc_column_container text-center item-center-fix col-lg-5ths pull-right our-project-title after project-img project-img--square" style="height: 20vw;">
-				<div class="vc_column-inner no-padding center-fix-item p_relative">
+			
+			<div class="wpb_column vc_column_container text-center item-center-fix col-lg-5ths pull-right our-project-title after project-img project-img--square hh2" style="padding: 0;margin: 0;display: block;">
+				<div class="project-img project-img--square hh3" >
+    				<img src="http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/08/white-bg.jpg" alt="">
+				</div>
+				
+				<div class="vc_column-inner no-padding project-d-title">
 					<h4><a href="/?page_id=1052"><?php echo $title;?></a></h4>
 					<div class="btn-see">
 						<a href="/?page_id=1052">SEE MORE</a>
 					</div>
 				</div>
 			</div>
+			
 			<?php } else{ ?>
 			<div class="col-lg-5ths col-xs-6 no-padding color-white project-item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
-				<div class="project-img project-img--square" >
+				<div class="project-img project-img--square hh3" >
 					<a href="javascript:void(0);"><img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'people-thumb');?>" alt="" ></a>
 				</div>
 				<div class="project-info">
@@ -1042,7 +1048,7 @@ function news_shortcode($args, $content) {
 	}
 	ob_start();
 	$atts = shortcode_atts( array(
-		'number_posts' => 3,
+		'number_posts' => 2,
 		'post_type' => 'post',
 		), $atts, 'news' );
 	$args1 = array(
@@ -1063,6 +1069,7 @@ function news_shortcode($args, $content) {
 		<div id="news_load">
 		<?php
 		$i=0;
+		$published_posts = wp_count_posts()->publish;
 		if ( $posts_array1->have_posts() ) {
 		while ( $posts_array1->have_posts() ) {
 		$posts_array1->the_post();
@@ -1155,12 +1162,15 @@ function news_shortcode($args, $content) {
 			<input type="hidden" class="ajax_posts_f_i" value="<?php echo $i;?>">
 		</div>
 		</div>
+		<?php if ($published_posts > 2){ ?>
 		<div  class="col-ms-12 fl style_news_read_more t_c">
 			<a id="read_more_news" href="javascript:void(0);">SEE MORE</a>
 		</div>
+		<?php } ?>
 		<script type="text/javascript">
 			jQuery(document).ready( function($) {
 			var ajaxUrl1 = "<?php echo admin_url('admin-ajax.php')?>";
+			
 			$("#read_more_news").on("click", function() {
 			var paged = $('.ajax_posts_f_page').last().val();
 			var post_type = '<?php echo $atts['post_type']?>';
@@ -1173,7 +1183,7 @@ function news_shortcode($args, $content) {
 				i : i,
 				},'html')
 				.success(function(posts1345) {
-
+				    
 				$("#news_load").append(posts1345);
 				});
 			});
