@@ -21,4 +21,5 @@
     </div>
 
 </div>
-        <?php get_template_part("partials/project", "modal"); ?>
+        
+        

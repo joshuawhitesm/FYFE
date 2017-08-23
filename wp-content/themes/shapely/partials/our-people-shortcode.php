@@ -59,10 +59,33 @@ function our_people_shortcode($args, $content) {
     <?php get_template_part("partials/people", "modal"); ?>
 
   <?php  endwhile;?>
-    <div id="ajax_posts_f_project" class="row">
-      <input type="hidden" class="ajax_posts_f_page_project" value="2">
-    </div>
+
    <?php wp_reset_query(); ?>
+   
+   
+   <?php
+    $args = array(
+      'posts_per_page'   => 10000,
+      'post_type'        => 'projects',
+      'post_status'      => 'publish',
+      );
+      $loop = new WP_Query( $args );
+
+      if ( $loop->have_posts() ) {
+        while ( $loop->have_posts() ) {
+          $loop->the_post();
+         get_template_part("partials/project", "modal");
+        }
+      }
+            ?>  
+            
+            
+      <?php wp_reset_query(); ?>        
+   
+      <div id="ajax_posts_f_project" class="row">
+      <input type="hidden" class="ajax_posts_f_page_project" value="2">
+      </div> 
+   
   </div>
 
   </div>

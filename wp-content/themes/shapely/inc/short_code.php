@@ -292,129 +292,39 @@ function project_shortcode($args, $content) {
 				</div>
 			</div>
 			<?php } ?>
-			<div class="<?php echo get_the_ID();?> modal fade project-modal" role="dialog">
-			  <div class="modal-dialog">
-
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-
-					</div>
-					<div class="modal-body">
-						<div class="modal_body_fix col-md-12 p_l_r_0">
-							<div class="col-md-6 p_l_r_0 p_relative">
-
-
-          <?php $image_popup = get_field('image_popup') ;
-            if($image_popup !=''){ ?>
-
-              <div class="project-img1" style="background-image: url(<?php echo $image_popup['url'];?>);"></div>
-            <?php
-            }
-            else{ ?>
-              <div class="project-img1" style="background-image: url(<?php the_post_thumbnail_url();?>);"></div>
-            <?php
-            }
-            ?>
-
-								<div class="project_img1_2">
-								</div>
-							</div>
-							<div class="col-md-6  p_l_r_0 color-white p_relative">
-							<div class="modal-logo">
-								<img src="<?php echo bloginfo('template_directory'); ?>/assets/images/logo.png" class="logo" alt="FYFE">
-							</div>
-								<div class="p_l_t_30">
-
-									<div class="project-info1">
-										<div class="project-info1_ok">
-											<p><?php the_title();?></p>
-										</div>
-
-										<div class="btn-see list-cat-fix list-cat-fix2">
-										<?php
-										$terms = get_the_terms( get_the_ID(), 'project_services' );
-
-										if ( $terms && ! is_wp_error( $terms ) ) :
-
-											$draught_links = array();
-
-											foreach ( $terms as $term ) {?>
-												<a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a>
-											<?php }
-											?>
-
-
-										<?php endif; ?></div>
-										<div class="post-excerpt-fix-popup hiden-xs"><?php the_content();?></div>
-
-									</div>
-
-									<div class="project-info1">
-										<div class="project_info1_ok11">
-											<p>RELATED PROJECTS</p>
-										</div>
-										<?php
-										 $id = get_the_ID();
-										$custom_taxterms = wp_get_object_terms( $id, 'project_services', array('fields' => 'ids') );
-										$args1 = array(
-										'post_type' => 'projects',
-										'post_status' => 'publish',
-										'posts_per_page' => 3, // you may edit this number
-										'orderby' => 'rand',
-										'tax_query' => array(
-											array(
-												'taxonomy' => 'project_services',
-												'field' => 'id',
-												'terms' => $custom_taxterms
-											)
-										),
-										'post__not_in' => array ($id),
-										);
-
-										$loop1 = new WP_Query( $args1 );
-									?>
-										<div class="project_info1_ok1">
-											<?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
-												<span class="no-padding color-white project-item project-item--small">
-													<?php the_post_thumbnail();?>
-
-												  <div class="project-info">
-														<div class="btn-see list-cat-fix"></div>
-														<div class="title-post-fix">
-															<h5>
-																<button type="button" href="javascript:void(0);"class="btn btn-info btn-lg">
-																	<?php echo the_title(); ?>
-																</button>
-														</h5>
-														</div>
-												  </div>
-												</span>
-											<?php  endwhile;?>
-										</div>
-									</div>
-
-									<div class="project_info_bottom">
-										<div class="col-md-6 p_l_r_0 project_info_bottom1_6">
-											<div class="project_info1_a_share">
-												<p>SHARE</p>
-												<?php echo do_shortcode( "[simple-social-share]" ); ?>
-											</div>
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			  </div>
-			</div>
+			
 		<?php  endwhile;?>
 
 		<?php wp_reset_query(); ?>
+		
+		
+		
+		
+		<?php
+    $args = array(
+      'posts_per_page'   => 10000,
+      'post_type'        => 'projects',
+      'post_status'      => 'publish',
+      );
+      $loop = new WP_Query( $args );
+
+      if ( $loop->have_posts() ) {
+        while ( $loop->have_posts() ) {
+          $loop->the_post();
+         get_template_part("partials/project", "modal");
+        }
+      }
+            ?>  
+            
+            
+      <?php wp_reset_query(); ?>        
+		
+		
+		
+		
+		
+		
+		
 	</div>
 
 
@@ -1507,7 +1417,7 @@ function our_sliderhome_func($atts,$args) {
 								<div class="project-img1 3">
 
 
-          <?php $image_popup = get_field('image_popup') ;
+          <?php // $image_popup = get_field('image_popup') ;
             if($image_popup !=''){ ?>
 
               <div class="project-img1" style="background-image: url(<?php echo $image_popup['url'];?>);"></div>
@@ -1534,7 +1444,7 @@ function our_sliderhome_func($atts,$args) {
 											<p><?php echo get_the_title($project_id);?></p>
 										</div>
 
-										<div class="btn-see list-cat-fix list-cat-fix2">
+										<div class="btn-see list-cat-fix list-cat-fix2 555">
 										<?php
 										$terms = get_the_terms( $project_id, 'project_services' );
 
@@ -1543,7 +1453,14 @@ function our_sliderhome_func($atts,$args) {
 											$draught_links = array();
 
 											foreach ( $terms as $term ) {?>
+												<?php $button_tax_link=get_field('link','project_services_'. $term->term_taxonomy_id);
+												if ($button_tax_link!= ''){ ?>
 												<a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a>
+											<?php } else { ?>
+											    	<a href="#" class="disabled-link"><?php echo $term->name;?></a>
+											    	
+											<?php
+											} ?>
 											<?php }
 											?>
 
@@ -1585,7 +1502,7 @@ function our_sliderhome_func($atts,$args) {
 														<div class="btn-see list-cat-fix"></div>
 														<div class="title-post-fix">
 															<h5>
-																<button type="button" href="javascript:void(0);"class="btn btn-info btn-lg">
+																<button type="button" data-toggle="modal"  data-target=".<?php echo get_the_ID();?>" data-dismiss="modal" class="btn btn-info btn-lg">
 																	<?php echo the_title(); ?>
 																</button>
 														</h5>
@@ -1614,6 +1531,17 @@ function our_sliderhome_func($atts,$args) {
 
 			  </div>
   </div>
+
+
+
+
+
+
+
+
+
+  
+  
 	<?php } ?>
   <style type="text/css">
   	.text_yellow{

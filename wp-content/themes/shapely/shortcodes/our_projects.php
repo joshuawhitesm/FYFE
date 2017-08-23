@@ -100,8 +100,34 @@ function our_projects_shortcode($args, $content) {
         <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
       <?php } ?>
     </div>
+    
+   
 
     <?php wp_reset_query(); ?>
+    
+    
+    
+
+    <?php
+    $args = array(
+      'posts_per_page'   => 10000,
+      'post_type'        => 'projects',
+      'post_status'      => 'publish',
+      );
+      $loop = new WP_Query( $args );
+
+      if ( $loop->have_posts() ) {
+        while ( $loop->have_posts() ) {
+          $loop->the_post();
+         get_template_part("partials/project", "modal");
+        }
+      }
+            ?>  
+            
+            
+      <?php wp_reset_query(); ?>        
+    
+         
 
     <div id="loadingDiv" class="row t_c loadingDiv hidden" >
       <img src="/wp-content/uploads/2017/07/giphy.gif" alt="loading">

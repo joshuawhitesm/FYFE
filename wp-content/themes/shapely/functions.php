@@ -406,7 +406,7 @@ function prefix_load_cat_posts () {
 									<div class="project-info1_ok">
 										<p><?php the_title();?></p>
 									</div>
-									<div class="btn-see list-cat-fix list-cat-fix2 ">
+									<div class="btn-see list-cat-fix list-cat-fix2 111">
 									<?php
 										$terms = get_the_terms( get_the_ID(), 'project_services' );
 
@@ -415,7 +415,14 @@ function prefix_load_cat_posts () {
 											$draught_links = array();
 
 											foreach ( $terms as $term ) {?>
+											    <?php $button_tax_link=get_field('link','project_services_'. $term->term_taxonomy_id);
+												if ($button_tax_link!= ''){ ?>
 												<a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a>
+											<?php } else { ?>
+											    	<a href="#" class="disabled-link"><?php echo $term->name;?></a>
+											    	
+											<?php
+											} ?>
 											<?php }
 											?>
 
@@ -1122,7 +1129,7 @@ function project_our_ajax(){
 									<div class="project-info1_ok">
 										<p><?php the_title();?></p>
 									</div>
-									<div class="btn-see list-cat-fix list-cat-fix2 ">
+									<div class="btn-see list-cat-fix list-cat-fix2 222">
 									<?php
 										$terms = get_the_terms( get_the_ID(), 'project_services' );
 
@@ -1131,7 +1138,14 @@ function project_our_ajax(){
 											$draught_links = array();
 
 											foreach ( $terms as $term ) {?>
+											    <?php $button_tax_link=get_field('link','project_services_'. $term->term_taxonomy_id);
+												if ($button_tax_link!= ''){ ?>
 												<a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a>
+											<?php } else { ?>
+											    	<a href="#" class="disabled-link"><?php echo $term->name;?></a>
+											    	
+											<?php
+											} ?>
 											<?php }
 											?>
 
@@ -1399,3 +1413,34 @@ function excerpt($limit) {
   $excerpt = preg_replace('`[[^]]*]`','',$excerpt);
   return $excerpt;
 }
+
+
+
+
+
+
+
+
+
+function ni_search_by_title_only( $search, &$wp_query )
+{
+    global $wpdb;
+    if ( empty( $search ) )
+        return $search; // skip processing - no search term in query
+    $q = $wp_query->query_vars;
+    $n = ! empty( $q['exact'] ) ? '' : '%';
+    $search =
+    $searchand = '';
+    foreach ( (array) $q['search_terms'] as $term ) {
+        $term = esc_sql( like_escape( $term ) );
+        $search .= "{$searchand}($wpdb->posts.post_title LIKE '{$n}{$term}{$n}')";
+        $searchand = ' AND ';
+    }
+    if ( ! empty( $search ) ) {
+        $search = " AND ({$search}) ";
+        if ( ! is_user_logged_in() )
+            $search .= " AND ($wpdb->posts.post_password = '') ";
+    }
+    return $search;
+}
+add_filter( 'posts_search', 'ni_search_by_title_only', 500, 2 );

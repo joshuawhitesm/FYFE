@@ -35,7 +35,7 @@
                 <div class="project-info1_ok">
                   <p><?php the_title();?></p>
                 </div>
-                <div class="btn-see list-cat-fix list-cat-fix2 ">
+                <div class="btn-see list-cat-fix list-cat-fix2 333">
                   <?php
                     $terms = get_the_terms( get_the_ID(), 'project_services' );
 
@@ -44,8 +44,8 @@
                       $draught_links = array();
 
                       foreach ( $terms as $term ) {?>
-                        <!--<a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a> -->
-                  			<a href="<?php echo  get_term_link( $term ); ?>"><?php echo $term->name;?></a>
+                        <a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a> 
+                  			<!--<a href="<?php echo  get_term_link( $term ); ?>"><?php echo $term->name;?></a>-->
                   			
                       <?php } ?>
                   <?php endif; ?>
@@ -81,7 +81,7 @@
 
                 <div class="project_info1_ok1">
                   <?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
-                    <span class="no-padding color-white project-item project-item--small">
+                    <span class="no-padding color-white project-item project-item--small" data-toggle="modal"  data-target=".<?php echo get_the_ID();?>" data-dismiss="modal">
                       <?php if ( has_post_thumbnail( $post->ID ) ) {
                             the_post_thumbnail();
                         }
@@ -95,7 +95,9 @@
                         <div class="btn-see list-cat-fix"></div>
                         <div class="title-post-fix">
                           <h5>
-                             <a href="<?php echo get_permalink($post_object->ID); ?>" class="project-info-btn" ><?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?></a>
+                           
+                          <?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?>
+                             <!--<a href="<?php echo get_permalink($post_object->ID); ?>" class="project-info-btn" ><?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?></a>-->
                           </h5>
                         </div>
                       </div>

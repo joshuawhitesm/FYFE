@@ -23,7 +23,7 @@ $layout_class = shapely_get_layout_class(); ?>
 					<header class="entry-header nolist">
 						<h1 class="post-title entry-title"><?php printf( esc_html__( 'Search Results for: %s', 'shapely' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 					</header>
-
+                        
 					<?php
 					while ( have_posts() ) : the_post();
 					?>
@@ -38,10 +38,11 @@ $layout_class = shapely_get_layout_class(); ?>
 					endwhile;
 
 					shapely_pagination();
+				
 				else :
 
 					get_template_part( 'template-parts/content', 'none' );
-
+                 
 				endif; ?>
 
 			</main><!-- #main -->

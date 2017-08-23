@@ -35,12 +35,7 @@ if ( ! is_active_sidebar( 'footer-widget-1' ) && ! is_active_sidebar( 'footer-wi
 	<div class="col-md-5 col-sm-6 footer-widget" role="complementary">
 		<ul class="icon-fix">
 			<li class="col-md-2 col-xs-6 no-padding"><a href="/?page_id=787" class="icon-fix--button"><span>CAREERS</span></a></li>
-			<li class="col-md-2 col-xs-6 no-padding"><a href="#"><span>fb</span></a></li>
-			<li class="col-md-2 col-xs-6 no-padding"><a href="#"><span>tw</span></a></li>
-			<li class="col-md-2 col-xs-6 no-padding"><a href="#"><span>vk</span></a></li>
-			<li class="col-md-2 col-xs-6 no-padding"><a href="#"><span>inst</span></a></li>
-		</ul>
 
-		<p class="text-right text-footer-fix">Website design by: Sun bear digital</p>
+		<p class="text-right text-footer-fix">Website design by: Sun Bear Digital</p>
 	</div><!-- .widget-area .third -->
 </div>
