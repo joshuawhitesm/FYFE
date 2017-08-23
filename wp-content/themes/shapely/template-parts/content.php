@@ -63,9 +63,23 @@ $left_side   = get_theme_mod( 'post_author_left_side', false );
 		<div class="col-md-12 no-padding">
 		<div class="entry-meta col-md-3 no-padding">
 			<?php
-			shapely_posted_on_no_cat(); ?><!-- post-meta -->
+				$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+				if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+					$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+				}
+
+				$time_string = sprintf($time_string,
+          esc_attr( get_the_date( 'c' ) ),
+          esc_html( get_the_date() ),
+          esc_attr( get_the_modified_date( 'c' ) ),
+          esc_html( get_the_modified_date() ));
+			?>
+
+			<ul class="post-meta">
+				<li><span class="posted-on"><?php echo $time_string; ?></span></li>
+			</ul>
 		</div>
-		<?php if ( isset( $category[0] ) ): ?>
+		<?php if ( isset($category[0]) && $post_types->post_type != 'post' ): ?>
 			<span class="shapely-category1 col-md-3 no-padding">
 				<a href="<?php echo esc_url( get_category_link( $category[0]->term_id ) ); ?>">
 					<?php echo esc_html( $category[0]->name ); ?>
