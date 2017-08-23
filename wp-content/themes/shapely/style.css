@@ -4361,7 +4361,7 @@ body {
 }
 
 .color-white * {
-    color: #fff;
+    color: #fff !important;
 }
 
 ul.icon-fix {
