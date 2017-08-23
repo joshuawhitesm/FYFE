@@ -59,7 +59,7 @@ while ( $the_query->have_posts() ) :
 <?php }
 endwhile;
 ?>
-<div class="owlCarousel owl-carousel owl-theme owl-loaded owl-drag" data-slider-id="1673" id="owlCarousel-1673" data-slider-items="3" data-slider-speed="400" data-slider-auto-play="1" data-slider-navigation="false">
+<div class="owlCarousel owl-carousel owl-theme owl-loaded owl-drag single-sector-related-project" data-slider-id="1673" id="owlCarousel-1673" data-slider-items="3" data-slider-speed="400" data-slider-auto-play="1" data-slider-navigation="false">
 <?php
 $arr_project = array();
 while ( $the_query->have_posts() ) :
@@ -76,7 +76,7 @@ while ( $the_query->have_posts() ) :
 		<a href="javascript:void(0);">
 		    <?php the_post_thumbnail('shapely-grid' );?> 
 		</a>
-		<div class="shapely-related-post-title">
+		<div class="shapely-related-post-title sector-related-post-title">
 		<a href="javascript:void(0);"><?php echo wp_trim_words( get_the_title(), 5 ); ?></a>
 		</div>
 	</div><!--/.item-->

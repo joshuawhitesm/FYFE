@@ -44,6 +44,28 @@ div#sesion_2_home_fyfe_project {
 }
 
 
+.sector-related-post-title a{
+    background: rgba(0, 0, 0, 0.54);letter-spacing: 0.03em;
+    transition: all 200ms ease-in;
+        -webkit-transition: all 200ms ease-in;
+        -moz-transition: all 200ms ease-in;
+        -o-transition: all 200ms ease-in;
+    color: #fff!important;
+    padding: 10px;
+    font-size: 16px!important;
+}
+.sector-related-post-title {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display:none;
+}
+.single-sector-related-project .owl-item:hover .sector-related-post-title {
+    display:block!important;
+}
+
+
+
 @media screen and (max-width: 991px){
     
    div#category-post-content .m_st_20_bul_p {

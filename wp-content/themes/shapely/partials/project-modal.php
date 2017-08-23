@@ -44,7 +44,9 @@
                       $draught_links = array();
 
                       foreach ( $terms as $term ) {?>
-                        <a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a>
+                        <!--<a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a> -->
+                  			<a href="<?php echo  get_term_link( $term ); ?>"><?php echo $term->name;?></a>
+                  			
                       <?php } ?>
                   <?php endif; ?>
                 </div>
