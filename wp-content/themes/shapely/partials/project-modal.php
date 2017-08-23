@@ -97,8 +97,8 @@
                             <!--<button type="button" href="javascript:void(0);"class="btn btn-info btn-lg">
                               <?php echo the_title(); ?>
                             </button>-->
-                             <a href="#" class="project-info-btn"  data-toggle="modal" data-toggle="modal" data-target=".<?php echo get_the_ID();?>" data-dismiss="modal""><?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?></a>
-                             
+                            <!-- <a href="#" class="project-info-btn"  data-toggle="modal" data-toggle="modal" data-target=".<?php echo get_the_ID();?>" data-dismiss="modal""><?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?></a>-->
+                             <a href="<?php echo get_permalink($post_object->ID); ?>" class="project-info-btn" ><?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?></a>
                         </h5>
                         </div>
                       </div>

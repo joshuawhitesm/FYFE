@@ -32,11 +32,26 @@ div.project-info {
 }
 
 
+div#sesion_2_home_fyfe_project {
+    height:auto;
+    max-height: 535px;
+}
+.home-project-responsive-heading {
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 30px;
+    display: none;
+}
+
+
 @media screen and (max-width: 991px){
     
    div#category-post-content .m_st_20_bul_p {
     padding: 0;
 } 
+div#sesion_6_home_fyfe_project {
+    padding-top: 0!important;
+}
 }
 @media screen and (max-width: 980px){
 .sliderhome_75370 {
@@ -55,9 +70,29 @@ ul.icon-fix {
 div#sesion_2_home_fyfe_project {
     height: auto;
     margin-bottom: 20px;
+    max-height:100%;
+}
+div#sesion_2_home_fyfe_project .carousel-indicators li {
+    text-align:center;
+    margin-left:0!important;
+}
+div#sesion_2_home_fyfe_projec .vc_row.vc_row-o-content-middle:not(.vc_row-o-equal-height) .item-center-fix2 {
+    padding-top: 0;
+}
+div#sesion_1_home_fyfe_project .carousel1-indicators li {
+    text-align: center;
+    margin-left: 0!important;
 }
 }
 
+@media screen and (max-width:1300px){
+div#myCarousel2 {
+    max-height: 515px;
+}
+.home-project-responsive-heading {
+    display: block;
+}
+}
 
 @media screen and (max-width:1200px){
     .slhome_list.slhome_list_sector1.slhome_list_sectors1.sectors1.col-lg-5ths {
@@ -67,6 +102,7 @@ div#sesion_2_home_fyfe_project {
 }
 
 
+
 @media screen and (min-width:980px){
     div#sesion_1_home_fyfe_project {
     max-height: 515px;
@@ -74,6 +110,9 @@ div#sesion_2_home_fyfe_project {
 }
     div#sesion_1_home_fyfe_project .carousel-inner {
     max-height: 515px;
+}
+div#sesion_2_home_fyfe_project {
+    max-height: 100%;
 }
 }
 

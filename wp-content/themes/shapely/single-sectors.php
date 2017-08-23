@@ -77,7 +77,7 @@ while ( $the_query->have_posts() ) :
 		    <?php the_post_thumbnail('shapely-grid' );?> 
 		</a>
 		<div class="shapely-related-post-title">
-		<a href="javascript:void(0);"><?php wp_trim_words( get_the_title(), 5 ); ?></a>
+		<a href="javascript:void(0);"><?php echo wp_trim_words( get_the_title(), 5 ); ?></a>
 		</div>
 	</div><!--/.item-->
 	
