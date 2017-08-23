@@ -68,10 +68,6 @@ function expertise_shortcode($args, $content) {
       console.log("shifting")
       $(".height-fix.js-activated").removeClass("js-activated")
       $($(".height-fix")[currentAnimationIndex]).addClass("js-activated")
-      // $(".img-hover-fix_1").show()
-      // $(".img-hover-fix_2").hide()
-      // $($(".img-hover-fix_1")[currentAnimationIndex]).hide()
-      // $($(".img-hover-fix_2")[currentAnimationIndex]).show()
       currentAnimationIndex = (currentAnimationIndex + 1) % 14
 
       setTimeout(animation_shifter, 5000)

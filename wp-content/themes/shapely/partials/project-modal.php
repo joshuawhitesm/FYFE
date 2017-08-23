@@ -9,11 +9,10 @@
       <div class="modal-body">
         <div class="modal_body_fix col-md-12 p_l_r_0">
           <div class="col-md-6 p_l_r_0 p_relative">
-            
-            
+
           <?php $image_popup = get_field('image_popup') ;
             if($image_popup !=''){ ?>
-              
+
               <div class="project-img1" style="background-image: url(<?php echo $image_popup['url'];?>);"></div>
             <?php
             }
@@ -22,7 +21,7 @@
             <?php
             }
             ?>
-            
+
             <div class="project_img1_2"></div>
           </div>
 
@@ -87,22 +86,18 @@
                             else {
                                 echo '<img src="http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/08/recommended-product-dummy.jpg" alt=""/>';
                                 }
-                     
+
                       ?>
 
                       <div class="project-info">
                         <div class="btn-see list-cat-fix"></div>
                         <div class="title-post-fix">
                           <h5>
-                            <!--<button type="button" href="javascript:void(0);"class="btn btn-info btn-lg">
-                              <?php echo the_title(); ?>
-                            </button>-->
-                            <!-- <a href="#" class="project-info-btn"  data-toggle="modal" data-toggle="modal" data-target=".<?php echo get_the_ID();?>" data-dismiss="modal""><?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?></a>-->
                              <a href="<?php echo get_permalink($post_object->ID); ?>" class="project-info-btn" ><?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?></a>
-                        </h5>
+                          </h5>
                         </div>
                       </div>
-                 
+
                     </span>
                   <?php endwhile;?>
                 </div>

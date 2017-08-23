@@ -22,10 +22,9 @@ $layout_class = shapely_get_layout_class(); ?>
 
 					<header class="entry-header nolist">
 						<h1 class="post-title entry-title"><?php printf( esc_html__( 'Search Results for: %s', 'shapely' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-					</header><!-- .page-header -->
+					</header>
 
 					<?php
-					/* Start the Loop */
 					while ( have_posts() ) : the_post();
 					?>
 					<?php if (is_search() && ($post->post_type=='page')) continue; ?>

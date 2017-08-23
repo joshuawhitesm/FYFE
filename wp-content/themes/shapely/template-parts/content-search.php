@@ -18,6 +18,7 @@
             <?php echo wp_trim_words( get_the_title(), 9 ); ?>
           </a>
         </h2>
+        <?php the_excerpt(); ?>
 
         <?php get_template_part("partials/people", "modal") ?>
       <?php } else if (get_post_type() == 'projects') { ?>
@@ -26,15 +27,15 @@
             <?php echo wp_trim_words( get_the_title(), 9 ); ?>
           </a>
         </h2>
+        <?php the_excerpt(); ?>
 
         <?php get_template_part("partials/project", "modal") ?>
       <?php } else { ?>
         <h2 class="post-title">
           <a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo wp_trim_words( get_the_title(), 9 ); ?></a>
         </h2>
+        <?php the_excerpt(); ?>
       <?php } ?>
-
-			<?php the_excerpt(); ?>
 		</div>
 	</article>
 </div>
