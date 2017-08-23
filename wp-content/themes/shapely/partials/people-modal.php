@@ -36,6 +36,7 @@
                 $location = get_field('location') ;
                 $email = get_field('email') ;
                 $phone = get_field('phone') ;
+                $status = get_field('status') ;
               ?>
               <div class="project-info1_ok project_info1_ok_100">
                 <h6><a href="<?php the_field('linkedin');?>" target="_blank" class="linkedin-user"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a><?php the_title();?></h6>
