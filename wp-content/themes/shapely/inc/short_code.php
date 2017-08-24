@@ -910,7 +910,8 @@ function sectors_news_shortcode($args, $content) {
 		$post_slug = get_post_field( 'post_name', get_post() );
 		if($i%2==0){
 		?>
-			<div class="col-md-12 no-padding " id="<?php echo $post_slug; ?>">
+			<div class="col-md-12 no-padding " id="">
+			    <div id="<?php echo $post_slug; ?>" class="services-hooks" style=" display: block; position: absolute; top: -75px;"></div>
 				<div class="col-md-6 no-padding">
 					<div  class=" fl style_content_get_news">
 						<div  class="col-ms-12 fl style_image_news">

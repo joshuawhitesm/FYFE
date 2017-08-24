@@ -1011,7 +1011,7 @@ function project_our_ajax(){
 
 	if($name_sectors =="all" && $name_services !="all"){
 		$args = array(
-		'posts_per_page'   => '100',
+		'posts_per_page'   => '1000',
 		'orderby'          => 'date',
 		'order'            => 'DESC',
 		'post_type'        => 'projects',

@@ -38,7 +38,7 @@ function our_people_shortcode($args, $content) {
 
     <div class="col-lg-5ths col-xs-6 no-padding color-white project-item project-item--people" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
       <div class="teams-img 3">
-        <a href="javascript:void(0);"><?php the_post_thumbnail('people-vertical');?></a>
+        <a href="javascript:void(0);"><?php /* the_post_thumbnail('people-vertical');*/?><?php the_post_thumbnail();?></a>
       </div>
       <div class="project-info">
         <?php /*foreach($terms as $value ){*/?><!--

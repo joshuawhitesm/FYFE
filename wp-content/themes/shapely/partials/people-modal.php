@@ -91,7 +91,7 @@
               <?php echo get_the_post_thumbnail($post_object->ID, 'shapely-grid');?>
               <div class="project-info">
                 <!--<h5><a href="<?php echo get_permalink($post_object->ID); ?>"><?php echo get_the_title($post_object->ID); ?></a></h5>-->
-                <h5><a href="<?php echo get_permalink($post_object->ID); ?>"><?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?></a></h5>
+                <h5><a href="<?php echo get_permalink($post_object->ID); ?>"><?php echo mb_strimwidth(get_the_title($post_object->ID), 0, 30, '...'); ?></a></h5>
               </div>
               </div>
             </li>

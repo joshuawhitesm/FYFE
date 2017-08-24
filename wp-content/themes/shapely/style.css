@@ -5593,7 +5593,8 @@ li:hover div.project-info {
 }
 
 .past-project li h5 {
-    font-size: 14px;
+    /*font-size: 14px;*/
+    font-size: 16px;
     line-height: 1.3em;
     padding: 0;
 }
