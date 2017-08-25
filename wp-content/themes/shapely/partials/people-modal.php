@@ -63,9 +63,7 @@
               </div>
 
 
-              <div class="past-project" id="past-project-<?php the_ID(); ?>">
-
-
+<div class="past-project 22" id="past-project-<?php the_ID(); ?>">
 
             <?php // Start Loop
             global $post;
@@ -84,14 +82,14 @@
               if( $post_object ):
             ?>
 
-            <!--<li data-toggle="modal" data-target=".1628">-->
+            <!--<li data-toggle="modal" data-target=".">-->
             <li>
-              <div  data-toggle="modal" data-target=".1628">
+              <div  data-toggle="modal" data-target=".<?php echo $post_object->ID; ?>">
               <!--<a href="<?php echo get_permalink($post_object->ID); ?>"><?php echo get_the_post_thumbnail($post_object->ID, 'shapely-grid');?></a>-->
               <?php echo get_the_post_thumbnail($post_object->ID, 'shapely-grid');?>
               <div class="project-info">
                 <!--<h5><a href="<?php echo get_permalink($post_object->ID); ?>"><?php echo get_the_title($post_object->ID); ?></a></h5>-->
-                <h5><a href="<?php echo get_permalink($post_object->ID); ?>"><?php echo mb_strimwidth(get_the_title($post_object->ID), 0, 30, '...'); ?></a></h5>
+                <h5><a href="#"><?php echo mb_strimwidth(get_the_title($post_object->ID), 0, 30, '...'); ?></a></h5>
               </div>
               </div>
             </li>

@@ -1346,15 +1346,15 @@ function our_sliderhome_func($atts,$args) {
 
 										<div class="project_info1_ok1">
 											<?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
-												<span class="no-padding color-white project-item project-item--small">
+												<span class="no-padding color-white project-item project-item--small" data-toggle="modal"  data-target=".<?php echo get_the_ID();?>" data-dismiss="modal">
 													<?php the_post_thumbnail();?>
 
 												  <div class="project-info">
 														<div class="btn-see list-cat-fix"></div>
 														<div class="title-post-fix">
 															<h5>
-																<button type="button" data-toggle="modal"  data-target=".<?php echo get_the_ID();?>" data-dismiss="modal" class="btn btn-info btn-lg">
-																	<?php echo the_title(); ?>
+																<button type="button"  class="btn btn-info btn-lg">
+																	<?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?>
 																</button>
 														</h5>
 														</div>

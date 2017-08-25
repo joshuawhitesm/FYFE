@@ -8,6 +8,7 @@
 
 div.project-info {
     padding: 4px 13px 6px;
+    min-height: 80px;
 }
 
 .sliderhome_75370 {
@@ -72,14 +73,17 @@ div#sesion_2_home_fyfe_project {
     position: absolute;
     top: -75px;
 }
+body {
+    padding-right: 0!important;
+}
 
 
 
-
-
-
-
-
+@media screen and (max-width:1200px){
+.home .vc_row.vc_row-o-content-middle:not(.vc_row-o-equal-height) .item-center-fix2 {
+    display: none;
+}    
+}
 @media screen and (max-width: 991px){
     
    div#category-post-content .m_st_20_bul_p {
@@ -155,7 +159,7 @@ div#sesion_2_home_fyfe_project {
 }
 div#sesion_2_home_fyfe_project {
     max-height: 200%;
-    min-height: 580px;
+   /* min-height: 580px;*/
 }
 }
 

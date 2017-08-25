@@ -537,6 +537,8 @@ a:hover, a:active {
     display: block;
 }
 
+
+
 @media screen and (min-width: 992px) {
     .menu-toggle {
         display: none;
@@ -4551,7 +4553,7 @@ p.text-right {
 }
 
 .info-fix-right a {
-    color: #001c28;
+    color: #001c28 !important;
 }
 
 ul.post-categories {
@@ -5098,6 +5100,10 @@ button.close {
     padding: 0 20px;
 }
 
+.modal.team-modal {
+    z-index: 9999;
+}
+
 .vertical-centering {
     display: flex;
     flex-direction: column;
@@ -5601,6 +5607,7 @@ li:hover div.project-info {
 
 .past-project li h5 a {
     color: #fff !important;
+        pointer-events: none;
 }
 
 .project-img1 {
@@ -7484,7 +7491,7 @@ a.project-info-btn:hover {
 
     div#project_our_ajax .col-lg-5ths.col-xs-6.no-padding.color-white.project-item {
         max-height: 100vw !important;
-        height: 100vw !important;
+        /*height: 100vw !important;*/
     }
 }
 
