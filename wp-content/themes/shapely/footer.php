@@ -46,14 +46,17 @@
 	<script>
 		var $ = jQuery
 		$(function(){
-			$("[data-track-telephone]").click(function(){
+			if (typeof(ga) === 'undefined') {
+				var ga = __gaTracker
+			}
+
+			$(document).on("click", "[data-track-telephone]", function(){
 		    ga('send', 'event', 'Lead', 'Call', 'Phone Call', $(this).data('track-telephone'));
 				console.log("tracking", $(this).data('track-telephone'))
 			})
 
 			document.addEventListener( 'wpcf7mailsent', function( event ) {
 		    ga('send', 'event', 'Lead', 'Form Fill', 'Contact Us');
-		    console.log("Contact Us event tracking")
 			}, false );
 		})
 	</script>
