@@ -65,7 +65,6 @@ function expertise_shortcode($args, $content) {
     currentAnimationIndex = 0
     $ = jQuery
     function animation_shifter() {
-      console.log("shifting")
       $(".height-fix.js-activated").removeClass("js-activated")
       $($(".height-fix")[currentAnimationIndex]).addClass("js-activated")
       currentAnimationIndex = (currentAnimationIndex + 1) % 14

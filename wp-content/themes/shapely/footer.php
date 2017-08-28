@@ -47,6 +47,7 @@
 		var $ = jQuery
 		$(function(){
 			$("[data-track-telephone]").click(function(){
+		    ga('send', 'event', 'Lead', 'Call', 'Phone Call', $(this).data('track-telephone'));
 				console.log("tracking", $(this).data('track-telephone'))
 			})
 
