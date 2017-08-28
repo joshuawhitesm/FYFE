@@ -44,9 +44,9 @@
                       $draught_links = array();
 
                       foreach ( $terms as $term ) {?>
-                        <a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a> 
+                        <a href="<?php the_field('link','project_services_'. $term->term_taxonomy_id);?>"><?php echo $term->name;?></a>
                   			<!--<a href="<?php echo  get_term_link( $term ); ?>"><?php echo $term->name;?></a>-->
-                  			
+
                       <?php } ?>
                   <?php endif; ?>
                 </div>
@@ -59,7 +59,7 @@
                   <p>RELATED PROJECTS</p>
                 </div>
                 <?php
-                    
+
                    $id = get_the_ID();
                   $custom_taxterms = $_GET['sectors'];;
                   $args1 = array(
@@ -87,7 +87,7 @@
                             the_post_thumbnail();
                         }
                             else {
-                                echo '<img src="http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/08/recommended-product-dummy.jpg" alt=""/>';
+                                echo '<img src="http://fyfe.com.au/wp-content/uploads/2017/08/recommended-product-dummy.jpg" alt=""/>';
                                 }
 
                       ?>
@@ -96,7 +96,7 @@
                         <div class="btn-see list-cat-fix"></div>
                         <div class="title-post-fix">
                           <h5>
-                           
+
                           <?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?>
                              <!--<a href="<?php echo get_permalink($post_object->ID); ?>" class="project-info-btn" ><?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?></a>-->
                           </h5>

@@ -16,7 +16,7 @@
 	<?php if(is_home() || is_front_page()){?>
     <?php echo do_shortcode('[contact]');
 	} else {?>
-		<div class="contact-bottom-fix"><a href="http://fyfe-project.sunbeardigital.com/#contact_home_bottom">CONTACT FYFE</a></div>
+		<div class="contact-bottom-fix"><a href="http://fyfe.com.au/#contact_home_bottom">CONTACT FYFE</a></div>
 	<?php }
 	?>
 </div>
@@ -43,7 +43,19 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <?php wp_footer(); ?>
 
+	<script>
+		var $ = jQuery
+		$(function(){
+			$("[data-track-telephone]").click(function(){
+				console.log("tracking", $(this).data('track-telephone'))
+			})
 
+			document.addEventListener( 'wpcf7mailsent', function( event ) {
+		    ga('send', 'event', 'Lead', 'Form Fill', 'Contact Us');
+		    console.log("Contact Us event tracking")
+			}, false );
+		})
+	</script>
 
 </body>
 </html>

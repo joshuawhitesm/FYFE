@@ -540,7 +540,7 @@ function contact_shortcode($args, $content) {
 					]
 				});
 				var image = {
-					url: 'http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/07/icon_marker.png',
+					url: 'http://fyfe.com.au/wp-content/uploads/2017/07/icon_marker.png',
 					// This marker is 20 pixels wide by 32 pixels high.
 					size: new google.maps.Size(32, 32),
 					// The origin for this image is (0, 0).
@@ -562,7 +562,7 @@ function contact_shortcode($args, $content) {
 				// Origins, anchor positions and coordinates of the marker increase in the X
 				// direction to the right and in the Y direction down.
 				var image = {
-					url: 'http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/07/icon_marker.png',
+					url: 'http://fyfe.com.au/wp-content/uploads/2017/07/icon_marker.png',
 					// This marker is 20 pixels wide by 32 pixels high.
 					size: new google.maps.Size(32, 32),
 					// The origin for this image is (0, 0).

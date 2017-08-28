@@ -35,7 +35,7 @@ function project_shortcode($args, $content) {
 
       <div class="wpb_column vc_column_container text-center item-center-fix col-lg-5ths pull-right our-project-title after project-img project-img--square hh2" style="padding: 0;margin: 0;display: block;">
         <div class="project-img project-img--square hh3" >
-            <img src="http://fyfe-project.sunbeardigital.com/wp-content/uploads/2017/08/white-bg.jpg" alt="">
+            <img src="http://fyfe.com.au/wp-content/uploads/2017/08/white-bg.jpg" alt="">
         </div>
 
         <div class="vc_column-inner no-padding project-d-title">
