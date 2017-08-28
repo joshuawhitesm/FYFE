@@ -50,7 +50,7 @@
 				var ga = __gaTracker
 			}
 
-			$(document).on("tap", "[data-track-telephone]", function(){
+			$(document).on("click", "[data-track-telephone]", function(){
 		    ga('send', 'event', 'Lead', 'Call', 'Phone Call', $(this).data('track-telephone'));
 				console.log("tracking", $(this).data('track-telephone'))
 			})
