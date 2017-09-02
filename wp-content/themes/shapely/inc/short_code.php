@@ -287,6 +287,7 @@ function contact_shortcode($args, $content) {
 					   class="location_remove <?php echo $current_cat; ?>"
 					   href="javascript:void(0);"
 					   data-location-id="<?php the_ID(); ?>"
+					   data-city-code="<?php trim(the_title()); ?>"
 					   data-lat="<?php echo $arr_center['lat']; ?>"
 					   data-lng="<?php echo $arr_center['lng']; ?>">
 						<?php the_title();?>
@@ -366,6 +367,13 @@ function contact_shortcode($args, $content) {
 						setMarkers(map, eval('addr_info_'+locationId));
 					}
 				});
+
+      	$.get('http://app.knackmap.com/geoip.php', function(city_code) {
+      		var $tab = $("[data-city-code='" + city_code + "']")
+      		if ($tab.length > 0) {
+      			$tab.trigger('click')
+      		}
+      	})
 			});
 
 			function initMap(lat, lng, arr_info_json) {
