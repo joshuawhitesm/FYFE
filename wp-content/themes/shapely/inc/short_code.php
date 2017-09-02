@@ -367,14 +367,13 @@ function contact_shortcode($args, $content) {
 						setMarkers(map, eval('addr_info_'+locationId));
 					}
 				});
-				setTimeout(function() {
-	      	$.get('http://app.knackmap.com/geoip.php', function(city_code) {
-	      		var $tab = $("[data-city-code='" + city_code + "']")
-	      		if ($tab.length > 0) {
-	      			$tab.trigger('click')
-	      		}
-	      	})
-	      }, 1000)
+
+      	$.get('http://app.knackmap.com/geoip.php', function(city_code) {
+      		var $tab = $("[data-city-code='" + $.trim(city_code) + "']")
+      		if ($tab.length > 0) {
+      			$tab.trigger('click')
+      		}
+      	})
 			});
 
 			function initMap(lat, lng, arr_info_json) {
