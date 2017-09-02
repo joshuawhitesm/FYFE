@@ -7,7 +7,7 @@ add_shortcode( 'expertise', 'expertise_shortcode' );
 function post_shortcode($args, $content) {
 	$title = $args['title'] ;
 	ob_start();
-	$args = array( 'post_type' => 'post', 'posts_per_page' => 1,'orderby'  => 'date', 'order'  => 'ASC', );
+	$args = array( 'post_type' => 'post', 'posts_per_page' => 1,'orderby'  => 'date', 'order'  => 'DESC', );
 	$loop = new WP_Query( $args );?>
 
 	<div class="col-lg-12 col-xs-12 no-padding glr-right color-white">
@@ -22,7 +22,7 @@ function post_shortcode($args, $content) {
 			</div>
 		</div>
 
-		<div class='img-post-fix'><?php the_post_thumbnail();?></div>
+		<div class='img-post-fix'><?php the_post_thumbnail('post-banner-size');?></div>
 		<div class="info-fix">
 			<!--<div class="btn-see"><?php /*the_category( $separator, $parents, $post_id ); */?> </div>-->
 			<div class="title-post-fix"><h4><a href="<?php the_permalink();?>"><?php the_title();?></a></h4></div>

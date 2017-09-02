@@ -109,7 +109,7 @@ function add_sectors_post_type()
         'menu_position' => 25,
         'menu_icon' => 'dashicons-welcome-add-page',
         'can_export' => true,
-        'has_archive' => true,
+        'has_archive' => false,
         'exclude_from_search' => false,
         'publicly_queryable' => true,
     );
@@ -189,7 +189,7 @@ function add_projects_post_type()
         'menu_position' => 25,
         'menu_icon' => 'dashicons-welcome-add-page',
         'can_export' => true,
-        'has_archive' => true,
+        'has_archive' => false,
         'exclude_from_search' => false,
         'publicly_queryable' => true,
     );

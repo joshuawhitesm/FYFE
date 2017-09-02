@@ -75,8 +75,8 @@ while ( $the_query->have_posts() ) :
 	?>
    <div class="item" data-toggle="modal" data-target=".<?php echo get_the_ID();?>">
 		<a href="javascript:void(0);"><?php the_post_thumbnail('shapely-grid' );?></a>
-		<div class="shapely-related-post-title">
-		<a href="javascript:void(0);"><?php wp_trim_words( get_the_title(), 5 ); ?></a>
+		<div class=" sector-related-post-title">
+		<a href="javascript:void(0);"><?php echo wp_trim_words( get_the_title(), 5 ); ?></a>
 		</div>
 	</div><!--/.item-->
 	
@@ -90,11 +90,13 @@ endwhile;
 wp_reset_postdata();
 	?>
 	</div><!--/.owlCarousel-->
-	<?php
+	<?php 
 	foreach($arr_project as $item){
 		$project_id = $item['id'];
 		$popup_image2 = $item['popup_image'];
 		$post_image2 = $item['post_image'];
+	}
+	/*
 	?>
 	
 <div class="<?php echo $project_id;?> modal fade project-modal" role="dialog">
@@ -200,8 +202,28 @@ wp_reset_postdata();
 
 			  </div>
 			</div>
-<?php }
+			
+			
+<?php */
 	?>
+	
+	    <?php
+    $args = array(
+      'posts_per_page'   => 10000,
+      'post_type'        => 'projects',
+      'post_status'      => 'publish',
+      );
+      $loop = new WP_Query( $args );
+
+      if ( $loop->have_posts() ) {
+        while ( $loop->have_posts() ) {
+          $loop->the_post();
+         get_template_part("partials/sector", "modal");
+        }
+      }
+            ?>  
+	
+	
 			</div><!--/.mt-related-posts-->
 			</div><!--/.mt-related-posts-->
 	</div>

@@ -9,6 +9,7 @@
 div.project-info {
     padding: 4px 13px 6px;
     min-height: 80px;
+    height: 30%;
 }
 
 .sliderhome_75370 {
@@ -76,6 +77,28 @@ div#sesion_2_home_fyfe_project {
 body {
     padding-right: 0!important;
 }
+.page-template-template-services .owl-item:hover .sector-related-post-title {
+    display:block!important;
+}
+.home .slhome_des.col-xs-5 {
+    padding: 15px 25px;
+    font-size: 25px;
+}
+
+
+
+@media screen and (max-width:1080px){
+#content {
+    margin-top: 77px;
+}
+#masthead {
+    position: fixed;
+    z-index: 999999999999;
+    width: 100%;
+    top: 0;
+}
+}
+
 
 
 

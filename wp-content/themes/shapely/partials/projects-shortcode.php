@@ -52,7 +52,7 @@ function project_shortcode($args, $content) {
           <a href="javascript:void(0);"><img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'people-thumb');?>" alt="" ></a>
         </div>
         <div class="project-info">
-          <div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php the_title();?></button>
+          <div class="title-post-fix"><h5><button type="button" class="btn btn-info btn-lg"><?php echo mb_strimwidth(get_the_title(), 0, 40, '...'); ?></button>
           </h5></div>
         </div>
       </div>

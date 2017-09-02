@@ -1312,3 +1312,7 @@ function ni_search_by_title_only( $search, &$wp_query )
     return $search;
 }
 add_filter( 'posts_search', 'ni_search_by_title_only', 500, 2 );
+
+
+	
+add_image_size( 'post-banner-size', 1140, 550, true );
