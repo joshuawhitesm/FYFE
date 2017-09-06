@@ -15,4 +15,5 @@ wp-content/backupwordpress-*
 wp-content/updraft/
 wp-content/wflogs/
 wp-content/plugins/aceide/backups
+wp-content/cache/
 .DS_Store

@@ -87,7 +87,7 @@ $snapshots = array_slice( $snapshots, 0, 3 );
 
 								if ( isset( WPMUDEVSnapshot::instance()->config_data['destinations'][ $destination_slug ] ) ) {
 
-									$destination_type = WPMUDEVSnapshot::instance()->config_data['destinations'][ $destination_slug ]['type'];
+									$destination_type = WPMUDEVSnapshot::instance()->config_data['destinations'][ $destination_slug ]['type'];		 	  		   			   	 
 
 								} else {
 

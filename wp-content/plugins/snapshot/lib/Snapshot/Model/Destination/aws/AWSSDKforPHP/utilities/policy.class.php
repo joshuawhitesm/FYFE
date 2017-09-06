@@ -74,7 +74,7 @@ class CFPolicy
 	{
 		if (version_compare(PHP_VERSION, '5.3.0', '<'))
 		{
-			throw new Exception('PHP 5.3 or newer is required to instantiate a new class with CLASS::init().');		 	  		   			   	 
+			throw new Exception('PHP 5.3 or newer is required to instantiate a new class with CLASS::init().');
 		}
 
 		$self = get_called_class();

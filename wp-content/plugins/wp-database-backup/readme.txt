@@ -290,6 +290,10 @@ WP Database Backup plugin helps you to Restore Database Backup easily on single 
 * Added Setting : Remove local backup 
 * If Checked then it will remove local backup. 
 
+= 4.4.1 = 
+* 29-08-2017
+* If Class ZipArchive Not Present then create zip using PclZip
+
 == Frequently Asked Questions ==
 
  Q-How to  create database Backup?
@@ -336,8 +340,8 @@ Also Please make sure that you have write permission to Backup folder and also c
   
 == Upgrade Notice ==
 
-=4.4= 
-* Added Setting : Remove local backup 
+=4.4.1= 
+* Added Support PclZip
 
 == Official Site ==
 * http://www.wpseeds.com/documentation/docs/wp-database-backup
