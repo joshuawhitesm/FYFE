@@ -1332,14 +1332,16 @@ function our_sliderhome_func($atts,$args) {
 									<div class="project-info1">
 										<div class="project_info1_ok11">
 											<p>RELATED PROJECTS</p>
+										
 										</div>
 										<?php
 										$terms = get_the_terms( $project_id, 'project_services' );
 										// print_r( $terms );
 										foreach($terms as $term) {
 											$id2 = $term->term_id;
-											$args1 = array(
+											$args2 = array(
 											'post_type' => 'projects',
+											'orderby' => 'rand',
 											'posts_per_page' => 3,
 											'tax_query' => array(
 												array(
@@ -1349,11 +1351,11 @@ function our_sliderhome_func($atts,$args) {
 													)
 												)
 											);
-											$loop1 = new WP_Query( $args1 );
+											$loop2 = new WP_Query( $args2 );
 										?>
 
 										<div class="project_info1_ok1">
-											<?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
+											<?php while ( $loop2->have_posts() ) : $loop2->the_post(); global $product1;?>
 												<span class="no-padding color-white project-item project-item--small" data-toggle="modal"  data-target=".<?php echo get_the_ID();?>" data-dismiss="modal">
 													<?php the_post_thumbnail();?>
 
@@ -1369,6 +1371,7 @@ function our_sliderhome_func($atts,$args) {
 												  </div>
 												</span>
 											<?php  endwhile;?>
+											<?php wp_reset_query(); ?>
 										</div>
 										<?php } ?>
 									</div>

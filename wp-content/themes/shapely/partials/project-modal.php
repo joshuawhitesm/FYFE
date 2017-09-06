@@ -57,6 +57,7 @@
               <div class="project-info1">
                 <div class="project_info1_ok11">
                   <p>RELATED PROJECTS</p>
+                
                 </div>
                 <?php
                    $id = get_the_ID();
@@ -64,8 +65,9 @@
                   $args1 = array(
                   'post_type' => 'projects',
                   'post_status' => 'publish',
+                   'orderby'          => 'rand',
+         
                   'posts_per_page' => 3, // you may edit this number
-                  'orderby' => 'rand',
                   'tax_query' => array(
                     array(
                       'taxonomy' => 'project_services',
@@ -80,6 +82,7 @@
                 ?>
 
                 <div class="project_info1_ok1">
+                    <?php shuffle( $loop1); ?>
                   <?php while ( $loop1->have_posts() ) : $loop1->the_post(); global $product1;?>
                     <span class="no-padding color-white project-item project-item--small" data-toggle="modal"  data-target=".<?php echo get_the_ID();?>" data-dismiss="modal">
                       <?php if ( has_post_thumbnail( $post->ID ) ) {
@@ -104,6 +107,7 @@
 
                     </span>
                   <?php endwhile;?>
+                  <?php wp_reset_query(); ?>
                 </div>
               </div>
 
