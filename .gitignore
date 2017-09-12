@@ -17,3 +17,7 @@ wp-content/wflogs/
 wp-content/plugins/aceide/backups
 wp-content/cache/
 .DS_Store
+
+wp-content/uploads/backupbuddy_backups/
+wp-content/uploads/backupbuddy_temp/
+wp-content/uploads/pb_backupbuddy/
